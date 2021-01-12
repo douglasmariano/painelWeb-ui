@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidoService } from '../pedido.service';
+import { PedidoPesquisaService } from './pedidos-pesquisa.service';
 
 @Component({
   selector: 'app-pedidos-pesquisa',
@@ -7,18 +7,26 @@ import { PedidoService } from '../pedido.service';
   styleUrls: ['./pedidos-pesquisa.component.css']
 })
 export class PedidosPesquisaComponent implements OnInit {
+  numped: number;
+  dataPedidoDe ;
+  dataPedidoAte;
+  nomeCliente;
+  nomeVendedor;
+  pedidos=[]; 
 
-  pedidos= [];
 
-  ngOnInit(){
+
+  constructor(private pedidoPesquisaService: PedidoPesquisaService){ }
+
+  ngOnInit(){       
     this.pesquisar();
   }
 
-  constructor(private pedidoService: PedidoService){ }
-    pesquisar(){
-      this.pedidoService.pesquisar()
-      .then(pedidos => this.pedidos = pedidos );
-    }
+  pesquisar(){
+    this.pedidoPesquisaService.pesquisar({numped :this.numped, dataPedidoDe: this.dataPedidoDe, dataPedidoAte : this.dataPedidoAte, nomeCliente: this.nomeCliente, nomeVendedor : this.nomeVendedor})
+        .then(pedidos => this.pedidos = pedidos );
+    console.log(this.dataPedidoDe+ '-' +this.dataPedidoAte);
   }
+}
 
 

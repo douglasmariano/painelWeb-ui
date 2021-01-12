@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    margin: 0;
+    margin: 3;
     font-family: Arial, Helvetica, sans-serif;
     color: #404c51;
+}
+.grid {
+	display: grid;
 }
 
 label{

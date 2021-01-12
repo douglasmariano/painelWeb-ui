@@ -10,8 +10,8 @@
 
   <ul class="navbar-menu" [hidden]= "!exibindoMenu">
     <li class="navbar-usuario">Fulano Silva</li>
-    <li class="navbar-menuitem"><a href="#">Pesquisa</a></li>
-    <li class="navbar-menuitem"><a href="#">Cadastro</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/painel">Painel</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo"><a routerLink="/pedidos">Pedidos</a></li>
     <li class="navbar-menuitem"><a href="#">Logout</a></li>
   </ul>
 

@@ -1,44 +1,52 @@
-<div class="p-grid">
+<div class="p-mb-2">
   
+  <form autocomplete="off" (ngSubmit)="pesquisar()">
     <div class="p-col-12">
       <h1>Pedidos</h1>
     </div>
-    <div class="p-megamenu-col-12">
+    <div class="p-inputtext-sm">
       <label style="display: block">Numped</label>
-      <input pInputText type="text">
+      <input pInputText type="text" name="numped" [(ngModel)]="numped">
     </div>
-    <div class="p-col-12">
-      <label style="display: block">Emissão</label>
-      <input pInputText type="text" style="width: 95px">
+    <div class="p-inputtext-sm">
+      <label style="display: block">Nome Cliente</label>
+      <input pInputText type="text" name="nomeCliente" [(ngModel)]="nomeCliente" (ngModelChange)="nomeCliente = $event.toUpperCase()">
+      <label style="display: block">Nome Vendedor</label>
+      <input pInputText type="text" name="nomeVendedor" [(ngModel)]="nomeVendedor" (ngModelChange)="nomeVendedor = $event.toUpperCase()">
+    </div> 
+     
+    <div class="p-field p-col-12 p-md-4">
+      <label style="display: block">Emissão</label>      
+      <p-calendar name="dataPedidoDe" [(ngModel)]="dataPedidoDe" [showIcon]="true" inputId="dataPedidoDe"></p-calendar> 
       <label >até</label>
-      <input pInputText type="text" style="width: 95px">
+      <p-calendar name="dataPedidoAte" [(ngModel)]="dataPedidoAte"[showIcon]="true" inputId="dataPedidoAte"></p-calendar> 
     </div>
+
+
     <div class="p-col-12">
       <button pButton type="submit" label="Pesquisar" ></button>
     </div>
-
-    <div class="p-megamenu-grid">
+</form>
+    <div class="p-grid">
       <p-table [value]="pedidos" [paginator]="true" [rows]="20" [showCurrentPageReport]="true"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]" [responsive]="true">
         <ng-template pTemplate="header">
             <tr>
-                <th>Numped</th>
-                <th>Vendedor</th>
-                <th>Codigo do Cliente</th>
+                <th>Numped</th>                
                 <th>Cliente</th>
                 <th>Posição</th>
-                <th>Data do Pedido</th>
+                <th>Vendedor</th>
+                <th>Data</th>
                 <th>Opções</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-pedidos>
             <tr>
-                <td>{{pedidos.numped}}</td>
-                <td>{{pedidos.vendedor.nome}}</td>
-                <td>{{pedidos.cliente.codigoCliente}}</td>
-                <td>{{pedidos.cliente.nomeCliente}}</td>
-                <td [ngStyle]="{color: pedidos.posicao === 'F' ? 'blue' : 'red'}">{{pedidos.posicao}}</td>
-                <td>{{pedidos.datapedido | date:'dd/MM/y'}}</td>
+                <td>{{pedidos.numped }}</td>
+                <td>{{pedidos.cliente }}</td>                
+                <td [ngStyle]="{color: pedidos.posicao === 'F' ? 'blue' : 'red'}">{{pedidos.posicao }}</td>
+                <td>{{pedidos.nome }}</td>
+                <td>{{pedidos.datapedido | date:'dd/MM/y HH:mm:ss'}}</td> 
                 <td><button pButton type="button" icon="pi pi-check" iconPos="left" pTooltip="Finalizar" tooltipPosition="top"></button></td>
             </tr>
         </ng-template>
