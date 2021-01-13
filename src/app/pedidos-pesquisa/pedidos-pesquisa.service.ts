@@ -23,7 +23,9 @@ export class PedidoPesquisaService {
     }
   }
 
-  alterarPosicao(numped:number): Promise<any>{    
-   return null// return this.http.put(this.pedidosUrlAll/numped).toPromise();
+  excluir(numped:number): Promise<void>{    
+   return this.http.delete(`${this.pedidosUrlAll}/${numped}`)
+   .toPromise()
+   .then(() => {this.pesquisar(null);});// return this.http.put(this.pedidosUrlAll/numped).toPromise();
   } 
 }

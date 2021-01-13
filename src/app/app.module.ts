@@ -17,9 +17,13 @@ import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.componen
 import { FormsModule }   from '@angular/forms';
 import {CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastyModule } from 'ng2-toasty';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 const routes: Routes=[
   {path: 'pedidos', component: PedidosPesquisaComponent},
+  {path: 'pedidos/:numped', component: PedidosPesquisaComponent},
   {path: 'painel', component: PainelPedidosComponent}
 ];
 
@@ -37,12 +41,14 @@ const routes: Routes=[
     TableModule,
     TooltipModule,
     HttpClientModule,
+    ToastyModule.forRoot(),
+    ConfirmDialogModule,
     FormsModule,
     CalendarModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes) 
   ],
-  providers: [PedidoService, PainelPedidosService, PedidoPesquisaService],
+  providers: [PedidoService, PainelPedidosService, PedidoPesquisaService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

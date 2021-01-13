@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastyConfig } from 'ng2-toasty';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
+  constructor(private toastConfig: ToastyConfig){
+    this.toastConfig.theme = 'bootstrap';
+  }
  
 
 }
