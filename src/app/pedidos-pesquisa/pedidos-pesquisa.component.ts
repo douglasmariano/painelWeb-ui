@@ -7,7 +7,7 @@ import { PedidoPesquisaService } from './pedidos-pesquisa.service';
 @Component({
   selector: 'app-pedidos-pesquisa',
   templateUrl: './pedidos-pesquisa.component.html',
-  styleUrls: ['./pedidos-pesquisa.component.css']
+  styleUrls: ['./pedidos-pesquisa.component.css',]
 })
 export class PedidosPesquisaComponent implements OnInit {
   numped: number;
@@ -21,8 +21,8 @@ export class PedidosPesquisaComponent implements OnInit {
 
   constructor(private pedidoPesquisaService: PedidoPesquisaService,
               private  toasty:ToastyService,
-              private confirmation:ConfirmationService,
-              private route:ActivatedRoute){ }
+              private  confirmation:ConfirmationService,
+              private  route:ActivatedRoute){ }
 
   ngOnInit(){       
     console.log(this.route.snapshot.params['numped'])

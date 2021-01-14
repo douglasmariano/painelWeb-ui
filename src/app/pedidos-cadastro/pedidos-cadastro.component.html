@@ -1,0 +1,133 @@
+<div class="container">
+    <form  #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h1> Novo Pedido </h1>
+            </div>
+
+            <div class="ui-g-12 ui-md-3 ui-fluid">
+                <label>numped</label>
+                <input pInputText type="text" name="numped" required
+                [(ngModel)]="pedido.numped" >
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>codusur</label>
+                <input pInputText type="text" required
+                [(ngModel)]="pedido.codusur">
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>codccli</label>
+                <input pInputText type="text" required
+                [(ngModel)]="pedido.codccli">
+            </div>
+            <div class="ui-g-12">
+                <label>status</label>
+                <p-dropdown [options]="status" placeholder="Selecione" required 
+                [(ngModel)]="pedido.status"></p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>vltotal</label>
+                <p-inputNumber  mode="decimal" [minFractionDigits]="2" 
+                [(ngModel)]="pedido.vltotal"></p-inputNumber>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>posicao</label>
+                <input pInputText type="text"
+                [(ngModel)]="pedido.posicao">>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>datapedido</label>
+                <p-calendar dateFormat="dd/mm/yy" name="datapedido" [showIcon]="true" inputId="datapedido" required
+                [(ngModel)]="pedido.datapedido"></p-calendar>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label >datachegadacli</label>
+                <p-calendar dateFormat="dd/mm/yy" name="datachegadacli" [showIcon]="true" inputId="datachegadacli"
+                [(ngModel)]="pedido.datachegadacli"></p-calendar>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>codfuncsep</label>
+                <input pInputText type="text"
+                [(ngModel)]="pedido.codfuncsep">>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>datainiciosep</label>
+                <p-calendar dateFormat="dd/mm/yy" name="datainiciosep" [showIcon]="true" inputId="datainiciosep"
+                [(ngModel)]="pedido.datainiciosep"></p-calendar>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>datafimsep</label>
+                <p-calendar dateFormat="dd/mm/yy" name="datafimsep" [showIcon]="true" inputId="datafimsep"
+                [(ngModel)]="pedido.datafimsep"></p-calendar>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>codfilial</label>
+                <input pInputText type="text"
+                [(ngModel)]="pedido.codfilial">>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>codfuncbalcao</label>
+                <input pInputText type="text"
+                [(ngModel)]="pedido.codfuncbalcao">>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>datainiciobalcao</label>
+                <p-calendar dateFormat="dd/mm/yy" name="datainiciobalcao" [showIcon]="true" inputId="datainiciobalcao"
+                [(ngModel)]="pedido.datainiciobalcao"></p-calendar>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>datafimbalcao</label>
+                <p-calendar dateFormat="dd/mm/yy" name="datafimbalcao" [showIcon]="true" inputId="datafimbalcao"
+                [(ngModel)]="pedido.datafimbalcao"></p-calendar>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>painel</label>
+                <input pInputText type="text"
+                [(ngModel)]="pedido.painel">>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>original</label>
+                <input pInputText type="text"
+                [(ngModel)]="pedido.original">>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>datapacote</label>
+                <p-calendar dateFormat="dd/mm/yy" name="datapacote" [showIcon]="true" inputId="datapacote"
+                [(ngModel)]="pedido.datapacote"></p-calendar>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>finalizado</label>
+                <input pInputText type="text"
+                [(ngModel)]="pedido.finalizado">>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>qtitem</label>
+                <p-inputMask mask="9"
+                [(ngModel)]="pedido.qtitem"></p-inputMask>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>estoque</label>
+                <p-selectButton [options]="simOuNao"
+                [(ngModel)]="pedido.estoque"></p-selectButton>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>retira</label>
+                <p-selectButton [options]="simOuNao"
+                [(ngModel)]="pedido.retira"></p-selectButton>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>codfuncpacote</label>
+                <input pInputText type="text"
+                [(ngModel)]="pedido.codfuncpacote">>
+            </div>
+            <div class="ui-g-6 ui-md-3 ui-fluid">
+                <label>retirante</label>
+                <input pInputText type="text"
+                [(ngModel)]="pedido.retirante">>
+            </div>
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Salvar"></button>
+            </div>
+        </div>
+    </form>
+</div>

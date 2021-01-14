@@ -22,6 +22,7 @@
     "@angular/router": "~10.2.0",
     "font-awesome": "^4.7.0",
     "ng2-toasty": "^4.0.3",
+    "primeflex": "^2.0.0",
     "primeicons": "^4.0.0",
     "primeng": "^10.0.3",
     "rxjs": "~6.6.0",

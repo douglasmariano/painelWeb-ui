@@ -1,4 +1,4 @@
-<div class="p-mb-2">
+<div class="container">
   
   <form autocomplete="off" (ngSubmit)="pesquisar()">
     <div class="p-col-12">
@@ -10,12 +10,12 @@
     </div>
     <div class="p-inputtext-sm">
       <label style="display: block">Nome Cliente</label>
-      <input pInputText type="text" name="nomeCliente" [(ngModel)]="nomeCliente" (ngModelChange)="nomeCliente = $event.toUpperCase()">
+      <input pInputText type="text" name="nomeCliente" [(ngModel)]="nomeCliente" (ngModelChange)="nomeCliente = $event.toUpperCase()" class="p-mr-2 p-d-inline">
       <label style="display: block">Nome Vendedor</label>
-      <input pInputText type="text" name="nomeVendedor" [(ngModel)]="nomeVendedor" (ngModelChange)="nomeVendedor = $event.toUpperCase()">
+      <input pInputText type="text" name="nomeVendedor" [(ngModel)]="nomeVendedor" (ngModelChange)="nomeVendedor = $event.toUpperCase()" class="p-d-inline">
     </div> 
      
-    <div class="p-field p-col-12 p-md-4">
+    <div class="ui-g-12">
       <label style="display: block">Emissão</label>      
       <p-calendar name="dataPedidoDe" [(ngModel)]="dataPedidoDe" [showIcon]="true" inputId="dataPedidoDe"></p-calendar> 
       <label >até</label>
@@ -27,6 +27,7 @@
       <button pButton type="submit" label="Pesquisar" ></button>
     </div>
 </form>
+<div class="p-shadow-3">
     <div class="p-grid">
       <p-table [value]="pedidos" [paginator]="true" [rows]="20" [showCurrentPageReport]="true"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]" [responsive]="true">
@@ -56,8 +57,9 @@
             </tr>
         </ng-template>
     </p-table>
-
     </div>
+</div>
+
 
 </div>
 
