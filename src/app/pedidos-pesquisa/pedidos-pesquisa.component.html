@@ -43,14 +43,14 @@
         </ng-template>
         <ng-template pTemplate="body" let-pedidos>
             <tr>
-                <td>{{pedidos.numped }}</td>
+                <td><a>{{pedidos.numped }}</a></td>
                 <td>{{pedidos.cliente }}</td>                
                 <td [ngStyle]="{color: pedidos.posicao === 'F' ? 'blue' : 'red'}">{{pedidos.posicao}}</td>
                 <td>{{pedidos.nome }}</td>
                 <td>{{pedidos.datapedido | date:'dd/MM/y HH:mm:ss'}}</td> 
                 <td>
                  
-                    <button pButton type="button" icon="pi pi-check" iconPos="left" pTooltip="Chegou!" tooltipPosition="top" [routerLink]="['/pedidos', pedidos.numped]"></button> 
+                    <button pButton type="button" icon="pi pi-check" iconPos="left" pTooltip="Chegou!" tooltipPosition="top" (click)="marcarChegada(pedidos.numped)"></button> 
                     <button pButton type="button" icon="pi pi-trash" iconPos="left" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(pedidos)"></button>
                 
                 </td>

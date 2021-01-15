@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/api';
+import { PedidoService } from '../pedido.service';
 import { PedidoPesquisaService } from './pedidos-pesquisa.service';
 
 @Component({
@@ -44,6 +45,10 @@ export class PedidosPesquisaComponent implements OnInit {
         }}
     );
     
+  }
+
+  marcarChegada(numped) {
+    this.pedidoPesquisaService.marcarChegada(numped)
   }
 }
 

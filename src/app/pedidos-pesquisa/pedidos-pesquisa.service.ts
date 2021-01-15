@@ -7,20 +7,19 @@ import { Pedido } from './model';
   providedIn: 'root'
 })
 export class PedidoPesquisaService {
+  baseUrl = 'http://localhost:9000'
 
-  pedidosUrl = 'http://localhost:9000/api/v1/tabpedido';
-  pedidosUrlAll = 'http://localhost:9000/api/v1/tabpedidos';
+  pedidosUrl = `${this.baseUrl}/api/v1/tabpedido`;
+  pedidosUrlAll = `${this.baseUrl}/api/v1/tabpedidos`;
 
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: any): Promise<any> {
     //const params = new URLSearchParams();
     // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
-    const headers = new HttpHeaders()
-    .append('Content-Type', 'application/json');
     if (filtro) {
       // params.set('numped', filtro.numped);
-      return this.http.post(this.pedidosUrl, headers,filtro)
+      return this.http.post(this.pedidosUrl, filtro)
         .toPromise();
     }
   }
@@ -36,5 +35,10 @@ export class PedidoPesquisaService {
       .append('Content-Type', 'application/json');
     return this.http.post<Pedido>(this.pedidosUrlAll, pedido, {  })
     .toPromise();
+    console.log(pedido);
+  }
+
+  marcarChegada(numped) {
+    return this.http.put(`${this.baseUrl}/api/v1/tabpedidos/marcar_chegada/${numped}`, {}).toPromise()
   }
 }

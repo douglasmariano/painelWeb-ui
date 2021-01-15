@@ -18,7 +18,7 @@ import { PainelPedidosService } from './painel-pedidos/painel-pedidos.service';
 import { PedidoPesquisaService } from './pedidos-pesquisa/pedidos-pesquisa.service';
 import { RouterModule, Routes } from '@angular/router';
 import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastyModule } from 'ng2-toasty';
@@ -57,7 +57,8 @@ const routes: Routes=[
     FormsModule,
     CalendarModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes) 
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule, 
   ],
   providers: [PedidoService, PainelPedidosService, PedidoPesquisaService, ConfirmationService],
   bootstrap: [AppComponent]
