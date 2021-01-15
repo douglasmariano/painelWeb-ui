@@ -7,37 +7,37 @@
 
             <div class="ui-g-12 ui-md-3 ui-fluid">
                 <label>numped</label>
-                <input pInputText type="text" name="numped" required
+                <input pInputText type="text"   #numped="ngModel" required
                 [(ngModel)]="pedido.numped" >
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>codusur</label>
-                <input pInputText type="text" required
+                <input pInputText type="text"    name="codusur" required
                 [(ngModel)]="pedido.codusur">
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>codccli</label>
-                <input pInputText type="text" required
+                <input pInputText type="text"  #codccli="ngModel" required
                 [(ngModel)]="pedido.codccli">
             </div>
             <div class="ui-g-12">
                 <label>status</label>
-                <p-dropdown [options]="status" placeholder="Selecione" required 
+                <p-dropdown [options]="status" placeholder="Selecione" name="status" required
                 [(ngModel)]="pedido.status"></p-dropdown>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>vltotal</label>
-                <p-inputNumber  mode="decimal" [minFractionDigits]="2" 
+                <p-inputNumber  mode="decimal" [minFractionDigits]="2" #vltotal="ngModel"
                 [(ngModel)]="pedido.vltotal"></p-inputNumber>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>posicao</label>
-                <input pInputText type="text"
+                <input pInputText type="text" #posicao="ngModel"
                 [(ngModel)]="pedido.posicao">>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>datapedido</label>
-                <p-calendar dateFormat="dd/mm/yy" name="datapedido" [showIcon]="true" inputId="datapedido" required
+                <p-calendar dateFormat="dd/mm/yy" name="datapedido" [showIcon]="true" inputId="datapedido" #datapedido="ngModel" required
                 [(ngModel)]="pedido.datapedido"></p-calendar>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -47,7 +47,7 @@
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>codfuncsep</label>
-                <input pInputText type="text"
+                <input pInputText type="text" #codfuncsep="ngModel"
                 [(ngModel)]="pedido.codfuncsep">>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -62,12 +62,12 @@
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>codfilial</label>
-                <input pInputText type="text"
+                <input pInputText type="text"  #codfilial="ngModel"
                 [(ngModel)]="pedido.codfilial">>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>codfuncbalcao</label>
-                <input pInputText type="text"
+                <input pInputText type="text" #codfuncbalcao="ngModel"
                 [(ngModel)]="pedido.codfuncbalcao">>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -82,12 +82,12 @@
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>painel</label>
-                <input pInputText type="text"
+                <input pInputText type="text" #painel="ngModel"
                 [(ngModel)]="pedido.painel">>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>original</label>
-                <input pInputText type="text"
+                <input pInputText type="text" #original="ngModel"
                 [(ngModel)]="pedido.original">>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -97,22 +97,22 @@
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>finalizado</label>
-                <input pInputText type="text"
+                <input pInputText type="text" #finalizado="ngModel"
                 [(ngModel)]="pedido.finalizado">>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>qtitem</label>
-                <p-inputMask mask="9"
+                <p-inputMask mask="9" #qtitem="ngModel"
                 [(ngModel)]="pedido.qtitem"></p-inputMask>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>estoque</label>
-                <p-selectButton [options]="simOuNao"
+                <p-selectButton [options]="simOuNao" name="estoque"
                 [(ngModel)]="pedido.estoque"></p-selectButton>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>retira</label>
-                <p-selectButton [options]="simOuNao"
+                <p-selectButton [options]="simOuNao" name="retira"
                 [(ngModel)]="pedido.retira"></p-selectButton>
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -122,7 +122,7 @@
             </div>
             <div class="ui-g-6 ui-md-3 ui-fluid">
                 <label>retirante</label>
-                <input pInputText type="text"
+                <input pInputText type="text" #retirante="ngModel"
                 [(ngModel)]="pedido.retirante">>
             </div>
             <div class="ui-g-12">
