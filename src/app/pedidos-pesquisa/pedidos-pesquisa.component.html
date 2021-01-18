@@ -1,57 +1,71 @@
 <div class="container">
-  
-  <form autocomplete="off" (ngSubmit)="pesquisar()">
-    <div class="p-col-12">
-      <h1>Pedidos</h1>
-    </div>
-    <div class="p-inputtext-sm">
-      <label style="display: block">Numped</label>
-      <input pInputText type="text" name="numped" [(ngModel)]="numped">
-    </div>
-    <div class="p-inputtext-sm">
-      <label style="display: block">Nome Cliente</label>
-      <input pInputText type="text" name="nomeCliente" [(ngModel)]="nomeCliente" (ngModelChange)="nomeCliente = $event.toUpperCase()" class="p-mr-2 p-d-inline">
-      <label style="display: block">Nome Vendedor</label>
-      <input pInputText type="text" name="nomeVendedor" [(ngModel)]="nomeVendedor" (ngModelChange)="nomeVendedor = $event.toUpperCase()" class="p-d-inline">
-    </div> 
-     
-    <div class="ui-g-12">
-      <label style="display: block">Emissão</label>      
-      <p-calendar name="dataPedidoDe" [(ngModel)]="dataPedidoDe" [showIcon]="true" inputId="dataPedidoDe"></p-calendar> 
-      <label >até</label>
-      <p-calendar name="dataPedidoAte" [(ngModel)]="dataPedidoAte"[showIcon]="true" inputId="dataPedidoAte"></p-calendar> 
-    </div>
+      <div class="p-col">
+        <h1>Pedidos</h1>
+      </div>
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+      <div class="p-grid">     
+        <div class="p-col-12 p-md-6 p-lg-3">
+          <label style="display: block">Numped</label>
+          <input pInputText type="text" name="numped" [(ngModel)]="numped">
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-3">
+          <label style="display: block">Nome Cliente</label>
+          <input pInputText type="text" name="nomeCliente" [(ngModel)]="nomeCliente" (ngModelChange)="nomeCliente = $event.toUpperCase()" class="p-mr-2 p-d-inline">
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-3">  
+          <label style="display: block">Nome Vendedor</label>
+          <input pInputText type="text" name="nomeVendedor" [(ngModel)]="nomeVendedor" (ngModelChange)="nomeVendedor = $event.toUpperCase()" class="p-d-inline">
+        </div> 
+        
+        <div class="p-col-12">
+          <label style="display: block">Emissão</label>      
+          <p-calendar name="dataPedidoDe" [(ngModel)]="dataPedidoDe" [showIcon]="true" inputId="dataPedidoDe"></p-calendar> 
+          <label > até </label>
+          <p-calendar name="dataPedidoAte" [(ngModel)]="dataPedidoAte"[showIcon]="true" inputId="dataPedidoAte"></p-calendar> 
+        </div>     
 
+        <div class="p-col-4">
+          <button pButton type="submit" label="Pesquisar" ></button>
+        </div>
+      </div> 
+    </form>
+   
 
-    <div class="p-col-12">
-      <button pButton type="submit" label="Pesquisar" ></button>
-    </div>
-</form>
 <div class="p-shadow-3">
-    <div class="p-grid">
+    <div class="p-grid p-fluid">
       <p-table [value]="pedidos" [paginator]="true" [rows]="20" [showCurrentPageReport]="true"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]" [responsive]="true">
+      currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} pedidos" [rowsPerPageOptions]="[10,25,50]" [responsive]="true">
         <ng-template pTemplate="header">
             <tr>
                 <th>Numped</th>                
                 <th>Cliente</th>
                 <th>Posição</th>
                 <th>Vendedor</th>
-                <th>Data</th>
+                <th>Data Pedido</th>
+                <th>Data Separação</th>
                 <th>Opções</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-pedidos>
             <tr>
-                <td><a>{{pedidos.numped }}</a></td>
+                <td>{{pedidos.numped }}</td>
                 <td>{{pedidos.cliente }}</td>                
                 <td [ngStyle]="{color: pedidos.posicao === 'F' ? 'blue' : 'red'}">{{pedidos.posicao}}</td>
                 <td>{{pedidos.nome }}</td>
                 <td>{{pedidos.datapedido | date:'dd/MM/y HH:mm:ss'}}</td> 
+                <td>{{pedidos.datainiciosep | date:'dd/MM/y HH:mm:ss'}}</td> 
+                datainiciosep
                 <td>
                  
-                    <button pButton type="button" icon="pi pi-check" iconPos="left" pTooltip="Chegou!" tooltipPosition="top" (click)="marcarChegada(pedidos.numped)"></button> 
-                    <button pButton type="button" icon="pi pi-trash" iconPos="left" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(pedidos)"></button>
+                    <button pButton pRipple type="button" icon="pi pi-search" 
+                    class="p-button-rounded p-button-success p-button-outlined" pTooltip="Informações sobre o Pedido." 
+                    tooltipPosition="top" routerLink="/pedidos/{{pedidos.numped}}"></button>
+                    
+                    <button pButton pRipple type="button" icon="pi pi-check" 
+                    class="p-button-rounded p-button-outlined" pTooltip="Cliente chegou na Loja!" 
+                    tooltipPosition="top" (click)="marcarChegada(pedidos.numped)"></button> 
+                    
+                    <!--<button pButton type="button" icon="pi pi-trash" iconPos="left" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(pedidos)"></button>-->
                 
                 </td>
             </tr>
