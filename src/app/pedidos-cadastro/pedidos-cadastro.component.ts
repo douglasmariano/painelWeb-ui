@@ -11,6 +11,7 @@ import { PedidoPesquisaService } from '../pedidos-pesquisa/pedidos-pesquisa.serv
   styleUrls: ['./pedidos-cadastro.component.css']
 })
 export class PedidosCadastroComponent implements OnInit {
+  [x: string]: any;
 
   status = [
     { label: 'Digitado', value: 'N' },
@@ -45,17 +46,17 @@ export class PedidosCadastroComponent implements OnInit {
 
     const numPedido = this.route.snapshot.params['numped'];
 
+    this.preencherFormGroup();
     if (numPedido) {
       this.carregarPedido(numPedido);
     }
-    this.preencherFormGroup();
   }
 
   preencherFormGroup() {
     this.pedido = this.fb.group({
       numped: ['', Validators.required],
-      codusur: [''],
-      codccli: [''],
+      nome: [''],
+      cliente: [''],
       status: [''],
       vltotal: [''],
       posicao: [''],
@@ -77,6 +78,14 @@ export class PedidosCadastroComponent implements OnInit {
       origial: [''],
       codfuncpacote: [''],
       retirante: [''],
+      dataemissaomapa:[''],
+      aguardsep:[''],
+      emseparacao:[''],
+      dataatual:[''],
+      emconferencia:[''],
+      tempodecor:[''],
+      ordem:[''],
+
     });
   }
 
@@ -91,15 +100,30 @@ export class PedidosCadastroComponent implements OnInit {
     this.pedidoService.pesquisar({numped})
       .then(pedido => {
         if (pedido && pedido.length) {
-          this.pedido.patchValue(pedido[0]);
+          const temp = {
+            ...pedido[0],
+            datapedido: new Date(pedido[0].datapedido),
+            datachegadacli: new Date(pedido[0].datachegadacli),
+            dataemissaomapa: new Date(pedido[0].dataemissaomapa),
+            datainiciosep: new Date(pedido[0].datainiciosep),
+            datafimsep: new Date(pedido[0].datafimsep),
+            dataatual: new Date(pedido[0].dataatual),
+
+          }
+          this.pedido.patchValue(temp);
         }
       })
+      console.log(numped);
   }
   salvar() {
     this.pedidoService.adicionar(this.pedido.value).then(() => {
       this.toasty.success('Cadastrado com sucesso');
       this.preencherFormGroup()
     })
+  }
+
+  marcarChegada(numped) {
+    this.pedidoService.marcarChegada(numped)
   }
 
 }

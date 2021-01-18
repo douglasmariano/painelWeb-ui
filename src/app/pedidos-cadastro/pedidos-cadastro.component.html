@@ -1,138 +1,108 @@
 <div class="container" *ngIf="pedido">
     <form [formGroup]="pedido" autocomplete="off" (ngSubmit)="salvar()">
-      
+
         <div class="ui-g-12">
-            <h1> Novo Pedido </h1>
+            <h1> Dados do Pedido </h1>
         </div>
         <div class="p-fluid p-formgrid p-grid">
-            
+          <div class="p-field p-col-4">
+              <label>numped</label>
+              <input pInputText   formControlName="numped" >
+            </div>
 
             <div class="p-field p-col-4">
-                <label>numped</label>
-                <input pInputText type="text"  formControlName="numped">
+              <label>nome</label>
+              <input pInputText   formControlName="nome">
+            </div>
 
-                <div *ngIf="mostrarErro('numped')">
-                    o valor e requirido
-                </div>
-            </div>
             <div class="p-field p-col-4">
-                <label>codusur</label>
-                <input pInputText type="text"    formControlName="codusur"
-                >
+              <label>cliente</label>
+              <input pInputText   formControlName="cliente">
             </div>
+
             <div class="p-field p-col-4">
-                <label>codccli</label>
-                <input pInputText type="text"  formControlName="codccli"
-                >
+              <label>datapedido</label>
+              <p-calendar formControlName="datapedido" showTime="true" hourFormat="24"></p-calendar>
             </div>
+
             <div class="p-field p-col-4">
-                <label>status</label>
-                <p-dropdown [options]="status" placeholder="Selecione" formControlName="status"
-                ></p-dropdown>
+              <label>dataemissaomapa</label>
+              <p-calendar formControlName="dataemissaomapa" showTime="true" hourFormat="24"></p-calendar>
             </div>
+
             <div class="p-field p-col-4">
-                <label>vltotal</label>
-                <p-inputNumber  mode="decimal" [minFractionDigits]="2" formControlName="vltotal" 
-                ></p-inputNumber>
+              <label>datainiciosep</label>
+              <p-calendar formControlName="datainiciosep" showTime="true" hourFormat="24"></p-calendar>
             </div>
+
             <div class="p-field p-col-4">
-                <label>posicao</label>
-                <input pInputText type="text" formControlName="posicao"
-                >
+              <label>datafimsep</label>
+              <p-calendar formControlName="datafimsep" showTime="true" hourFormat="24"></p-calendar>
             </div>
+
             <div class="p-field p-col-4">
-                <label>datapedido</label>
-                <p-calendar dateFormat="dd/mm/yy" formControlName="datapedido" [showIcon]="true" inputId="datapedido" 
-                ></p-calendar>
+              <label>datachegadacli</label>
+              <p-calendar formControlName="datachegadacli" showTime="true" hourFormat="24"></p-calendar>
             </div>
+
             <div class="p-field p-col-4">
-                <label >datachegadacli</label>
-                <p-calendar dateFormat="dd/mm/yy" formControlName="datachegadacli" [showIcon]="true" inputId="datachegadacli"
-                ></p-calendar>
+              <label>codfuncsep</label>
+              <input pInputText   formControlName="codfuncsep">
             </div>
+
             <div class="p-field p-col-4">
-                <label>codfuncsep</label>
-                <input pInputText type="text" formControlName="codfuncsep"
-                >
+              <label>datafimbalcao</label>
+              <p-calendar formControlName="datainiciosep" showTime="true" hourFormat="24"></p-calendar>
             </div>
+
             <div class="p-field p-col-4">
-                <label>datainiciosep</label>
-                <p-calendar dateFormat="dd/mm/yy" formControlName="datainiciosep" [showIcon]="true" inputId="datainiciosep"
-                ></p-calendar>
+              <label>codfuncbalcao</label>
+              <input pInputText   formControlName="codfuncbalcao">
             </div>
+
             <div class="p-field p-col-4">
-                <label>datafimsep</label>
-                <p-calendar dateFormat="dd/mm/yy" formControlName="datafimsep" [showIcon]="true" inputId="datafimsep"
-                ></p-calendar>
+              <label>dataatual</label>
+              <p-calendar formControlName="dataatual" showTime="true" hourFormat="24"></p-calendar>
             </div>
+
+            <!--<div class="p-field p-col-4">
+              <label>aguardsep</label>
+              <input pInputText   formControlName="aguardsep">
+            </div>
+
             <div class="p-field p-col-4">
-                <label>codfilial</label>
-                <input pInputText type="text"  formControlName="codfilial"
-                >
+              <label>emseparacao</label>
+              <input pInputText   formControlName="emseparacao">
             </div>
+
             <div class="p-field p-col-4">
-                <label>codfuncbalcao</label>
-                <input pInputText type="text" formControlName="codfuncbalcao"
-                >
+              <label>emconferencia</label>
+              <input pInputText   formControlName="emconferencia">
             </div>
+
             <div class="p-field p-col-4">
-                <label>datainiciobalcao</label>
-                <p-calendar dateFormat="dd/mm/yy" formControlName="datainiciobalcao" [showIcon]="true" inputId="datainiciobalcao"
-                ></p-calendar>
-            </div>
+              <label>tempodecor</label>
+              <input pInputText   formControlName="tempodecor">
+            </div> -->
+
             <div class="p-field p-col-4">
-                <label>datafimbalcao</label>
-                <p-calendar dateFormat="dd/mm/yy" formControlName="datafimbalcao" [showIcon]="true" inputId="datafimbalcao"
-                ></p-calendar>
+              <label>posicao</label>
+              <input pInputText   formControlName="posicao">
             </div>
+
             <div class="p-field p-col-4">
-                <label>painel</label>
-                <input pInputText type="text" formControlName="painel"
-                >
+              <label>ordem</label>
+              <input pInputText   formControlName="ordem">
             </div>
+
             <div class="p-field p-col-4">
-                <label>original</label>
-                <input pInputText type="text" formControlName="original"
-                >
-            </div>
-            <div class="p-field p-col-4">
-                <label>datapacote</label>
-                <p-calendar dateFormat="dd/mm/yy" formControlName="datapacote" [showIcon]="true" inputId="datapacote"
-                ></p-calendar>
-            </div>
-            <div class="p-field p-col-4">
-                <label>finalizado</label>
-                <input pInputText type="text" formControlName="finalizado"
-                >
-            </div>
-            <div class="p-field p-col-4">
-                <label>qtitem</label>
-                <p-inputMask mask="9" formControlName="qtitem"
-                ></p-inputMask>
-            </div>
-            <div class="p-field p-col-4">
-                <label>estoque</label>
-                <p-selectButton [options]="simOuNao" formControlName="estoque"
-                ></p-selectButton>
-            </div>
-            <div class="p-field p-col-4">
-                <label>retira</label>
-                <p-selectButton [options]="simOuNao" formControlName="retira"
-                ></p-selectButton>
-            </div>
-            <div class="ui-g-6 ui-md-3 ui-fluid">
-                <label>codfuncpacote</label>
-                <input pInputText type="text" formControlName="codfuncpacote"
-                >
-            </div>
-            <div class="p-field p-col-4">
-                <label>retirante</label>
-                <input pInputText type="text" formControlName="retirante"
-                >
-            </div> 
-            <div class="ui-g-12">
-                <button pButton type="submit" label="Salvar"></button>
+              <label>painel</label>
+              <input pInputText   formControlName="painel">
             </div>
         </div>
+            <div class="p-field p-col-4">
+              <button pButton type="submit" label="Salvar"></button>
+            </div>
     </form>
+    <button pButton type="button" icon="pi pi-check" iconPos="left" pTooltip="Chegou!" tooltipPosition="top" (click)="marcarChegada(pedido.numped)"></button>
 </div>
