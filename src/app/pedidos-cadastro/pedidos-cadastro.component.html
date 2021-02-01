@@ -7,7 +7,7 @@
         <div class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-4">
               <label>Numero do Pedido</label>
-              <input pInputText   formControlName="numped" >
+              <input pInputText   formControlName="numped" #numped>
             </div>
 
             <div class="p-field p-col-4">
@@ -22,7 +22,7 @@
 
             <div class="p-field p-col-4">
               <label>Data do Pedido</label>
-              <p-calendar formControlName="datapedido" showTime="true" hourFormat="24"></p-calendar>
+              <p-calendar formControlName="datadigitacao" showTime="true" hourFormat="24"></p-calendar>
             </div>
             
             <div class="p-field p-col-4">
@@ -95,15 +95,22 @@
               <label>Posição Pedido</label>
               <input pInputText   formControlName="posicao">
             </div>
-
+            <!--
             <div class="p-field p-col-4">
               <label>Esta no Painel?</label>
               <input pInputText   formControlName="painel">
-            </div>
+            </div> -->
         </div>
-            <div class="p-field p-col-4">
-              <button pButton type="submit" label="Salvar"></button>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-2">
+             <!-- <button pButton type="submit" label="Salvar"></button>-->
+            </div> 
+            <div class="p-field p-col-2">         
+              <button pButton type="button" label="Informar Chegada"  (click)="marcarChegada(numped.value)"></button>  
             </div>
-    </form>
-    <button pButton type="button" icon="pi pi-check" iconPos="left" pTooltip="Chegou!" tooltipPosition="top" (click)="marcarChegada(pedido.numped)"></button>
+            <div class="p-field p-col-2">
+              <button pButton type="button" label="Voltar" (click)="voltar()"></button> 
+            </div>
+        </div>     
+    </form>      
 </div>

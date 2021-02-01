@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService } from 'primeng/api';
 import { Pedido } from '../pedidos-pesquisa/model';
 import { PedidoPesquisaService } from '../pedidos-pesquisa/pedidos-pesquisa.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-pedidos-cadastro',
   templateUrl: './pedidos-cadastro.component.html',
   styleUrls: ['./pedidos-cadastro.component.css']
 })
-export class PedidosCadastroComponent implements OnInit {
-  [x: string]: any;
+export class PedidosCadastroComponent implements OnInit {  
 
   status = [
     { label: 'Digitado', value: 'N' },
@@ -40,12 +40,14 @@ export class PedidosCadastroComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private pedidoService: PedidoPesquisaService,
     private toasty: ToastyService,
-    private fb: FormBuilder) { }
+    private  confirmation:ConfirmationService,
+    private fb: FormBuilder,
+    private router: Router) { }
 
   ngOnInit(): void {
 
     const numPedido = this.route.snapshot.params['numped'];
-
+   
     this.preencherFormGroup();
     if (numPedido) {
       this.carregarPedido(numPedido);
@@ -54,37 +56,38 @@ export class PedidosCadastroComponent implements OnInit {
 
   preencherFormGroup() {
     this.pedido = this.fb.group({
-      numped: ['', Validators.required],
-      nome: [''],
-      cliente: [''],
-      status: [''],
-      vltotal: [''],
-      posicao: [''],
-      datapedido: [''],
-      datachegadacli: [''],
-      codfuncsep: [''],
-      datainiciosep: [''],
-      datafimsep: [''],
-      codfilial: [''],
-      codfuncbalcao: [''],
-      datainiciobalcao: [''],
-      datafimbalcao: [''],
-      painel: [''],
-      datapacote: [''],
-      finalizado: [''],
-      qtitem: [''],
-      estoque: [''],
-      retira: [''],
-      origial: [''],
-      codfuncpacote: [''],
-      retirante: [''],
-      dataemissaomapa:[''],
-      aguardsep:[''],
-      emseparacao:[''],
-      dataatual:[''],
-      emconferencia:[''],
-      tempodecor:[''],
-      ordem:[''],
+      numped: [{value: '', disabled: true}, Validators.required ],
+      nome: [{value: '', disabled: true}],
+      cliente: [{value: '', disabled: true}],
+      status: [{value: '', disabled: true}],
+      vltotal: [{value: '', disabled: true}],
+      posicao: [{value: '', disabled: true}],
+      datapedido: [{value: '', disabled: true}],
+      datadigitacao: [{value: '', disabled: true}],
+      datachegadacli: [{value: '', disabled: true}],
+      codfuncsep: [{value: '', disabled: true}],
+      datainiciosep: [{value: '', disabled: true}],
+      datafimsep: [{value: '', disabled: true}],
+      codfilial: [{value: '', disabled: true}],
+      codfuncbalcao: [{value: '', disabled: true}],
+      datainiciobalcao: [{value: '', disabled: true}],
+      datafimbalcao: [{value: '', disabled: true}],
+      painel: [{value: '', disabled: true}],
+      datapacote: [{value: '', disabled: true}],
+      finalizado: [{value: '', disabled: true}],
+      qtitem: [{value: '', disabled: true}],
+      estoque: [{value: '', disabled: true}],
+      retira: [{value: '', disabled: true}],
+      origial: [{value: '', disabled: true}],
+      codfuncpacote: [{value: '', disabled: true}],
+      retirante: [{value: '', disabled: true}],
+      dataemissaomapa:[{value: '', disabled: true}],
+      aguardsep:[{value: '', disabled: true}],
+      emseparacao:[{value: '', disabled: true}],
+      dataatual:[{value: '', disabled: true}],
+      emconferencia:[{value: '', disabled: true}],
+      tempodecor:[{value: '', disabled: true}],
+      ordem:[{value: '', disabled: true}],
 
     });
   }
@@ -103,17 +106,17 @@ export class PedidosCadastroComponent implements OnInit {
           const temp = {
             ...pedido[0],
             datapedido: new Date(pedido[0].datapedido),
-            datachegadacli: new Date(pedido[0].datachegadacli),
+            datachegadacli: null,
             dataemissaomapa: new Date(pedido[0].dataemissaomapa),
             datainiciosep: new Date(pedido[0].datainiciosep),
             datafimsep: new Date(pedido[0].datafimsep),
-            dataatual: new Date(pedido[0].dataatual),
-
+            dataatual: new Date(pedido[0].dataatual), 
+            datadigitacao: new Date(pedido[0].dataatual),           
           }
           this.pedido.patchValue(temp);
+          
         }
-      })
-      console.log(numped);
+      })     
   }
   salvar() {
     this.pedidoService.adicionar(this.pedido.value).then(() => {
@@ -123,7 +126,23 @@ export class PedidosCadastroComponent implements OnInit {
   }
 
   marcarChegada(numped) {
-    this.pedidoService.marcarChegada(numped)
+    this.confirmation.confirm(
+      {message: 'Deseja informar que o cliente chegou?',
+        accept: ()=>{
+          this.pedidoService.marcarChegada(numped).then(()=>
+          this.toasty.success('Dirija o cliente ao Balcão!'));
+          setTimeout(() => {
+            setTimeout(() => {
+              this.router.navigateByUrl('/pedidos');
+            });
+          }, 3400);
+        }
+        }
+    );   
+  }
+
+  voltar(){
+    this.router.navigateByUrl('/pedidos');
   }
 
 }

@@ -7,7 +7,7 @@ import { Pedido } from './model';
   providedIn: 'root'
 })
 export class PedidoPesquisaService {
-  baseUrl = 'http://localhost:9000'
+  baseUrl = 'http://192.168.200.55:9000'
 
   pedidosUrl = `${this.baseUrl}/api/v1/tabpedido`;
   pedidosUrlAll = `${this.baseUrl}/api/v1/tabpedidos`;
@@ -31,14 +31,13 @@ export class PedidoPesquisaService {
   }
 
   adicionar(pedido: Pedido): Promise<Pedido> {
-    const headers = new HttpHeaders()
-      .append('Content-Type', 'application/json');
     return this.http.post<Pedido>(this.pedidosUrlAll, pedido, {  })
     .toPromise();
     console.log(pedido);
   }
 
   marcarChegada(numped) {
+    console.log(numped)
     return this.http.put(`${this.baseUrl}/api/v1/tabpedidos/marcar_chegada/${numped}`, {}).toPromise()
   }
 }

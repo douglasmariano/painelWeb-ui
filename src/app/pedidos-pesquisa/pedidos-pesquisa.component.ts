@@ -47,12 +47,14 @@ export class PedidosPesquisaComponent implements OnInit {
   }
 
   marcarChegada(numped) {
+    console.log(numped)
     this.confirmation.confirm(
       {message: 'Deseja informar que o cliente chegou?',
-        accept: ()=>{
-          this.pedidoPesquisaService.marcarChegada(numped).then(()=>
-          this.toasty.success('Dirija o cliente ao Balcão!'));
-          location.reload();
+        accept: () => {
+          this.pedidoPesquisaService.marcarChegada(numped).then(()=> {
+            this.toasty.success('Dirija o cliente ao Balcão!')
+            this.pesquisar();
+          });
         }}
     );
     

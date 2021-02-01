@@ -28,43 +28,39 @@
           <button pButton type="submit" label="Pesquisar" ></button>
         </div>
       </div> 
-    </form>
-   
+    </form> 
 
 <div class="p-shadow-3">
     <div class="p-grid p-fluid">
-      <p-table [value]="pedidos" [paginator]="true" [rows]="20" [showCurrentPageReport]="true"
+      <p-table styleClass="p-datatable-sm" [value]="pedidos" [paginator]="true" [rows]="20" [showCurrentPageReport]="true"
       currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} pedidos" [rowsPerPageOptions]="[10,25,50]" [responsive]="true">
         <ng-template pTemplate="header">
             <tr>
                 <th>Numped</th>                
-                <th>Cliente</th>
+                <th class="p-fluid p-col-6">Cliente</th>
                 <th>Posição</th>
                 <th>Vendedor</th>
-                <th>Data Pedido</th>
-                <th>Data Separação</th>
+                <th>Data Pedido</th>                
                 <th>Opções</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-pedidos>
             <tr>
                 <td>{{pedidos.numped }}</td>
-                <td>{{pedidos.cliente }}</td>                
+                <td class="p-fluid p-col-12">{{pedidos.cliente }}</td>                
                 <td [ngStyle]="{color: pedidos.posicao === 'F' ? 'blue' : 'red'}">{{pedidos.posicao}}</td>
                 <td>{{pedidos.nome }}</td>
-                <td>{{pedidos.datapedido | date:'dd/MM/y HH:mm:ss'}}</td> 
-                <td>{{pedidos.datainiciosep | date:'dd/MM/y HH:mm:ss'}}</td> 
-                datainiciosep
+                <td>{{pedidos.datadigitacao | date:'dd/MM/y HH:mm:ss'}}</td>                                  
                 <td>
                  
-                    <button pButton pRipple type="button" icon="pi pi-search" 
+                    <!--<button pButton pRipple type="button" icon="pi pi-search" 
                     class="p-button-rounded p-button-success p-button-outlined" pTooltip="Informações sobre o Pedido." 
-                    tooltipPosition="top" routerLink="/pedidos/{{pedidos.numped}}"></button>
+                    tooltipPosition="top" routerLink="/pedidos/{{pedidos.numped}}"></button> -->
                     
-                    <button pButton pRipple type="button" icon="pi pi-check" 
+                   <button pButton pRipple type="button" label="Chegou"
                     class="p-button-rounded p-button-outlined" pTooltip="Cliente chegou na Loja!" 
-                    tooltipPosition="top" (click)="marcarChegada(pedidos.numped)"></button> 
-                    
+                    tooltipPosition="top" (click)="marcarChegada(pedidos.numped)"></button>
+                   <!-- <button pButton type="button" (click)="marcarChegada(pedidos.numped)"></button>-->
                     <!--<button pButton type="button" icon="pi pi-trash" iconPos="left" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(pedidos)"></button>-->
                 
                 </td>

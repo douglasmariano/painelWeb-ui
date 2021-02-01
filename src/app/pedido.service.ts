@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PedidoService {
-  baseUrl = 'http://localhost:9000'
-  pedidosUrl= 'http://localhost:9000/api/v1/tabpedidos';
+  baseUrl = 'http://192.168.200.55:9000'
+  pedidosUrl= 'http://192.168.200.55:9000/api/v1/tabpedidos';
 
   constructor( private http:HttpClient) { }
 
@@ -17,7 +17,5 @@ export class PedidoService {
     .toPromise()
   }
 
-  marcarChegada(numped) {
-    return this.http.put(`${this.baseUrl}/api/v1/tabpedidos/marcar_chegada/${numped}`, {}).toPromise()
-  }
+ 
 }

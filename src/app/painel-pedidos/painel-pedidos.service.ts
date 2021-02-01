@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class PainelPedidosService {
 
-  pedidosUrl= 'http://localhost:9000/api/v1/tabpedidos';
+  pedidosUrl= 'http://192.168.200.55:9000/api/v1/tabpedidos';
 
   constructor( private http:HttpClient) { }
 
