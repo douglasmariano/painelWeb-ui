@@ -16,6 +16,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ConfirmationService} from 'primeng/api';
 import { CalendarModule} from 'primeng/calendar';
+import { } from '@angular/cdk/keycodes';
 
 import { AppComponent } from './app.component';
 import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
@@ -25,7 +26,7 @@ import { PainelPedidosService } from './painel-pedidos/painel-pedidos.service';
 import { PedidoPesquisaService } from './pedidos-pesquisa/pedidos-pesquisa.service';
 import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-
+import { UppercaseDirective } from './uppercase.directive'
 
 
 import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
@@ -45,6 +46,7 @@ const routes: Routes=[
     NavbarComponent,
     PainelPedidosComponent,
     PedidosCadastroComponent,
+    UppercaseDirective
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ const routes: Routes=[
     CalendarModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
+     
   ],
   providers: [PedidoService, PainelPedidosService, PedidoPesquisaService, ConfirmationService],
   bootstrap: [AppComponent]

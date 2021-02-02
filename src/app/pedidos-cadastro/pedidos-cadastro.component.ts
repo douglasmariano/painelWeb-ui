@@ -40,7 +40,7 @@ export class PedidosCadastroComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private pedidoService: PedidoPesquisaService,
     private toasty: ToastyService,
-    private  confirmation:ConfirmationService,
+    private confirmation:ConfirmationService,
     private fb: FormBuilder,
     private router: Router) { }
 

@@ -2,33 +2,39 @@
       <div class="p-col">
         <h1>Pedidos</h1>
       </div>
-    <form autocomplete="off" (ngSubmit)="pesquisar()">
+    <form [formGroup]="buscaPedido" autocomplete="off" (ngSubmit)="pesquisar()">
       <div class="p-grid">     
-        <div class="p-col-12 p-md-6 p-lg-3">
-          <label style="display: block">Numped</label>
-          <input pInputText type="text" name="numped" [(ngModel)]="numped">
-        </div>
+        
         <div class="p-col-12 p-md-6 p-lg-3">
           <label style="display: block">Nome Cliente</label>
-          <input pInputText type="text" name="nomeCliente" [(ngModel)]="nomeCliente" (ngModelChange)="nomeCliente = $event.toUpperCase()" class="p-mr-2 p-d-inline">
+          <input pInputText appUppercase formControlName="nomeCliente">
         </div>
         <div class="p-col-12 p-md-6 p-lg-3">  
           <label style="display: block">Nome Vendedor</label>
-          <input pInputText type="text" name="nomeVendedor" [(ngModel)]="nomeVendedor" (ngModelChange)="nomeVendedor = $event.toUpperCase()" class="p-d-inline">
+          <input pInputText appUppercase  formControlName="nomeVendedor" >
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-3">
+          <label style="display: block">Num. Pedido</label>
+          <input pInputText formControlName="numped" >
+          <div *ngIf="f.numped.errors" class="invalid-feedback">
+            <sup>*</sup>Somente números. 
+          </div>
         </div> 
         
-        <div class="p-col-12">
+        
+        <!--<div class="p-col-12">
           <label style="display: block">Emissão</label>      
-          <p-calendar name="dataPedidoDe" [(ngModel)]="dataPedidoDe" [showIcon]="true" inputId="dataPedidoDe"></p-calendar> 
+          <p-calendar formControlName="dataPedidoDe" [showIcon]="true" inputId="dataPedidoDe"></p-calendar> 
           <label > até </label>
-          <p-calendar name="dataPedidoAte" [(ngModel)]="dataPedidoAte"[showIcon]="true" inputId="dataPedidoAte"></p-calendar> 
-        </div>     
+          <p-calendar formControlName="dataPedidoAte"[showIcon]="true" inputId="dataPedidoAte"></p-calendar> 
+        </div> -->    
 
         <div class="p-col-4">
           <button pButton type="submit" label="Pesquisar" ></button>
         </div>
       </div> 
     </form> 
+    
 
 <div class="p-shadow-3">
     <div class="p-grid p-fluid">

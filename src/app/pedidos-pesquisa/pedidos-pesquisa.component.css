@@ -1,3 +1,7 @@
 button{
     margin: 0 7px;
 }
+
+.uppercase{
+    text-transform: uppercase;
+  }
