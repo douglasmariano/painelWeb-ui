@@ -15,7 +15,7 @@ export class PainelPedidosComponent implements OnInit {
     this.pesquisar();
     this.interval = setInterval(() => { 
         this.pesquisar(); 
-    }, 1000);
+    }, 3000);
   }
 
   constructor(private painelPedidosService: PainelPedidosService){ }
