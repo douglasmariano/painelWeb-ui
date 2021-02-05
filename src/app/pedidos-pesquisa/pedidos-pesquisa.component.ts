@@ -38,7 +38,7 @@ export class PedidosPesquisaComponent implements OnInit {
     this.pedidoPesquisaService.pesquisar({numped :this.buscaPedido.value.numped,  nomeCliente: this.buscaPedido.value.nomeCliente ,
         nomeVendedor : this.buscaPedido.value.nomeVendedor})
         .then(pedidos => this.pedidos = pedidos );                
-        this.buscaPedido.reset();  
+        //this.buscaPedido.reset();  
             
   }
 
