@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PedidoService {
-  baseUrl = 'http://192.168.200.17:9000'
-  pedidosUrl= 'http://192.168.200.17:9000/api/v1/tabpedidos';
+  baseUrl = 'http://192.168.200.55:9000'
+  pedidosUrl= 'http://192.168.200.55:9000/api/v1/tabpedidos';
 
   constructor( private http:HttpClient) { }
 

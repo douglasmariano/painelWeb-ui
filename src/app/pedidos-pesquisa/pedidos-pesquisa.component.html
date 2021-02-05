@@ -46,17 +46,19 @@
                 <th class="p-fluid p-col-6">Cliente</th>
                 <th>Posição</th>
                 <th>Vendedor</th>
-                <th>Data Pedido</th>                
+                <th>Data Pedido</th>
+                <th>Observação</th>                 
                 <th>Opções</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-pedidos>
             <tr>
                 <td>{{pedidos.numped }}</td>
-                <td class="p-fluid p-col-12">{{pedidos.cliente }}</td>                
+                <td class="p-fluid p-col-6">{{pedidos.cliente }}</td>                
                 <td [ngStyle]="{color: pedidos.posicao === 'F' ? 'blue' : 'red'}">{{pedidos.posicao}}</td>
                 <td>{{pedidos.nome }}</td>
-                <td>{{pedidos.datadigitacao | date:'dd/MM/y HH:mm:ss'}}</td>                                  
+                <td>{{pedidos.datadigitacao | date:'dd/MM/y HH:mm:ss'}}</td>
+                <td>{{pedidos.obs}}</td>                                   
                 <td>
                  
                     <!--<button pButton pRipple type="button" icon="pi pi-search" 
