@@ -1,7 +1,7 @@
 <div class="container">
       <div class="p-col">
         <h1>Pedidos</h1>
-      </div>
+      
     <form [formGroup]="buscaPedido" autocomplete="off" (ngSubmit)="pesquisar()">
       <div class="p-grid">     
         
@@ -31,9 +31,11 @@
 
         <div class="p-col-4">
           <button pButton type="submit" label="Pesquisar" ></button>
+          <button pButton type="button" label="Limpar" (click)="limparBusca()" ></button>
         </div>
       </div> 
-    </form> 
+    </form>
+  </div>
     
 
 <div class="p-shadow-3">

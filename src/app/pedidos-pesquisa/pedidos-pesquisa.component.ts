@@ -26,7 +26,7 @@ export class PedidosPesquisaComponent implements OnInit {
   constructor(private pedidoPesquisaService: PedidoPesquisaService,
               private  toasty:ToastyService,
               private  confirmation:ConfirmationService,
-              private  route:ActivatedRoute){ }
+              ){ }
 
   ngOnInit(){ 
     this.pesquisar();
@@ -37,9 +37,15 @@ export class PedidosPesquisaComponent implements OnInit {
   pesquisar(){
     this.pedidoPesquisaService.pesquisar({numped :this.buscaPedido.value.numped,  nomeCliente: this.buscaPedido.value.nomeCliente ,
         nomeVendedor : this.buscaPedido.value.nomeVendedor})
-        .then(pedidos => this.pedidos = pedidos );                
-        //this.buscaPedido.reset();  
-            
+        .then(pedidos => this.pedidos = pedidos ); 
+        console.log(this.buscaPedido)            
+        //if(this.buscaPedido.){
+          //this.buscaPedido.reset();  
+        //}  
+  }
+  limparBusca(){
+    this.buscaPedido.reset();
+    this.pesquisar();
   }
 
   excluir(pedido: any){
