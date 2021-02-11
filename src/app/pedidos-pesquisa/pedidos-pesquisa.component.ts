@@ -37,11 +37,7 @@ export class PedidosPesquisaComponent implements OnInit {
   pesquisar(){
     this.pedidoPesquisaService.pesquisar({numped :this.buscaPedido.value.numped,  nomeCliente: this.buscaPedido.value.nomeCliente ,
         nomeVendedor : this.buscaPedido.value.nomeVendedor})
-        .then(pedidos => this.pedidos = pedidos ); 
-        console.log(this.buscaPedido)            
-        //if(this.buscaPedido.){
-          //this.buscaPedido.reset();  
-        //}  
+        .then(pedidos => this.pedidos = pedidos );          
   }
   limparBusca(){
     this.buscaPedido.reset();
