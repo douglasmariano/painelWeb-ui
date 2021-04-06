@@ -45,7 +45,7 @@
         <ng-template pTemplate="header">
             <tr>
                 <th>Numped</th>                
-                <th class="p-fluid p-col-6">Cliente</th>
+                <th class="p-fluid p-col-4">Cliente</th>
                 <th>Posição</th>
                 <th>Vendedor</th>
                 <th>Data Pedido</th>
@@ -56,7 +56,7 @@
         <ng-template pTemplate="body" let-pedidos>
             <tr>
                 <td>{{pedidos.numped }}</td>
-                <td class="p-fluid p-col-6">{{pedidos.cliente }}</td>                
+                <td class="p-fluid p-col-4">{{pedidos.cliente }}</td>                
                 <td [ngStyle]="{color: pedidos.posicao === 'F' ? 'blue' : 'red'}">{{pedidos.posicao}}</td>
                 <td>{{pedidos.nome }}</td>
                 <td>{{pedidos.datadigitacao | date:'dd/MM/y HH:mm:ss'}}</td>
