@@ -30,13 +30,16 @@ import { UppercaseDirective } from './uppercase.directive'
 
 
 import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
+import { EstoqueCaboComponent } from './estoque-cabo/estoque-cabo.component';
+import { EstoqueCaboService } from './estoque-cabo/estoquecabo.service';
 
 const routes: Routes=[
   {path: '', component: PedidosPesquisaComponent},
   {path: 'pedidos', component: PedidosPesquisaComponent},
   {path: 'pedidos/novo', component: PedidosCadastroComponent},
   {path: 'pedidos/:numped', component: PedidosCadastroComponent},
-  {path: 'painel', component: PainelPedidosComponent}  
+  {path: 'painel', component: PainelPedidosComponent},
+  {path: 'estoquecabo', component: EstoqueCaboComponent}    
 ];
 
 @NgModule({
@@ -46,7 +49,8 @@ const routes: Routes=[
     NavbarComponent,
     PainelPedidosComponent,
     PedidosCadastroComponent,
-    UppercaseDirective
+    UppercaseDirective,
+    EstoqueCaboComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,7 @@ const routes: Routes=[
     ReactiveFormsModule,
      
   ],
-  providers: [PedidoService, PainelPedidosService, PedidoPesquisaService, ConfirmationService],
+  providers: [PedidoService, PainelPedidosService, PedidoPesquisaService, ConfirmationService, EstoqueCaboService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
