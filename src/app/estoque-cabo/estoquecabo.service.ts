@@ -19,9 +19,10 @@ export class EstoqueCaboService {
     // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
     if (filtro) {
       // params.set('numped', filtro.numped);
-      return this.http.post(this.estoqueCaboUrl, filtro)
+      return this.http.get(this.estoqueCaboUrl, filtro)
         .toPromise();
     }
+    console.log(this.estoqueCaboUrl,filtro)
   }
 
   excluir(codendcabo: number): Promise<void> {
