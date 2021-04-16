@@ -10,11 +10,11 @@ import { EstoqueCaboService } from './estoquecabo.service';
 })
 export class EstoqueCaboComponent implements OnInit {
 
-  estoqueCabo=[]; 
+  estoqueCabo = [];
 
   buscaCabo = new FormGroup({
 
-    codprod: new FormControl('',[Validators.pattern("^[0-9]*$")]),
+    codprod: new FormControl('', [Validators.pattern("^[0-9]*$")]),
 
   });
 
@@ -27,10 +27,10 @@ export class EstoqueCaboComponent implements OnInit {
 
   get f() { return this.buscaCabo.controls; }
 
-  pesquisar(){
-    this.estoqueCaboService.pesquisar({codprod :this.buscaCabo.value.codprod})
-        .then(estoqueCabo => this.estoqueCabo = estoqueCabo );   
-        console.log(this.buscaCabo.value.codprod)       
+  pesquisar() {
+    this.estoqueCaboService.pesquisar({ codprod: this.buscaCabo.value.codprod })
+      .then(estoqueCabo => this.estoqueCabo = estoqueCabo);
+    console.log(this.buscaCabo.value.codprod)
   }
 
 }

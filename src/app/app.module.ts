@@ -21,17 +21,20 @@ import { } from '@angular/cdk/keycodes';
 import { AppComponent } from './app.component';
 import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PedidoService } from './pedido.service';
-import { PainelPedidosService } from './painel-pedidos/painel-pedidos.service';
-import { PedidoPesquisaService } from './pedidos-pesquisa/pedidos-pesquisa.service';
-import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { UppercaseDirective } from './uppercase.directive'
 
 
+import { PedidoService } from './pedido.service';
+import { PainelPedidosService } from './painel-pedidos/painel-pedidos.service';
+import { PedidoPesquisaService } from './pedidos-pesquisa/pedidos-pesquisa.service';
+import { EstoqueCaboService } from './estoque-cabo/estoquecabo.service';
+import { ProdutoService } from './produto/produto.service';
+
+import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.component';
 import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
 import { EstoqueCaboComponent } from './estoque-cabo/estoque-cabo.component';
-import { EstoqueCaboService } from './estoque-cabo/estoquecabo.service';
+import { ProdutoComponent } from './produto/produto.component';
 
 const routes: Routes=[
   {path: '', component: PedidosPesquisaComponent},
@@ -39,7 +42,8 @@ const routes: Routes=[
   {path: 'pedidos/novo', component: PedidosCadastroComponent},
   {path: 'pedidos/:numped', component: PedidosCadastroComponent},
   {path: 'painel', component: PainelPedidosComponent},
-  {path: 'estoquecabo', component: EstoqueCaboComponent}    
+  {path: 'estoquecabo', component: EstoqueCaboComponent},
+  {path: 'produto', component: ProdutoComponent}     
 ];
 
 @NgModule({
@@ -50,7 +54,8 @@ const routes: Routes=[
     PainelPedidosComponent,
     PedidosCadastroComponent,
     UppercaseDirective,
-    EstoqueCaboComponent
+    EstoqueCaboComponent,
+    ProdutoComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,7 @@ const routes: Routes=[
     ReactiveFormsModule,
      
   ],
-  providers: [PedidoService, PainelPedidosService, PedidoPesquisaService, ConfirmationService, EstoqueCaboService],
+  providers: [PedidoService, PainelPedidosService, PedidoPesquisaService, ConfirmationService, EstoqueCaboService, ProdutoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
