@@ -1,2 +1,2 @@
 
-GET http://192.168.200.55:9000/api/v1/estoques
+POST http://192.168.200.55:9000/api/v1/produtoestoque?1419

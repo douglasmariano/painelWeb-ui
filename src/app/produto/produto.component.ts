@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProdutoService } from './produto.service';
+import {DropdownModule} from 'primeng/dropdown';
 
 @Component({
   selector: 'app-produto',
@@ -14,9 +15,9 @@ export class ProdutoComponent implements OnInit {
   produtos = [];
 
   buscaProduto = new FormGroup({
-
     codprod: new FormControl('', [Validators.pattern("^[0-9]*$")]),
-
+    descricao: new FormControl('', []),
+    marcas: new FormControl([]),
   });
 
   constructor(private produtoService: ProdutoService,) { }
@@ -25,11 +26,20 @@ export class ProdutoComponent implements OnInit {
     //this.pesquisar();    
   }
 
+  onMarcaSelecionada(event) {
+    this.buscaProduto.patchValue({marcas: event})
+    console.log(this.buscaProduto.value)
+  }
+
   get f() { return this.buscaProduto.controls; }
 
   pesquisar() {
-    this.produtoService.pesquisar({ codprod: this.buscaProduto.value.codprod })
+    if (this.buscaProduto.value.codprod === ""){
+      this.produtoService.pesquisar({ ...this.buscaProduto.value })
       .then(produtos => this.produtos = produtos);
-    console.log(this.buscaProduto.value.codprod)
-  }
+    }else{
+      this.produtoService.pesquisar({ ...this.buscaProduto.value })
+      .then(produtos => this.produtos = [produtos]);
+      }
+    }
 }

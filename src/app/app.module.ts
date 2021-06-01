@@ -13,9 +13,13 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {InputMaskModule} from 'primeng/inputmask';
-import { ConfirmDialogModule} from 'primeng/confirmdialog';
-import { ConfirmationService} from 'primeng/api';
-import { CalendarModule} from 'primeng/calendar';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import {CalendarModule} from 'primeng/calendar';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import {PanelModule} from 'primeng/panel';
+import {DialogModule}from'primeng/dialog';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 import { } from '@angular/cdk/keycodes';
 
 import { AppComponent } from './app.component';
@@ -30,11 +34,17 @@ import { PainelPedidosService } from './painel-pedidos/painel-pedidos.service';
 import { PedidoPesquisaService } from './pedidos-pesquisa/pedidos-pesquisa.service';
 import { EstoqueCaboService } from './estoque-cabo/estoquecabo.service';
 import { ProdutoService } from './produto/produto.service';
+import { EstoqueDetalheService } from './estoque-detalhe/estoque-detalhe.service';
+import { EstoqueExtratoService } from './estoque-extrato/estoque-extrato.service';
 
 import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.component';
 import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
 import { EstoqueCaboComponent } from './estoque-cabo/estoque-cabo.component';
 import { ProdutoComponent } from './produto/produto.component';
+import { EstoqueDetalheComponent } from './estoque-detalhe/estoque-detalhe.component';
+import { EstoqueExtratoComponent } from './estoque-extrato/estoque-extrato.component';
+import { MarcaSelectorComponent } from './marca-selector/marca-selector.component';
+import { MarcaService } from './marca.service';
 
 const routes: Routes=[
   {path: '', component: PedidosPesquisaComponent},
@@ -55,7 +65,10 @@ const routes: Routes=[
     PedidosCadastroComponent,
     UppercaseDirective,
     EstoqueCaboComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    EstoqueDetalheComponent,
+    EstoqueExtratoComponent,
+    MarcaSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -64,8 +77,12 @@ const routes: Routes=[
     TableModule,
     TooltipModule,
     HttpClientModule,
+    AutoCompleteModule,
     ToastyModule.forRoot(),
     ConfirmDialogModule,
+    DynamicDialogModule,
+    PanelModule,
+    DialogModule,
     SelectButtonModule,
     InputNumberModule,
     InputMaskModule,
@@ -77,7 +94,15 @@ const routes: Routes=[
     ReactiveFormsModule,
      
   ],
-  providers: [PedidoService, PainelPedidosService, PedidoPesquisaService, ConfirmationService, EstoqueCaboService, ProdutoService],
+  providers: [PedidoService,
+    PainelPedidosService,
+    PedidoPesquisaService,
+    ConfirmationService, 
+    EstoqueCaboService,
+    ProdutoService, 
+    EstoqueDetalheService, 
+    EstoqueExtratoService, 
+    MarcaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

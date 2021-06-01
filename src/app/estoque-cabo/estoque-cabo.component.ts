@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EstoqueCaboService } from './estoquecabo.service';
 
 @Component({
@@ -10,6 +9,8 @@ import { EstoqueCaboService } from './estoquecabo.service';
 })
 export class EstoqueCaboComponent implements OnInit {
 
+  @Input()
+  extratoCodprod: string;
   estoqueCabo = [];
 
   buscaCabo = new FormGroup({
