@@ -22,7 +22,7 @@ export class ProdutoService {
       // params.set('numped', filtro.numped);
       return this.http.get(this.produtoUrl+'/'+filtro.codprod)
         .toPromise();
-    } else if(filtro.descricao || filtro.codmarca) {
+    } else if(filtro.descricao || filtro.marcas) {
       const queryParams = Object.keys(filtro)
         .filter(key => filtro[key])
         .map(key => {
