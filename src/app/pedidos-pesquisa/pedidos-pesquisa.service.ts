@@ -7,7 +7,8 @@ import { Pedido } from './model';
   providedIn: 'root'
 })
 export class PedidoPesquisaService {
-  baseUrl = 'http://192.168.200.55:9000'
+  //baseUrl = 'http://192.168.200.55:9000'
+  baseUrl = 'http://192.168.200.17:9000'
 
   pedidosUrl = `${this.baseUrl}/api/v1/tabpedido`;
   pedidosUrlAll = `${this.baseUrl}/api/v1/tabpedidos`;

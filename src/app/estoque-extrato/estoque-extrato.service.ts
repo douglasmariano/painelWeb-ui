@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class EstoqueExtratoService {
 
-  baseUrl = 'http://192.168.200.55:9000'
+  //baseUrl = 'http://192.168.200.55:9000'
+  baseUrl = 'http://192.168.200.17:9000'
 
   produtoExtratoUrl = `${this.baseUrl}/api/v1/extratoproduto`;
   

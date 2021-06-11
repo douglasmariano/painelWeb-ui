@@ -7,7 +7,8 @@ import { Produto } from './model';
   providedIn: 'root'
 })
 export class ProdutoService {
-  baseUrl = 'http://192.168.200.55:9000'
+  //baseUrl = 'http://192.168.200.55:9000'
+  baseUrl = 'http://192.168.200.17:9000'
 
   produtoUrl = `${this.baseUrl}/api/v1/produto`;
   

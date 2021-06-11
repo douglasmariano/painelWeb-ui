@@ -4,12 +4,13 @@
     <div class="p-field">
       <div class="p-field p-col-12">
         <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu" ><i class="fa fa-bars"></i></a>
+        
       </div>
     </div>
   </div>
 
   <ul class="navbar-menu" [hidden]= "!exibindoMenu">
-    <li class="navbar-usuario">Ajel</li>
+    <li class="navbar-usuario"><img src="assets/Imagens/ajel materiais.png"  width="120" ></li>
    <!-- <li class="navbar-menuitem" routerLinkActive="ativo" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/painel">Painel</a></li>-->
     <li class="navbar-menuitem" routerLinkActive="ativo" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/pedidos">Pedidos</a></li>
     <li class="navbar-menuitem" routerLinkActive="ativo" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/produto">Produto</a></li>
