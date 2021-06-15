@@ -34,7 +34,7 @@ export class ProdutoService {
           }
         })
         .join('&')
-      return this.http.get(this.produtoUrl+ '?' + queryParams)
+      return this.http.get(this.produtoUrl+ encodeURI('?') + encodeURI(queryParams))
       .toPromise();
     } else{
       return this.http.get(this.produtoUrl)
