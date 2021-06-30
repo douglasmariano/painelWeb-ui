@@ -3,28 +3,37 @@
         <h1>Busca Produtos</h1>
       <form [formGroup]="buscaProduto" autocomplete="off" (ngSubmit)="pesquisar()">
         <div class="p-grid">  
-          <div class="p-col-2">   
+          <div class="p-col-12 p-md-6 p-lg-3">   
             <label style="display: block">Codigo do Produto</label>     
             <input pInputText formControlName="codprod" >
           <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
               <sup>*</sup>Somente números. 
             </div>-->
           </div>       
-          <div class="p-col-2">   
+          <div class="p-col-12 p-md-6 p-lg-3">   
             <label style="display: block">Descrição</label>     
             <input pInputText formControlName="descricao" >
           <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
               <sup>*</sup>Somente números. 
             </div>-->
           </div>   
-          <div class="p-col-2">
+          <div class="p-col-12 p-md-6 p-lg-3">
             <label style="display: block;">Marca</label>
             <app-marca-selector (marcaSelecionada)="onMarcaSelecionada($event)"></app-marca-selector>
           </div>       
-        </div>
+        
+        <div class="p-col-12 p-md-6 p-lg-3">   
+          <label style="display: block">Cod. Fabrica</label>     
+          <input pInputText formControlName="codfab" >
+        <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
+            <sup>*</sup>Somente números. 
+          </div>-->
+        </div>   
         <div class="p-col-4">
           <button pButton type="submit" label="Pesquisar" ></button>
-        </div> 
+          <button pButton type="button" label="Limpar" (click)="limparBusca()" ></button>
+        </div>
+      </div> 
       </form>     
     </div>    
 <div class="card">
@@ -48,7 +57,7 @@
             <td>
               <button type="button" pButton pRipple [pRowToggler]="produtos" class="p-button-text p-button-rounded p-button-plain" 
                   [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-          </td>
+          </td>              
               <td >{{produtos.codprod }}</td>
               <td class="p-fluid p-col-4">{{produtos.descricao }}</td>  
               <td>{{produtos.rua }}</td>                

@@ -18,12 +18,16 @@ export class ProdutoComponent implements OnInit {
     codprod: new FormControl('', [Validators.pattern("^[0-9]*$")]),
     descricao: new FormControl('', []),
     marcas: new FormControl([]),
+    codfab: new FormControl('', []),
   });
 
   constructor(private produtoService: ProdutoService,) { }
 
   ngOnInit(): void {
     //this.pesquisar();    
+  }
+  limparBusca() : void {
+    window.location.reload();   
   }
 
   onMarcaSelecionada(event) {

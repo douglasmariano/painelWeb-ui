@@ -1,6 +1,7 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GlobalConstants } from '../common/global-constants';
 
 
 @Injectable({
@@ -8,14 +9,13 @@ import { Injectable } from '@angular/core';
 })
 export class PainelPedidosService {
 
-  //pedidosUrl= 'http://192.168.200.55:9000/api/v1/tabpedidosPainel';
-  pedidosUrl= 'http://192.168.200.17:9000/api/v1/tabpedidosPainel';
-
+  
+  baseUrl = GlobalConstants.apiURL;
   constructor( private http:HttpClient) { }
 
   pesquisar(): Promise<any>{
    // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
-   return this.http.get(`${this.pedidosUrl}`)
+   return this.http.get(`${this.baseUrl}/api/v1/tabpedidosPainel`)
     .toPromise()
   }
 }

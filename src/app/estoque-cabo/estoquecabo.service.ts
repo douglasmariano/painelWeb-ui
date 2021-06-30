@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GlobalConstants } from '../common/global-constants';
 import { EstoqueCabo } from './model';
 
 
@@ -7,9 +8,9 @@ import { EstoqueCabo } from './model';
   providedIn: 'root'
 })
 export class EstoqueCaboService {
-  //baseUrl = 'http://192.168.200.55:9000'
-  baseUrl = 'http://192.168.200.17:9000'
+ 
 
+  baseUrl = GlobalConstants.apiURL;
   estoqueCaboUrl = `${this.baseUrl}/api/v1/estoquecabos`;
   
 

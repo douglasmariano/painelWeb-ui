@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GlobalConstants } from '../common/global-constants';
 import { Produto } from './model';
 
 
@@ -7,9 +8,8 @@ import { Produto } from './model';
   providedIn: 'root'
 })
 export class ProdutoService {
-  //baseUrl = 'http://192.168.200.55:9000'
-  baseUrl = 'http://192.168.200.17:9000'
 
+  baseUrl = GlobalConstants.apiURL;
   produtoUrl = `${this.baseUrl}/api/v1/produto`;
   
 
@@ -23,7 +23,7 @@ export class ProdutoService {
       // params.set('numped', filtro.numped);
       return this.http.get(this.produtoUrl+'/'+filtro.codprod)
         .toPromise();
-    } else if(filtro.descricao || filtro.marcas) {
+    } else if(filtro.descricao || filtro.marcas || filtro.codfab) {
       const queryParams = Object.keys(filtro)
         .filter(key => filtro[key])
         .map(key => {

@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GlobalConstants } from './common/global-constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarcaService {
-
-  //marcaUrl= 'http://192.168.200.55:9000/api/v1/marca';
-  marcaUrl= 'http://192.168.200.17:9000/api/v1/marca';
+  
+  baseUrl = GlobalConstants.apiURL;
+  
   constructor(private http:HttpClient) { }
 
   listarTodos() {
-    return this.http.get(this.marcaUrl)
+    return this.http.get(this.baseUrl+'/api/v1/marca')
   }
 }
