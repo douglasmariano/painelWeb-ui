@@ -4,7 +4,6 @@ import { ConfirmationService } from 'primeng/api';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProdutoService } from './produto.service';
 import {DropdownModule} from 'primeng/dropdown';
-
 @Component({
   selector: 'app-produto',
   templateUrl: './produto.component.html',
@@ -21,7 +20,7 @@ export class ProdutoComponent implements OnInit {
     codfab: new FormControl('', []),
   });
 
-  constructor(private produtoService: ProdutoService,) { }
+  constructor(private produtoService: ProdutoService, ) {  }
 
   ngOnInit(): void {
     //this.pesquisar();    

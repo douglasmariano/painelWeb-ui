@@ -45,15 +45,28 @@ import { EstoqueDetalheComponent } from './estoque-detalhe/estoque-detalhe.compo
 import { EstoqueExtratoComponent } from './estoque-extrato/estoque-extrato.component';
 import { MarcaSelectorComponent } from './marca-selector/marca-selector.component';
 import { MarcaService } from './marca.service';
+import { EstoqueCaboCadastroComponent } from './estoque-cabo-cadastro/estoque-cabo-cadastro.component';
 
 const routes: Routes=[
-  {path: '', component: PedidosPesquisaComponent},
-  {path: 'pedidos', component: PedidosPesquisaComponent},
+  {path: '', component: PedidosPesquisaComponent,
+  data: {
+    title: 'Consulta Pedido'
+        }},
+  {path: 'pedidos', component: PedidosPesquisaComponent,
+      data: {
+        title: 'Consulta Pedido'
+            }},
   {path: 'pedidos/novo', component: PedidosCadastroComponent},
   {path: 'pedidos/:numped', component: PedidosCadastroComponent},
   {path: 'painel', component: PainelPedidosComponent},
-  {path: 'estoquecabo', component: EstoqueCaboComponent},
-  {path: 'produto', component: ProdutoComponent}     
+  {path: 'estoquecabo', component: EstoqueCaboComponent,
+  data: {
+    title: 'Estoque Cabos'
+        }},
+  {path: 'produto', component: ProdutoComponent,
+      data: {
+        title: 'Produtos'
+            }}     
 ];
 
 @NgModule({
@@ -68,7 +81,8 @@ const routes: Routes=[
     ProdutoComponent,
     EstoqueDetalheComponent,
     EstoqueExtratoComponent,
-    MarcaSelectorComponent
+    MarcaSelectorComponent,
+    EstoqueCaboCadastroComponent
   ],
   imports: [
     BrowserModule,

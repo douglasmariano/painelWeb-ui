@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/api';
-import { Pedido } from '../pedidos-pesquisa/model';
 import { PedidoPesquisaService } from '../pedidos-pesquisa/pedidos-pesquisa.service';
 import { Router } from '@angular/router';
 @Component({
