@@ -56,12 +56,23 @@ const routes: Routes=[
       data: {
         title: 'Consulta Pedido'
             }},
-  {path: 'pedidos/novo', component: PedidosCadastroComponent},
+  {path: 'pedidos/novo', component: PedidosCadastroComponent,
+    data: {
+      title: 'Incluindo Pedidos'
+          }},
   {path: 'pedidos/:numped', component: PedidosCadastroComponent},
   {path: 'painel', component: PainelPedidosComponent},
   {path: 'estoquecabo', component: EstoqueCaboComponent,
+      data: {
+        title: 'Estoque Cabos'
+            }},
+  {path: 'estoquecabo/novo', component: EstoqueCaboCadastroComponent,
+      data: {
+        title: 'Cadastro de Estoque Cabos'
+            }},
+  {path: 'estoquecabo/:codendcabo', component: EstoqueCaboCadastroComponent,
   data: {
-    title: 'Estoque Cabos'
+    title: 'Alteração de Estoque Cabos'
         }},
   {path: 'produto', component: ProdutoComponent,
       data: {

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService } from 'primeng/api';
 import { EstoqueCaboService } from './estoquecabo.service';
 
 @Component({
@@ -19,19 +21,29 @@ export class EstoqueCaboComponent implements OnInit {
 
   });
 
-  constructor(private estoqueCaboService: EstoqueCaboService,) { }
+  constructor(private estoqueCaboService: EstoqueCaboService,
+    private  toasty:ToastyService,
+    private  confirmation:ConfirmationService) { }
 
   ngOnInit(): void {
-    this.pesquisar();
-    console.log(this.estoqueCabo);
+   
   }
 
   get f() { return this.buscaCabo.controls; }
 
   pesquisar() {
-    this.estoqueCaboService.pesquisar({ codprod: this.buscaCabo.value.codprod })
-      .then(estoqueCabo => this.estoqueCabo = estoqueCabo);
-    console.log(this.buscaCabo.value.codprod)
+    this.estoqueCaboService.pesquisar({ codprod: this.buscaCabo.value.codprod }).then(estoqueCabo => this.estoqueCabo = estoqueCabo);    
   }
 
+  excluir(estoqueCabo: any){
+    this.confirmation.confirm(
+      {message: 'Tem certeza que deseja excluir',
+        accept: ()=>{
+          this.estoqueCaboService.excluir(estoqueCabo.codendcabo ).then(()=>
+          this.toasty.success('Excluido com sucesso.'));
+          
+        }}
+        
+    );
+  }
 }

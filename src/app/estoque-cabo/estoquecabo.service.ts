@@ -11,34 +11,41 @@ export class EstoqueCaboService {
  
 
   baseUrl = GlobalConstants.apiURL;
-  estoqueCaboUrl = `${this.baseUrl}/api/v1/estoquecabos`;
+  estoqueCaboUrl = `${this.baseUrl}/api/v1/estoquecabo`;
   
 
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: any): Promise<any> {
-    //const params = new URLSearchParams();
-    // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
-    if (filtro) {
-      // params.set('numped', filtro.numped);
-      return this.http.get(this.estoqueCaboUrl, filtro)
-        .toPromise();
+    console.log(filtro.codendcabo)
+    if (filtro.codendcabo) {
+     // return this.http.get(this.estoqueCaboUrl+'?codendcabo='+filtro.codendcabo)  
+     return this.http.get(this.estoqueCaboUrl+'/'+filtro.codendcabo) 
+     .toPromise();
     }
-    console.log(this.estoqueCaboUrl,filtro)
+    else{      
+      return this.http.get(this.estoqueCaboUrl)
+        .toPromise();
+      }
   }
 
   excluir(codendcabo: number): Promise<void> {
     return this.http.delete(`${this.estoqueCaboUrl}/${codendcabo}`)
       .toPromise()
-      .then(() => { this.pesquisar(null); });// return this.http.put(this.pedidosUrlAll/numped).toPromise();
+      .then(() => { });// return this.http.put(this.pedidosUrlAll/numped).toPromise();
+  }
+
+  atualizar(estoqueCabo: EstoqueCabo): Promise<void> {
+    console.log(estoqueCabo.codendcabo)
+    return this.http.put(`${this.estoqueCaboUrl}/${estoqueCabo.codendcabo}`, estoqueCabo)
+      .toPromise()
+      .then(() => { this.pesquisar(estoqueCabo.codendcabo);});// return this.http.put(this.pedidosUrlAll/numped).toPromise();
+      
   }
 
   adicionar(estoqueCabo: EstoqueCabo): Promise<EstoqueCabo> {
     return this.http.post<EstoqueCabo>(this.estoqueCaboUrl, estoqueCabo, {  })
-    .toPromise();
-    console.log(estoqueCabo);
+    .toPromise();    
   }
 
-
- 
 }

@@ -1,4 +1,5 @@
 export class EstoqueCabo {
+    codendcabo:number;
     codprod: number;
     rua: number;
     modulo: number;    
