@@ -16,7 +16,6 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ConfirmationService} from 'primeng/api';
 import { CalendarModule} from 'primeng/calendar';
-import { } from '@angular/cdk/keycodes';
 
 import { AppComponent } from './app.component';
 import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
@@ -27,16 +26,24 @@ import { PedidoPesquisaService } from './pedidos-pesquisa/pedidos-pesquisa.servi
 import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { UppercaseDirective } from './uppercase.directive'
-
-
 import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { LoginGuard } from './login.guard';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 const routes: Routes=[
-  {path: '', component: PedidosPesquisaComponent},
-  {path: 'pedidos', component: PedidosPesquisaComponent},
-  {path: 'pedidos/novo', component: PedidosCadastroComponent},
-  {path: 'pedidos/:numped', component: PedidosCadastroComponent},
-  {path: 'painel', component: PainelPedidosComponent}  
+  {path: 'login', component: LoginComponent},
+
+  {path: '', component: HomeComponent, canActivate : [LoginGuard] },
+  {path: 'pedidos', component: PedidosPesquisaComponent, canActivate : [LoginGuard]},
+  {path: 'pedidos/novo', component: PedidosCadastroComponent, canActivate : [LoginGuard]},
+  {path: 'pedidos/:numped', component: PedidosCadastroComponent, canActivate : [LoginGuard]},
+  {path: 'painel', component: PainelPedidosComponent, canActivate : [LoginGuard]}  
 ];
 
 @NgModule({
@@ -46,7 +53,9 @@ const routes: Routes=[
     NavbarComponent,
     PainelPedidosComponent,
     PedidosCadastroComponent,
-    UppercaseDirective
+    UppercaseDirective,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +75,11 @@ const routes: Routes=[
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
-     
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+      },
+    }),
   ],
   providers: [PedidoService, PainelPedidosService, PedidoPesquisaService, ConfirmationService],
   bootstrap: [AppComponent]

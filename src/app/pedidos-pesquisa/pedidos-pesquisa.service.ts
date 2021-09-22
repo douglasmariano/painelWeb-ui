@@ -1,18 +1,21 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pedido } from './model';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PedidoPesquisaService {
-  baseUrl = 'http://192.168.200.55:9000'
 
-  pedidosUrl = `${this.baseUrl}/api/v1/tabpedido`;
-  pedidosUrlAll = `${this.baseUrl}/api/v1/tabpedidos`;
+  pedidosUrl = null;
+  pedidosUrlAll = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.pedidosUrl = `${environment.apiAddress}/api/v1/tabpedido`;
+    this.pedidosUrlAll = `${environment.apiAddress}/api/v1/tabpedidos`;
+  }
 
   pesquisar(filtro: any): Promise<any> {
     //const params = new URLSearchParams();
@@ -38,6 +41,6 @@ export class PedidoPesquisaService {
 
   marcarChegada(numped) {
     console.log(numped)
-    return this.http.put(`${this.baseUrl}/api/v1/tabpedidos/marcar_chegada/${numped}`, {}).toPromise()
+    return this.http.put(`${environment.apiAddress}/api/v1/tabpedidos/marcar_chegada/${numped}`, {}).toPromise()
   }
 }
