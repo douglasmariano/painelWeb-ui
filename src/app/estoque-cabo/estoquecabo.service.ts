@@ -17,22 +17,24 @@ export class EstoqueCaboService {
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: any): Promise<any> {
-    console.log(filtro.codendcabo)
-    if (filtro.codendcabo) {
+   
+    if (filtro?.codendcabo) {
      // return this.http.get(this.estoqueCaboUrl+'?codendcabo='+filtro.codendcabo)  
      return this.http.get(this.estoqueCaboUrl+'/'+filtro.codendcabo) 
      .toPromise();
     }
-    else{      
-      return this.http.get(this.estoqueCaboUrl)
+    else if(filtro?.codprod){      
+      return this.http.get(this.estoqueCaboUrl+'?codprod='+filtro.codprod) 
+     .toPromise();
+      } else{
+        return this.http.get(this.estoqueCaboUrl)
         .toPromise();
       }
   }
-
-  excluir(codendcabo: number): Promise<void> {
-    return this.http.delete(`${this.estoqueCaboUrl}/${codendcabo}`)
-      .toPromise()
-      .then(() => { });// return this.http.put(this.pedidosUrlAll/numped).toPromise();
+  
+   excluir(codendcabo: number): Promise<any> {
+    return  this.http.delete(`${this.estoqueCaboUrl}/${codendcabo}`)
+    .toPromise(); 
   }
 
   atualizar(estoqueCabo: EstoqueCabo): Promise<void> {

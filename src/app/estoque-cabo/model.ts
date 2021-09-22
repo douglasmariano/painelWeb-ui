@@ -6,4 +6,16 @@ export class EstoqueCabo {
     apt: number;
     numero: number;
     qt: number;
+    identificacao :String;
+    tipoender :String;
+    status :String;
+    codfuncinc : number;
+    datainclusao :Date;
+    dataexclusao :Date;
+    fabricante :String;
+    obs1  :String;
+    embalagem :String;
+    qtmaster :number;
+
+
   }

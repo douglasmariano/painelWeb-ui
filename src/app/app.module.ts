@@ -46,6 +46,7 @@ import { EstoqueExtratoComponent } from './estoque-extrato/estoque-extrato.compo
 import { MarcaSelectorComponent } from './marca-selector/marca-selector.component';
 import { MarcaService } from './marca.service';
 import { EstoqueCaboCadastroComponent } from './estoque-cabo-cadastro/estoque-cabo-cadastro.component';
+import { AjelEntregaComponent } from './ajel-entrega/ajel-entrega.component';
 
 const routes: Routes=[
   {path: '', component: PedidosPesquisaComponent,
@@ -93,7 +94,8 @@ const routes: Routes=[
     EstoqueDetalheComponent,
     EstoqueExtratoComponent,
     MarcaSelectorComponent,
-    EstoqueCaboCadastroComponent
+    EstoqueCaboCadastroComponent,
+    AjelEntregaComponent
   ],
   imports: [
     BrowserModule,

@@ -26,22 +26,23 @@ export class EstoqueCaboComponent implements OnInit {
     private  confirmation:ConfirmationService) { }
 
   ngOnInit(): void {
-   
+   this.pesquisar()
   }
 
   get f() { return this.buscaCabo.controls; }
 
   pesquisar() {
     this.estoqueCaboService.pesquisar({ codprod: this.buscaCabo.value.codprod }).then(estoqueCabo => this.estoqueCabo = estoqueCabo);    
+    console.log(this.buscaCabo)
   }
 
   excluir(estoqueCabo: any){
     this.confirmation.confirm(
       {message: 'Tem certeza que deseja excluir',
-        accept: ()=>{
-          this.estoqueCaboService.excluir(estoqueCabo.codendcabo ).then(()=>
-          this.toasty.success('Excluido com sucesso.'));
-          
+        accept: async () => {
+          await this.estoqueCaboService.excluir(estoqueCabo.codendcabo )
+          this.toasty.warning('Excluido com sucesso.');
+          this.pesquisar()
         }}
         
     );

@@ -5,6 +5,7 @@ import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/api';
 import { EstoqueCaboService } from '../estoque-cabo/estoquecabo.service';
 
+
 @Component({
   selector: 'app-estoque-cabo-cadastro',
   templateUrl: './estoque-cabo-cadastro.component.html',
@@ -26,7 +27,7 @@ export class EstoqueCaboCadastroComponent implements OnInit {
     const codendcabo = this.route.snapshot.params['codendcabo'];
 
     this.preencherFormGroup();    
-    this.carregarPedido(codendcabo);
+    this.carregarEstoqueCabo(codendcabo);
     
   }
 
@@ -38,7 +39,17 @@ export class EstoqueCaboCadastroComponent implements OnInit {
       modulo: '',
       apto: '',
       numero: '',
-      qt: '',
+      qt: '',    
+      identificacao : '',
+      tipoender : '',
+      status : '',
+      codfuncinc :  '',
+      datainclusao : '',
+      dataexclusao : '',
+      fabricante : '',
+      obs1  : '',
+      embalagem : '',
+      qtmaster : '',
       //dtultmovent:[{value: '', }],      
     });
   }
@@ -50,14 +61,23 @@ export class EstoqueCaboCadastroComponent implements OnInit {
     }
   }
 
-  carregarPedido(codendcabo: number) {
+  carregarEstoqueCabo(codendcabo: number) {
     if(codendcabo){
     this.estoqueCaboService.pesquisar({ codendcabo })
       .then(estoqueCaboCadastro => {
-        console.log("teste")
-        console.log(estoqueCaboCadastro)
-        this.estoqueCaboCadastro.patchValue(estoqueCaboCadastro);
-      })}
+        const estoqueCaboTemp = {
+          ...estoqueCaboCadastro,
+          datainclusao : new Date(estoqueCaboCadastro.datainclusao),
+          dataexclusao : new Date(estoqueCaboCadastro.dataexclusao),  
+        }
+        //this.estoqueCaboCadastro.setValue ( { datainclusao: new Date(estoqueCaboCadastro.datainclusao) })      
+        console.log({
+          estoqueCaboCadastro, 
+          estoqueCaboTemp
+        });               
+        this.estoqueCaboCadastro.patchValue(estoqueCaboTemp);        
+        })
+      }
   }
   salvar() {
     if (this.route.snapshot.params['codendcabo'] == null) {
@@ -69,7 +89,7 @@ export class EstoqueCaboCadastroComponent implements OnInit {
       this.estoqueCaboService.atualizar(this.estoqueCaboCadastro.value).then(() => {
         this.toasty.success('Atualizado');
         this.preencherFormGroup()
-        this.carregarPedido(this.route.snapshot.params['codendcabo']);
+        this.carregarEstoqueCabo(this.route.snapshot.params['codendcabo']);
       })
     }
 
