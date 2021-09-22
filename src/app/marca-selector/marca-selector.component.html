@@ -1,0 +1,10 @@
+
+<p-autoComplete 
+    (completeMethod)="search($event)"
+    [(ngModel)]="marcasSelecionadas" 
+    [suggestions]="marcas" 
+    [multiple]="true" 
+    (onSelect)="emitirMarcasSelecionadas()"
+    (onUnselect)="emitirMarcasSelecionadas()"
+    field="marca">
+</p-autoComplete>

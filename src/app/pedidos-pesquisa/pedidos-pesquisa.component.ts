@@ -26,7 +26,7 @@ export class PedidosPesquisaComponent implements OnInit {
   constructor(private pedidoPesquisaService: PedidoPesquisaService,
               private  toasty:ToastyService,
               private  confirmation:ConfirmationService,
-              ){ }
+              ){  }
 
   ngOnInit(){ 
     this.pesquisar();

@@ -1,0 +1,95 @@
+<div class="container" *ngIf="estoqueCaboCadastro">
+    <form [formGroup]="estoqueCaboCadastro" autocomplete="off" (ngSubmit)="salvar()">
+
+        <div class="p-field">
+            <h1> Dados do Pedido </h1>
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-4">
+              <label>Cod. Produto</label>
+              <input pInputText   formControlName="codprod" >
+            </div>
+
+            <div class="p-field p-col-4">
+              <label>Rua</label>
+              <input pInputText   formControlName="rua">
+            </div>
+
+            <div class="p-field p-col-4">
+              <label>Modulo</label>
+              <input pInputText   formControlName="modulo">
+            </div>
+          
+            <div class="p-field p-col-4">
+                <label>Apto</label>
+                <input pInputText   formControlName="apto">
+              </div>
+            <div class="p-field p-col-4">
+                <label>Numero</label>
+                <input pInputText   formControlName="numero">
+              </div>
+        
+           <!--  <div class="p-field p-col-4">
+                <label>Data Entrada</label>
+                <p-calendar formControlName="dtultmovent" showTime="true" hourFormat="24"></p-calendar>
+              </div> -->
+                            
+            <div class="p-field p-col-4">
+              <label>Qt</label>
+              <input pInputText   formControlName="qt">
+            </div> 
+            <div class="p-field p-col-4">
+              <label>Identificação</label>
+              <input pInputText   formControlName="identificacao">
+            </div>
+            <div class="p-field p-col-4">
+              <label>Tipo Endereço</label>
+              <input pInputText   formControlName="tipoender">
+            </div>
+            <div class="p-field p-col-4">
+              <label>Status</label>
+              <input pInputText   formControlName="status">
+            </div>
+            <div class="p-field p-col-4">
+              <label>Cod. Func. Inclusão</label>
+              <input pInputText   formControlName="codfuncinc">
+            </div>
+            <div class="p-field p-col-4">
+              <label>Data Inclusão</label>
+              <p-calendar formControlName="datainclusao" showTime="true" hourFormat="24"></p-calendar>               
+            </div>
+            <div class="p-field p-col-4">
+              <label>Data Exclusão</label>
+              <p-calendar formControlName="dataexclusao" showTime="true" hourFormat="24"></p-calendar>               
+            </div>
+            <div class="p-field p-col-4">
+              <label>Fabricante</label>
+              <input pInputText   formControlName="fabricante">
+            </div>
+            <div class="p-field p-col-4">
+              <label>Observações</label>
+              <input pInputText   formControlName="obs1">
+            </div>
+            <div class="p-field p-col-4">
+              <label>Embalagem</label>
+              <input pInputText   formControlName="embalagem">
+            </div>
+            <div class="p-field p-col-4">
+              <label>Qt. Master</label>
+              <input pInputText   formControlName="qtmaster">
+            </div>
+      
+      
+                
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-2">
+             <button pButton type="submit" label="Salvar"></button>
+            </div>           
+            <div class="p-field p-col-2">
+              <button pButton type="button" label="Voltar" (click)="voltar()"></button> 
+            </div>
+        </div>     
+    </form>      
+</div>
+

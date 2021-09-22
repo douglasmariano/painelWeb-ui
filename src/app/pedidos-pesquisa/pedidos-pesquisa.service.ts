@@ -1,8 +1,8 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GlobalConstants } from '../common/global-constants';
 import { Pedido } from './model';
 import { environment } from '../../environments/environment';
-
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,10 @@ export class PedidoPesquisaService {
 
   pedidosUrl = null;
   pedidosUrlAll = null;
+  
+  // baseUrl = GlobalConstants.apiURL;
+  // pedidosUrl = `${this.baseUrl}/api/v1/tabpedido`;
+  // pedidosUrlAll = `${this.baseUrl}/api/v1/tabpedidos`;
 
   constructor(private http: HttpClient) { 
     this.pedidosUrl = `${environment.apiAddress}/api/v1/tabpedido`;

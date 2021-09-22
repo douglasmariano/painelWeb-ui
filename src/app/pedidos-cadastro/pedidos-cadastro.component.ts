@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/api';
-import { Pedido } from '../pedidos-pesquisa/model';
 import { PedidoPesquisaService } from '../pedidos-pesquisa/pedidos-pesquisa.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-pedidos-cadastro',
   templateUrl: './pedidos-cadastro.component.html',
@@ -56,38 +56,38 @@ export class PedidosCadastroComponent implements OnInit {
 
   preencherFormGroup() {
     this.pedido = this.fb.group({
-      numped: [{value: '', disabled: true}, Validators.required ],
-      nome: [{value: '', disabled: true}],
-      cliente: [{value: '', disabled: true}],
-      status: [{value: '', disabled: true}],
-      vltotal: [{value: '', disabled: true}],
-      posicao: [{value: '', disabled: true}],
-      datapedido: [{value: '', disabled: true}],
-      datadigitacao: [{value: '', disabled: true}],
-      datachegadacli: [{value: '', disabled: true}],
-      codfuncsep: [{value: '', disabled: true}],
-      datainiciosep: [{value: '', disabled: true}],
-      datafimsep: [{value: '', disabled: true}],
-      codfilial: [{value: '', disabled: true}],
-      codfuncbalcao: [{value: '', disabled: true}],
+      numped:           [{value: '', disabled: true}, Validators.required ],
+      nome:             [{value: '', disabled: true}],
+      cliente:          [{value: '', disabled: true}],
+      status:           [{value: '', disabled: true}],
+      vltotal:          [{value: '', disabled: true}],
+      posicao:          [{value: '', disabled: true}],
+      datapedido:       [{value: '', disabled: true}],
+      datadigitacao:    [{value: '', disabled: true}],
+      datachegadacli:   [{value: '', disabled: true}],
+      codfuncsep:       [{value: '', disabled: true}],
+      datainiciosep:    [{value: '', disabled: true}],
+      datafimsep:       [{value: '', disabled: true}],
+      codfilial:        [{value: '', disabled: true}],
+      codfuncbalcao:    [{value: '', disabled: true}],
       datainiciobalcao: [{value: '', disabled: true}],
-      datafimbalcao: [{value: '', disabled: true}],
-      painel: [{value: '', disabled: true}],
-      datapacote: [{value: '', disabled: true}],
-      finalizado: [{value: '', disabled: true}],
-      qtitem: [{value: '', disabled: true}],
-      estoque: [{value: '', disabled: true}],
-      retira: [{value: '', disabled: true}],
-      origial: [{value: '', disabled: true}],
-      codfuncpacote: [{value: '', disabled: true}],
-      retirante: [{value: '', disabled: true}],
-      dataemissaomapa:[{value: '', disabled: true}],
-      aguardsep:[{value: '', disabled: true}],
-      emseparacao:[{value: '', disabled: true}],
-      dataatual:[{value: '', disabled: true}],
-      emconferencia:[{value: '', disabled: true}],
-      tempodecor:[{value: '', disabled: true}],
-      ordem:[{value: '', disabled: true}],
+      datafimbalcao:    [{value: '', disabled: true}],
+      painel:           [{value: '', disabled: true}],
+      datapacote:       [{value: '', disabled: true}],
+      finalizado:       [{value: '', disabled: true}],
+      qtitem:           [{value: '', disabled: true}],
+      estoque:          [{value: '', disabled: true}],
+      retira:           [{value: '', disabled: true}],
+      origial:          [{value: '', disabled: true}],
+      codfuncpacote:    [{value: '', disabled: true}],
+      retirante:        [{value: '', disabled: true}],
+      dataemissaomapa:  [{value: '', disabled: true}],
+      aguardsep:        [{value: '', disabled: true}],
+      emseparacao:      [{value: '', disabled: true}],
+      dataatual:        [{value: '', disabled: true}],
+      emconferencia:    [{value: '', disabled: true}],
+      tempodecor:       [{value: '', disabled: true}],
+      ordem:            [{value: '', disabled: true}],
 
     });
   }
