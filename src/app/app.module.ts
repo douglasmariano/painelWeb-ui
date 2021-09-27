@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastyModule } from 'ng2-toasty';
@@ -48,43 +48,47 @@ import { MarcaSelectorComponent } from './marca-selector/marca-selector.componen
 import { MarcaService } from './marca.service';
 import { EstoqueCaboCadastroComponent } from './estoque-cabo-cadastro/estoque-cabo-cadastro.component';
 import { AjelEntregaComponent } from './ajel-entrega/ajel-entrega.component';
-
-export function tokenGetter() {
-  return localStorage.getItem('token');
-}
+import { TokenInterceptorService } from './token-interceptor.service';
 
 const routes: Routes=[
   {path: 'login', component: LoginComponent},
   {path: '', component: PedidosPesquisaComponent, canActivate : [LoginGuard],
     data: {
       title: 'Consulta Pedido'
-    }},
+    }
+  },
   {path: 'pedidos', component: PedidosPesquisaComponent, canActivate : [LoginGuard], 
-      data: {
-        title: 'Consulta Pedido'
-      }},
+    data: {
+      title: 'Consulta Pedido'
+    }
+  },
   {path: 'pedidos/novo', component: PedidosCadastroComponent, canActivate : [LoginGuard], 
     data: {
       title: 'Incluindo Pedidos'
-          }},
+    }
+  },
   {path: 'pedidos/:numped', component: PedidosCadastroComponent, canActivate : [LoginGuard] }, 
   {path: 'painel', component: PainelPedidosComponent, canActivate : [LoginGuard] }, 
-  {path: 'estoquecabo', component: EstoqueCaboComponent,
-      data: {
-        title: 'Estoque Cabos'
-            }},
-  {path: 'estoquecabo/novo', component: EstoqueCaboCadastroComponent,
-      data: {
-        title: 'Cadastro de Estoque Cabos'
-            }},
-  {path: 'estoquecabo/:codendcabo', component: EstoqueCaboCadastroComponent,
-  data: {
-    title: 'Alteração de Estoque Cabos'
-        }},
-  {path: 'produto', component: ProdutoComponent,
-      data: {
-        title: 'Produtos'
-            }}     
+  {path: 'estoquecabo', component: EstoqueCaboComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Estoque Cabos'
+    }
+  },
+  {path: 'estoquecabo/novo', component: EstoqueCaboCadastroComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Cadastro de Estoque Cabos'
+    }
+  },
+  {path: 'estoquecabo/:codendcabo', component: EstoqueCaboCadastroComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Alteração de Estoque Cabos'
+    }
+  },
+  {path: 'produto', component: ProdutoComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Produtos'
+    }
+  },  
 ];
 
 @NgModule({
@@ -127,11 +131,6 @@ const routes: Routes=[
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-      },
-    }),
   ],
   providers: [PedidoService,
     PainelPedidosService,
@@ -141,7 +140,8 @@ const routes: Routes=[
     ProdutoService, 
     EstoqueDetalheService, 
     EstoqueExtratoService, 
-    MarcaService],
+    MarcaService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

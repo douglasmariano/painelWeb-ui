@@ -11,7 +11,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
 
-  form = null
+  form = null;
+  error;
 
   ngOnInit(): void {
     this.iniciarForm()
@@ -25,8 +26,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  fazerLogin() {
-    this.loginService.efetuarLogin(this.form.value)
+  async fazerLogin() {
+    this.error = '';
+    this.error = await this.loginService.efetuarLogin(this.form.value)
   }
 
 }

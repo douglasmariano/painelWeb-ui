@@ -9,23 +9,31 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient, 
+    private router: Router) { 
+
+  }
 
   isUserLogado() {
     const token = localStorage.getItem('token')
     return token
   }
 
-  efetuarLogin(form) {
+  async efetuarLogin(form) {
     if (!form.usuario || !form.senha) {
-      return
+      return 'Por favor, informe usuário e senha'
     }
 
-    return this.http.post(`${environment.apiAddress}/api/v1/login`, form).subscribe((result: any)=> {
-      if (result.token) {
-        localStorage.setItem('token', result.token)
+    try {
+      const response: any = await this.http.post('/api/v1/auth/login', form).toPromise()
+
+      if (response.token) {
+        localStorage.setItem('token', response.token)
         this.router.navigate(['/'])
       }
-    })
+    } catch (error) {
+      return error?.error?.message
+    }
   }
 }
