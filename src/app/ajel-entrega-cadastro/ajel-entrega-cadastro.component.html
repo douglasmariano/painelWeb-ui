@@ -1,0 +1,105 @@
+<div class="container" *ngIf="ajelEntregaCadastro">
+    <form [formGroup]="ajelEntregaCadastro"  (ngSubmit)="salvar()">
+
+        <div class="p-field">
+            <h1> Dados do Pedido </h1>
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+          
+          <div class="p-field p-col-4">
+              <label >Num. Nota Fiscal</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="numnota" >
+            </div>
+            
+            <div class="p-field p-col-4">
+              <label>Cod. Usuário</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="codusur" >
+            </div>
+
+            <div class="p-field p-col-4">
+              <label>Nome do Vendedor</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="nomevendedor" >
+            </div>
+
+            <div class="p-field p-col-4">
+              <label>Nota Fiscal</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="vlatend" >
+              <input pInputText class="p-inputtext-sm"  formControlName="numvolume" >
+              <p-calendar formControlName="dtfat" showTime="true" hourFormat="24" ></p-calendar>  
+            </div>     
+
+            <span class="p-field p-col-4">
+              <label>Cod. Cliente</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="codcli" >
+              <input pInputText class="p-inputtext-sm"  formControlName="nomecliente" >
+            </span>           
+
+            <div class="p-field p-col-4">
+              <label>Cod. Conferente</label><br>
+              <input pInputText class="p-inputtext-sm"   formControlName="codfuncconf" >
+              <input pInputText class="p-inputtext-sm"  formControlName="nomeconf" >
+            </div>          
+            
+            <div class="p-field p-col-6">
+              <label>Observação 01</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="obs" >
+              <input pInputText class="p-inputtext-sm"  formControlName="obs1" >
+              <input pInputText class="p-inputtext-sm"  formControlName="obsentrega1" >
+              <input pInputText class="p-inputtext-sm"  formControlName="obsentrega2" >
+              <input pInputText class="p-inputtext-sm"  formControlName="obsentrega3" >
+            </div>
+          
+            
+            <div class="p-field p-col-6">
+              <label>Endereço</label><br>
+              <input pInputText  class="p-inputtext-sm" formControlName="estcob" ><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="codcidade" ><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="nomecidade" ><br>
+              <input pInputText  class="p-inputtext-sm" formControlName="endercob" ><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="local">    <br>          
+            </div>
+            <p-divider></p-divider> 
+            <div class="p-field p-col-4">
+              <label>Cod. Transportadora</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="codfornecfrete">
+            </div>
+
+            <div class="p-field p-col-6">
+              <label>Transportadora</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="fornecedor">
+            </div>
+
+            <div class="p-field p-col-4">
+              <label>Cod. Motorista</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="codmotorista">
+            </div>
+
+            <div class="p-field p-col-6">
+              <label>Motorista</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="nomemotorista">
+            </div>
+                  
+
+            <div class="p-field p-col-6">
+              <label>Observação do Entregador</label><br>
+              <input pInputText  class="p-inputtext-sm" formControlName="obsdoentregador">
+            </div>         
+          
+            <div class="p-field p-col-4">
+              <label>Data Entrega</label><br>
+              <p-calendar formControlName="dtentrega" showTime="true" hourFormat="24"></p-calendar>               
+            </div>            
+                
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-2">
+             <button pButton type="submit" label="Salvar"></button>
+            </div>           
+            <div class="p-field p-col-2">
+              <button pButton type="button" label="Voltar" (click)="voltar()"></button> 
+            </div>
+        </div>     
+    </form>      
+</div>
+
+

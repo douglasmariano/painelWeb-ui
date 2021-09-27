@@ -20,6 +20,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {PanelModule} from 'primeng/panel';
 import {DialogModule}from'primeng/dialog';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {  DividerModule } from 'primeng/divider';
 import { } from '@angular/cdk/keycodes';
 
 import { AppComponent } from './app.component';
@@ -47,6 +49,8 @@ import { MarcaSelectorComponent } from './marca-selector/marca-selector.componen
 import { MarcaService } from './marca.service';
 import { EstoqueCaboCadastroComponent } from './estoque-cabo-cadastro/estoque-cabo-cadastro.component';
 import { AjelEntregaComponent } from './ajel-entrega/ajel-entrega.component';
+import { AjelEntregaService } from './ajel-entrega/ajel-entrega.service';
+import { AjelEntregaCadastroComponent } from './ajel-entrega-cadastro/ajel-entrega-cadastro.component';
 
 const routes: Routes=[
   {path: '', component: PedidosPesquisaComponent,
@@ -78,7 +82,15 @@ const routes: Routes=[
   {path: 'produto', component: ProdutoComponent,
       data: {
         title: 'Produtos'
-            }}     
+            }},
+  {path: 'ajelentrega', component: AjelEntregaComponent,
+      data: {
+        title: 'Lista de Pedido Entregues'
+            }},
+  {path: 'ajelentrega/:numnota', component: AjelEntregaCadastroComponent,
+      data: {
+        title: 'Adicionar nova Entrega.'
+            }},       
 ];
 
 @NgModule({
@@ -95,7 +107,8 @@ const routes: Routes=[
     EstoqueExtratoComponent,
     MarcaSelectorComponent,
     EstoqueCaboCadastroComponent,
-    AjelEntregaComponent
+    AjelEntregaComponent,
+    AjelEntregaCadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +131,9 @@ const routes: Routes=[
     CalendarModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule,
+    ReactiveFormsModule, 
+    InputSwitchModule,
+    DividerModule,
      
   ],
   providers: [PedidoService,
@@ -129,7 +144,8 @@ const routes: Routes=[
     ProdutoService, 
     EstoqueDetalheService, 
     EstoqueExtratoService, 
-    MarcaService],
+    MarcaService,
+    AjelEntregaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
