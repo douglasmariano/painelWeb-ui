@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/api';
 import { AjelEntregaService } from '../ajel-entrega/ajel-entrega.service';
-import {  DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-ajel-entrega-cadastro',
