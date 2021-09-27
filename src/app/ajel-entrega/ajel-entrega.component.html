@@ -1,1 +1,128 @@
-<p>ajel-entrega works!</p>
+<div class="container">
+    <div class="p-col">
+  
+      <h1>Controle de Entregas</h1>
+      <form [formGroup]="buscaAjelEntrega" autocomplete="off" (ngSubmit)="pesquisar()">
+        <div class="p-grid">
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <label style="display: block">Num. Nota Fiscal</label>
+            <input pInputText formControlName="numnota" >
+            <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
+            <sup>*</sup>Somente números. 
+          </div>-->
+          </div>
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <label style="display: block">Data Entrega</label>
+  
+            <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
+            <sup>*</sup>Somente números. 
+          </div>-->
+          </div>
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <label style="display: block">Motorista</label>
+  
+            <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
+            <sup>*</sup>Somente números. 
+          </div>-->
+          </div>
+          <div class="p-col-4">
+            <button pButton type="submit" label="Pesquisar"></button>
+          </div>
+          <div class="p-col-4">            
+            <button type="button" class="p-button-success" pButton label="Novo" pTooltip="Incluir nova entrega." tooltipPosition="left"
+            (click)="showDialog()"></button>  
+              <p-dialog header="Nova Entrega" [(visible)]="display" modal="true"> 
+                <label style="display: block">Num. Nota Fiscal</label>              
+                <input pInputText formControlName="numnota" pTooltip="Digite o numero da nota fiscal." >
+                <button type="button" pButton autofocus [routerLink]="proximaRota"  icon="pi pi-info-circle" label="Buscar"></button>
+            </p-dialog>
+            
+          </div>    
+        </div>
+      </form>
+    </div>
+  
+    <div class="card">
+      <div class="p-shadow-3">
+        <p-table styleClass="p-datatable-sm" [value]="ajelEntrega" [paginator]="true" [rows]="20"
+          [showCurrentPageReport]="true"
+          currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} Entregas"
+          [rowsPerPageOptions]="[10,25,50]" [responsive]="true"
+          responsiveLayout="scroll"
+          dataKey="codentrega">
+          <ng-template pTemplate="header" >
+            <tr>
+              <th style="width: 3rem"></th>
+              <th>Num. Nota Fiscal</th>
+              <th class="p-col-2">Vendedor</th>
+              <th class="p-col-2">Dt. Entrega</th>
+              <th>Entrega</th>
+              <th >Cod.
+                Cliente</th>
+              <th>Cliente</th>              
+              <th class="p-col-2">Conferente</th>
+              <th>Qt Volumes</th>
+              <th>Obs Entregador</th>   
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-ajelEntrega  let-expanded="expanded">
+            <tr>
+              <td>
+                <button type="button" pButton pRipple [pRowToggler]="ajelEntrega" 
+                class="p-button-text p-button-rounded p-button-plain" 
+                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+              <td>{{ajelEntrega.numnota }}</td>             
+              <td>{{ajelEntrega.nomevendedor }}</td>              
+              <td>{{ajelEntrega.dtentrega | date:'dd/MM/y hh:mm:ss' }}</td> 
+              <td>{{ajelEntrega.nomemotorista }}</td>
+              <td>{{ajelEntrega.codcli }}</td>
+              <td>{{ajelEntrega.nomecliente }}</td>              
+              <td>{{ajelEntrega.nomeconf }}</td>
+              <td>{{ajelEntrega.numvolume }}</td>
+              <td>{{ajelEntrega.obsdoentregador }}</td> 
+            </tr>
+          </ng-template>
+            <ng-template pTemplate="rowexpansion" let-ajelEntrega >
+             <div class="container" >
+              <p-panel >             
+                <tr>
+                  <td>
+                  <label style="display: block">Cod Entrega</label>
+                    {{ajelEntrega.codentrega }} 
+                  </td>
+                  <td>
+                  <label style="display: block">Dt Faturamento</label>
+                  {{ajelEntrega.dtfat | date:'dd/MM/y hh:mm:ss' }} 
+                  </td>
+                </tr> 
+                <tr>
+                  <label style="display: block">Endereço</label>
+                  {{ajelEntrega.estcob }} - {{ajelEntrega.nomecidade }}  - {{ajelEntrega.endercob }} 
+                  
+                    
+                </tr>  
+                <tr>
+                  <label style="display: block">VAlor</label>
+                  {{ajelEntrega.vlatend | currency:'BRL'}}
+                </tr>          
+                  <tr>                   
+                    
+                    <td><button pButton pRipple type="button" class="p-button-info" label="Alterar"
+                        pTooltip="Informações sobre a entrega." tooltipPosition="top"
+                        routerLink="/ajelEntrega/{{ajelEntrega.codentrega}}"></button>
+                  
+                      <button pButton type="button" class="p-button-danger" label="Excluir" tooltipPosition="top"
+                        (click)="excluir(ajelEntrega.codentrega)"></button>
+                    </td>
+                  
+                  </tr>                
+                </p-panel>
+              </div>
+                </ng-template>
+        </p-table>
+      </div>
+    </div>
+  
+  
+  </div>

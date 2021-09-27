@@ -20,6 +20,7 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {PanelModule} from 'primeng/panel';
 import {DialogModule}from'primeng/dialog';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 import { AppComponent } from './app.component';
 import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
@@ -49,6 +50,8 @@ import { MarcaService } from './marca.service';
 import { EstoqueCaboCadastroComponent } from './estoque-cabo-cadastro/estoque-cabo-cadastro.component';
 import { AjelEntregaComponent } from './ajel-entrega/ajel-entrega.component';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { AjelEntregaService } from './ajel-entrega/ajel-entrega.service';
+import { AjelEntregaCadastroComponent } from './ajel-entrega-cadastro/ajel-entrega-cadastro.component';
 
 const routes: Routes=[
   {path: 'login', component: LoginComponent},
@@ -88,7 +91,17 @@ const routes: Routes=[
     data: {
       title: 'Produtos'
     }
-  },  
+  },
+  {path: 'ajelentrega', component: AjelEntregaComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Lista de Pedido Entregues'
+    }
+  },
+  {path: 'ajelentrega/:numnota', component: AjelEntregaCadastroComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Adicionar nova Entrega.'
+    }
+  },
 ];
 
 @NgModule({
@@ -108,6 +121,7 @@ const routes: Routes=[
     MarcaSelectorComponent,
     EstoqueCaboCadastroComponent,
     AjelEntregaComponent,
+    AjelEntregaCadastroComponent,
   ],
   imports: [
     BrowserModule,
@@ -131,8 +145,12 @@ const routes: Routes=[
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
+    ReactiveFormsModule, 
+    InputSwitchModule,
   ],
-  providers: [PedidoService,
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
+    PedidoService,
     PainelPedidosService,
     PedidoPesquisaService,
     ConfirmationService, 
@@ -141,7 +159,8 @@ const routes: Routes=[
     EstoqueDetalheService, 
     EstoqueExtratoService, 
     MarcaService,
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
+    AjelEntregaService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
