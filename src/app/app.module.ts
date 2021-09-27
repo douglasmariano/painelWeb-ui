@@ -21,7 +21,6 @@ import {PanelModule} from 'primeng/panel';
 import {DialogModule}from'primeng/dialog';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {InputSwitchModule} from 'primeng/inputswitch';
-import {  DividerModule } from 'primeng/divider';
 import { } from '@angular/cdk/keycodes';
 
 import { AppComponent } from './app.component';
@@ -133,7 +132,6 @@ const routes: Routes=[
     RouterModule.forRoot(routes),
     ReactiveFormsModule, 
     InputSwitchModule,
-    DividerModule,
      
   ],
   providers: [PedidoService,
