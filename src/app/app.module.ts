@@ -22,6 +22,9 @@ import {DialogModule}from'primeng/dialog';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {InputSwitchModule} from 'primeng/inputswitch';
 
+import { } from '@angular/cdk/keycodes';
+
+
 import { AppComponent } from './app.component';
 import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -147,6 +150,7 @@ const routes: Routes=[
     ReactiveFormsModule,
     ReactiveFormsModule, 
     InputSwitchModule,
+    login-page,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
