@@ -6,7 +6,7 @@
         <div class="p-grid">
           <div class="p-col-12 p-md-6 p-lg-3">
             <label style="display: block">Num. Nota Fiscal</label>
-            <input pInputText formControlName="numnota" >
+            <input pInputText formControlName="numnota"  autofocus >
             <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
             <sup>*</sup>Somente números. 
           </div>-->
@@ -33,10 +33,15 @@
             (click)="showDialog()"></button>  
               <p-dialog header="Nova Entrega" [(visible)]="display" modal="true"> 
                 <label style="display: block">Num. Nota Fiscal</label>              
-                <input pInputText formControlName="numnota" pTooltip="Digite o numero da nota fiscal." >
-                <button type="button" pButton autofocus [routerLink]="proximaRota"  icon="pi pi-info-circle" label="Buscar"></button>
+                <input pInputText formControlName="numnota" 
+                                  pTooltip="Digite o numero da nota fiscal." 
+                                  autofocus  
+                                  onkeydown = "if (event.keyCode == 13)
+                                                document.getElementById('botaoBuscar').click()">
+                <button type="button" id="botaoBuscar" pButton  [routerLink]="proximaRota"  icon="pi pi-info-circle" label="Buscar"></button>
+
+                
             </p-dialog>
-            
           </div>    
         </div>
       </form>
@@ -55,11 +60,11 @@
               <th style="width: 3rem"></th>
               <th>Num. Nota Fiscal</th>
               <th class="p-col-2">Vendedor</th>
-              <th class="p-col-2">Dt. Entrega</th>
+              <th >Dt. Entrega</th>
               <th>Entrega</th>
               <th >Cod.
                 Cliente</th>
-              <th>Cliente</th>              
+              <th class="p-col-2">Cliente</th>              
               <th class="p-col-2">Conferente</th>
               <th>Qt Volumes</th>
               <th>Obs Entregador</th>   
@@ -94,24 +99,52 @@
                   <td>
                   <label style="display: block">Dt Faturamento</label>
                   {{ajelEntrega.dtfat | date:'dd/MM/y hh:mm:ss' }} 
+                  
                   </td>
+                  <td>
+                    <label style="display: block">Valor</label>
+                    {{ajelEntrega.vlatend | currency:'BRL'}}
+                  </td>
+                  
+                </tr>               
+                <tr> 
+                  <td>
+                    <label style="display: block">Endereço</label>
+                    {{ajelEntrega.estcob }} - {{ajelEntrega.nomecidade }}  - {{ajelEntrega.endercob }} 
+                    {{ajelEntrega.local }}  
+                  </td>                 
+                  
                 </tr> 
                 <tr>
-                  <label style="display: block">Endereço</label>
-                  {{ajelEntrega.estcob }} - {{ajelEntrega.nomecidade }}  - {{ajelEntrega.endercob }} 
-                  
-                    
-                </tr>  
+                  <td>
+                    <label style="display: block">Observações</label>
+                  {{ajelEntrega.obs }} - {{ajelEntrega.obs1 }}  
+                  {{ajelEntrega.obsentrega1 }} - {{ajelEntrega.obsentrega2 }}  - {{ajelEntrega.obsentrega3 }}  
+                  </td>
+                </tr>
                 <tr>
-                  <label style="display: block">VAlor</label>
-                  {{ajelEntrega.vlatend | currency:'BRL'}}
-                </tr>          
+                  <td>
+                    <label style="display: block">Entregador</label>
+                    {{ajelEntrega.codfornecfrete }} - {{ajelEntrega.fornecedor }} 
+                    {{ajelEntrega.codmotorista }} - {{ajelEntrega.nomemotorista }}  
+                  </td>
+                  <td>
+                    <label style="display: block">Conferente</label>
+                    {{ajelEntrega.codfuncconf }} - {{ajelEntrega.nomeconf }}                    
+                  </td>                  
+                </tr> 
+                <tr>
+                  <td>
+                    <label style="display: block">Dt. Inclusão</label>
+                    {{ajelEntrega.dtinclusao | date:'dd/MM/y hh:mm:ss' }}                     
+                  </td>
+                </tr>        
                   <tr>                   
                     
-                    <td><button pButton pRipple type="button" class="p-button-info" label="Alterar"
+                    <td> <!--<button pButton pRipple type="button" class="p-button-info" label="Alterar"
                         pTooltip="Informações sobre a entrega." tooltipPosition="top"
                         routerLink="/ajelEntrega/{{ajelEntrega.codentrega}}"></button>
-                  
+                  -->
                       <button pButton type="button" class="p-button-danger" label="Excluir" tooltipPosition="top"
                         (click)="excluir(ajelEntrega.codentrega)"></button>
                     </td>
@@ -120,9 +153,10 @@
                 </p-panel>
               </div>
                 </ng-template>
+                
         </p-table>
       </div>
     </div>
-  
+    
   
   </div>

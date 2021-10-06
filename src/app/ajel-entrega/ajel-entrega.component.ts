@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/api';
+import { ActivatedRoute, Router } from '@angular/router';
 import {  DialogModule  } from 'primeng/dialog';
 import { AjelEntregaService } from './ajel-entrega.service';
 
@@ -28,11 +29,15 @@ export class AjelEntregaComponent implements OnInit {
     
   });
   
-  constructor(private ajelEntregaService: AjelEntregaService,
+  constructor(
+    private route: ActivatedRoute,
+    private ajelEntregaService: AjelEntregaService,
     private  toasty:ToastyService,
     private  confirmation:ConfirmationService) { }
 
   ngOnInit(): void {
+    
+    
    this.pesquisar()
   }
 
@@ -40,13 +45,20 @@ export class AjelEntregaComponent implements OnInit {
 
   pesquisar() {
     this.ajelEntregaService.pesquisarAjelEntrega({ numnota: this.buscaAjelEntrega.value.numnota })
-    .then(ajelEntrega => this.ajelEntrega = ajelEntrega);    
-    console.log(this.ajelEntrega)
-  }
-  
-  get proximaRota() {
-    return `/ajelentrega/`+this.buscaAjelEntrega.value.numnota;
-  }
+    .then(ajelEntrega => this.ajelEntrega = ajelEntrega);
+    if(this.buscaAjelEntrega.value.numnota){
+    if(this.ajelEntrega.values() == this.buscaAjelEntrega.value.numnota ){
+          this.toasty.success('Pedido encontrado.')  
+        } else{
+          this.toasty.error('Pedido não encontrado.')       
+        }
+      }
+        console.log(this.ajelEntrega.values())
+      }
+      
+      get proximaRota() {
+        return `/ajelentrega/`+this.buscaAjelEntrega.value.numnota;
+      }
 
   excluir(codentrega) {
     this.confirmation.confirm(

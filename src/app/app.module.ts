@@ -52,6 +52,7 @@ import { AjelEntregaComponent } from './ajel-entrega/ajel-entrega.component';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { AjelEntregaService } from './ajel-entrega/ajel-entrega.service';
 import { AjelEntregaCadastroComponent } from './ajel-entrega-cadastro/ajel-entrega-cadastro.component';
+import { TransportadoraSelectorComponent } from './transportadora-selector/transportadora-selector.component';
 
 const routes: Routes=[
   {path: 'login', component: LoginComponent},
@@ -122,6 +123,7 @@ const routes: Routes=[
     EstoqueCaboCadastroComponent,
     AjelEntregaComponent,
     AjelEntregaCadastroComponent,
+    TransportadoraSelectorComponent,
   ],
   imports: [
     BrowserModule,

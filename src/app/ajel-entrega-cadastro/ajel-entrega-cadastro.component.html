@@ -8,55 +8,55 @@
           
           <div class="p-field p-col-4">
               <label >Num. Nota Fiscal</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="numnota" >
+              <input pInputText class="p-inputtext-sm"  formControlName="numnota"  [attr.disabled]="true">
             </div>
             
             <div class="p-field p-col-4">
               <label>Cod. Usuário</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="codusur" >
+              <input pInputText class="p-inputtext-sm"  formControlName="codusur" [attr.disabled]="true" >
             </div>
 
             <div class="p-field p-col-4">
               <label>Nome do Vendedor</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="nomevendedor" >
+              <input pInputText class="p-inputtext-sm"  formControlName="nomevendedor" [attr.disabled]="true" >
             </div>
 
             <div class="p-field p-col-4">
               <label>Nota Fiscal</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="vlatend" >
-              <input pInputText class="p-inputtext-sm"  formControlName="numvolume" >
-              <p-calendar formControlName="dtfat" showTime="true" hourFormat="24" ></p-calendar>  
+              <input pInputText class="p-inputtext-sm"  formControlName="vlatend" [attr.disabled]="true" >
+              <input pInputText class="p-inputtext-sm"  formControlName="numvolume" [attr.disabled]="true">
+              <p-calendar formControlName="dtfat" showTime="true" hourFormat="24" [attr.disabled]="true"></p-calendar>  
             </div>     
 
             <span class="p-field p-col-4">
               <label>Cod. Cliente</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="codcli" >
-              <input pInputText class="p-inputtext-sm"  formControlName="nomecliente" >
+              <input pInputText class="p-inputtext-sm"  formControlName="codcli" [attr.disabled]="true">
+              <input pInputText class="p-inputtext-sm"  formControlName="nomecliente" [attr.disabled]="true">
             </span>           
 
             <div class="p-field p-col-4">
               <label>Cod. Conferente</label><br>
-              <input pInputText class="p-inputtext-sm"   formControlName="codfuncconf" >
-              <input pInputText class="p-inputtext-sm"  formControlName="nomeconf" >
+              <input pInputText class="p-inputtext-sm"   formControlName="codfuncconf" [attr.disabled]="true">
+              <input pInputText class="p-inputtext-sm"  formControlName="nomeconf" [attr.disabled]="true">
             </div>          
             
             <div class="p-field p-col-6">
               <label>Observação 01</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="obs" >
-              <input pInputText class="p-inputtext-sm"  formControlName="obs1" >
-              <input pInputText class="p-inputtext-sm"  formControlName="obsentrega1" >
-              <input pInputText class="p-inputtext-sm"  formControlName="obsentrega2" >
-              <input pInputText class="p-inputtext-sm"  formControlName="obsentrega3" >
+              <input pInputText class="p-inputtext-sm"  formControlName="obs" [attr.disabled]="true">
+              <input pInputText class="p-inputtext-sm"  formControlName="obs1"[attr.disabled]="true" >
+              <input pInputText class="p-inputtext-sm"  formControlName="obsentrega1" [attr.disabled]="true">
+              <input pInputText class="p-inputtext-sm"  formControlName="obsentrega2" [attr.disabled]="true">
+              <input pInputText class="p-inputtext-sm"  formControlName="obsentrega3" [attr.disabled]="true">
             </div>
           
             
             <div class="p-field p-col-6">
               <label>Endereço</label><br>
-              <input pInputText  class="p-inputtext-sm" formControlName="estcob" ><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="codcidade" ><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="nomecidade" ><br>
-              <input pInputText  class="p-inputtext-sm" formControlName="endercob" ><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="local">    <br>          
+              <input pInputText  class="p-inputtext-sm" formControlName="estcob" [attr.disabled]="true"><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="codcidade" [attr.disabled]="true"><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="nomecidade" [attr.disabled]="true"><br>
+              <input pInputText  class="p-inputtext-sm" formControlName="endercob" [attr.disabled]="true"><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="local" placeholder="Local de Entrega">    <br>          
             </div>
             <p-divider></p-divider> 
             <div class="p-field p-col-4">
@@ -92,8 +92,8 @@
                 
         </div>
         <div class="p-fluid p-formgrid p-grid">
-            <div class="p-field p-col-2">
-             <button pButton type="submit" label="Salvar"></button>
+           <div class="p-field p-col-2">
+             <button pButton type="submit" label="Salvar" ></button>
             </div>           
             <div class="p-field p-col-2">
               <button pButton type="button" label="Voltar" (click)="voltar()"></button> 
