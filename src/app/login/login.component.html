@@ -5,11 +5,11 @@
       <h3>Efetue login</h3>  
       <div class="p-col-12">
         <label style="display: block;">Usuário:</label>
-        <input pInputText formControlName="usuario">
+        <input pInputText appUppercase formControlName="usuario">
       </div>
       <div class="p-col-12">  
         <label style="display: block">Senha:</label>
-        <input pInputText type="password" formControlName="senha" >
+        <input pInputText type="password" appUppercase formControlName="senha" >
       </div>
       <div>
         {{error}}

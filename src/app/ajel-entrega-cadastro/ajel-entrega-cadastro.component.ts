@@ -29,6 +29,7 @@ export class AjelEntregaCadastroComponent implements OnInit {
     this.preencherFormGroup(); 
     
   }
+ 
 
   preencherFormGroup() {
     this.ajelEntregaCadastro = this.fb.group({
@@ -80,7 +81,8 @@ export class AjelEntregaCadastroComponent implements OnInit {
       .then(ajelEntregaCadastro => {
         const ajelEntregaTemp = {
           ...ajelEntregaCadastro[0],
-          dtentrega : new Date(ajelEntregaCadastro[0].dtentrega),
+         // dtentrega : new Date(ajelEntregaCadastro[0].dtentrega),
+          dtentrega : new Date(),
           dtinclusao : new Date(ajelEntregaCadastro[0].dtinclusao),         
           dtfat : new Date(ajelEntregaCadastro[0].dtfat),
           //dataexclusao : new Date(estoqueCaboCadastro.dataexclusao),  
@@ -95,6 +97,13 @@ export class AjelEntregaCadastroComponent implements OnInit {
         })
       }
   }
+
+  onTransportadoraSelecionada(event) {
+    this.ajelEntregaCadastro.patchValue({fornecedor: event.fornecedor,
+                                          codfornecfrete: event.codfornec})
+    console.log(event.fornecedor)
+  }
+
   salvar() {
     if (this.route.snapshot.params['codentrega'] == null) {
       this.ajelEntregaService.adicionar(this.ajelEntregaCadastro.value).then(() => {

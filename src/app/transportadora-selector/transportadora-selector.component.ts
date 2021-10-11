@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
+import { TransportadoraService } from '../transportadora.service';
 
 @Component({
   selector: 'app-transportadora-selector',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransportadoraSelectorComponent implements OnInit {
 
-  constructor() { }
+  transportadoraSelecionadas;
+  transportadora;
+  allTransportadoras: [];
+  
+  @Output() 
+  transportadoraSelecionada = new EventEmitter();
 
-  ngOnInit(): void {
+  constructor(private trasnportadoraService: TransportadoraService) { }
+
+  emitirTransportadoraSelecionadas() {
+    console.log("testeemitir")
+    if (this.transportadoraSelecionadas) {      
+      this.transportadoraSelecionada.emit(this.transportadoraSelecionadas)    
+    }
   }
 
-}
+  ngOnInit(): void {
+    this.trasnportadoraService.listarTodos().subscribe((resultado: any) => {
+      this.allTransportadoras = resultado;
+      
+    })
+  }
+
+  search(event) {
+    if (this.allTransportadoras && event?.query) { 
+      this.transportadora = this.allTransportadoras.filter((fornecedor: any) => fornecedor?.fornecedor?.toLowerCase().includes(event.query.toLowerCase()))
+    }
+}}

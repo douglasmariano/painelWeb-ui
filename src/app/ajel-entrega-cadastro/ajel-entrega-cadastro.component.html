@@ -25,7 +25,7 @@
               <label>Nota Fiscal</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="vlatend" [attr.disabled]="true" >
               <input pInputText class="p-inputtext-sm"  formControlName="numvolume" [attr.disabled]="true">
-              <p-calendar formControlName="dtfat" showTime="true" hourFormat="24" [attr.disabled]="true"></p-calendar>  
+              <p-calendar formControlName="dtfat" showTime="true" hourFormat="24" disabled="true"></p-calendar>  
             </div>     
 
             <span class="p-field p-col-4">
@@ -56,25 +56,26 @@
               <input pInputText class="p-inputtext-sm"  formControlName="codcidade" [attr.disabled]="true"><br>
               <input pInputText class="p-inputtext-sm"  formControlName="nomecidade" [attr.disabled]="true"><br>
               <input pInputText  class="p-inputtext-sm" formControlName="endercob" [attr.disabled]="true"><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="local" placeholder="Local de Entrega">    <br>          
+              <input pInputText class="p-inputtext-sm"  formControlName="local" placeholder="Digite Local de Entrega">    <br>          
             </div>
             <p-divider></p-divider> 
-            <div class="p-field p-col-4">
-              <label>Cod. Transportadora</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="codfornecfrete">
+            <div class="p-field p-col-2">
+              <label>Cod. Transp.</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="codfornecfrete" [attr.disabled]>
             </div>
 
-            <div class="p-field p-col-6">
+            <div class="p-field p-col-4">
               <label>Transportadora</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="fornecedor">
+              <!--<input pInputText class="p-inputtext-sm"  formControlName="fornecedor"> -->
+              <app-transportadora-selector (transportadoraSelecionada)="onTransportadoraSelecionada($event)"></app-transportadora-selector>             
+            </div>
+
+            <div class="p-field p-col-2">
+              <label>Cod. Motorista</label><br>
+              <input pInputText class="p-inputtext-sm"  formControlName="codmotorista" [attr.disabled]>
             </div>
 
             <div class="p-field p-col-4">
-              <label>Cod. Motorista</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="codmotorista">
-            </div>
-
-            <div class="p-field p-col-6">
               <label>Motorista</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="nomemotorista">
             </div>

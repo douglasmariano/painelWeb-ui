@@ -27,13 +27,16 @@ export class MarcaSelectorComponent implements OnInit {
   ngOnInit(): void {
     this.marcaService.listarTodos().subscribe((resultado: any) => {
       this.allMarcas = resultado;
+      console.log(resultado)
     })
   }
 
   search(event) {
     if (this.allMarcas && event?.query) { 
       this.marcas = this.allMarcas.filter((marca: any) => marca?.marca?.toLowerCase().includes(event.query.toLowerCase()))
+      console.log(this.marcas)
     }
+    
   }
 
 }
