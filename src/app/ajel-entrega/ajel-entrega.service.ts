@@ -24,10 +24,10 @@ export class AjelEntregaService {
      return this.http.post(this.ajelEntregaUrl+'/numnota/', filtro) 
      .toPromise();
     }
-    else if(filtro?.codentrega){      
-      return this.http.get(this.ajelEntregaUrl+'?codentrega='+filtro.codentrega) 
+    else if(filtro?.dtentrega){      
+      return this.http.post(this.ajelEntregaUrl+'/dtentrega/', filtro) 
      .toPromise();
-      } else{
+    } else{
         return this.http.get(this.ajelEntregaUrl)
         .toPromise();
       }

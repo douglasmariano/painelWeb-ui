@@ -17,9 +17,10 @@ export class AjelEntregaCadastroComponent implements OnInit {
     private ajelEntregaService: AjelEntregaService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
-    private fb: FormBuilder,
+    private fb: FormBuilder,   
     private router: Router) { }
-
+    childEnabled : boolean ;
+    childEnabled2 :boolean;
   ngOnInit(): void {
 
     const numnota = this.route.snapshot.params['numnota'];
@@ -27,9 +28,11 @@ export class AjelEntregaCadastroComponent implements OnInit {
        
     this.carregarAjelEntrega(numnota);
     this.preencherFormGroup(); 
+    this.childEnabled =false;
+    this.childEnabled2 =false;
     
   }
- 
+  
 
   preencherFormGroup() {
     this.ajelEntregaCadastro = this.fb.group({
@@ -99,9 +102,27 @@ export class AjelEntregaCadastroComponent implements OnInit {
   }
 
   onTransportadoraSelecionada(event) {
-    this.ajelEntregaCadastro.patchValue({fornecedor: event.fornecedor,
-                                          codfornecfrete: event.codfornec})
-    console.log(event.fornecedor)
+    this.ajelEntregaCadastro.patchValue({ fornecedor:              event.fornecedor,
+                                          codfornecfrete:          event.codfornec})
+    this.ajelEntregaCadastro.get('codmotorista').reset();
+    this.ajelEntregaCadastro.get('codmotorista').disable();     
+    this.childEnabled = true;
+    
+    this.childEnabled2 = false;
+    this.ajelEntregaCadastro.get('codfornecfrete').enable(); 
+
+  }
+  
+  onMotoristaSelecionado(event) {
+    this.ajelEntregaCadastro.patchValue({nomemotorista:             event.nome,
+                                          codmotorista:             event.matricula})
+    this.ajelEntregaCadastro.get('codfornecfrete').reset();
+    this.ajelEntregaCadastro.get('codfornecfrete').disable();    
+    this.childEnabled2 = true;
+
+    this.childEnabled = false;
+    this.ajelEntregaCadastro.get('codmotorista').enable(); 
+        
   }
 
   salvar() {

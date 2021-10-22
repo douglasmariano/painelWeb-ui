@@ -23,7 +23,7 @@ export class TokenInterceptorService implements HttpInterceptor{
         // if you've caught / handled the error, you don't want to rethrow it unless you also want downstream consumers to have to handle it as well.
         return of( ); // or EMPTY may be appropriate here
     }
-    return throwError(err + "teste");
+    return throwError(err);
 }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
