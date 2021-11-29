@@ -3,9 +3,6 @@
     (completeMethod)="search($event)"   
     [(ngModel)]="conferenteSelecionadas" 
     [suggestions]="conferente" 
-    (onSelect)="emitirConferenteSelecionadas()"
-    [dropdown]="true"
-    (onDropdownClick)="handleDropdown($event)"    
+    (onSelect)="emitirConferenteSelecionadas()"  
     field="nome">
 </p-autoComplete>
-

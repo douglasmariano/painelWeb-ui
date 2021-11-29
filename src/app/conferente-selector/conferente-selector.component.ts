@@ -32,14 +32,7 @@ export class ConferenteSelectorComponent implements OnInit {
 
     })   
   }
-  handleDropdown(event) {
-    console.log('this.allConferente' +this.allConferente)
-   
-   this.conferente = this.allConferente;
-   this.conferenteSelecionado.emit(this.conferenteSelecionadas)
-    
-  }
-
+  
   search(event) {
     if (this.allConferente && event?.query ) {
       this.conferente = this.allConferente.filter((nome: any) => nome?.nome?.toLowerCase().includes(event.query.toLowerCase()))

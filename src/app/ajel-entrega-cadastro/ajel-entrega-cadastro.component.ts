@@ -102,7 +102,7 @@ export class AjelEntregaCadastroComponent implements OnInit {
   }
  
 
-  onConferenteSelecionada(event) {
+  onConferenteSelecionado(event) {
     this.ajelEntregaCadastro.patchValue({    nomeconf:               event.nome,
                                           codfuncconf:               event.matricula})
                                           console.log("Evento COnferente")
