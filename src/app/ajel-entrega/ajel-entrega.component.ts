@@ -34,6 +34,7 @@ export class AjelEntregaComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private ajelEntregaService: AjelEntregaService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService) { }
@@ -46,32 +47,34 @@ export class AjelEntregaComponent implements OnInit {
   get f() { return this.buscaAjelEntrega.controls; }
 
 
-  pesquisar() {
-    this.ajelEntregaService.pesquisarAjelEntrega({ numnota: this.buscaAjelEntrega.value.numnota, dtentrega: this.buscaAjelEntrega.value.dtentrega })
-      .then(ajelEntrega => this.ajelEntrega = ajelEntrega);
+  async pesquisar() {
+    const ajelEntrega = await this.ajelEntregaService.pesquisarAjelEntrega({ numnota: this.buscaAjelEntrega.value.numnota, dtentrega: this.buscaAjelEntrega.value.dtentrega })
+    this.ajelEntrega = ajelEntrega
 
-    if (this.buscaAjelEntrega.value.numnota) {
-      if (this.ajelEntrega.find(x => x.numnota == this.buscaAjelEntrega.value.numnota)) {
-        this.toasty.success('Nota fiscal encontrada.')
-      } else {
-        this.toasty.error('Nota fiscal não foi encontrada.')
-        console.log(this.ajelEntrega)
-      }
-    }
-    this.buscaAjelEntrega.reset();
-  }
-
-  get proximaRota() {
-    if (this.buscaAjelEntrega.value.novonumnota) {
-      if (this.ajelEntrega.find(x => x.numnota == this.buscaAjelEntrega.value.novonumnota)) {
-        this.toasty.error('ja existe na lista')
-        this.buscaAjelEntrega.reset();
-      } else {
-        return `/ajelentrega/` + this.buscaAjelEntrega.value.novonumnota;
-      }
-
+    const notaPesquisada = this.buscaAjelEntrega.value.numnota
+    if (!notaPesquisada) {
+      return
     }
 
+    if (this.ajelEntrega.find(x => x.numnota == notaPesquisada)) {
+      this.toasty.success('Nota fiscal encontrada.')
+    } else {
+      const notasWinthor = await this.ajelEntregaService.pesquisarNotaWinthor({numnota: notaPesquisada})
+      if (!notasWinthor?.length) {
+        this.toasty.error('O número da nota fiscal não foi encontrado.')
+      } else  {
+        this.confirmation.confirm(
+          {
+            message: 'Entrega não registrada. Deseja registrar?',
+            defaultFocus: "Sim" ,   
+            header: "Adiciona Entrega",         
+            accept: () => {                      
+              this.router.navigateByUrl(`/ajelentrega/` + notaPesquisada)         
+            }
+          }
+        );
+      }
+    }
   }
 
   excluir(codentrega) {

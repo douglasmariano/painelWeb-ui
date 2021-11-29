@@ -34,12 +34,12 @@ export class AjelEntregaService {
   }
 
  
-  pesquisarPedidoEntrega(filtro: any): Promise<any> {
+  pesquisarNotaWinthor(filtro: any): Promise<any> {
     //const params = new URLSearchParams();
     // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
     if (filtro) {
       // params.set('numped', filtro.numped);
-      return this.http.post(this.ajelEntregaUrl+'/dadoswinthor/', filtro)
+      return this.http.post(this.ajelEntregaUrl+'/pesquisarNotaWinthor/', filtro)
         .toPromise();
     }
   }

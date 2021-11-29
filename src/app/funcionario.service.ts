@@ -14,4 +14,8 @@ export class FuncionarioService {
   listarTodosMotorista() {
     return this.http.get(this.baseUrl+'/api/v1/funcionario/'+9)
   }
+
+  listarTodosConferentes() {
+    return this.http.get(this.baseUrl+'/api/v1/funcionario/'+15)
+  }
 }

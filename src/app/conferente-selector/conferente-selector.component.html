@@ -1,1 +1,11 @@
-<p>conferente-selector works!</p>
+
+<p-autoComplete
+    (completeMethod)="search($event)"   
+    [(ngModel)]="conferenteSelecionadas" 
+    [suggestions]="conferente" 
+    (onSelect)="emitirConferenteSelecionadas()"
+    [dropdown]="true"
+    (onDropdownClick)="handleDropdown($event)"    
+    field="nome">
+</p-autoComplete>
+

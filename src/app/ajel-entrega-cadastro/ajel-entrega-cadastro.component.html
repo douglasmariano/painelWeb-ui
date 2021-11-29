@@ -24,8 +24,9 @@
             <div class="p-field p-col-4">
               <label>Nota Fiscal</label><br>
               <!--<input pInputText class="p-inputtext-sm"  formControlName="vlatend"   [attr.disabled]="true" >-->
-              <p-inputNumber formControlName="vlatend"   mode="currency" currency="BRL" locale="pt-BR"  disabled="true"></p-inputNumber>
-              <input pInputText class="p-inputtext-sm"  formControlName="numvolume">
+              <p-inputNumber formControlName="vlatend"   mode="currency" currency="BRL" locale="pt-BR"  disabled="true"></p-inputNumber> 
+              <p-inputNumber formControlName="numvolume" mode="decimal" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" pTooltip="Selecione Qt Volumes" tooltipPosition="left"
+              decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
               <p-calendar formControlName="dtfat" showTime="true" hourFormat="24"   disabled="true"></p-calendar>  
             </div>     
 
@@ -34,11 +35,11 @@
               <input pInputText class="p-inputtext-sm"  formControlName="codcli"        [attr.disabled]="true">
               <input pInputText class="p-inputtext-sm"  formControlName="nomecliente"   [attr.disabled]="true">
             </span>           
-
+           
             <div class="p-field p-col-4">
-              <label>Cod. Conferente</label><br>
-              <input pInputText class="p-inputtext-sm"    formControlName="codfuncconf"   [attr.disabled]="true">
-              <input pInputText class="p-inputtext-sm"    formControlName="nomeconf"      [attr.disabled]="true">
+              <label>Conferente</label><br>
+              <input pInputText class="p-inputtext-sm"    formControlName="codfuncconf" disabled   >             
+              <app-conferente-selector (conferenteSelecionada)="onConferenteSelecionada($event)" pTooltip="Selecione o Conferente" tooltipPosition="right"></app-conferente-selector> 
             </div>          
             
             <div class="p-field p-col-6">
@@ -62,26 +63,26 @@
             <p-divider></p-divider> 
             <div class="p-field p-col-2">
               <label>Cod. Transp.</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="codfornecfrete" [attr.disabled]>
+              <input pInputText class="p-inputtext-sm"  formControlName="codfornecfrete" disabled>
             </div>
 
             <div class="p-field p-col-4">
               <label>Transportadora</label><br>
               <!--<input pInputText class="p-inputtext-sm"  formControlName="fornecedor"> -->
               <fieldset [disabled]="childEnabled2">
-                <app-transportadora-selector (transportadoraSelecionada)="onTransportadoraSelecionada($event)"></app-transportadora-selector>                    
+                <app-transportadora-selector (transportadoraSelecionada)="onTransportadoraSelecionada($event)" pTooltip="Selecione a Transportadora" tooltipPosition="left"></app-transportadora-selector>                    
               </fieldset>                         
             </div>
 
             <div class="p-field p-col-2">
               <label>Cod. Motorista</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="codmotorista" [attr.disabled]>
+              <input pInputText class="p-inputtext-sm"  formControlName="codmotorista" disabled>
             </div>
 
             <div class="p-field p-col-4">
               <label>Motorista</label><br>
               <fieldset [disabled]="childEnabled">
-               <app-motorista-selector (motoristaSelecionado)="onMotoristaSelecionado($event)"></app-motorista-selector>
+               <app-motorista-selector (motoristaSelecionado)="onMotoristaSelecionado($event)" pTooltip="Selecione o Motorista" tooltipPosition="left"></app-motorista-selector>
               </fieldset> 
             </div>
                   

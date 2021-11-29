@@ -25,11 +25,11 @@ export class AjelEntregaCadastroComponent implements OnInit {
 
     const numnota = this.route.snapshot.params['numnota'];
 
-       
+      
     this.carregarAjelEntrega(numnota);
     this.preencherFormGroup(); 
     this.childEnabled =false;
-    this.childEnabled2 =false;
+    this.childEnabled2 =false;    
     
   }
   
@@ -80,7 +80,7 @@ export class AjelEntregaCadastroComponent implements OnInit {
 
   carregarAjelEntrega(numnota: number) {
     if(numnota){
-    this.ajelEntregaService.pesquisarPedidoEntrega({ numnota })
+    this.ajelEntregaService.pesquisarNotaWinthor({ numnota })
       .then(ajelEntregaCadastro => {
         const ajelEntregaTemp = {
           ...ajelEntregaCadastro[0],
@@ -100,6 +100,13 @@ export class AjelEntregaCadastroComponent implements OnInit {
         })
       }
   }
+ 
+
+  onConferenteSelecionada(event) {
+    this.ajelEntregaCadastro.patchValue({    nomeconf:               event.nome,
+                                          codfuncconf:               event.matricula})
+                                          console.log("Evento COnferente")
+  }
 
   onTransportadoraSelecionada(event) {
     this.ajelEntregaCadastro.patchValue({ fornecedor:              event.fornecedor,
@@ -108,9 +115,10 @@ export class AjelEntregaCadastroComponent implements OnInit {
     this.ajelEntregaCadastro.get('codmotorista').disable();     
     this.childEnabled = true;
     
+    
     this.childEnabled2 = false;
     this.ajelEntregaCadastro.get('codfornecfrete').enable(); 
-
+    console.log("Evento trasnportadora")
   }
   
   onMotoristaSelecionado(event) {
@@ -122,7 +130,7 @@ export class AjelEntregaCadastroComponent implements OnInit {
 
     this.childEnabled = false;
     this.ajelEntregaCadastro.get('codmotorista').enable(); 
-        
+    console.log("Evento motorista")
   }
 
   salvar() {

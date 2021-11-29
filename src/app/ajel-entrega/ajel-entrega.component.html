@@ -6,7 +6,7 @@
         <div class="p-grid">
           <div class="p-col-12 p-md-6 p-lg-3">
             <label style="display: block">Num. Nota Fiscal</label>
-            <input pInputText formControlName="numnota"  autofocus >
+            <input pInputText formControlName="numnota" >
             <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
             <sup>*</sup>Somente números. 
           </div>-->
@@ -18,17 +18,17 @@
             <sup>*</sup>Somente números. 
           </div>-->
           </div>
-          <div class="p-col-12 p-md-6 p-lg-3">
+          <!-- <div class="p-col-12 p-md-6 p-lg-3">
             <label style="display: block">Motorista</label>
   
-            <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
+            <div *ngIf="f.codprod.errors" class="invalid-feedback">
             <sup>*</sup>Somente números. 
-          </div>-->
           </div>
+          </div>-->
           <div class="p-col-4">
             <button pButton type="submit" label="Pesquisar"></button>
           </div>
-          <div class="p-col-4">            
+          <!--<div class="p-col-4">            
             <button type="button" class="p-button-success" pButton label="Novo" pTooltip="Incluir nova entrega." tooltipPosition="left"
             (click)="showDialog()"></button>  
               <p-dialog header="Nova Entrega" [(visible)]="display" modal="true"> 
@@ -43,7 +43,7 @@
                 
             </p-dialog>
             
-          </div>    
+          </div>  -->  
         </div>
       </form>
     </div>
