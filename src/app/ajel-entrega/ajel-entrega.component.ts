@@ -28,6 +28,7 @@ export class AjelEntregaComponent implements OnInit {
 
     novonumnota: new FormControl('', [Validators.pattern("^[0-9]*$")]),
     numnota: new FormControl('', [Validators.pattern("^[0-9]*$")]),
+    codfilial: new FormControl('', [Validators.pattern("^[0-9]*$")]),
     dtentrega: new FormControl(''),
 
   });
@@ -48,7 +49,7 @@ export class AjelEntregaComponent implements OnInit {
 
 
   async pesquisar() {
-    const ajelEntrega = await this.ajelEntregaService.pesquisarAjelEntrega({ numnota: this.buscaAjelEntrega.value.numnota, dtentrega: this.buscaAjelEntrega.value.dtentrega })
+    const ajelEntrega = await this.ajelEntregaService.pesquisarAjelEntrega({ numnota: this.buscaAjelEntrega.value.numnota, dtentrega: this.buscaAjelEntrega.value.dtentrega, codfilial: this.buscaAjelEntrega.value.codfilial  })
     this.ajelEntrega = ajelEntrega
 
     const notaPesquisada = this.buscaAjelEntrega.value.numnota
@@ -56,13 +57,16 @@ export class AjelEntregaComponent implements OnInit {
       return
     }
 
+    const filialPesquisada = this.buscaAjelEntrega.value.codfilial
+
     if (this.ajelEntrega.find(x => x.numnota == notaPesquisada)) {
       this.toasty.success('Nota fiscal encontrada.')
     } else {
-      const notasWinthor = await this.ajelEntregaService.pesquisarNotaWinthor({numnota: notaPesquisada})
+      const notasWinthor = await this.ajelEntregaService.pesquisarNotaWinthor({numnota: notaPesquisada, codfilial: filialPesquisada})
       if (!notasWinthor?.length) {
         this.toasty.error('O número da nota fiscal não foi encontrado.')
       } else  {
+        console.log("teste3")
         this.confirmation.confirm(
           {
             message: 'Entrega não registrada. Deseja registrar?',

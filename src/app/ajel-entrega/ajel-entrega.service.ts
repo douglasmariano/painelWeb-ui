@@ -19,10 +19,11 @@ export class AjelEntregaService {
   pesquisarAjelEntrega(filtro: any): Promise<any> {
    
     if (filtro?.numnota) {
-     // return this.http.get(this.estoqueCaboUrl+'?codendcabo='+filtro.codendcabo)  
-     console.log("filtro.codentrega")
+     // return this.http.get(this.estoqueCaboUrl+'?codendcabo='+filtro.codendcabo)   
+     console.log("teste");  
      return this.http.post(this.ajelEntregaUrl+'/numnota/', filtro) 
      .toPromise();
+     
     }
     else if(filtro?.dtentrega){      
       return this.http.post(this.ajelEntregaUrl+'/dtentrega/', filtro) 

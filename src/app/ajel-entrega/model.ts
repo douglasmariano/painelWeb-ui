@@ -1,6 +1,7 @@
 export class AjelEntrega {
   codentrega:number;
   numnota:number;
+  codfilial:String;
   posicao:String;
   codusur:number;
   nomevendedor:String;

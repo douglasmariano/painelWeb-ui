@@ -24,9 +24,9 @@ export class AjelEntregaCadastroComponent implements OnInit {
   ngOnInit(): void {
 
     const numnota = this.route.snapshot.params['numnota'];
-
-      
-    this.carregarAjelEntrega(numnota);
+    const codfilial = this.route.snapshot.params['codfilial'];
+     console.log(codfilial + "Filial") 
+    this.carregarAjelEntrega(numnota, codfilial);
     this.preencherFormGroup(); 
     this.childEnabled =false;
     this.childEnabled2 =false;    
@@ -38,6 +38,7 @@ export class AjelEntregaCadastroComponent implements OnInit {
     this.ajelEntregaCadastro = this.fb.group({
       codentrega:         '',
       numnota:            '',
+      codfilial:            '',
       posicao:            '',
       codusur:            '',
       nomevendedor:       '',
@@ -78,9 +79,10 @@ export class AjelEntregaCadastroComponent implements OnInit {
     }
   }
 
-  carregarAjelEntrega(numnota: number) {
+  carregarAjelEntrega(numnota: number, codfilial: String ) {
     if(numnota){
-    this.ajelEntregaService.pesquisarNotaWinthor({ numnota })
+      console.log(numnota,codfilial)
+    this.ajelEntregaService.pesquisarNotaWinthor({ numnota, codfilial })
       .then(ajelEntregaCadastro => {
         const ajelEntregaTemp = {
           ...ajelEntregaCadastro[0],
@@ -97,7 +99,7 @@ export class AjelEntregaCadastroComponent implements OnInit {
         });               
         this.ajelEntregaCadastro.patchValue(ajelEntregaTemp); 
         console.log(ajelEntregaTemp)       
-        })
+        })        
       }
   }
  
@@ -145,7 +147,7 @@ export class AjelEntregaCadastroComponent implements OnInit {
       this.ajelEntregaService.atualizar(this.ajelEntregaCadastro.value).then(() => {
         this.toasty.success('Atualizado');
         this.preencherFormGroup()
-        this.carregarAjelEntrega(this.route.snapshot.params['codentrega']);
+        this.carregarAjelEntrega(this.route.snapshot.params['codentrega'],this.route.snapshot.params['codfilial']);
       })
     }
 
