@@ -1,0 +1,49 @@
+<div class="container" *ngIf="ajelEntregaCadastro">
+    <form [formGroup]="ajelEntregaCadastro"  (ngSubmit)="salvar(codentrega)"> 
+        
+        
+        <div class="p-field p-col-4">
+            <label>Conferente</label><br>
+            <input pInputText class="p-inputtext-sm"    formControlName="codfuncconf" disabled   >             
+            <app-conferente-selector (conferenteSelecionado)="onConferenteSelecionado($event)" pTooltip="Selecione o Conferente" tooltipPosition="right"></app-conferente-selector> 
+          </div>          
+          
+        <div class="p-field p-col-2">
+            <label>Cod. Transp.</label><br>
+            <input pInputText class="p-inputtext-sm"  formControlName="codfornecfrete" disabled>
+          </div>
+
+          <div class="p-field p-col-4">
+            <label>Transportadora</label><br>
+            <!--<input pInputText class="p-inputtext-sm"  formControlName="fornecedor"> -->
+            <fieldset [disabled]="childEnabled2">
+              <app-transportadora-selector (transportadoraSelecionada)="onTransportadoraSelecionada($event)" pTooltip="Selecione a Transportadora" tooltipPosition="left"></app-transportadora-selector>                    
+            </fieldset>                         
+          </div>
+
+          <div class="p-field p-col-2">
+            <label>Cod. Motorista</label><br>
+            <input pInputText class="p-inputtext-sm"  formControlName="codmotorista" disabled>
+          </div>
+
+          <div class="p-field p-col-4">
+            <label>Motorista</label><br>
+            <fieldset [disabled]="childEnabled">
+             <app-motorista-selector (motoristaSelecionado)="onMotoristaSelecionado($event)" pTooltip="Selecione o Motorista" tooltipPosition="left"></app-motorista-selector>
+            </fieldset> 
+          </div>
+                
+
+          <div class="p-field p-col-6">
+            <label>Observação do Entregador</label><br>
+            <input pInputText  class="p-inputtext-sm" formControlName="obsdoentregador">
+          </div>         
+        
+          <div class="p-field p-col-4">
+            <label>Data Entrega</label><br>
+            <p-calendar formControlName="dtentrega" showTime="true" hourFormat="24"></p-calendar>               
+          </div>  <div class="p-field p-col-2">
+    <button pButton type="submit" label="Salvar" ></button>
+   </div> 
+    </form>
+</div>

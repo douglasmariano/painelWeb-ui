@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { AjelEntregaService } from './ajel-entrega.service';
 
+
 @Component({
   selector: 'app-ajel-entrega',
   templateUrl: './ajel-entrega.component.html',
@@ -31,6 +32,8 @@ export class AjelEntregaComponent implements OnInit {
     dtentrega: new FormControl(''),
 
   });
+  displayAlteraTransporte: boolean = false;
+  codigoEntregaAlteracao;
 
   constructor(
     private route: ActivatedRoute,
@@ -77,6 +80,14 @@ export class AjelEntregaComponent implements OnInit {
     }
   }
 
+ 
+
+  showDialogAlteraTransporte(codentrega) {
+      this.displayAlteraTransporte = true;
+      this.codigoEntregaAlteracao = codentrega;
+    }
+  
+
   excluir(codentrega) {
     this.confirmation.confirm(
       {
@@ -89,6 +100,19 @@ export class AjelEntregaComponent implements OnInit {
         }
       }
     );
+  }
+
+  alterarValorDisplayAlteraTransporte(evento){
+    this.displayAlteraTransporte = evento.visible;
+
+    if (this.ajelEntrega) {
+      const found = this.ajelEntrega.find(item => item.codentrega === evento.ajelEntregaCadastro.codentrega)
+
+      if (found) {
+        Object.assign(found, evento.ajelEntregaCadastro)
+      }
+    }
+
   }
 
 }

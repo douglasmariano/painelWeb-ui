@@ -27,7 +27,11 @@ export class AjelEntregaService {
     else if(filtro?.dtentrega){      
       return this.http.post(this.ajelEntregaUrl+'/dtentrega/', filtro) 
      .toPromise();
-    } else{
+    }  else if(filtro?.codentrega){      
+      return this.http.get(this.ajelEntregaUrl+'/codentrega/'+filtro.codentrega) 
+     .toPromise();
+    }
+     else{
         return this.http.get(this.ajelEntregaUrl)
         .toPromise();
       }
@@ -50,7 +54,7 @@ export class AjelEntregaService {
 
   atualizar(ajelEntrega: AjelEntrega): Promise<void> {
     
-    return this.http.put(`${this.ajelEntregaUrl}/${ajelEntrega.codentrega}`, ajelEntrega)
+    return this.http.put(`${this.ajelEntregaUrl}/alterarSeparacao/${ajelEntrega.codentrega}`, ajelEntrega)
       .toPromise()
       .then(() => { this.pesquisarAjelEntrega(ajelEntrega.codentrega);});// return this.http.put(this.pedidosUrlAll/numped).toPromise();
       

@@ -55,6 +55,7 @@ import { AjelEntregaCadastroComponent } from './ajel-entrega-cadastro/ajel-entre
 import { TransportadoraSelectorComponent } from './transportadora-selector/transportadora-selector.component';
 import { MotoristaSelectorComponent } from './motorista-selector/motorista-selector.component';
 import { ConferenteSelectorComponent } from './conferente-selector/conferente-selector.component';
+import { AjelEntregaAlteraTransporteComponent } from './ajel-entrega-altera-transporte/ajel-entrega-altera-transporte.component';
 
 const routes: Routes=[
   {path: 'login', component: LoginComponent},
@@ -102,7 +103,12 @@ const routes: Routes=[
   },
   {path: 'ajelentrega/:numnota', component: AjelEntregaCadastroComponent, canActivate : [LoginGuard],
     data: {
-      title: 'Adicionar nova Entrega.'
+      title: 'Adicionar nova Entrega'
+    }
+  },
+  {path: 'ajelentrega/alteraSeparacao/:codentrega', component: AjelEntregaCadastroComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Alterar Entrega'
     }
   },
 ];
@@ -128,6 +134,7 @@ const routes: Routes=[
     TransportadoraSelectorComponent,
     MotoristaSelectorComponent,
     ConferenteSelectorComponent,
+    AjelEntregaAlteraTransporteComponent,
   ],
   imports: [
     BrowserModule,

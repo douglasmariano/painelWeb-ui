@@ -25,7 +25,8 @@
             <sup>*</sup>Somente números. 
           </div>
           </div>-->
-          <div class="p-col-4">
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <label style="display: block">.</label>
             <button pButton type="submit" label="Pesquisar"></button>
           </div>
           <!--<div class="p-col-4">            
@@ -52,7 +53,8 @@
       <div class="p-shadow-3">
         <p-table styleClass="p-datatable-sm" [value]="ajelEntrega" 
           responsiveLayout="scroll"
-          dataKey="codentrega">
+          dataKey="codentrega"
+          sortField="codentrega" [sortOrder]="-1">
           <ng-template pTemplate="header" >
             <tr>
               <th style="width: 3rem"></th>
@@ -137,15 +139,20 @@
                   </td>
                 </tr>        
                   <tr>                   
-                    
-                    <td> <!--<button pButton pRipple type="button" class="p-button-info" label="Alterar"
+                    <p-dialog header="Dados do Entregador" [(visible)]="displayAlteraTransporte" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+                      <app-ajel-entrega-altera-transporte  
+                        [codentrega]= "codigoEntregaAlteracao" 
+                        *ngIf="displayAlteraTransporte" 
+                        (onVisible)="alterarValorDisplayAlteraTransporte($event)" ></app-ajel-entrega-altera-transporte>
+                    </p-dialog>                 
+                  
+                    <td> <button pButton pRipple type="button" class="p-button-info" label="Alterar"
                         pTooltip="Informações sobre a entrega." tooltipPosition="top"
-                        routerLink="/ajelEntrega/{{ajelEntrega.codentrega}}"></button>
-                  -->
+                        (click)="showDialogAlteraTransporte(ajelEntrega.codentrega)"></button>
+                  
                       <button pButton type="button" class="p-button-danger" label="Excluir" tooltipPosition="top"
                         (click)="excluir(ajelEntrega.codentrega)"></button>
-                    </td>
-                  
+                    </td>                  
                   </tr>                
                 </p-panel>
               </div>
