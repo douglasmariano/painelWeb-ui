@@ -58,14 +58,14 @@
           <ng-template pTemplate="header" >
             <tr>
               <th style="width: 3rem"></th>
-              <th >Num.Nota Fiscal</th>
-              <th >Vendedor</th>
-              <th >Dt.Entrega</th>
+              <th style="width: 4rem">Num. NF</th>
+              <th style="width: 6rem">Vendedor</th>
+              <th style="width: 6rem">Dt. Entrega</th>
               <th >Entrega</th>
-              <th >Cod.Cliente</th>
-              <th >Cliente</th>              
+              <th style="width: 4rem">Cod. Cliente</th>
+              <th style="width: 14rem">Cliente</th>              
               <th >Conferente</th>
-              <th >Qt Volumes</th>
+              <th style="width: 4rem">Qt. Volumes</th>
               <th >Obs Entregador</th>   
             </tr>
           </ng-template>
@@ -80,10 +80,10 @@
               <td>{{ajelEntrega.nomevendedor }}</td>              
               <td>{{ajelEntrega.dtentrega | date:'dd/MM/y hh:mm:ss' }}</td> 
               <td>{{ajelEntrega.nomemotorista }} {{ajelEntrega.fornecedor }}</td>
-              <td>{{ajelEntrega.codcli }}</td>
+              <td type="text">{{ajelEntrega.codcli }}</td>
               <td>{{ajelEntrega.nomecliente }}</td>              
               <td>{{ajelEntrega.nomeconf }}</td>
-              <td>{{ajelEntrega.numvolume }}</td>
+              <td type="text">{{ajelEntrega.numvolume }}</td>
               <td>{{ajelEntrega.obsdoentregador }}</td> 
             </tr>
           </ng-template>
