@@ -21,7 +21,6 @@ import {PanelModule} from 'primeng/panel';
 import {DialogModule}from'primeng/dialog';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {InputSwitchModule} from 'primeng/inputswitch';
-import {ChartModule} from 'primeng/chart';
 import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
 import {ToastModule} from 'primeng/toast';
 import {SidebarModule} from 'primeng/sidebar';
@@ -185,7 +184,6 @@ const routes: Routes=[
     ReactiveFormsModule,
     ReactiveFormsModule, 
     InputSwitchModule,
-    ChartModule,
     TriStateCheckboxModule,
     ToastModule,
     SidebarModule,
