@@ -21,6 +21,14 @@ import {PanelModule} from 'primeng/panel';
 import {DialogModule}from'primeng/dialog';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import {ChartModule} from 'primeng/chart';
+import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
+import {ToastModule} from 'primeng/toast';
+import {SidebarModule} from 'primeng/sidebar';
+import {MegaMenuModule} from 'primeng/megamenu';
+import {PanelMenuModule} from 'primeng/panelmenu';
+import { SlideMenuModule } from 'primeng/slidemenu';
+import {MenuItem} from 'primeng/api';
 
 import { AppComponent } from './app.component';
 import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
@@ -56,6 +64,10 @@ import { TransportadoraSelectorComponent } from './transportadora-selector/trans
 import { MotoristaSelectorComponent } from './motorista-selector/motorista-selector.component';
 import { ConferenteSelectorComponent } from './conferente-selector/conferente-selector.component';
 import { AjelEntregaAlteraTransporteComponent } from './ajel-entrega-altera-transporte/ajel-entrega-altera-transporte.component';
+import { PainelAcompamentoPedidosComponent } from './painel-acompamento-pedidos/painel-acompamento-pedidos.component';
+import { PainelAcompamentoPedidosService } from './painel-acompamento-pedidos/painel-acompamento-pedidos.service';
+import { CanhotoComponent } from './canhoto/canhoto.component';
+import { CanhotoService } from './canhoto/canhoto.service';
 
 const routes: Routes=[
   {path: 'login', component: LoginComponent},
@@ -111,6 +123,16 @@ const routes: Routes=[
       title: 'Alterar Entrega'
     }
   },
+  {path: 'painelacompanhaPedidos', component: PainelAcompamentoPedidosComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Painel Acompanha Pedidos'
+    }
+  },
+  {path: 'canhoto', component: CanhotoComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Controle de Canhotos'
+    }
+  }, 
 ];
 
 @NgModule({
@@ -135,6 +157,9 @@ const routes: Routes=[
     MotoristaSelectorComponent,
     ConferenteSelectorComponent,
     AjelEntregaAlteraTransporteComponent,
+    PainelAcompamentoPedidosComponent,
+    CanhotoComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -154,12 +179,19 @@ const routes: Routes=[
     InputMaskModule,
     DropdownModule,
     FormsModule,
-    CalendarModule,
+    CalendarModule,    
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
     ReactiveFormsModule, 
     InputSwitchModule,
+    ChartModule,
+    TriStateCheckboxModule,
+    ToastModule,
+    SidebarModule,
+    MegaMenuModule,
+    PanelMenuModule,
+    SlideMenuModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
@@ -173,6 +205,8 @@ const routes: Routes=[
     EstoqueExtratoService, 
     MarcaService,
     AjelEntregaService,
+    PainelAcompamentoPedidosService,
+    CanhotoService,
   ],
   bootstrap: [AppComponent]
 })

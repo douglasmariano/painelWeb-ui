@@ -1,17 +1,38 @@
+<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000" position="right" *ngIf="!isLoginPage" >  
+  <ul class="navbar-menu" >
+    <li class="navbar-usuario"><img src="assets/Imagens/ajel materiaisSVG.svg"  width="145" ></li>    
+    <li class="navbar-menuitem" routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/pedidos">Pedido</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/produto">Produto</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/estoquecabo">Cabo</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/ajelentrega">Entrega</a></li>
+    <li class="navbar-menuitem" routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/canhoto">Canhoto</a></li>
+    <li class="navbar-menuitem"><a href="#" (click)="fazerLogout()">Sair</a></li>
+  </ul>
+
+ <!---
+  <h2  routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/pedidos">Pedidos</a></h2>
+  <h2  routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/produto">Produto</a></h2>
+  <h2  routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/estoquecabo">Cabo</a></h2>
+  <h2  routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/ajelentrega">Entrega</a></h2>
+  <h2  routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/canhoto">Canhoto</a></h2>
+  <h2><a href="#" (click)="fazerLogout()">Logout</a></h2>
+  <img src="assets/Imagens/ajel materiais.png"  width="120" >-->
+</p-sidebar>
 <nav class="navbar" *ngIf="!isLoginPage">
+<div class="container" *ngIf="!isLoginPage">
+   <p-button type="button" class="mr-2" (click)="visibleSidebar1 = true"  icon="pi pi-list"></p-button>
+</div>
+</nav>
+<!--<nav class="navbar" *ngIf="!isLoginPage">
 
   <div class="container">
-    <div class="p-field">
-      <div class="p-field p-col-12">
-        <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu" ><i class="fa fa-bars"></i></a>
-        
-      </div>
+    <div class="p-field"><a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu" ><i class="pi pi-list" style="font-size: 2rem"></i></a>      
     </div>
   </div>
 
   <ul class="navbar-menu" [hidden]= "!exibindoMenu">
     <li class="navbar-usuario"><img src="assets/Imagens/ajel materiais.png"  width="120" ></li>
-   <!-- <li class="navbar-menuitem" routerLinkActive="ativo" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/painel">Painel</a></li>-->
+    <li class="navbar-menuitem" routerLinkActive="ativo" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/canhoto">Canhotos</a></li>
     <li class="navbar-menuitem" routerLinkActive="ativo" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/pedidos">Pedidos</a></li>
     <li class="navbar-menuitem" routerLinkActive="ativo" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/produto">Produto</a></li>
     <li class="navbar-menuitem" routerLinkActive="ativo" (click)="exibindoMenu = !exibindoMenu"><a routerLink="/estoquecabo">Cabos</a></li>
@@ -19,4 +40,4 @@
     <li class="navbar-menuitem"><a href="#" (click)="fazerLogout()">Logout</a></li>
   </ul>
 
-</nav>
+</nav>-->

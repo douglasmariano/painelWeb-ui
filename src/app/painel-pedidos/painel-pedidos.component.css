@@ -1,0 +1,39 @@
+
+        .row-caixa {
+            font-weight: 1000;
+            font-size: 25px;
+            background-color: blue !important;
+            color: white !important;
+            text-shadow: 0 0 3px #000000;
+        }
+        :host ::ng-deep .row-conferencia {
+            font-weight: 1000;
+            font-size: 25px;
+            background-color: rgb(54, 136, 190) !important;
+            color: white !important;
+            text-shadow: 0 0 3px #000000;
+        }
+        :host ::ng-deep .row-separando {
+            font-weight: 1000;
+            font-size: 25px;
+            background-color: rgba(89, 168, 70) !important;
+            color: white !important;
+            text-shadow: 0 0 3px #000000;
+        }
+        :host ::ng-deep .row-aguardandoseparacao {
+            font-weight: 1000;
+            font-size: 25px;
+            background-color: rgba(250, 45, 45) !important;
+            color: white !important;
+            text-shadow: 0 0 3px #000000;
+        }
+        :host ::ng-deep .row-vendedor {
+            font-weight: 1000;
+            font-size: 25px;
+            background-color: rgb(153, 23, 23) !important;
+            color: white !important;
+            text-shadow: 0 0 3px #000000;
+        }
+        h1 {
+            text-align: center;
+          }

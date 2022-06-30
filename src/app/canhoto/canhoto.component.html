@@ -1,0 +1,110 @@
+
+<p-toast></p-toast>
+<div class="container">
+<h1>Controle de Canhotos</h1>
+      <form [formGroup]="buscaNotaFiscalSaida" autocomplete="off" (ngSubmit)="pesquisar()">
+        <div class="p-grid">
+          <div class="p-col-6 p-md-2 p-lg-3">
+            <label style="display: block">Filial</label>
+            <p-dropdown [options]="filiais" [(ngModel)]="selectedFilial" optionLabel="nome" formControlName="codfilial" placeholder="Selecione uma Filial"></p-dropdown>                                
+          </div>
+          <div class="p-col-6 p-md-2 p-lg-3">
+            <label style="display: block">Num. Nota Inicial</label>
+            <input pInputText formControlName="numnotaInicial" >          
+          </div>         
+          
+          <div  class="p-col-6 p-md-2 p-lg-3">            
+            <label style="display: block">Num. Nota Final</label>            
+            <input pInputText formControlName="numnotaFinal" >            
+             <div *ngIf="f.numnotaFinal.errors" class="invalid-feedback">
+            <sup>* Numero precisa ser maior que o anterior. </sup>
+          </div>
+          </div>                      
+          <div class="p-col-6 p-md-2 p-lg-3">
+            <label style="display: block"> </label>            
+            <button pButton type="submit" label="Pesquisar"></button>
+          </div>
+          <div>
+                      
+          </div>          
+        </div>
+      </form>
+    
+  
+<div class="card">
+    <h6>Selecione canhotos encontrados</h6>
+    <p-table [value]="notaFiscalSaida" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem">Cod. Filial</th>                
+          <th style="width: 5rem">Numnota</th>
+          <th style="width: 4rem">Cod. Cliente</th>
+          <th style="width: 34rem">Cliente</th>                
+          <th >Numped</th>
+          <th >Dt. Canhoto</th>         
+          <th >Obs</th>
+          <th style="width: 3rem">                    
+          </th>
+      </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-notaFiscalSaida>
+        <tr  [ngClass]="{'row-accessories': notaFiscalSaida.obsnfcarreg === 'FALTOU', 'row-cancelada': !notaFiscalSaida.dtcancel == ''}">
+          <td>{{notaFiscalSaida.codfilial}}</td>
+          <td>{{notaFiscalSaida.numnota}}</td>
+          <td>{{notaFiscalSaida.codcli.codigoCliente}}</td>
+          <td>{{notaFiscalSaida.codcli.nomeCliente}}</td>                
+          <td>{{notaFiscalSaida.numped}}</td>
+          <td>{{notaFiscalSaida.dtcanhoto | date: 'dd/MM/yyyy'}}</td>
+          <td>{{notaFiscalSaida.obsnfcarreg}}
+          </td>
+           
+          <td style="text-align:center"> 
+                  <p-triStateCheckbox  (click)="onRowEditSave(notaFiscalSaida)"  [(ngModel)]="notaFiscalSaida.botao" ></p-triStateCheckbox> 
+          </td>
+      </tr>
+      </ng-template>
+  </p-table>
+  <!--  <p-table [value]="notaFiscalSaida"  dataKey="numnota" editMode="row" responsiveLayout="scroll" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width:200px">Cod. Filial</th>                
+                <th style="min-width:200px">Numnota</th>
+                <th style="min-width:200px">Cod. Cliente</th>
+                <th style="min-width:200px">Cliente</th>                
+                <th style="min-width:200px">Numped</th>
+                <th style="min-width:200px">Dt. Canhoto</th>
+                <th style="min-width:200px">botao</th>
+                <th style="min-width:200px">Obs</th>
+                <th style="width: 3rem">                    
+                </th>
+            </tr>
+        </ng-template>        
+        <ng-template pTemplate="body" let-notaFiscalSaida let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="notaFiscal01" [ngClass]="{'row-accessories': notaFiscal01.obsnfcarreg === 'FALTOU', 'row-cancelada': !notaFiscal01.dtcancel == ''}">
+                <td>{{notaFiscal01.codfilial}}</td>
+                <td>{{notaFiscal01.numnota}}</td>
+                <td>{{notaFiscal01.codcli.codigoCliente}}</td>
+                <td>{{notaFiscal01.codcli.nomeCliente}}</td>                
+                <td>{{notaFiscal01.numped}}</td>
+                <td>{{notaFiscal01.dtcanhoto | date: 'dd/MM/yyyy'}}</td>
+                <td>{{notaFiscal01.botao}}</td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                        
+                             
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{notaFiscal01.obsnfcarreg}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                 
+                <td style="text-align:center"> 
+                        <p-triStateCheckbox  (click)="onRowEditSave(notaFiscalSaida)"  [(ngModel)]="notaFiscalSaida.botao" ></p-triStateCheckbox> 
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>-->
+</div>
+</div>

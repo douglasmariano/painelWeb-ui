@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { data } from 'jquery';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -24,9 +25,18 @@ export class LoginComponent implements OnInit {
       senha: new FormControl(''),
       
     });
+    
   }
+  
+  inputChangeUsuario(event) { 
+    this.form.get('usuario').setValue(event.target.value);    
+    }
 
-  async fazerLogin() {
+    inputChangeSenha(event) { 
+      this.form.get('senha').setValue(event.target.value);      
+    }
+
+  async fazerLogin(): Promise<void> {
     this.error = '';
     this.error = await this.loginService.efetuarLogin(this.form.value)
   }
