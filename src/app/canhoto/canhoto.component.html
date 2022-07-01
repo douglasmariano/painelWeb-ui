@@ -1,5 +1,5 @@
 
-<p-toast></p-toast>
+<p-toast  position="bottom-left"></p-toast>
 <div class="container">
 <h1>Controle de Canhotos</h1>
       <form [formGroup]="buscaNotaFiscalSaida" autocomplete="off" (ngSubmit)="pesquisar()">
@@ -36,29 +36,27 @@
     <p-table [value]="notaFiscalSaida" responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 3rem">Cod. Filial</th>                
-          <th style="width: 5rem">Numnota</th>
+          <th style="width: 3rem">Cod. Filial</th>
           <th style="width: 4rem">Cod. Cliente</th>
           <th style="width: 34rem">Cliente</th>                
           <th >Numped</th>
           <th >Dt. Canhoto</th>         
           <th >Obs</th>
-          <th style="width: 3rem">                    
+          <th style="width: 5rem">Numnota</th>
+          <th style="width: 5rem">                    
           </th>
       </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-notaFiscalSaida>
+      <ng-template pTemplate="body" let-notaFiscalSaida let-rowIndex="rowIndex">
         <tr  [ngClass]="{'row-accessories': notaFiscalSaida.obsnfcarreg === 'FALTOU', 'row-cancelada': !notaFiscalSaida.dtcancel == ''}">
-          <td>{{notaFiscalSaida.codfilial}}</td>
-          <td>{{notaFiscalSaida.numnota}}</td>
+          <td>{{notaFiscalSaida.codfilial}}</td>          
           <td>{{notaFiscalSaida.codcli.codigoCliente}}</td>
           <td>{{notaFiscalSaida.codcli.nomeCliente}}</td>                
           <td>{{notaFiscalSaida.numped}}</td>
           <td>{{notaFiscalSaida.dtcanhoto | date: 'dd/MM/yyyy'}}</td>
-          <td>{{notaFiscalSaida.obsnfcarreg}}
-          </td>
-           
-          <td style="text-align:center"> 
+          <td>{{notaFiscalSaida.obsnfcarreg}}</td>
+          <td>{{notaFiscalSaida.numnota}}</td>
+          <td style="width: 5rem" style="text-align:center"> 
                   <p-triStateCheckbox  (click)="onRowEditSave(notaFiscalSaida)"  [(ngModel)]="notaFiscalSaida.botao" ></p-triStateCheckbox> 
           </td>
       </tr>
