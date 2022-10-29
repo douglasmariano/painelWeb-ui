@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="p-col">
+  
+      <h1>Bonus de Entrada</h1>
+      <form [formGroup]="bonusEntradaForm" autocomplete="off" (ngSubmit)="pesquisar()">
+        <div class="p-grid">
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <label>Num Bonus</label>
+            <input pInputText formControlName="numbonus">
+            <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
+            <sup>*</sup>Somente números. 
+          </div>-->
+          </div>
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <label>Data Bônus</label>
+            <p-calendar formControlName="databonus" showTime="true" hourFormat="24"></p-calendar>               
+          </div>
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <label>Data Fechamento</label>
+            <p-calendar formControlName="dtfechamento" showTime="true" hourFormat="24"></p-calendar>               
+          </div>          
+          <div class="p-col-12 p-md-6 p-lg-3">
+            <button pButton type="submit" label="Pesquisar"></button>
+            <button type="button" pButton label="Novo" pTooltip="Incluir novo cabo na lista." tooltipPosition="left"
+              routerLink="/bonusentrada/novo"></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+    <div class="card">
+      <div class="p-shadow-3">
+        <p-table responsiveLayout="scroll" [value]="bonusEntrada" [paginator]="true" [rows]="20"
+          [showCurrentPageReport]="true"
+          currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} Estoque de Cabos"
+          [rowsPerPageOptions]="[10,25,50]"  [autoLayout]="true"  >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Filial</th>
+              <th>Bônus</th> 
+              <th>Dt. Cadastro</th>
+              <th>Opções</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-bonusEntrada>
+            <tr>
+              <td>{{bonusEntrada.codfilial }}</td> 
+              <td>{{bonusEntrada.numbonus }}</td>           
+              <td>{{bonusEntrada.databonus | date:'dd/MM/y' }}</td>                 
+              <td><button pButton pRipple type="button" icon="pi pi-search"
+                  class="p-button-rounded p-button-success p-button-outlined" pTooltip="Informações sobre o Pedido."
+                  tooltipPosition="top" (click)="digitarItensBonus(bonusEntrada.numbonus)"></button>               
+              </td> 
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  
+  
+  </div>

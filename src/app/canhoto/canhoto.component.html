@@ -39,11 +39,11 @@
           <th style="width: 3rem">Cod. Filial</th>
           <th style="width: 4rem">Cod. Cliente</th>
           <th style="width: 34rem">Cliente</th>                
-          <th >Numped</th>
+          <th >Pedido</th>
           <th >Dt. Canhoto</th>         
-          <th >Obs</th>
-          <th style="width: 5rem">Numnota</th>
-          <th style="width: 5rem">                    
+          <th >Observação</th>
+          <th style="width: 5rem">Nota Fiscal</th>
+          <th style="width: 3rem">                    
           </th>
       </tr>
       </ng-template>
@@ -55,8 +55,8 @@
           <td>{{notaFiscalSaida.numped}}</td>
           <td>{{notaFiscalSaida.dtcanhoto | date: 'dd/MM/yyyy'}}</td>
           <td>{{notaFiscalSaida.obsnfcarreg}}</td>
-          <td>{{notaFiscalSaida.numnota}}</td>
-          <td style="width: 5rem" style="text-align:center"> 
+          <td >{{notaFiscalSaida.numnota}}</td>
+          <td style="width: 3rem" style="text-align:center"> 
                   <p-triStateCheckbox  (click)="onRowEditSave(notaFiscalSaida)"  [(ngModel)]="notaFiscalSaida.botao" ></p-triStateCheckbox> 
           </td>
       </tr>

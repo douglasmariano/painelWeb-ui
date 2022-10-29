@@ -5,3 +5,7 @@ button{
 .uppercase{
     text-transform: uppercase;
   }
+  .my-center-text {
+    text-align: center;
+    width: 100%;
+}

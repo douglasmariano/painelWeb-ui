@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config ./proxy.conf.json --host 192.168.200.17",
+    "start": "ng serve --proxy-config ./proxy.conf.json --host 192.168.200.55",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -25,7 +25,7 @@
     "jquery": "^3.6.0",
     "ng2-toasty": "^4.0.3",
     "primeflex": "^2.0.0",
-    "primeicons": "^4.0.0",
+    "primeicons": "^4.1.0",
     "primeng": "^10.0.3",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.3",

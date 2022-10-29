@@ -1,0 +1,39 @@
+
+<div class="container">
+    <form [formGroup]="form" autocomplete="off" (ngSubmit)="salvar()">
+        <div class="p-field">
+            <h1> Itens do Bonus </h1>
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+      <!--  <div class="p-field p-col-4">
+        <p > {{codprod}}  </p> 
+              <label>Numero do Bonus</label>
+              <input pInputText   formControlName="numbonus" #numbonus>
+
+               <input (keydown.enter)="onKeydown($event)" type="text" formControlName="codprod"  pInputText>  
+            </div>-->
+        <div class="p-field p-col-4">
+                <label>Cod. Produto</label>
+                <input (keydown.enter)="onKeydown($event)" type="text"  formControlName="codprod"  disabled="true" pInputText> 
+                     
+              </div>
+        <div class="p-field p-col-4">
+                <label>Cod. Barras</label>
+                <input autofocus  (keydown.enter)="onKeydown($event)" type="text" formControlName="codbarra" pInputText>     
+        </div>      
+        <div class="p-field p-col-4">
+            <label>.</label>
+            <button  (keydown.enter)="onKeydown($event)" pButton  type="submit" label="Salvar" (focus)='salvar()'></button>           
+           </div>    
+        </div>     
+    </form>      
+</div>
+
+ <!--
+<form>
+    
+    <input (keydown.enter)="onKeydown($event)" type="text" pInputText>
+    <input (keydown.enter)="onKeydown($event)" type="text" pInputText>
+    <input (keydown.enter)="onKeydown($event)" type="text" pInputText>
+</form>
+-->

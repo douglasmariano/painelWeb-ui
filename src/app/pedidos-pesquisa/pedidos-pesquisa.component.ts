@@ -14,7 +14,11 @@ import { PedidoPesquisaService } from './pedidos-pesquisa.service';
 })
 export class PedidosPesquisaComponent implements OnInit {
   pedidos=[]; 
+  buttonDisabled: boolean;
 
+  
+ 
+ 
   buscaPedido = new FormGroup({
    
     nomeCliente: new FormControl(''),
@@ -29,7 +33,8 @@ export class PedidosPesquisaComponent implements OnInit {
               ){  }
 
   ngOnInit(){ 
-    this.pesquisar();
+    this.pesquisar();  
+    
   }
 
   get f() { return this.buscaPedido.controls; }
@@ -37,8 +42,9 @@ export class PedidosPesquisaComponent implements OnInit {
   pesquisar(){
     this.pedidoPesquisaService.pesquisar({numped :this.buscaPedido.value.numped,  nomeCliente: this.buscaPedido.value.nomeCliente ,
         nomeVendedor : this.buscaPedido.value.nomeVendedor})
-        .then(pedidos => this.pedidos = pedidos );          
+        .then(pedidos => this.pedidos = pedidos );  
   }
+
   limparBusca(){
     this.buscaPedido.reset();
     this.pesquisar();
@@ -59,6 +65,7 @@ export class PedidosPesquisaComponent implements OnInit {
     console.log(numped)
     this.confirmation.confirm(
       {message: 'Deseja informar que o cliente chegou?',
+        rejectButtonStyleClass:'p-button-danger',
         accept: () => {
           this.pedidoPesquisaService.marcarChegada(numped).then(()=> {
             this.toasty.success('Dirija o cliente ao Balcão!')

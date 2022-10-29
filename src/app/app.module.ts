@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID,NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastyModule } from 'ng2-toasty';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,7 +27,6 @@ import {SidebarModule} from 'primeng/sidebar';
 import {MegaMenuModule} from 'primeng/megamenu';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { SlideMenuModule } from 'primeng/slidemenu';
-import {MenuItem} from 'primeng/api';
 
 import { AppComponent } from './app.component';
 import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
@@ -38,7 +37,6 @@ import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.co
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
-import { JwtModule } from '@auth0/angular-jwt';
 
 import { PedidoService } from './pedido.service';
 import { PainelPedidosService } from './painel-pedidos/painel-pedidos.service';
@@ -67,6 +65,20 @@ import { PainelAcompamentoPedidosComponent } from './painel-acompamento-pedidos/
 import { PainelAcompamentoPedidosService } from './painel-acompamento-pedidos/painel-acompamento-pedidos.service';
 import { CanhotoComponent } from './canhoto/canhoto.component';
 import { CanhotoService } from './canhoto/canhoto.service';
+import { CadastroCodigoDeBarrasComponent } from './cadastro-codigo-de-barras/cadastro-codigo-de-barras.component';
+import { BuscaBonusEntradaComponent } from './busca-bonus-entrada/busca-bonus-entrada.component';
+import { BuscaItemBonusComponent } from './busca-item-bonus/busca-item-bonus.component';
+import { BuscaBonusEntradaService } from './busca-bonus-entrada/busca-bonus-entrada.service';
+import { BuscaItemBonusService } from './busca-item-bonus/busca-item-bonus.service';
+import { registerLocaleData } from '@angular/common';
+import localePT from '@angular/common/locales/pt';
+import localeES from '@angular/common/locales/es';
+import localeDE from '@angular/common/locales/de';
+import localeFR from '@angular/common/locales/fr';
+registerLocaleData(localePT);
+registerLocaleData(localeES);
+registerLocaleData(localeDE);
+registerLocaleData(localeFR);
 
 const routes: Routes=[
   {path: 'login', component: LoginComponent},
@@ -132,6 +144,21 @@ const routes: Routes=[
       title: 'Controle de Canhotos'
     }
   }, 
+  {path: 'codigodebarras', component: CadastroCodigoDeBarrasComponent, canActivate : [LoginGuard],
+    data: {
+      title: 'Cadastro de Codigo de Barras'
+    }
+  },
+  {path: 'buscar-item-entrada/:numbonus', component: BuscaItemBonusComponent, canActivate : [LoginGuard],
+  data: {
+    title: 'Busca itens Bônus'
+  }
+},
+  {path: 'buscar-bonus-entrada', component: BuscaBonusEntradaComponent, canActivate : [LoginGuard],
+  data: {
+    title: 'Busca Bônus'
+  }
+},  
 ];
 
 @NgModule({
@@ -158,7 +185,9 @@ const routes: Routes=[
     AjelEntregaAlteraTransporteComponent,
     PainelAcompamentoPedidosComponent,
     CanhotoComponent,
-   
+    CadastroCodigoDeBarrasComponent,    
+    BuscaBonusEntradaComponent,
+    BuscaItemBonusComponent,
   ],
   imports: [
     BrowserModule,
@@ -189,9 +218,10 @@ const routes: Routes=[
     SidebarModule,
     MegaMenuModule,
     PanelMenuModule,
-    SlideMenuModule,
+    SlideMenuModule,  
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'pt-br' },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
     PedidoService,
     PainelPedidosService,
@@ -205,6 +235,8 @@ const routes: Routes=[
     AjelEntregaService,
     PainelAcompamentoPedidosService,
     CanhotoService,
+    BuscaBonusEntradaService,
+    BuscaItemBonusService
   ],
   bootstrap: [AppComponent]
 })

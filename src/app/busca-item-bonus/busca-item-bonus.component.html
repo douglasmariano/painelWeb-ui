@@ -1,0 +1,144 @@
+<div class="card">
+  <h1>Bônus: {{ numbonus }}</h1>
+  <p-table
+    [value]="produtosPorCodigo"
+    dataKey="id.codprod"
+    editMode="row"
+    responsiveLayout="scroll"
+    styleClass="p-datatable-sm"
+  >
+    <ng-template pTemplate="header">
+      <tr >
+        <th></th>
+        <th style="width: 6rem">Codprod</th>
+        <th style="width: 14rem">Produto</th>
+        <th style="width: 8rem">Qt. Produto </th>
+        <th style="width: 8rem">Qt. Avaria</th>
+        <th style="width: 8rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-produtosPorCodigo
+      let-editing="editing"
+      let-ri="rowIndex"
+    >
+      <tr [pEditableRow]="produtosPorCodigo" [ngClass]="{'row-accessories': produtosPorCodigo.qtentun === produtosPorCodigo.qtnf}">
+       
+       <td>
+        <button pButton pRipple type="button" icon="pi pi-qrcode" (click)="showDialog(produtosPorCodigo)" class="p-button-rounded p-button-warning"></button>
+        <i class="pi pi-qrcode"></i> 
+       </td>
+        <td [ngClass]="{'outofstock': produtosPorCodigo.id.codprod === produtosPorCodigo.codauxiliar, 'instock': produtosPorCodigo.id.codprod !== produtosPorCodigo.codauxiliar}" >
+            {{ produtosPorCodigo.id.codprod }}
+         <!-- <p-cellEditor>
+            <ng-template pTemplate="input" >
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="produtosPorCodigo.id.codprod"
+              />
+            </ng-template>
+            <ng-template pTemplate="output" >
+              {{ produtosPorCodigo.id.codprod }}
+            </ng-template>
+          </p-cellEditor>
+        </td>-->
+        <td>
+            {{produtosPorCodigo.descricao}}
+
+        </td>
+        <td style="width: 8rem;text-align:center;">
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-inputNumber
+                [(ngModel)]="produtosPorCodigo.qtentun"
+                [showButtons]="true"
+                min="0"
+                buttonLayout="horizontal"
+                spinnerMode="horizontal"
+                size="1"
+                decrementButtonClass="p-button-danger"
+                incrementButtonClass="p-button-success"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+              ></p-inputNumber>
+              <!-- <input pInputText type="text" [(ngModel)]="produtosPorCodigo.qtentun" required> -->
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ produtosPorCodigo.qtentun }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td style="width: 8rem;text-align:center;">
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-inputNumber
+                [(ngModel)]="produtosPorCodigo.qtavariaun"
+                [showButtons]="true"
+                min="0"
+                max={{produtosPorCodigo.qtentun}}
+                buttonLayout="horizontal"
+                spinnerMode="horizontal"
+                size="1"
+                decrementButtonClass="p-button-danger"
+                incrementButtonClass="p-button-success"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+              ></p-inputNumber>
+              <!--<p-dropdown [options]="statuses" appendTo="body" [(ngModel)]="produtosPorCodigo.qtavariaun" [style]="{'width':'100%'}"></p-dropdown>--->
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ produtosPorCodigo.qtavariaun }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td style="text-align: center">     
+          <button
+            *ngIf="!editing"
+            pButton
+            pRipple
+            type="button"
+            pInitEditableRow
+            icon="pi pi-pencil"
+            (click)="onRowEditInit(produtosPorCodigo)"
+            class="p-button-rounded p-button-success mr-1"
+          ></button>
+          <button
+            *ngIf="editing"
+            pButton
+            pRipple
+            type="button"
+            pSaveEditableRow
+            icon="pi pi-check"
+            (click)="onRowEditSave(produtosPorCodigo)"
+            class="p-button-rounded p-button-success mr-1"
+          ></button>
+          <button
+            *ngIf="editing"
+            pButton
+            pRipple
+            type="button"
+            pCancelEditableRow
+            icon="pi pi-times"
+            (click)="onRowEditCancel(produtosPorCodigo, ri)"
+            class="p-button-rounded p-button-danger"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-dialog *ngIf="codigoSelecionado" 
+        header="Cadastro Codigo de Barras"         
+        [(visible)]="dialogVisible" 
+        [style]="{width: '75vw'}" 
+        [baseZIndex]="10000" 
+        [maximizable]="true" 
+        [modal]="true" 
+        [resizable]="true" 
+        [contentStyle]="{height: '300px'}"
+        >
+        
+        <app-cadastro-codigo-de-barras  [codprod]="codigoSelecionado"></app-cadastro-codigo-de-barras>     
+    </p-dialog>  
+</div>
