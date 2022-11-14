@@ -1,80 +1,80 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LOCALE_ID,NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastyModule } from 'ng2-toasty';
 import { RouterModule, Routes } from '@angular/router';
+import { ToastyModule } from 'ng2-toasty';
 
-import {InputTextModule} from 'primeng/inputtext';
-import {ButtonModule} from 'primeng/button';
-import {TableModule} from 'primeng/table';
-import {TooltipModule} from 'primeng/tooltip'
-import {SelectButtonModule} from 'primeng/selectbutton';
-import {DropdownModule} from 'primeng/dropdown';
-import {InputNumberModule} from 'primeng/inputnumber';
-import {InputMaskModule} from 'primeng/inputmask';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
-import {CalendarModule} from 'primeng/calendar';
-import {DynamicDialogModule} from 'primeng/dynamicdialog';
-import {PanelModule} from 'primeng/panel';
-import {DialogModule}from'primeng/dialog';
-import {AutoCompleteModule} from 'primeng/autocomplete';
-import {InputSwitchModule} from 'primeng/inputswitch';
-import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
-import {ToastModule} from 'primeng/toast';
-import {SidebarModule} from 'primeng/sidebar';
-import {MegaMenuModule} from 'primeng/megamenu';
-import {PanelMenuModule} from 'primeng/panelmenu';
+import { ConfirmationService } from 'primeng/api';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputTextModule } from 'primeng/inputtext';
+import { MegaMenuModule } from 'primeng/megamenu';
+import { PanelModule } from 'primeng/panel';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { SidebarModule } from 'primeng/sidebar';
 import { SlideMenuModule } from 'primeng/slidemenu';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { TooltipModule } from 'primeng/tooltip';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { UppercaseDirective } from './uppercase.directive';
-import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
+import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
+import { UppercaseDirective } from './uppercase.directive';
 
-import { PedidoService } from './pedido.service';
-import { PainelPedidosService } from './painel-pedidos/painel-pedidos.service';
-import { PedidoPesquisaService } from './pedidos-pesquisa/pedidos-pesquisa.service';
-import { EstoqueCaboService } from './estoque-cabo/estoquecabo.service';
-import { ProdutoService } from './produto/produto.service';
-import { EstoqueDetalheService } from './estoque-detalhe/estoque-detalhe.service';
-import { EstoqueExtratoService } from './estoque-extrato/estoque-extrato.service';
-import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.component';
-import { EstoqueCaboComponent } from './estoque-cabo/estoque-cabo.component';
-import { ProdutoComponent } from './produto/produto.component';
-import { EstoqueDetalheComponent } from './estoque-detalhe/estoque-detalhe.component';
-import { EstoqueExtratoComponent } from './estoque-extrato/estoque-extrato.component';
-import { MarcaSelectorComponent } from './marca-selector/marca-selector.component';
-import { MarcaService } from './marca.service';
-import { EstoqueCaboCadastroComponent } from './estoque-cabo-cadastro/estoque-cabo-cadastro.component';
-import { AjelEntregaComponent } from './ajel-entrega/ajel-entrega.component';
-import { TokenInterceptorService } from './token-interceptor.service';
-import { AjelEntregaService } from './ajel-entrega/ajel-entrega.service';
-import { AjelEntregaCadastroComponent } from './ajel-entrega-cadastro/ajel-entrega-cadastro.component';
-import { TransportadoraSelectorComponent } from './transportadora-selector/transportadora-selector.component';
-import { MotoristaSelectorComponent } from './motorista-selector/motorista-selector.component';
-import { ConferenteSelectorComponent } from './conferente-selector/conferente-selector.component';
+import { registerLocaleData } from '@angular/common';
+import localeDE from '@angular/common/locales/de';
+import localeES from '@angular/common/locales/es';
+import localeFR from '@angular/common/locales/fr';
+import localePT from '@angular/common/locales/pt';
 import { AjelEntregaAlteraTransporteComponent } from './ajel-entrega-altera-transporte/ajel-entrega-altera-transporte.component';
-import { PainelAcompamentoPedidosComponent } from './painel-acompamento-pedidos/painel-acompamento-pedidos.component';
-import { PainelAcompamentoPedidosService } from './painel-acompamento-pedidos/painel-acompamento-pedidos.service';
+import { AjelEntregaCadastroComponent } from './ajel-entrega-cadastro/ajel-entrega-cadastro.component';
+import { AjelEntregaComponent } from './ajel-entrega/ajel-entrega.component';
+import { AjelEntregaService } from './ajel-entrega/ajel-entrega.service';
+import { BuscaBonusEntradaComponent } from './busca-bonus-entrada/busca-bonus-entrada.component';
+import { BuscaBonusEntradaService } from './busca-bonus-entrada/busca-bonus-entrada.service';
+import { BuscaItemBonusComponent } from './busca-item-bonus/busca-item-bonus.component';
+import { BuscaItemBonusService } from './busca-item-bonus/busca-item-bonus.service';
+import { CadastroCodigoDeBarrasComponent } from './cadastro-codigo-de-barras/cadastro-codigo-de-barras.component';
 import { CanhotoComponent } from './canhoto/canhoto.component';
 import { CanhotoService } from './canhoto/canhoto.service';
-import { CadastroCodigoDeBarrasComponent } from './cadastro-codigo-de-barras/cadastro-codigo-de-barras.component';
-import { BuscaBonusEntradaComponent } from './busca-bonus-entrada/busca-bonus-entrada.component';
-import { BuscaItemBonusComponent } from './busca-item-bonus/busca-item-bonus.component';
-import { BuscaBonusEntradaService } from './busca-bonus-entrada/busca-bonus-entrada.service';
-import { BuscaItemBonusService } from './busca-item-bonus/busca-item-bonus.service';
-import { registerLocaleData } from '@angular/common';
-import localePT from '@angular/common/locales/pt';
-import localeES from '@angular/common/locales/es';
-import localeDE from '@angular/common/locales/de';
-import localeFR from '@angular/common/locales/fr';
+import { ConferenteSelectorComponent } from './conferente-selector/conferente-selector.component';
+import { EstoqueCaboCadastroComponent } from './estoque-cabo-cadastro/estoque-cabo-cadastro.component';
+import { EstoqueCaboComponent } from './estoque-cabo/estoque-cabo.component';
+import { EstoqueCaboService } from './estoque-cabo/estoquecabo.service';
+import { EstoqueDetalheComponent } from './estoque-detalhe/estoque-detalhe.component';
+import { EstoqueDetalheService } from './estoque-detalhe/estoque-detalhe.service';
+import { EstoqueExtratoComponent } from './estoque-extrato/estoque-extrato.component';
+import { EstoqueExtratoService } from './estoque-extrato/estoque-extrato.service';
+import { MarcaSelectorComponent } from './marca-selector/marca-selector.component';
+import { MarcaService } from './marca.service';
+import { MotoristaSelectorComponent } from './motorista-selector/motorista-selector.component';
+import { PainelAcompamentoPedidosComponent } from './painel-acompamento-pedidos/painel-acompamento-pedidos.component';
+import { PainelAcompamentoPedidosService } from './painel-acompamento-pedidos/painel-acompamento-pedidos.service';
+import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.component';
+import { PainelPedidosService } from './painel-pedidos/painel-pedidos.service';
+import { PedidoService } from './pedido.service';
+import { PedidoPesquisaService } from './pedidos-pesquisa/pedidos-pesquisa.service';
+import { ProdutoComponent } from './produto/produto.component';
+import { ProdutoService } from './produto/produto.service';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { TransportadoraSelectorComponent } from './transportadora-selector/transportadora-selector.component';
 registerLocaleData(localePT);
 registerLocaleData(localeES);
 registerLocaleData(localeDE);
@@ -109,7 +109,7 @@ const routes: Routes=[
       title: 'Cadastro de Estoque Cabos'
     }
   },
-  {path: 'estoquecabo/:codendcabo', component: EstoqueCaboCadastroComponent, canActivate : [LoginGuard],
+  {path: 'estoquecabo/:codcabo', component: EstoqueCaboCadastroComponent, canActivate : [LoginGuard],
     data: {
       title: 'Alteração de Estoque Cabos'
     }
@@ -201,7 +201,7 @@ const routes: Routes=[
     ConfirmDialogModule,
     DynamicDialogModule,
     PanelModule,
-    DialogModule,
+    DialogModule,   
     SelectButtonModule,
     InputNumberModule,
     InputMaskModule,
@@ -218,7 +218,7 @@ const routes: Routes=[
     SidebarModule,
     MegaMenuModule,
     PanelMenuModule,
-    SlideMenuModule,  
+    SlideMenuModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },

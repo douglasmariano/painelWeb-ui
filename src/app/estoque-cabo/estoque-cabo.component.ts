@@ -17,7 +17,7 @@ export class EstoqueCaboComponent implements OnInit {
 
   buscaCabo = new FormGroup({
 
-    codprod: new FormControl('', [Validators.pattern("^[0-9]*$")]),
+    codprod_pcprodut: new FormControl('', [Validators.pattern("^[0-9]*$")]),
 
   });
 
@@ -32,7 +32,7 @@ export class EstoqueCaboComponent implements OnInit {
   get f() { return this.buscaCabo.controls; }
 
   pesquisar() {
-    this.estoqueCaboService.pesquisar({ codprod: this.buscaCabo.value.codprod }).then(estoqueCabo => this.estoqueCabo = estoqueCabo);    
+    this.estoqueCaboService.pesquisar({ codprod_pcprodut: this.buscaCabo.value.codprod_pcprodut }).then(estoqueCabo => this.estoqueCabo = estoqueCabo);    
     console.log(this.buscaCabo)
   }
 
@@ -40,7 +40,7 @@ export class EstoqueCaboComponent implements OnInit {
     this.confirmation.confirm(
       {message: 'Tem certeza que deseja excluir',
         accept: async () => {
-          await this.estoqueCaboService.excluir(estoqueCabo.codendcabo )
+          await this.estoqueCaboService.excluir(estoqueCabo.codcabo )
           this.toasty.warning('Excluido com sucesso.');
           this.pesquisar()
         }}

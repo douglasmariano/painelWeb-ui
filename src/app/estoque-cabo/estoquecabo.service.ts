@@ -18,13 +18,13 @@ export class EstoqueCaboService {
 
   pesquisar(filtro: any): Promise<any> {
    
-    if (filtro?.codendcabo) {
-     // return this.http.get(this.estoqueCaboUrl+'?codendcabo='+filtro.codendcabo)  
-     return this.http.get(this.estoqueCaboUrl+'/'+filtro.codendcabo) 
+    if (filtro?.codcabo) {
+     // return this.http.get(this.estoqueCaboUrl+'?codcabo='+filtro.codcabo)  
+     return this.http.get(this.estoqueCaboUrl+'/'+filtro.codcabo) 
      .toPromise();
     }
-    else if(filtro?.codprod){      
-      return this.http.get(this.estoqueCaboUrl+'?codprod='+filtro.codprod) 
+    else if(filtro?.codprod_pcprodut){      
+      return this.http.post(this.estoqueCaboUrl+'/codprod',filtro) 
      .toPromise();
       } else{
         return this.http.get(this.estoqueCaboUrl)
@@ -32,16 +32,16 @@ export class EstoqueCaboService {
       }
   }
   
-   excluir(codendcabo: number): Promise<any> {
-    return  this.http.delete(`${this.estoqueCaboUrl}/${codendcabo}`)
+   excluir(codcabo: number): Promise<any> {
+    return  this.http.delete(`${this.estoqueCaboUrl}/${codcabo}`)
     .toPromise(); 
   }
 
   atualizar(estoqueCabo: EstoqueCabo): Promise<void> {
-    console.log(estoqueCabo.codendcabo)
-    return this.http.put(`${this.estoqueCaboUrl}/${estoqueCabo.codendcabo}`, estoqueCabo)
+    console.log(estoqueCabo.codcabo)
+    return this.http.put(`${this.estoqueCaboUrl}/${estoqueCabo.codcabo}`, estoqueCabo)
       .toPromise()
-      .then(() => { this.pesquisar(estoqueCabo.codendcabo);});// return this.http.put(this.pedidosUrlAll/numped).toPromise();
+      .then(() => { this.pesquisar(estoqueCabo.codcabo);});// return this.http.put(this.pedidosUrlAll/numped).toPromise();
       
   }
 

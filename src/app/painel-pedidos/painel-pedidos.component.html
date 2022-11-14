@@ -14,14 +14,14 @@
               </tr>
           </ng-template>
           <ng-template pTemplate="body" let-pedidos>
-              <tr  [ngClass]="{'row-conferencia': pedidos.posicao === 'Conferência',
-                                'row-caixa': pedidos.posicao === 'Dirija-se ao Caixa',
-                                'row-separando': pedidos.posicao === 'Em Separação',
-                                'row-aguardandoseparacao': pedidos.posicao === 'Aguardando Separação',
-                                'row-vendedor': pedidos.posicao === 'Procure o Vendedor'}">
+              <tr  [ngClass]="{'row-conferencia': pedidos.status === 'Conferência',
+                                'row-caixa': pedidos.status === 'Dirija-se ao Caixa',
+                                'row-separando': pedidos.status === 'Em Separação',
+                                'row-aguardandoseparacao': pedidos.status === 'Aguardando Separação',
+                                'row-vendedor': pedidos.status === 'Procure o Vendedor'}">
                   <td >{{pedidos.numped }}</td>
                   <td>{{pedidos.cliente }}</td>                
-                  <td (change)="onChangePosicao()" >{{pedidos.posicao }}</td>
+                  <td (change)="onChangePosicao()" >{{pedidos.status }}</td>
                   <td>{{pedidos.nome }}</td> 
                   <td>{{pedidos.tempodecor }}</td>                  
                   <!--<td [ngStyle]="{color: pedidos.posicao === 'F' ? 'blue' : 'red'}">{{pedidos.posicao }}</td>-->

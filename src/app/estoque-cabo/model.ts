@@ -1,21 +1,20 @@
-export class EstoqueCabo {
-    codendcabo:number;
-    codprod: number;
-    rua: number;
-    modulo: number;    
-    apt: number;
-    numero: number;
+export class EstoqueCabo { 
+    codcabo:number;
+    codprod_pcprodut: number;
+    codprod_pcest: number;
+    codfilial_pcest: String;
+    codmarca: number;
+    codfornec: number;
+    matricula: number;
+    tipoendereco: String;
+    dtinclusao: Date;
+    dtexclusao: Date;
+    status: String;
+    obs: String;
+    qtgerencial: number;
     qt: number;
-    identificacao :String;
-    tipoender :String;
-    status :String;
-    codfuncinc : number;
-    datainclusao :Date;
-    dataexclusao :Date;
-    fabricante :String;
-    obs1  :String;
-    embalagem :String;
-    qtmaster :number;
-
-
+    numero: number;
+    modulo: number;
+    rua: number;
+    apto: number;
   }

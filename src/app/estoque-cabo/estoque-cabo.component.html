@@ -6,7 +6,7 @@
       <div class="p-grid">
         <div class="p-col-12 p-md-6 p-lg-3">
           <label style="display: block">Codigo do Produto</label>
-          <input pInputText formControlName="codprod">
+          <input pInputText formControlName="codprod_pcprodut">
           <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
           <sup>*</sup>Somente números. 
         </div>-->
@@ -54,8 +54,8 @@
         </ng-template>
         <ng-template pTemplate="body" let-estoqueCabo>
           <tr>
-            <td>{{estoqueCabo.codendcabo }}</td>
-            <td>{{estoqueCabo.codprod }}</td>
+            <td>{{estoqueCabo.codcabo }}</td>
+            <td>{{estoqueCabo.codprod_pcprodut }}</td>
             <td>{{estoqueCabo.rua }}</td>
             <td>{{estoqueCabo.modulo}}</td>
             <td>{{estoqueCabo.apto }}</td>
@@ -63,7 +63,7 @@
             <td>{{estoqueCabo.qt}}</td>
             <td><button pButton pRipple type="button" icon="pi pi-search"
                 class="p-button-rounded p-button-success p-button-outlined" pTooltip="Informações sobre o Pedido."
-                tooltipPosition="top" routerLink="/estoquecabo/{{estoqueCabo.codendcabo}}"></button>
+                tooltipPosition="top" routerLink="/estoquecabo/{{estoqueCabo.codcabo}}"></button>
               <button pButton type="button" icon="pi pi-trash" iconPos="left" pTooltip="Excluir" tooltipPosition="top"
                 (click)="excluir(estoqueCabo)"></button>
             </td>

@@ -24,33 +24,33 @@ export class EstoqueCaboCadastroComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const codendcabo = this.route.snapshot.params['codendcabo'];
+    const codcabo = this.route.snapshot.params['codcabo'];
 
     this.preencherFormGroup();    
-    this.carregarEstoqueCabo(codendcabo);
+    this.carregarEstoqueCabo(codcabo);
     
   }
 
   preencherFormGroup() {
     this.estoqueCaboCadastro = this.fb.group({
-      codendcabo: '',
-      codprod: '',
-      rua: '',
-      modulo: '',
-      apto: '',
-      numero: '',
-      qt: '',    
-      identificacao : '',
-      tipoender : '',
-      status : '',
-      codfuncinc :  '',
-      datainclusao : '',
-      dataexclusao : '',
-      fabricante : '',
-      obs1  : '',
-      embalagem : '',
-      qtmaster : '',
-      //dtultmovent:[{value: '', }],      
+      codcabo:'',
+    codprod_pcprodut: '',
+    codprod_pcest: '',
+    codfilial_pcest: '',
+    codmarca: '',
+    codfornec: '',
+    matricula: '',
+    tipoendereco: '',
+    dtinclusao: '',
+    dtexclusao: '',
+    status: '',
+    obs: '',
+    qtgerencial: '',
+    qt: '',
+    numero: '',
+    modulo: '',
+    rua: '',
+    apto: '',       
     });
   }
 
@@ -61,9 +61,9 @@ export class EstoqueCaboCadastroComponent implements OnInit {
     }
   }
 
-  carregarEstoqueCabo(codendcabo: number) {
-    if(codendcabo){
-    this.estoqueCaboService.pesquisar({ codendcabo })
+  carregarEstoqueCabo(codcabo: number) {
+    if(codcabo){
+    this.estoqueCaboService.pesquisar({ codcabo })
       .then(estoqueCaboCadastro => {
         const estoqueCaboTemp = {
           ...estoqueCaboCadastro,
@@ -80,7 +80,7 @@ export class EstoqueCaboCadastroComponent implements OnInit {
       }
   }
   salvar() {
-    if (this.route.snapshot.params['codendcabo'] == null) {
+    if (this.route.snapshot.params['codcabo'] == null) {
       this.estoqueCaboService.adicionar(this.estoqueCaboCadastro.value).then(() => {
         this.toasty.success('Cadastrado com sucesso');
         this.preencherFormGroup()
@@ -89,7 +89,7 @@ export class EstoqueCaboCadastroComponent implements OnInit {
       this.estoqueCaboService.atualizar(this.estoqueCaboCadastro.value).then(() => {
         this.toasty.success('Atualizado');
         this.preencherFormGroup()
-        this.carregarEstoqueCabo(this.route.snapshot.params['codendcabo']);
+        this.carregarEstoqueCabo(this.route.snapshot.params['codcabo']);
       })
     }
 
