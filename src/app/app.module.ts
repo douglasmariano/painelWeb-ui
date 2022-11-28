@@ -27,15 +27,20 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { DividerModule} from 'primeng/divider'
+import { CardModule } from 'primeng/card';
+import { SplitterModule } from "primeng/splitter";
+import {CheckboxModule} from 'primeng/checkbox';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginGuard } from './login.guard';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
-import { PedidosPesquisaComponent } from './pedidos-pesquisa/pedidos-pesquisa.component';
+import { PedidosCadastroComponent } from './components/pedidos-cadastro/pedidos-cadastro.component';
+import { PedidosPesquisaComponent } from './components/pedidos-pesquisa/pedidos-pesquisa.component';
 import { UppercaseDirective } from './uppercase.directive';
 
 import { registerLocaleData } from '@angular/common';
@@ -43,38 +48,39 @@ import localeDE from '@angular/common/locales/de';
 import localeES from '@angular/common/locales/es';
 import localeFR from '@angular/common/locales/fr';
 import localePT from '@angular/common/locales/pt';
-import { AjelEntregaAlteraTransporteComponent } from './ajel-entrega-altera-transporte/ajel-entrega-altera-transporte.component';
-import { AjelEntregaCadastroComponent } from './ajel-entrega-cadastro/ajel-entrega-cadastro.component';
-import { AjelEntregaComponent } from './ajel-entrega/ajel-entrega.component';
-import { AjelEntregaService } from './ajel-entrega/ajel-entrega.service';
-import { BuscaBonusEntradaComponent } from './busca-bonus-entrada/busca-bonus-entrada.component';
-import { BuscaBonusEntradaService } from './busca-bonus-entrada/busca-bonus-entrada.service';
-import { BuscaItemBonusComponent } from './busca-item-bonus/busca-item-bonus.component';
-import { BuscaItemBonusService } from './busca-item-bonus/busca-item-bonus.service';
-import { CadastroCodigoDeBarrasComponent } from './cadastro-codigo-de-barras/cadastro-codigo-de-barras.component';
-import { CanhotoComponent } from './canhoto/canhoto.component';
-import { CanhotoService } from './canhoto/canhoto.service';
-import { ConferenteSelectorComponent } from './conferente-selector/conferente-selector.component';
-import { EstoqueCaboCadastroComponent } from './estoque-cabo-cadastro/estoque-cabo-cadastro.component';
-import { EstoqueCaboComponent } from './estoque-cabo/estoque-cabo.component';
-import { EstoqueCaboService } from './estoque-cabo/estoquecabo.service';
-import { EstoqueDetalheComponent } from './estoque-detalhe/estoque-detalhe.component';
-import { EstoqueDetalheService } from './estoque-detalhe/estoque-detalhe.service';
-import { EstoqueExtratoComponent } from './estoque-extrato/estoque-extrato.component';
-import { EstoqueExtratoService } from './estoque-extrato/estoque-extrato.service';
-import { MarcaSelectorComponent } from './marca-selector/marca-selector.component';
-import { MarcaService } from './marca.service';
-import { MotoristaSelectorComponent } from './motorista-selector/motorista-selector.component';
-import { PainelAcompamentoPedidosComponent } from './painel-acompamento-pedidos/painel-acompamento-pedidos.component';
-import { PainelAcompamentoPedidosService } from './painel-acompamento-pedidos/painel-acompamento-pedidos.service';
-import { PainelPedidosComponent } from './painel-pedidos/painel-pedidos.component';
-import { PainelPedidosService } from './painel-pedidos/painel-pedidos.service';
-import { PedidoService } from './pedido.service';
-import { PedidoPesquisaService } from './pedidos-pesquisa/pedidos-pesquisa.service';
-import { ProdutoComponent } from './produto/produto.component';
-import { ProdutoService } from './produto/produto.service';
-import { TokenInterceptorService } from './token-interceptor.service';
-import { TransportadoraSelectorComponent } from './transportadora-selector/transportadora-selector.component';
+import { AjelEntregaAlteraTransporteComponent } from './components/ajel-entrega-altera-transporte/ajel-entrega-altera-transporte.component';
+import { AjelEntregaCadastroComponent } from './components/ajel-entrega-cadastro/ajel-entrega-cadastro.component';
+import { AjelEntregaComponent } from './components/ajel-entrega/ajel-entrega.component';
+import { AjelEntregaService } from './services/ajel-entrega.service';
+import { BuscaBonusEntradaComponent } from './components/busca-bonus-entrada/busca-bonus-entrada.component';
+import { BuscaBonusEntradaService } from './services/busca-bonus-entrada.service';
+import { BuscaItemBonusComponent } from './components/busca-item-bonus/busca-item-bonus.component';
+import { BuscaItemBonusService } from './services/busca-item-bonus.service';
+import { CadastroCodigoDeBarrasComponent } from './components/cadastro-codigo-de-barras/cadastro-codigo-de-barras.component';
+import { CanhotoComponent } from './components/canhoto/canhoto.component';
+import { CanhotoService } from './services/canhoto.service';
+import { ConferenteSelectorComponent } from './components/conferente-selector/conferente-selector.component';
+import { EstoqueCaboCadastroComponent } from './components/estoque-cabo-cadastro/estoque-cabo-cadastro.component';
+import { EstoqueCaboComponent } from './components/estoque-cabo/estoque-cabo.component';
+import { EstoqueCaboService } from './services/estoque-cabo.service';
+import { EstoqueDetalheComponent } from './components/estoque-detalhe/estoque-detalhe.component';
+import { EstoqueDetalheService } from './services/estoque-detalhe.service';
+import { EstoqueExtratoComponent } from './components/estoque-extrato/estoque-extrato.component';
+import { EstoqueExtratoService } from './services/estoque-extrato.service';
+import { MarcaSelectorComponent } from './components/marca-selector/marca-selector.component';
+import { MarcaService } from './services/marca.service';
+import { MotoristaSelectorComponent } from './components/motorista-selector/motorista-selector.component';
+import { PainelAcompamentoPedidosComponent } from './components/painel-acompamento-pedidos/painel-acompamento-pedidos.component';
+import { PainelAcompamentoPedidosService } from './services/painel-acompamento-pedidos.service';
+import { PainelPedidosComponent } from './components/painel-pedidos/painel-pedidos.component';
+import { PainelPedidosService } from './services/painel-pedidos.service';
+import { PedidoService } from './services/pedido.service';
+import { PedidoPesquisaService } from './services/pedidos-pesquisa.service';
+import { ProdutoComponent } from './components/produto/produto.component';
+import { ProdutoService } from './services/produto.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { TransportadoraSelectorComponent } from './components/transportadora-selector/transportadora-selector.component';
+import { TransportadoraService } from './services/transportadora.service';
 registerLocaleData(localePT);
 registerLocaleData(localeES);
 registerLocaleData(localeDE);
@@ -219,6 +225,10 @@ const routes: Routes=[
     MegaMenuModule,
     PanelMenuModule,
     SlideMenuModule,
+    DividerModule,
+    CardModule,
+    SplitterModule,
+    CheckboxModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },
@@ -230,8 +240,10 @@ const routes: Routes=[
     EstoqueCaboService,
     ProdutoService, 
     EstoqueDetalheService, 
-    EstoqueExtratoService, 
+    EstoqueExtratoService,
+    EstoqueCaboService,
     MarcaService,
+    TransportadoraService,
     AjelEntregaService,
     PainelAcompamentoPedidosService,
     CanhotoService,

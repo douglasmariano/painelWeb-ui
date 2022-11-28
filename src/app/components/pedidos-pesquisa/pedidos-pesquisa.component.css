@@ -1,0 +1,14 @@
+button{
+    margin: 0 7px;
+}
+
+.uppercase{
+    text-transform: uppercase;
+  }
+  .my-center-text {
+    text-align: center;
+    width: 100%;
+}
+td {
+  font-size: 14px;
+}
