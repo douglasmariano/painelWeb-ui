@@ -8,7 +8,7 @@ pipeline {
     }
  
     stage('Build') {
-      steps { sh 'export NODE_OPTIONS=--openssl-legacy-provider; npm run-script build --max_old_space_size=1024' }
+      steps { sh 'export NODE_OPTIONS=--openssl-legacy-provider; npm run-script build --max_old_space_size=512' }
     }
   }
 }
