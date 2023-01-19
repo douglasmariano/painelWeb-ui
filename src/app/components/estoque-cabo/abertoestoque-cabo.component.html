@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>Controle de Cabos</h1>        
+    <form [formGroup]="buscaCabo" autocomplete="off" (ngSubmit)="pesquisar()">
+      <div>
+        <label style="display: block">Codigo do Produto</label>
+        <input pInputText formControlName="codprod_pcprodut">
+        <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
+          <sup>*</sup>Somente números. 
+        </div>-->
+      </div> 
+      <br>     
+      <div>
+        <button pButton type="submit" label="Pesquisar"></button>
+        <button type="button" pButton label="Novo" pTooltip="Incluir novo cabo na lista." tooltipPosition="left"
+          routerLink="/estoquecabo/novo"></button>
+      </div>
+    </form>    
+  </div> 
+ <br> 
+<div class="container">
+    <p-table [value]="estoqueCabo" [paginator]="true" [rows]="20" [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} Estoque de Cabos"
+      [rowsPerPageOptions]="[10,25,50]" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Codprod</th>
+          <th>Descrição</th>
+          <th>Qt</th>
+          <th>Opções</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-estoqueCabo>
+        <tr>
+          <td>{{estoqueCabo.codprod_pcprodut }}</td>
+          <td>{{estoqueCabo.produto.descricao}}</td>
+          <td>{{estoqueCabo.qt}}</td>
+          <td><button pButton 
+              type="button" 
+              icon="pi pi-search"
+              class="p-button-rounded" 
+              pTooltip="Informações sobre o Pedido."
+              tooltipPosition="top" 
+              routerLink="/estoquecabo/{{estoqueCabo.codcabo}}"></button>
+            <button pButton 
+              type="button" 
+              icon="pi pi-trash" 
+              iconPos="left" 
+              class="p-button-rounded"
+              pTooltip="Excluir" 
+              tooltipPosition="top"
+              (click)="excluir(estoqueCabo)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>  
+</div>

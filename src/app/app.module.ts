@@ -120,7 +120,7 @@ const routes: Routes=[
       title: 'Alteração de Estoque Cabos'
     }
   },
-  {path: 'produto', component: ProdutoComponent, canActivate : [LoginGuard],
+  {path: 'produto', component: ProdutoComponent,
     data: {
       title: 'Produtos'
     }

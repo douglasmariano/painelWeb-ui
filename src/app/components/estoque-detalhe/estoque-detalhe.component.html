@@ -10,14 +10,16 @@
             <tr>
                 <th>Filial</th> 
                 <th>Cod. Fabrica</th>               
-                <th>Cod. Fornecedor</th> 
+                <th>Cod. Fornec.</th> 
                 <th>Fornecedor</th> 
                 <th>Marca</th> 
                 <th>Data Cadatro</th> 
                 <th>Data Exclusão</th> 
                 <th>Data Ult. Entrada</th> 
-                <th>Data Ult. Venda</th>  
-                <th>Qt</th> 
+                <th>Data Ult. Venda</th> 
+                <th>Qt Avaria</th>  
+                <th>Qt Bloqueada</th>  
+                <th>Qt Total</th> 
                 <th>Extrato</th>                               
             </tr>            
         </ng-template>
@@ -32,8 +34,10 @@
                 <td>{{produtoEstoque.dtexclusao | date:'dd/MM/y'}}</td>
                 <td>{{produtoEstoque.dtultent | date:'dd/MM/y'}}</td>
                 <td>{{produtoEstoque.dtultfat | date:'dd/MM/y'}}</td> 
+                <td>{{produtoEstoque.qtindeniz }}</td> 
+                <td>{{produtoEstoque.qtbloqueada }}</td> 
                 <td>{{produtoEstoque.qtestger }}</td>                 
-                <td><button type="button" (click)="showDialog(produtoEstoque)" pButton icon="pi pi-external-link" label="View"></button></td>                       
+                <td><button type="button" (click)="showDialog(produtoEstoque)" pButton icon="pi pi-external-link"></button></td>                       
             </tr>                
         </ng-template>                
     </p-table>
