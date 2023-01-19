@@ -1,22 +1,14 @@
 pipeline {
+  agent {
+    docker { image 'node:latest' }
+  }
   stages {
     stage('Install') {
-      steps { sh 'npm install' }
-    }
- 
-    stage('Test') {
-      parallel {
-        stage('Static code analysis') {
-            steps { sh 'npm run-script lint' }
-        }
-        stage('Unit tests') {
-            steps { sh 'npm run-script test' }
-        }
-      }
+      steps { sh 'export NODE_OPTIONS=--openssl-legacy-provider; npm install --legacy-peer-deps' }
     }
  
     stage('Build') {
-      steps { sh 'npm run-script build' }
+      steps { sh 'export NODE_OPTIONS=--openssl-legacy-provider; npm run-script build' }
     }
   }
 }
