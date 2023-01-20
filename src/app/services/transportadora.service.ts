@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
+import { environment } from '@environments/environment';
 
 
 @Injectable({
@@ -8,12 +8,10 @@ import { GlobalConstants } from '../common/global-constants';
 })
 export class TransportadoraService {
   
-  baseUrl = GlobalConstants.apiURL;
-  
   constructor(private http:HttpClient) { }
 
   listarTodos() {
-    return this.http.get(this.baseUrl+'/api/v1/transportadora/'+'T')
+    return this.http.get(environment.apiAddress+'/transportadora/'+'T')
   }
 
 }

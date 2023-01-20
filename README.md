@@ -1,5 +1,10 @@
 # PainelWebUi
 
+## Executar localmente com proxy
+se estiver executando node v16+ execute `export NODE_OPTIONS=--openssl-legacy-provider`
+
+Para executar localmente com proxy use o comando `npx ng serve --proxy-config proxy.conf.json`
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
 ## Development server

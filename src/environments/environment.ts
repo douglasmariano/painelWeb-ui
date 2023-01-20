@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  //apiAddress: 'http://192.168.200.17:8080'
-  apiAddress: 'http://192.168.200.55:4200'
+  apiAddress: '/api/v1'
 };
 
 /*

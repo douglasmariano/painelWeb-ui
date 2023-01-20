@@ -1,16 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
+import { environment } from '@environments/environment';
 import { NotaFiscal } from '../models/canhoto.model';
 @Injectable({
   providedIn: 'root'
 })
 export class CanhotoService {
 
-  baseUrl = GlobalConstants.apiURL;
-  notafiscalSaidaUrl = `${this.baseUrl}/api/v1/notafiscalsaida`;
+  notafiscalSaidaUrl = `${environment.apiAddress}/notafiscalsaida`;
   
-
   constructor(private http: HttpClient) { }
 
   pesquisar(filtro: any): Promise<any> {

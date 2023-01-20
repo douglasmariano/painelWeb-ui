@@ -1,21 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FuncionarioService {
   
-  baseUrl = GlobalConstants.apiURL;
-  
   constructor(private http:HttpClient) { }
 
   listarTodosMotorista() {
-    return this.http.get(this.baseUrl+'/api/v1/funcionario/'+9)
+    return this.http.get(environment.apiAddress +'/funcionario/'+9)
   }
 
   listarTodosConferentes() {
-    return this.http.get(this.baseUrl+'/api/v1/funcionario/'+15)
+    return this.http.get(environment.apiAddress+'/funcionario/'+15)
   }
 }

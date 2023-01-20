@@ -1,17 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
 import { BonusEntrada } from '../models/busca-bonus-entrada.model'
 import { BonusEntradaPk } from '../models/busca-bonus-entrada.model'
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuscaBonusEntradaService {
 
-  
-  baseUrl = GlobalConstants.apiURL;
-  bonusEntradaUrl = `${this.baseUrl}/api/v1/bonusentrada`;  
+  bonusEntradaUrl = `${environment.apiAddress}/bonusentrada`;  
 
   bonusEntrada: BonusEntrada = new BonusEntrada();  
 

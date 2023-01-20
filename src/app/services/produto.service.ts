@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
+import { environment } from '@environments/environment';
 import { Produto } from '../models/produto.model';
 
 
@@ -9,9 +9,7 @@ import { Produto } from '../models/produto.model';
 })
 export class ProdutoService {
 
-  baseUrl = GlobalConstants.apiURL;
-  produtoUrl = `${this.baseUrl}/api/v1/produto`;
-  
+  produtoUrl = `${environment.apiAddress}/produto`;
 
   constructor(private http: HttpClient) { }
 

@@ -2,8 +2,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@services/*": ["app/services/*"],
+      "@environments/*": ["environments/*"]
+    },
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,

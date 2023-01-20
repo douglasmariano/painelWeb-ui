@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
+import { environment } from '@environments/environment';
 import { AjelEntrega } from '../models/ajel-entrega.model';
 
 
@@ -9,10 +9,7 @@ import { AjelEntrega } from '../models/ajel-entrega.model';
 })
 export class AjelEntregaService {
  
-
-  baseUrl = GlobalConstants.apiURL;
-  ajelEntregaUrl = `${this.baseUrl}/api/v1/ajelentrega`;
-  
+  ajelEntregaUrl = `${environment.apiAddress}/ajelentrega`;
 
   constructor(private http: HttpClient) { }
 

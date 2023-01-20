@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ToastyConfig } from 'ng2-toasty';
-import{ GlobalConstants } from './common/global-constants';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter, map } from "rxjs/operators";
@@ -13,7 +12,6 @@ import { filter, map } from "rxjs/operators";
 })
 
 export class AppComponent {
-  baseUrl = GlobalConstants.apiURL;
   constructor(private toastConfig: ToastyConfig, private router: Router, private activatedRoute:    ActivatedRoute, private titleService: Title){
     this.toastConfig.theme = 'bootstrap';  
     this.router.events.pipe(
