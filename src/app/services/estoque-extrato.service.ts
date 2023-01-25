@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstoqueExtratoService {
 
-  baseUrl = GlobalConstants.apiURL;
-  produtoExtratoUrl = `${this.baseUrl}/api/v1/extratoproduto`;
-  
+  produtoExtratoUrl = `${environment.apiAddress}/extratoproduto`;
 
   constructor(private http: HttpClient) { }
 

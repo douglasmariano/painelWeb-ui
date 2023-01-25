@@ -1,17 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
 import { BonusItem } from '../models/busca-item-bonus.model'
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuscaItemBonusService {
 
-  
-  baseUrl = GlobalConstants.apiURL;
-  buscaItemUrl = `${this.baseUrl}/api/v1/bonusitens`;
-  
+  buscaItemUrl = `${environment.apiAddress}/bonusitens`;
 
   constructor(private http: HttpClient) { }
 

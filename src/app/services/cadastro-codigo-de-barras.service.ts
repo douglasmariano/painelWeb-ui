@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
+import { environment } from '@environments/environment';
 import { CodigoDeBarras } from '../models/cadastro-codigo.model'
 import { CodigoDeBarrasPk } from '../models/cadastro-codigo.model'
 
@@ -9,9 +9,7 @@ import { CodigoDeBarrasPk } from '../models/cadastro-codigo.model'
 })
 export class CadastroCodigoDeBarrasService {
 
-  
-  baseUrl = GlobalConstants.apiURL;  
-  cadastroCodigoDeBarrasUrl = `${this.baseUrl}/api/v1/codigodebarras`;
+  cadastroCodigoDeBarrasUrl = `${environment.apiAddress}/codigodebarras`;
   codigoDeBarras: CodigoDeBarras = new CodigoDeBarras();  
 
   constructor( private http:HttpClient) { 

@@ -1,9 +1,7 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
 import { Pedido } from '../models/pedido-pesquisa.model';
-import { environment } from '../../environments/environment';
-
+import { environment } from '@environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,14 +9,10 @@ export class PedidoPesquisaService {
 
   pedidosUrl = null;
   pedidosUrlAll = null;
-  
-  // baseUrl = GlobalConstants.apiURL;
-  // pedidosUrl = `${this.baseUrl}/api/v1/tabpedido`;
-  // pedidosUrlAll = `${this.baseUrl}/api/v1/tabpedidos`;
 
   constructor(private http: HttpClient) { 
-    this.pedidosUrl = `${environment.apiAddress}/api/v1/tabpedido`;
-    this.pedidosUrlAll = `${environment.apiAddress}/api/v1/tabpedidos`;
+    this.pedidosUrl = `${environment.apiAddress}/tabpedido`;
+    this.pedidosUrlAll = `${environment.apiAddress}/tabpedidos`;
   }
 
   pesquisar(filtro: any): Promise<any> {
@@ -45,6 +39,6 @@ export class PedidoPesquisaService {
 
   marcarChegada(numped) {
     console.log(numped)
-    return this.http.put(`${environment.apiAddress}/api/v1/tabpedidos/marcar_chegada/${numped}`, {}).toPromise()
+    return this.http.put(`${environment.apiAddress}/tabpedidos/marcar_chegada/${numped}`, {}).toPromise()
   }
 }

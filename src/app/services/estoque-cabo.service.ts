@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
+import { environment } from '@environments/environment';
 import { EstoqueCabo } from '../models/estoque-cabo.model';
 
 
@@ -8,11 +8,9 @@ import { EstoqueCabo } from '../models/estoque-cabo.model';
   providedIn: 'root'
 })
 export class EstoqueCaboService {
- 
 
-  baseUrl = GlobalConstants.apiURL;
-  estoqueCaboUrl = `${this.baseUrl}/api/v1/estoquecabo`;
-  estoqueProdutoUrl = `${this.baseUrl}/api/v1/produtoestoque`;
+  estoqueCaboUrl = `${environment.apiAddress}/estoquecabo`;
+  estoqueProdutoUrl = `${environment.apiAddress}/produtoestoque`;
   
 
   constructor(private http: HttpClient) { }

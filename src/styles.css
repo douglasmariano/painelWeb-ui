@@ -1,20 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-    margin: 3;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #404c51;
-}
 .grid {
 	display: grid;
 }
 
 label{
-    font-weight: bold;
+  font-weight: bold;
 }
 
 @media(min-width: 1200px){
-    .container{
-        width:1170px;
-        margin: 0 auto;
-    }
+  .container{
+    width:1170px;
+    margin: 0 auto;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #404c51;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }

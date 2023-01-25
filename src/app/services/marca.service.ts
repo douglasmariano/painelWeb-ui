@@ -1,17 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalConstants } from '../common/global-constants';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarcaService {
   
-  baseUrl = GlobalConstants.apiURL;
-  
   constructor(private http:HttpClient) { }
 
   listarTodos() {
-    return this.http.get(this.baseUrl+'/api/v1/marca')
+    return this.http.get(environment.apiAddress+'/marca')
   }
 }
