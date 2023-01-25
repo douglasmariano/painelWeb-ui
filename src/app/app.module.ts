@@ -81,6 +81,7 @@ import { ProdutoService } from './services/produto.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { TransportadoraSelectorComponent } from './components/transportadora-selector/transportadora-selector.component';
 import { TransportadoraService } from './services/transportadora.service';
+import { ClienteComponent } from './components/cliente/cliente.component';
 registerLocaleData(localePT);
 registerLocaleData(localeES);
 registerLocaleData(localeDE);
@@ -164,7 +165,12 @@ const routes: Routes=[
   data: {
     title: 'Busca Bônus'
   }
-},  
+},
+{path: 'cliente', component: ClienteComponent, canActivate : [LoginGuard],
+  data: {
+    title: 'Informações do Cliente'
+  }
+}  
 ];
 
 @NgModule({
@@ -194,6 +200,7 @@ const routes: Routes=[
     CadastroCodigoDeBarrasComponent,    
     BuscaBonusEntradaComponent,
     BuscaItemBonusComponent,
+    ClienteComponent,
   ],
   imports: [
     BrowserModule,
