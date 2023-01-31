@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { data } from 'jquery';
 import { LoginService } from '../../services/login.service';
@@ -11,6 +11,7 @@ import { LoginService } from '../../services/login.service';
 export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
+
 
   form = null;
   error;

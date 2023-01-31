@@ -31,6 +31,9 @@ import { DividerModule} from 'primeng/divider'
 import { CardModule } from 'primeng/card';
 import { SplitterModule } from "primeng/splitter";
 import {CheckboxModule} from 'primeng/checkbox';
+import {DataViewModule} from 'primeng/dataview';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -166,7 +169,7 @@ const routes: Routes=[
     title: 'Busca Bônus'
   }
 },
-{path: 'cliente', component: ClienteComponent, canActivate : [LoginGuard],
+{path: 'cliente/telefone', component: ClienteComponent, canActivate : [LoginGuard],
   data: {
     title: 'Informações do Cliente'
   }
@@ -236,6 +239,8 @@ const routes: Routes=[
     CardModule,
     SplitterModule,
     CheckboxModule,
+    DataViewModule,
+    ProgressSpinnerModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },
