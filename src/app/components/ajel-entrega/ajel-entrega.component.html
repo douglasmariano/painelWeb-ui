@@ -1,35 +1,35 @@
 <div class="container">
-    <div class="p-col">
+    <div class="col">
   
       <h1>Controle de Entregas</h1>
       <form [formGroup]="buscaAjelEntrega" autocomplete="off" (ngSubmit)="pesquisar()">
-        <div class="p-grid">
-          <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="grid">
+          <div class="col-12 md:col-6 lg:col-3">
             <label style="display: block">Num. Nota Fiscal</label>
             <input pInputText formControlName="numnota" >
             <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
             <sup>*</sup>Somente números. 
           </div>-->
           </div>
-          <div class="p-col-12 p-md-6 p-lg-3">
+          <div class="col-12 md:col-6 lg:col-3">
             <label style="display: block">Data Entrega</label>
             <p-calendar formControlName="dtentrega"></p-calendar>
             <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
             <sup>*</sup>Somente números. 
           </div>-->
           </div>
-          <!-- <div class="p-col-12 p-md-6 p-lg-3">
+          <!-- <div class="col-12 md:col-6 lg:col-3">
             <label style="display: block">Motorista</label>
   
             <div *ngIf="f.codprod.errors" class="invalid-feedback">
             <sup>*</sup>Somente números. 
           </div>
           </div>-->
-          <div class="p-col-12 p-md-6 p-lg-3">
+          <div class="col-12 md:col-6 lg:col-3">
             <label style="display: block">.</label>
             <button pButton type="submit" label="Pesquisar"></button>
           </div>
-          <!--<div class="p-col-4">            
+          <!--<div class="col-4">            
             <button type="button" class="p-button-success" pButton label="Novo" pTooltip="Incluir nova entrega." tooltipPosition="left"
             (click)="showDialog()"></button>  
               <p-dialog header="Nova Entrega" [(visible)]="display" modal="true"> 
@@ -95,7 +95,7 @@
                   <label style="display: block">Cod Entrega</label>
                     {{ajelEntrega.codentrega }} 
                   </td>
-                  <td class="p-col-4">
+                  <td class="col-4">
                   <label style="display: block">Dt Faturamento</label>
                   {{ajelEntrega.dtfat | date:'dd/MM/y hh:mm:ss' }} 
                   

@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastyService } from 'ng2-toasty';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DialogModule } from 'primeng/dialog';
 import { AjelEntregaService } from '../../services/ajel-entrega.service';
 
 
@@ -25,11 +24,11 @@ export class AjelEntregaComponent implements OnInit {
   @Input()
   ajelEntrega = [];
 
-  buscaAjelEntrega = new FormGroup({
+  buscaAjelEntrega = new UntypedFormGroup({
 
-    novonumnota: new FormControl('', [Validators.pattern("^[0-9]*$")]),
-    numnota: new FormControl('', [Validators.pattern("^[0-9]*$")]),
-    dtentrega: new FormControl(''),
+    novonumnota: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")]),
+    numnota: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")]),
+    dtentrega: new UntypedFormControl(''),
 
   });
   displayAlteraTransporte: boolean = false;
@@ -39,7 +38,7 @@ export class AjelEntregaComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private ajelEntregaService: AjelEntregaService,
-    private toasty: ToastyService,
+    private toasty: ToastrService,
     private confirmation: ConfirmationService) { }
 
   ngOnInit(): void {

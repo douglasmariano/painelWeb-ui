@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from 'primeng/api';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { PedidoPesquisaService } from '../../services/pedidos-pesquisa.service';
 
 
@@ -57,16 +57,16 @@ export class PedidosPesquisaComponent implements OnInit {
   ];
  
  
-  buscaPedido = new FormGroup({
+  buscaPedido = new UntypedFormGroup({
    
-    nomeCliente: new FormControl(''),
-    nomeVendedor: new FormControl(''),
-    numped: new FormControl('',[Validators.pattern("^[0-9]*$")]),
+    nomeCliente: new UntypedFormControl(''),
+    nomeVendedor: new UntypedFormControl(''),
+    numped: new UntypedFormControl('',[Validators.pattern("^[0-9]*$")]),
   });
 
 
   constructor(private pedidoPesquisaService: PedidoPesquisaService,
-              private  toasty:ToastyService,
+              private  toasty:ToastrService,
               private  confirmation:ConfirmationService,
               ){  }
 

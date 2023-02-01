@@ -1,32 +1,32 @@
 <div class="container">
-  <div class="p-col">
+  <div class="col">
     <h1>Busca Pedidos</h1>
 
     <form [formGroup]="buscaPedido" autocomplete="off" (ngSubmit)="pesquisar()">
-      <div class="p-grid">
+      <div class="grid">
 
-        <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="col-12 md:col-6 lg:col-3">
           <label style="display: block">Nome Cliente</label>
           <input pInputText appUppercase formControlName="nomeCliente">
         </div>
-        <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="col-12 md:col-6 lg:col-3">
           <label style="display: block">Nome Vendedor</label>
           <input pInputText appUppercase formControlName="nomeVendedor">
         </div>
-        <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="col-12 md:col-6 lg:col-3">
           <label style="display: block">Num. Pedido</label>
           <input pInputText formControlName="numped">
           <div *ngIf="f.numped.errors" class="invalid-feedback">
             <sup>*</sup>Somente números.
           </div>
         </div>
-        <!--<div class="p-col-12">
+        <!--<div class="col-12">
           <label style="display: block">Emissão</label>      
           <p-calendar formControlName="dataPedidoDe" [showIcon]="true" inputId="dataPedidoDe"></p-calendar> 
           <label > até </label>
           <p-calendar formControlName="dataPedidoAte"[showIcon]="true" inputId="dataPedidoAte"></p-calendar> 
         </div> -->
-        <div class="p-col-4">
+        <div class="col-4">
           <button pButton type="submit" label="Pesquisar"></button>
           <button pButton type="button" label="Limpar" (click)="limparBusca()"></button>
         </div>
@@ -36,14 +36,14 @@
 
 <br>
   <div class="p-shadow-3">
-    <div class="p-grid p-fluid">
+    <div class="grid p-fluid">
       <p-table styleClass="p-datatable-sm" [tableStyle]="{'min-width': '50rem'}" [value]="pedidos" [paginator]="true" [rows]="50"
         [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} pedidos"
         [rowsPerPageOptions]="[50,150,250]" [responsive]="true">
         <ng-template pTemplate="header">
           <tr style="text-align:center">
             <th>Numped</th>
-            <th class="p-fluid p-col-3">Cliente</th>
+            <th class="p-fluid col-3">Cliente</th>
             <th>Status</th>
             <th>Vendedor</th>
             <th>Data Pedido</th>
@@ -52,13 +52,13 @@
             <th>Posição</th>
             <th>Cobrança</th>
             <th>Tipo Produto</th>
-            <th class="p-col-1">Opções</th>
+            <th class="col-1">Opções</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-pedidos>
           <tr [ngStyle]="{color: pedidos.status === 'Pacote' ? 'red' : 'blue'}">
             <td>{{pedidos.numped }}</td>
-            <td class="p-fluid p-col-3">{{pedidos.cliente }}</td>
+            <td class="p-fluid col-3">{{pedidos.cliente }}</td>
             <td>{{pedidos.status }}</td>
             <td>{{pedidos.nome }}</td>
             <td>{{pedidos.datadigitacao | date:'dd/MM/y HH:mm:ss'}}</td>

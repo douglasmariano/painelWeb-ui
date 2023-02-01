@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ToastyService } from 'ng2-toasty';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from 'primeng/api';
 import { EstoqueCaboService } from '../../services/estoque-cabo.service';
 
@@ -16,20 +16,20 @@ export class EstoqueCaboComponent implements OnInit {
   estoqueCabo = [];
   estoqueProduto = [];
 
-  buscaCabo = new FormGroup({
+  buscaCabo = new UntypedFormGroup({
 
-    codprod_pcprodut: new FormControl('', [Validators.pattern("^[0-9]*$")]),
+    codprod_pcprodut: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")]),
 
   });
 
-  buscaProduto = new FormGroup({
+  buscaProduto = new UntypedFormGroup({
 
-    codprod: new FormControl('', [Validators.pattern("^[0-9]*$")]),
+    codprod: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")]),
 
   });
 
   constructor(private estoqueCaboService: EstoqueCaboService,
-    private  toasty:ToastyService,
+    private  toasty:ToastrService,
     private  confirmation:ConfirmationService) { }
 
   ngOnInit(): void {

@@ -1,7 +1,3 @@
-import {
-    A,
-    Z,
-  } from '@angular/cdk/keycodes';
   import {
     Directive,
     ElementRef,
@@ -13,6 +9,9 @@ import {
   } from '@angular/core';
   import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   
+  const A = 65;
+  const Z = 90;
+
   @Directive({
     selector: '[appUppercase]',
     providers: [
