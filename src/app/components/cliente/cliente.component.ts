@@ -20,8 +20,7 @@ export class ClienteComponent implements OnInit {
 
   constructor(private clienteService: ClienteService, private router: Router, private route: ActivatedRoute, private toasty : ToastyService) { }
   
-  ngOnInit(): void {
-    
+  ngOnInit(): void {    
     this.route.queryParams.subscribe(params => {
       this.numeroCliente = params['telefone'];
     })
