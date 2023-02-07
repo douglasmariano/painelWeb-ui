@@ -74,11 +74,11 @@ export class EstoqueCaboCadastroComponent implements OnInit {
           dataexclusao : new Date(estoqueCaboCadastro.dataexclusao),  
         }
         //this.estoqueCaboCadastro.setValue ( { datainclusao: new Date(estoqueCaboCadastro.datainclusao) })      
-        console.log({
-          estoqueCaboCadastro, 
-          estoqueCaboTemp
-        });               
-        this.estoqueCaboCadastro.patchValue(estoqueCaboTemp);        
+        //console.log({
+        //  estoqueCaboCadastro, 
+        //  estoqueCaboTemp
+        //});               
+        //this.estoqueCaboCadastro.patchValue(estoqueCaboTemp);        
         })
       }
   }
@@ -93,7 +93,7 @@ export class EstoqueCaboCadastroComponent implements OnInit {
         this.toasty.success('Atualizado');
         this.preencherFormGroup()
         this.carregarEstoqueCabo(this.route.snapshot.params['codcabo']);
-        console.log(this.selectedValues)
+        //console.log(this.selectedValues)
       })
     }
 
@@ -109,7 +109,7 @@ export class EstoqueCaboCadastroComponent implements OnInit {
     this.produtosPorFilial = await this.estoqueCaboService.pesquisarProduto(this.produtoEstoqueSelecionado.value.codprod_pcprodut)     
     this.estoqueCodprodCabo = this.produtosPorFilial.map(notaPesquisada => {
       const notaRetorno = {...notaPesquisada}
-    console.log()
+    //console.log()
     return notaRetorno;
   })}
 

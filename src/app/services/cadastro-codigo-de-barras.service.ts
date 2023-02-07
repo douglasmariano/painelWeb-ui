@@ -30,7 +30,7 @@ export class CadastroCodigoDeBarrasService {
 
   adicionar(codigoDeBarrasPk: CodigoDeBarrasPk): Promise<CodigoDeBarras> {  
     this.codigoDeBarras.id = codigoDeBarrasPk;    
-    console.log(codigoDeBarrasPk)
+    //console.log(codigoDeBarrasPk)
     return this.http.post<CodigoDeBarras>(this.cadastroCodigoDeBarrasUrl+'/novo/', this.codigoDeBarras, {  })
     .toPromise();
   }

@@ -38,7 +38,7 @@ export class AjelEntregaAlteraTransporteComponent implements OnInit {
 
     this.preencherFormGroup();
     this.carregarAjelEntrega(this.codentrega)
-    console.log(this.codentrega)
+    //console.log(this.codentrega)
   }
 
 
@@ -63,7 +63,7 @@ export class AjelEntregaAlteraTransporteComponent implements OnInit {
       nomeconf: event.nome,
       codfuncconf: event.matricula
     })
-    console.log("Evento COnferente")
+    //console.log("Evento COnferente")
   }
 
   onTransportadoraSelecionada(event) {
@@ -78,7 +78,7 @@ export class AjelEntregaAlteraTransporteComponent implements OnInit {
 
     this.childEnabled2 = false;
     this.ajelEntregaCadastro.get('codfornecfrete').enable();
-    console.log("Evento trasnportadora")
+    //console.log("Evento trasnportadora")
   }
 
   onMotoristaSelecionado(event) {
@@ -92,7 +92,7 @@ export class AjelEntregaAlteraTransporteComponent implements OnInit {
 
     this.childEnabled = false;
     this.ajelEntregaCadastro.get('codmotorista').enable();
-    console.log("Evento motorista")
+    //console.log("Evento motorista")
   }
 
   carregarAjelEntrega(codentrega: number) {
@@ -110,12 +110,12 @@ export class AjelEntregaAlteraTransporteComponent implements OnInit {
             }
 
             //this.estoqueCaboCadastro.setValue ( { datainclusao: new Date(estoqueCaboCadastro.datainclusao) })      
-            console.log({
-              ajelEntregaCadastro: ajelEntregaCadastro,
-              ajelEntregaTemp: ajelEntregaTemp
-            });
-            this.ajelEntregaCadastro.patchValue(ajelEntregaTemp);
-            console.log(ajelEntregaTemp)
+            //console.log({
+            //  ajelEntregaCadastro: ajelEntregaCadastro,
+            //  ajelEntregaTemp: ajelEntregaTemp
+           // });
+            //this.ajelEntregaCadastro.patchValue(ajelEntregaTemp);
+            //console.log(ajelEntregaTemp)
           }
 
         })

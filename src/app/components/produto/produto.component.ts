@@ -31,7 +31,7 @@ export class ProdutoComponent implements OnInit {
 
   onMarcaSelecionada(event) {
     this.buscaProduto.patchValue({marcas: event})
-    console.log(this.buscaProduto.value)
+    //console.log(this.buscaProduto.value)
   }
 
   get f() { return this.buscaProduto.controls; }

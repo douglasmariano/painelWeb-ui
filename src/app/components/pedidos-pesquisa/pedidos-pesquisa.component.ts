@@ -100,7 +100,7 @@ export class PedidosPesquisaComponent implements OnInit {
   }
 
   marcarChegada(numped) {
-    console.log(numped)
+    //console.log(numped)
     this.confirmation.confirm(
       {message: 'Deseja informar que o cliente chegou?',
         rejectButtonStyleClass:'p-button-danger',

@@ -37,7 +37,7 @@ export class BuscaBonusEntradaComponent implements OnInit {
 
   pesquisar() {
     this.bonusEntradaMercadoria.pesquisar({ numbonus: this.bonusEntradaForm.value.numbonus, databonus : this.bonusEntradaForm.value.databonus, dtfechamento: this.bonusEntradaForm.value.dtfechamento }).then(bonusEntrada => this.bonusEntrada = bonusEntrada);    
-    console.log(this.bonusEntradaForm.value.numbonus)
+    //console.log(this.bonusEntradaForm.value.numbonus)
   }
   
   digitarItensBonus(numbonus){

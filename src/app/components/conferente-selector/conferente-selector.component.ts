@@ -19,7 +19,7 @@ export class ConferenteSelectorComponent implements OnInit {
   constructor(private funcionarioService: FuncionarioService) { }
 
   emitirConferenteSelecionadas() {
-    console.log(this.conferenteSelecionadas)
+    //console.log(this.conferenteSelecionadas)
     if (this.conferenteSelecionadas) {
       this.conferenteSelecionado.emit(this.conferenteSelecionadas)
     }

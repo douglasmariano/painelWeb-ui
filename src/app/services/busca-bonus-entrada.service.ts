@@ -32,7 +32,7 @@ pesquisar(filtro): Promise<any>{
 
 adicionar(bonusEntradaPk: BonusEntradaPk): Promise<BonusEntrada> {  
     this.bonusEntrada.id = bonusEntradaPk;    
-    console.log(bonusEntradaPk);
+    //console.log(bonusEntradaPk);
     return this.http.post<BonusEntrada>(this.bonusEntradaUrl+'/novo/', this.bonusEntrada, {  })
     .toPromise();
   }

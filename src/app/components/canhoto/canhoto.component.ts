@@ -61,7 +61,7 @@ export class CanhotoComponent implements OnInit {
     const listaNotaPesquisada = await this.canhotoService.pesquisar({
       codfilial: this.selectedFilial.codigo,
       numnotaInicial: this.buscaNotaFiscalSaida.value.numnotaInicial,
-      numnotaFinal: this.valorDaSegundaBusca
+      numnotaFinal: this.valorDaSegundaBusca,      
     })    
 
     this.notaFiscalSaida = listaNotaPesquisada.map(notaPesquisada => {
@@ -79,14 +79,14 @@ export class CanhotoComponent implements OnInit {
 
   onRowEditSave(notafiscal: NotaFiscal) {
     if (notafiscal.botao === true) {
-      console.log(notafiscal.botao)
+      //console.log(notafiscal.botao)
       notafiscal.dtcanhoto = new Date();
       notafiscal.obsnfcarreg = "OK"
       this.messageService.add({ severity: 'success', summary: 'Encontrado', detail: 'Canhoto encontrado.' });
       this.canhotoService.canhotoEncontrado(notafiscal)
     }
     else if (notafiscal.botao === false) {
-      console.log(notafiscal.botao)
+      //console.log(notafiscal.botao)
       notafiscal.dtcanhoto = new Date();
       notafiscal.obsnfcarreg = "FALTOU"
       this.messageService.add({ severity: 'error', summary: 'Faltou', detail: 'Canhoto não encontrado.' });
@@ -97,7 +97,7 @@ export class CanhotoComponent implements OnInit {
       this.messageService.add({ severity: 'warning', summary: 'Buscando', detail: 'Buscando o canhoto.' });
       this.canhotoService.canhotoEncontrado(notafiscal)
     } else {
-      console.log("erro")
+      //console.log("erro")
     }
   }
 

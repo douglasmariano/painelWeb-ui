@@ -20,11 +20,11 @@ export class BuscaItemBonusService {
       return this.http.post(this.buscaItemUrl+"/filtro", filtro)
         .toPromise();
     }
-    console.log(this.buscaItemUrl,filtro)
+    //console.log(this.buscaItemUrl,filtro)
   }
 
   salvaralteracoes(bonusitem :BonusItem ) {
-    console.log(bonusitem)    
+    //console.log(bonusitem)    
       return this.http.put(`${this.buscaItemUrl}/${bonusitem.id.numbonus}/${bonusitem.id.codprod}/0`, bonusitem).toPromise()
 
   
