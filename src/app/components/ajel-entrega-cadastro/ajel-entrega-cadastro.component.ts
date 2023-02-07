@@ -91,12 +91,12 @@ export class AjelEntregaCadastroComponent implements OnInit {
           //dataexclusao : new Date(estoqueCaboCadastro.dataexclusao),  
         }
         //this.estoqueCaboCadastro.setValue ( { datainclusao: new Date(estoqueCaboCadastro.datainclusao) })      
-        console.log({
-          ajelEntregaCadastro: ajelEntregaCadastro, 
-          ajelEntregaTemp: ajelEntregaTemp
-        });               
+        //console.log({
+        //  ajelEntregaCadastro: ajelEntregaCadastro, 
+        //  ajelEntregaTemp: ajelEntregaTemp
+        //});               
         this.ajelEntregaCadastro.patchValue(ajelEntregaTemp); 
-        console.log(ajelEntregaTemp)       
+        //console.log(ajelEntregaTemp)       
         })
       }
   }
@@ -118,7 +118,7 @@ export class AjelEntregaCadastroComponent implements OnInit {
     
     this.childEnabled2 = false;
     this.ajelEntregaCadastro.get('codfornecfrete').enable(); 
-    console.log("Evento trasnportadora")
+    //console.log("Evento trasnportadora")
   }
   
   onMotoristaSelecionado(event) {

@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Informações do Cliente</h1>
+  <div class="container1" *ngIf="showLoader">
+    <p>
+      <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8"
+        fill="var(--surface-ground)" animationDuration="1s"></p-progressSpinner>
+    </p>
+  </div>
+  <div class="container"  style="text-align: center;" *ngIf="showNaoEncontrado">
+    <br>
+    <h2><i class="pi pi-times"></i> Numero não entrado em nosso sistema.</h2>
+    <br>
+  </div>
+  <div class="card">
+    <div class="p-grid">
+      <ng-container>
+        <div class="p-col" *ngFor="let c of cliente">
+          <p-card header={{c.nomeCliente}} [style]="{width: '360px', height: '700px'}" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+              <!--  <img alt="Card" src="assets/showcase/images/usercard.png"> -->
+            </ng-template>
+            <div style="text-align: left;"><h3>Codigo do Cliente: {{c.codigoCliente}}</h3>
+            <strong>CPF/CNPJ:</strong> {{c.cpfcnpj}} <br>
+            <p> <strong>Cidade:</strong> {{c.municcob}}<br>
+            <strong>Estado:</strong> {{c.estcob}} <br></p>
+             <p> <strong>Telefones:</strong> <br>
+              {{c.telcob}}<br>
+              {{c.telent}}<br>
+              {{c.telcom}}<br>
+            </p>
+            <p><strong>Celular:</strong> <br>
+              {{c.telcelent}}
+            </p>
+            <p><strong>Dt. Cadastro:</strong> <br>
+              {{c.dtcadastro| date:"fullDate"}}
+            </p>
+            <p><strong>Bloqueio</strong> <br>
+              {{c.bloqueio == 'N' ? 'Não' : (c.bloqueio  == 'S' ? 'Sim' : '')}} 
+            </p>
+            <p><strong>Bloqueio Sefaz (Orçamento Bloqueado):</strong> <br>
+              {{c.bloqueiosefaz == 'N' ? 'Não' : (c.bloqueiosefaz  == 'S' ? 'Sim' : '')}}              
+            </p>
+            <p><strong>Dt. Ult. Alteração:</strong> <br>
+              {{c.dtultalt| date:"fullDate"}}
+            </p></div>
+            
+            <ng-template pTemplate="footer">
+              <!-- <p-button label="Save" icon="pi pi-check"></p-button>
+            <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
+              [style]="{'margin-left': '.5em'}">
+            </p-button>-->
+            </ng-template>
+          </p-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

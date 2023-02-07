@@ -16,8 +16,8 @@ export class LoginGuard implements CanActivate, CanActivateChild {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (!this.loginService.isUserLogado())  {
-        this.router.navigate(['/login'])
+      if (!this.loginService.isUserLogado())  {     
+        this.router.navigate(['/login'], { queryParams: { nextUrl: state.url } })
         return false;
     }    
     return true;

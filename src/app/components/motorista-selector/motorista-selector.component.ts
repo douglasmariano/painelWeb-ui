@@ -18,7 +18,7 @@ export class MotoristaSelectorComponent implements OnInit {
   constructor(private funcionarioService: FuncionarioService) { }
 
   emitirMotoristaSelecionadas() {
-    console.log(this.motoristaSelecionadas)
+    //console.log(this.motoristaSelecionadas)
     if (this.motoristaSelecionadas) {
       this.motoristaSelecionado.emit(this.motoristaSelecionadas)
     }

@@ -27,7 +27,7 @@ export class BuscaItemBonusComponent implements OnInit {
     this.numbonus = this.route.snapshot.params['numbonus'];
     this.carregarBonus(this.numbonus);
     this.preencherFormGroup();
-    console.log(this.numbonus)
+    //console.log(this.numbonus)
     
   }
   clonedBonus: { [s: string]: BonusItem; } = {};
@@ -59,7 +59,7 @@ export class BuscaItemBonusComponent implements OnInit {
         })
         this.produtosPorCodigo.push({...bonusPesquisado, ...dadosProduto})
        }
-    console.log(this.produtosPorCodigo) 
+    //console.log(this.produtosPorCodigo) 
     this.modeloBonusItem = listaItensBonusPesquisado;
   }
   
@@ -82,7 +82,7 @@ export class BuscaItemBonusComponent implements OnInit {
 
   showDialog(codigoProduto) {
     this.codigoSelecionado = codigoProduto.id.codprod
-    console.log(codigoProduto.id.codprod)
+    //console.log(codigoProduto.id.codprod)
     this.dialogVisible = true;
     
   }

@@ -24,7 +24,7 @@ export class CanhotoService {
       }
   }
   canhotoEncontrado(notafiscal :NotaFiscal ) {
-    console.log(notafiscal.numtransvenda)
+    //console.log(notafiscal.numtransvenda)
     if(notafiscal.obsnfcarreg === ""){
       return this.http.put(`${this.notafiscalSaidaUrl}/dataCanhoto/${notafiscal.numtransvenda}/"null"`, notafiscal).toPromise()
 

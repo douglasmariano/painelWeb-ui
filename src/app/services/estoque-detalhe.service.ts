@@ -20,7 +20,7 @@ export class EstoqueDetalheService {
       return this.http.post(this.produtoEstoqueUrl, filtro)
         .toPromise();
     }
-    console.log(this.produtoEstoqueUrl,filtro)
+    //console.log(this.produtoEstoqueUrl,filtro)
   }
 
 }

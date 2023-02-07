@@ -40,11 +40,11 @@ export class EstoqueCaboComponent implements OnInit {
 
   pesquisar() {
     this.estoqueCaboService.pesquisar({ codprod_pcprodut: this.buscaCabo.value.codprod_pcprodut }).then(estoqueCabo => this.estoqueCabo = estoqueCabo);    
-    console.log(this.buscaCabo)
+    //console.log(this.buscaCabo)
   }
   pesquisarProduto() {
     this.estoqueCaboService.pesquisarProduto({ codprod_pcprodut: this.buscaProduto.value.codprod_pcprodut }).then(estoqueProduto => this.estoqueProduto = estoqueProduto);    
-    console.log(this.estoqueProduto)
+    //console.log(this.estoqueProduto)
   }
 
   excluir(estoqueCabo: any){

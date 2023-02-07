@@ -12,7 +12,7 @@ import { filter, map } from "rxjs/operators";
 })
 
 export class AppComponent {
-  constructor(private toastConfig: ToastyConfig, private router: Router, private activatedRoute:    ActivatedRoute, private titleService: Title){
+  constructor(private toastConfig: ToastyConfig, private router: Router, private activatedRoute:    ActivatedRoute, private titleService: Title){   
     this.toastConfig.theme = 'bootstrap';  
     this.router.events.pipe(
         filter(event => event instanceof NavigationEnd),

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiAddress: '/api/v1'
+  //apiAddress: 'http://192.168.200.17:8080/rest/api/v1'
 };
 
 /*

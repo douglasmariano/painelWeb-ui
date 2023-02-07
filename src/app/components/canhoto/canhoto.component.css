@@ -1,5 +1,8 @@
 
-        .outofstock {
+      button{
+        margin: 0 7px;
+    }
+      .outofstock {
             font-weight: 700;
             color: #FF5252;
             text-decoration: line-through;

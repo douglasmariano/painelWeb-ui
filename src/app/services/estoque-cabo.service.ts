@@ -30,7 +30,7 @@ export class EstoqueCaboService {
       }
   }
   pesquisarProduto(filtro: any): Promise<any> { 
-    console.log(filtro)   
+    //console.log(filtro)   
   if(filtro){ 
       return this.http.post(this.estoqueProdutoUrl,{ codprod: filtro}) 
      .toPromise();
@@ -48,7 +48,7 @@ export class EstoqueCaboService {
   }
 
   atualizar(estoqueCabo: EstoqueCabo): Promise<void> {
-    console.log(estoqueCabo.codcabo)
+    //console.log(estoqueCabo.codcabo)
     return this.http.put(`${this.estoqueCaboUrl}/${estoqueCabo.codcabo}`, estoqueCabo)
       .toPromise()
       .then(() => { this.pesquisar(estoqueCabo.codcabo);});// return this.http.put(this.pedidosUrlAll/numped).toPromise();

@@ -18,7 +18,7 @@ export class TransportadoraSelectorComponent implements OnInit {
   constructor(private trasnportadoraService: TransportadoraService) { }
 
   emitirTransportadoraSelecionadas() {
-    console.log("testeemitir")
+    //console.log("testeemitir")
     if (this.transportadoraSelecionadas) {      
       this.transportadoraSelecionada.emit(this.transportadoraSelecionadas)    
     }

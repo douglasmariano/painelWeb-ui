@@ -16,7 +16,7 @@ export class ProdutoService {
   pesquisar(filtro: any): Promise<any> {
     //const params = new URLSearchParams();
     // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
-    console.log(filtro)
+    //console.log(filtro)
     if (filtro.codprod) {
       // params.set('numped', filtro.numped);
       return this.http.get(this.produtoUrl+'/'+filtro.codprod)
@@ -49,7 +49,7 @@ export class ProdutoService {
   adicionar(produto: Produto): Promise<Produto> {
     return this.http.post<Produto>(this.produtoUrl, produto, {  })
     .toPromise();
-    console.log(produto);
+    //console.log(produto);
   }
 
 

@@ -9,6 +9,7 @@ export class NotaFiscal {
     dtcancel :Date;    
     obsnfcarreg  :String;
     botao  :Boolean;
+    notadupliquesvc  :String;
  
 
 

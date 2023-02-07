@@ -37,7 +37,7 @@ import {
     onKeyDown(evt: KeyboardEvent) {
       const keyCode = evt.keyCode;
       const key = evt.key;
-     // console.log(evt)
+     // //console.log(evt)
       if (keyCode >= A && keyCode <= Z) {
         const value = this._el.nativeElement.value.toUpperCase();
         this._renderer.setProperty(this._el.nativeElement, 'value', value);

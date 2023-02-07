@@ -17,7 +17,7 @@ export class AjelEntregaService {
    
     if (filtro?.numnota) {
      // return this.http.get(this.estoqueCaboUrl+'?codendcabo='+filtro.codendcabo)  
-     console.log("filtro.codentrega")
+     //console.log("filtro.codentrega")
      return this.http.post(this.ajelEntregaUrl+'/numnota/', filtro) 
      .toPromise();
     }
@@ -40,6 +40,7 @@ export class AjelEntregaService {
     // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
     if (filtro) {
       // params.set('numped', filtro.numped);
+      console.log(filtro.numnota)
       return this.http.post(this.ajelEntregaUrl+'/pesquisarNotaWinthor/', filtro)
         .toPromise();
     }

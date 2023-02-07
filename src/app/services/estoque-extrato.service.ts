@@ -19,6 +19,6 @@ export class EstoqueExtratoService {
       return this.http.post(this.produtoExtratoUrl, filtro)
         .toPromise();
     }
-    console.log(this.produtoExtratoUrl,filtro)
+    //console.log(this.produtoExtratoUrl,filtro)
   }
 }

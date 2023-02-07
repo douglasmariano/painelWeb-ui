@@ -34,11 +34,11 @@ export class PedidoPesquisaService {
   adicionar(pedido: Pedido): Promise<Pedido> {
     return this.http.post<Pedido>(this.pedidosUrlAll, pedido, {  })
     .toPromise();
-    console.log(pedido);
+    //console.log(pedido);
   }
 
   marcarChegada(numped) {
-    console.log(numped)
+    //console.log(numped)
     return this.http.put(`${environment.apiAddress}/tabpedidos/marcar_chegada/${numped}`, {}).toPromise()
   }
 }
