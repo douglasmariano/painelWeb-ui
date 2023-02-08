@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from 'primeng/api';
 import { AjelEntregaService } from '../../services/ajel-entrega.service';
 
@@ -11,13 +11,13 @@ import { AjelEntregaService } from '../../services/ajel-entrega.service';
   styleUrls: ['./ajel-entrega-cadastro.component.css']
 })
 export class AjelEntregaCadastroComponent implements OnInit {
-  ajelEntregaCadastro: FormGroup;
+  ajelEntregaCadastro: UntypedFormGroup;
 
   constructor(private route: ActivatedRoute,
     private ajelEntregaService: AjelEntregaService,
-    private toasty: ToastyService,
+    private toasty: ToastrService,
     private confirmation: ConfirmationService,
-    private fb: FormBuilder,   
+    private fb: UntypedFormBuilder,   
     private router: Router) { }
     childEnabled : boolean ;
     childEnabled2 :boolean;

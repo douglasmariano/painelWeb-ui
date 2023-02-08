@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from 'primeng/api';
 import { EstoqueCaboService } from '../../services/estoque-cabo.service';
 
@@ -14,15 +14,15 @@ import { EstoqueCaboService } from '../../services/estoque-cabo.service';
 export class EstoqueCaboCadastroComponent implements OnInit {
 
   selectedValues: string[] = [];
-  estoqueCaboCadastro: FormGroup;
+  estoqueCaboCadastro: UntypedFormGroup;
   dialogVisible: boolean = false;
   produtosPorFilial : any;
 
   constructor(private route: ActivatedRoute,
     private estoqueCaboService: EstoqueCaboService,
-    private toasty: ToastyService,
+    private toasty: ToastrService,
     private confirmation: ConfirmationService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router) { }
     produtoEstoqueSelecionado;
   ngOnInit(): void {

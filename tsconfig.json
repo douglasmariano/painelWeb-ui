@@ -5,8 +5,12 @@
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@services/*": ["app/services/*"],
-      "@environments/*": ["environments/*"]
+      "@services/*": [
+        "app/services/*"
+      ],
+      "@environments/*": [
+        "environments/*"
+      ]
     },
     "sourceMap": true,
     "declaration": false,
@@ -14,11 +18,12 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es5",
+    "target": "ES2022",
     "module": "es2020",
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "useDefineForClassFields": false
   }
 }

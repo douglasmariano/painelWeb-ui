@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { CanhotoService } from '../../services/canhoto.service';
 import { Filial, NotaFiscal } from '../../models/canhoto.model';
@@ -21,9 +21,9 @@ export class CanhotoComponent implements OnInit {
   filiais: Filial[];
 
   selectedFilial: Filial;
-  buscaNotaFiscalSaida: FormGroup;
+  buscaNotaFiscalSaida: UntypedFormGroup;
   clonedNotaFiscal: { [s: string]: NotaFiscal; } = {};
-  constructor(private formBuilder: FormBuilder, private canhotoService: CanhotoService, private messageService: MessageService) {
+  constructor(private formBuilder: UntypedFormBuilder, private canhotoService: CanhotoService, private messageService: MessageService) {
 
   }
 

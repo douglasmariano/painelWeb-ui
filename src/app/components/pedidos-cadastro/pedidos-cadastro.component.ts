@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from 'primeng/api';
 import { PedidoPesquisaService } from '../../services/pedidos-pesquisa.service';
 import { Router } from '@angular/router';
@@ -35,13 +35,13 @@ export class PedidosCadastroComponent implements OnInit {
     { label: 'Não', value: 'N' },
   ];
 
-  pedido: FormGroup;
+  pedido: UntypedFormGroup;
 
   constructor(private route: ActivatedRoute,
     private pedidoService: PedidoPesquisaService,
-    private toasty: ToastyService,
+    private toasty: ToastrService,
     private confirmation:ConfirmationService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router) { }
 
   ngOnInit(): void {

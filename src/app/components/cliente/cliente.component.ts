@@ -1,4 +1,4 @@
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class ClienteComponent implements OnInit {
   showNaoEncontrado:boolean = false;
   urlAtual = this.router.url;
 
-  constructor(private clienteService: ClienteService, private router: Router, private route: ActivatedRoute, private toasty : ToastyService) { }
+  constructor(private clienteService: ClienteService, private router: Router, private route: ActivatedRoute, private toasty : ToastrService) { }
   
   ngOnInit(): void {    
     this.route.queryParams.subscribe(params => {

@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, NgModel, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { BuscaItemBonusComponent } from '../busca-item-bonus/busca-item-bonus.component';
 
 
@@ -20,12 +20,12 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
  
   @Input()
   codprod:number;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
     private cadastroCodigoDeBarrasService: CadastroCodigoDeBarrasService, 
     private buscaItemComponente: BuscaItemBonusComponent,   
-    private toasty: ToastyService,
+    private toasty: ToastrService,
     private route: ActivatedRoute    ) {
 
       this.formDeCodigo();

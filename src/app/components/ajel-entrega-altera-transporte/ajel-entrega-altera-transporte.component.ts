@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from 'primeng/api';
 import { AjelEntregaService } from '../../services/ajel-entrega.service';
 
@@ -11,11 +11,11 @@ import { AjelEntregaService } from '../../services/ajel-entrega.service';
   styleUrls: ['./ajel-entrega-altera-transporte.component.css']
 })
 export class AjelEntregaAlteraTransporteComponent implements OnInit {
-  ajelEntregaCadastro: FormGroup;
+  ajelEntregaCadastro: UntypedFormGroup;
 
-  buscaAjelEntrega = new FormGroup({
+  buscaAjelEntrega = new UntypedFormGroup({
 
-    codentrega: new FormControl('', [Validators.pattern("^[0-9]*$")])
+    codentrega: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")])
 
 
   });
@@ -26,9 +26,9 @@ export class AjelEntregaAlteraTransporteComponent implements OnInit {
   
   constructor(private route: ActivatedRoute,
     private ajelEntregaService: AjelEntregaService,
-    private toasty: ToastyService,
+    private toasty: ToastrService,
     private confirmation: ConfirmationService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router) { }
   childEnabled: boolean;
   childEnabled2: boolean;

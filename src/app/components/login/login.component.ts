@@ -1,10 +1,7 @@
-import { Observable } from 'rxjs';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { data } from 'jquery';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -26,10 +23,9 @@ export class LoginComponent implements OnInit {
   }
 
   iniciarForm() {
-    this.form = new FormGroup({
-      usuario: new FormControl(''),
-      senha: new FormControl(''),
-
+    this.form = new UntypedFormGroup({
+      usuario: new UntypedFormControl(''),
+      senha: new UntypedFormControl(''),
     });
 
   }

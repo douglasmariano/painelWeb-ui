@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProdutoService } from '../../services/produto.service';
 import { BuscaItemBonusService } from '../../services/busca-item-bonus.service';
@@ -15,13 +15,13 @@ export class BuscaItemBonusComponent implements OnInit {
 
   numbonus: number;
   modeloBonusItem : BonusItem[];
-  buscaitembonus : FormGroup;  
+  buscaitembonus : UntypedFormGroup;  
   produtosPorCodigo: any[];
   codigoSelecionado;
 
   dialogVisible: boolean = false;
   constructor(private buscaItemEntradaService: BuscaItemBonusService, private buscaProdutoService: ProdutoService, private route: ActivatedRoute,
-    private fb: FormBuilder,) { }
+    private fb: UntypedFormBuilder,) { }
 
   ngOnInit(): void {
     this.numbonus = this.route.snapshot.params['numbonus'];

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastyService } from 'ng2-toasty';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService } from 'primeng/api';
 import { BuscaBonusEntradaService } from '../../services/busca-bonus-entrada.service';
 
@@ -16,16 +16,16 @@ export class BuscaBonusEntradaComponent implements OnInit {
   bonus: string;
   bonusEntrada = [];
 
-  bonusEntradaForm = new FormGroup({
+  bonusEntradaForm = new UntypedFormGroup({
 
-    numbonus: new FormControl('', [Validators.pattern("^[0-9]*$")]),
-    databonus: new FormControl(''),
-    dtfechamento: new FormControl(''),
+    numbonus: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")]),
+    databonus: new UntypedFormControl(''),
+    dtfechamento: new UntypedFormControl(''),
 
   });
 
   constructor(private bonusEntradaMercadoria: BuscaBonusEntradaService,
-    private  toasty:ToastyService,
+    private  toasty:ToastrService,
     private  confirmation:ConfirmationService,
     private router: Router,) { }
 
