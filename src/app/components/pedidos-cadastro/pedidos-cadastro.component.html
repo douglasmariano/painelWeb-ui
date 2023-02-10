@@ -4,111 +4,111 @@
         <div class="p-field">
             <h1> Dados do Pedido </h1>
         </div>
-        <div class="p-fluid p-formgrid p-grid">
-          <div class="p-field p-col-4">
+        <div class="p-fluid p-formgrid grid">
+          <div class="p-field col-4">
               <label>Numero do Pedido</label>
               <input pInputText   formControlName="numped" #numped>
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Vendedor</label>
               <input pInputText   formControlName="nome">
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Cliente</label>
               <input pInputText   formControlName="cliente">
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Data do Pedido</label>
               <p-calendar formControlName="datadigitacao" showTime="true" hourFormat="24"></p-calendar>
             </div>
             
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
                 <label>Data de Chegada do Cliente</label>
                 <p-calendar formControlName="datachegadacli" showTime="true" hourFormat="24"></p-calendar>
               </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Mapa de Separação</label>
               <p-calendar formControlName="dataemissaomapa" showTime="true" hourFormat="24"></p-calendar>
             </div>
             
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
                 <label>Cod. Separador</label>
                 <input pInputText   formControlName="codfuncsep">
               </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Iniciou Separação</label>
               <p-calendar formControlName="datainiciosep" showTime="true" hourFormat="24"></p-calendar>
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Finalizou Separação</label>
               <p-calendar formControlName="datafimsep" showTime="true" hourFormat="24"></p-calendar>
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
                 <label>Cod. Balconista</label>
                 <input pInputText   formControlName="codfuncbalcao">
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Data Entrega no Balcão</label>
               <p-calendar formControlName="datainiciosep" showTime="true" hourFormat="24"></p-calendar>
             </div>
 
  <!--
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>dataatual</label>
               <p-calendar formControlName="dataatual" showTime="true" hourFormat="24"></p-calendar>
             </div>
 
-           <div class="p-field p-col-4">
+           <div class="p-field col-4">
               <label>aguardsep</label>
               <input pInputText   formControlName="aguardsep">
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>emseparacao</label>
               <input pInputText   formControlName="emseparacao">
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>emconferencia</label>
               <input pInputText   formControlName="emconferencia">
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>tempodecor</label>
               <input pInputText   formControlName="tempodecor">
             </div> 
         
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>ordem</label>
               <input pInputText   formControlName="ordem">
             </div>-->
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Posição Pedido</label>
               <input pInputText   formControlName="posicao">
             </div>
             <!--
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Esta no Painel?</label>
               <input pInputText   formControlName="painel">
             </div> -->
         </div>
-        <div class="p-fluid p-formgrid p-grid">
-            <div class="p-field p-col-2">
+        <div class="p-fluid p-formgrid grid">
+            <div class="p-field col-2">
              <!-- <button pButton type="submit" label="Salvar"></button>-->
             </div> 
-            <div class="p-field p-col-2">         
+            <div class="p-field col-2">         
               <button pButton type="button" label="Informar Chegada"  (click)="marcarChegada(numped.value)"></button>  
             </div>
-            <div class="p-field p-col-2">
+            <div class="p-field col-2">
               <button pButton type="button" label="Voltar" (click)="voltar()"></button> 
             </div>
         </div>     

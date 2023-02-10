@@ -3,24 +3,24 @@
 <div class="container">
 <h1>Controle de Canhotos</h1>
       <form [formGroup]="buscaNotaFiscalSaida" autocomplete="off" (ngSubmit)="pesquisar()">
-        <div class="p-grid">
-          <div class="p-col-6 p-md-2 p-lg-3">
+        <div class="grid">
+          <div class="col-6 md:col-2 lg:col-3">
             <label style="display: block">Filial</label>
             <p-dropdown [options]="filiais" [(ngModel)]="selectedFilial" optionLabel="nome" formControlName="codfilial" placeholder="Selecione uma Filial"></p-dropdown>                                
           </div>
-          <div class="p-col-6 p-md-2 p-lg-3">
+          <div class="col-6 md:col-2 lg:col-3">
             <label style="display: block">Num. Nota Inicial</label>
             <input pInputText formControlName="numnotaInicial" >          
           </div>         
           
-          <div  class="p-col-6 p-md-2 p-lg-3">            
+          <div  class="col-6 md:col-2 lg:col-3">            
             <label style="display: block">Num. Nota Final</label>            
             <input pInputText formControlName="numnotaFinal" >            
              <div *ngIf="f.numnotaFinal.errors" class="invalid-feedback">
             <sup>* Numero precisa ser maior que o anterior. </sup>
           </div>
           </div>                      
-          <div class="p-col-6 p-md-2 p-lg-3">
+          <div class="col-6 md:col-2 lg:col-3">
             <label style="display: block"> </label>            
             <button pButton type="submit" label="Pesquisar"></button>
           </div>

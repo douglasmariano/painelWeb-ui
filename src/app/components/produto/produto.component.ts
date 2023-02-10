@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ProdutoService } from '../../services/produto.service';
 import {DropdownModule} from 'primeng/dropdown';
 @Component({
@@ -13,11 +13,11 @@ export class ProdutoComponent implements OnInit {
   
   produtos = [];
 
-  buscaProduto = new FormGroup({
-    codprod: new FormControl('', [Validators.pattern("^[0-9]*$")]),
-    descricao: new FormControl('', []),
-    marcas: new FormControl([]),
-    codfab: new FormControl('', []),
+  buscaProduto = new UntypedFormGroup({
+    codprod: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")]),
+    descricao: new UntypedFormControl('', []),
+    marcas: new UntypedFormControl([]),
+    codfab: new UntypedFormControl('', []),
   });
 
   constructor(private produtoService: ProdutoService, ) {  }

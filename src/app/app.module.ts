@@ -3,7 +3,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { ToastyModule } from 'ng2-toasty';
+import { ToastrModule } from 'ngx-toastr';
 
 import { ConfirmationService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -213,7 +213,7 @@ const routes: Routes=[
     TooltipModule,
     HttpClientModule,
     AutoCompleteModule,
-    ToastyModule.forRoot(),
+    ToastrModule.forRoot(),
     ConfirmDialogModule,
     DynamicDialogModule,
     PanelModule,
@@ -225,7 +225,7 @@ const routes: Routes=[
     FormsModule,
     CalendarModule,    
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {}),
     ReactiveFormsModule,
     ReactiveFormsModule, 
     InputSwitchModule,

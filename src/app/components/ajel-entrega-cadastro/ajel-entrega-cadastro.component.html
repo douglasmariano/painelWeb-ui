@@ -4,24 +4,24 @@
         <div class="p-field">
             <h1> Dados do Pedido </h1>
         </div>
-        <div class="p-fluid p-formgrid p-grid">
+        <div class="p-fluid p-formgrid grid">
           
-          <div class="p-field p-col-4">
+          <div class="p-field col-4">
               <label >Num. Nota Fiscal</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="numnota"  [attr.disabled]="true">
             </div>
             
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Cod. Usuário</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="codusur" [attr.disabled]="true" >
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Nome do Vendedor</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="nomevendedor" [attr.disabled]="true" >
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Nota Fiscal</label><br>
               <!--<input pInputText class="p-inputtext-sm"  formControlName="vlatend"   [attr.disabled]="true" >-->
               <p-inputNumber formControlName="vlatend"   mode="currency" currency="BRL" locale="pt-BR"  disabled="true"></p-inputNumber> 
@@ -30,19 +30,19 @@
               <p-calendar formControlName="dtfat" showTime="true" hourFormat="24"   disabled="true"></p-calendar>  
             </div>     
 
-            <span class="p-field p-col-4">
+            <span class="p-field col-4">
               <label>Cod. Cliente</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="codcli"        [attr.disabled]="true">
               <input pInputText class="p-inputtext-sm"  formControlName="nomecliente"   [attr.disabled]="true">
             </span>           
            
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Conferente</label><br>
               <input pInputText class="p-inputtext-sm"    formControlName="codfuncconf" disabled   >             
               <app-conferente-selector (conferenteSelecionado)="onConferenteSelecionado($event)" pTooltip="Selecione o Conferente" tooltipPosition="right"></app-conferente-selector> 
             </div>          
             
-            <div class="p-field p-col-6">
+            <div class="p-field col-6">
               <label>Observação 01</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="obs"         [attr.disabled]="true">
               <input pInputText class="p-inputtext-sm"  formControlName="obs1"        [attr.disabled]="true" >
@@ -52,7 +52,7 @@
             </div>
           
             
-            <div class="p-field p-col-6">
+            <div class="p-field col-6">
               <label>Endereço</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="estcob"      [attr.disabled]="true"><br>
               <input pInputText class="p-inputtext-sm"  formControlName="codcidade"   [attr.disabled]="true"><br>
@@ -61,12 +61,12 @@
               <input pInputText class="p-inputtext-sm"  formControlName="local"       placeholder="Digite Local de Entrega">    <br>          
             </div>
 
-            <div class="p-field p-col-2">
+            <div class="p-field col-2">
               <label>Cod. Transp.</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="codfornecfrete" disabled>
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Transportadora</label><br>
               <!--<input pInputText class="p-inputtext-sm"  formControlName="fornecedor"> -->
               <fieldset [disabled]="childEnabled2">
@@ -74,12 +74,12 @@
               </fieldset>                         
             </div>
 
-            <div class="p-field p-col-2">
+            <div class="p-field col-2">
               <label>Cod. Motorista</label><br>
               <input pInputText class="p-inputtext-sm"  formControlName="codmotorista" disabled>
             </div>
 
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Motorista</label><br>
               <fieldset [disabled]="childEnabled">
                <app-motorista-selector (motoristaSelecionado)="onMotoristaSelecionado($event)" pTooltip="Selecione o Motorista" tooltipPosition="left"></app-motorista-selector>
@@ -87,22 +87,22 @@
             </div>
                   
 
-            <div class="p-field p-col-6">
+            <div class="p-field col-6">
               <label>Observação do Entregador</label><br>
               <input pInputText  class="p-inputtext-sm" formControlName="obsdoentregador">
             </div>         
           
-            <div class="p-field p-col-4">
+            <div class="p-field col-4">
               <label>Data Entrega</label><br>
               <p-calendar formControlName="dtentrega" showTime="true" hourFormat="24"></p-calendar>               
             </div>            
                 
         </div>
-        <div class="p-fluid p-formgrid p-grid">
-           <div class="p-field p-col-2">
+        <div class="p-fluid p-formgrid grid">
+           <div class="p-field col-2">
              <button pButton type="submit" label="Salvar" ></button>
             </div>           
-            <div class="p-field p-col-2">
+            <div class="p-field col-2">
               <button pButton type="button" label="Voltar" (click)="voltar()"></button> 
             </div>
         </div>     

@@ -5,9 +5,9 @@
       <h1> Dados do Pedido </h1>
     </div>
 
-    <div class="p-fluid p-formgrid p-grid">
+    <div class="p-fluid p-formgrid grid">
       <p-card>
-        <div class="p-field p-col-6">
+        <div class="p-field col-6">
           <label>Cod. Produto</label>
           <input pInputText formControlName="codprod_pcprodut">
 
@@ -15,40 +15,40 @@
           <input pInputText formControlName="qt">
         </div>
 
-        <div class="p-field p-col-6">
+        <div class="p-field col-6">
           <label>Qt Gerencial</label>
           <input pInputText formControlName="qtgerencial">
         </div>
 
-        <div class="p-field p-col-6">
+        <div class="p-field col-6">
           <label>Tipo Endereço</label>
           <input pInputText formControlName="tipoendereco">
         </div>
-        <div class="p-field p-col-6">
+        <div class="p-field col-6">
           <label>Status</label>
           <input pInputText formControlName="status">
         </div>
-        <div class="p-field p-col-6">
+        <div class="p-field col-6">
           <label>Observações</label>
           <input pInputText formControlName="obs">
         </div>
-        <div class="p-field p-col-6">
+        <div class="p-field col-6">
           <label>Cod. Produto Estoque</label>
           <input pInputText   formControlName="codprod_pcest" >
         </div>
-        <div class="p-field p-col-6">
+        <div class="p-field col-6">
           <label>Cod. Filial</label>
           <input pInputText  formControlName="codfilial_pcest" >
         </div>
-        <div class="p-field p-col-6">
+        <div class="p-field col-6">
           <label>Cod. Func. Inclusão</label>
           <input pInputText   formControlName="matricula">
         </div>           
-        <div class="p-field p-col-6">
+        <div class="p-field col-6">
           <label>Fabricante</label>
           <input pInputText   formControlName="codfornec">
         </div>
-            <div class="p-field p-col-6">
+            <div class="p-field col-6">
           <label>Cod Marca</label>
           <input pInputText   formControlName="codmarca">
         </div>
@@ -56,7 +56,7 @@
       <p-divider layout="vertical"></p-divider>
       <p-card>
         <div>
-          <div class="p-field p-col-6">
+          <div class="p-field col-6">
             <label>Rua</label>
             <p-inputNumber formControlName="rua" mode="decimal" [showButtons]="true" [min]="300" [max]="399" buttonLayout="horizontal"
               spinnerMode="horizontal" pTooltip="Rua" tooltipPosition="left" decrementButtonClass="p-button-secondary"
@@ -65,7 +65,7 @@
             </p-inputNumber>
           </div>
 
-          <div class="p-field p-col-6">
+          <div class="p-field col-6">
             <label>Modulo</label>
             <p-inputNumber formControlName="modulo" mode="decimal" [showButtons]="true" buttonLayout="horizontal"
               spinnerMode="horizontal" pTooltip="Modulo" tooltipPosition="left"
@@ -74,7 +74,7 @@
             </p-inputNumber>
           </div>
 
-          <div class="p-field p-col-6">
+          <div class="p-field col-6">
             <label>Apto</label>
             <p-inputNumber formControlName="apto" mode="decimal" [showButtons]="true" buttonLayout="horizontal"
               spinnerMode="horizontal" pTooltip="Apto" tooltipPosition="left" decrementButtonClass="p-button-secondary"
@@ -82,7 +82,7 @@
               decrementButtonIcon="pi pi-minus">
             </p-inputNumber>
           </div>
-          <div class="p-field p-col-6">
+          <div class="p-field col-6">
             <label>Numero</label>
             <p-inputNumber formControlName="numero" mode="decimal" [showButtons]="true" buttonLayout="horizontal"
               spinnerMode="horizontal" pTooltip="Numero" tooltipPosition="left"
@@ -92,17 +92,17 @@
           </div>
         </div>
       </p-card>
-      <!--  <div class="p-field p-col-4">
+      <!--  <div class="p-field col-4">
                 <label>Data Entrada</label>
                 <p-calendar formControlName="dtultmovent" showTime="true" hourFormat="24"></p-calendar>
               </div> -->
     </div>
 <p-divider></p-divider>
-    <div class="p-fluid p-formgrid p-grid">
-      <div class="p-field p-col-2">
+    <div class="p-fluid p-formgrid grid">
+      <div class="p-field col-2">
         <button pButton type="button" (click)="showDialog(estoqueCaboCadastro)" label="Salvar"></button>
       </div>
-      <div class="p-field p-col-2">
+      <div class="p-field col-2">
         <button pButton type="button" label="Voltar" (click)="voltar()"></button>
       </div>
     </div>
