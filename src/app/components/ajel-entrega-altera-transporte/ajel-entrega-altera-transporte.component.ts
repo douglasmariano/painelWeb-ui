@@ -114,7 +114,7 @@ export class AjelEntregaAlteraTransporteComponent implements OnInit {
             //  ajelEntregaCadastro: ajelEntregaCadastro,
             //  ajelEntregaTemp: ajelEntregaTemp
            // });
-            //this.ajelEntregaCadastro.patchValue(ajelEntregaTemp);
+            this.ajelEntregaCadastro.patchValue(ajelEntregaTemp);
             //console.log(ajelEntregaTemp)
           }
 

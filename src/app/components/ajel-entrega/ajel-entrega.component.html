@@ -89,33 +89,46 @@
           </ng-template>
             <ng-template pTemplate="rowexpansion" let-ajelEntrega >
              <div class="container" >
-              <p-panel >             
+              <p-panel >
+                <div class="tres">  
+                                  
+                  <p-dialog header="Dados do Entregador" [(visible)]="displayAlteraTransporte" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+                    <app-ajel-entrega-altera-transporte  
+                      [codentrega]= "codigoEntregaAlteracao" 
+                      *ngIf="displayAlteraTransporte" 
+                      (onVisible)="alterarValorDisplayAlteraTransporte($event)" ></app-ajel-entrega-altera-transporte>
+                  </p-dialog> 
+                   <button pButton pRipple type="button" class="p-button-info" label="Alterar"
+                      pTooltip="Informações sobre a entrega." tooltipPosition="top"
+                      (click)="showDialogAlteraTransporte(ajelEntrega.codentrega)"></button>
+                
+                    <button pButton type="button" class="p-button-danger" label="Excluir" tooltipPosition="top"
+                      (click)="excluir(ajelEntrega.codentrega)"></button>
+                                   
+                 </div>              
                 <tr>
                   <td>
                   <label style="display: block">Cod Entrega</label>
                     {{ajelEntrega.codentrega }} 
                   </td>
-                  <td class="p-col-4">
-                  <label style="display: block">Dt Faturamento</label>
-                  {{ajelEntrega.dtfat | date:'dd/MM/y hh:mm:ss' }} 
-                  
-                  </td>
                   <td>
-                    <label style="display: block">Valor</label>
-                    {{ajelEntrega.vlatend | currency:'BRL'}}
-                  </td>
-                  
+                  <label style="display: block">Dt Faturamento</label>
+                  {{ajelEntrega.dtfat | date:'dd/MM/y hh:mm:ss' }}                   
+                  </td>                               
                 </tr>               
                 <tr> 
                   <td>
                     <label style="display: block">Endereço</label>
                     {{ajelEntrega.estcob }} - {{ajelEntrega.nomecidade }}  - {{ajelEntrega.endercob }} 
                     {{ajelEntrega.local }}  
-                  </td>                 
-                  
+                  </td>
+                  <td>
+                    <label style="display: block">Valor</label>
+                    {{ajelEntrega.vlatend | currency:'BRL'}}
+                  </td> 
                 </tr> 
                 <tr>
-                  <td>
+                  <td class="p-col-8">
                     <label style="display: block">Observações</label>
                   {{ajelEntrega.obs }} - {{ajelEntrega.obs1 }}  
                   {{ajelEntrega.obsentrega1 }} - {{ajelEntrega.obsentrega2 }}  - {{ajelEntrega.obsentrega3 }}  
@@ -137,23 +150,7 @@
                     <label style="display: block">Dt. Inclusão</label>
                     {{ajelEntrega.dtinclusao | date:'dd/MM/y hh:mm:ss' }}                     
                   </td>
-                </tr>        
-                  <tr>                   
-                    <p-dialog header="Dados do Entregador" [(visible)]="displayAlteraTransporte" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
-                      <app-ajel-entrega-altera-transporte  
-                        [codentrega]= "codigoEntregaAlteracao" 
-                        *ngIf="displayAlteraTransporte" 
-                        (onVisible)="alterarValorDisplayAlteraTransporte($event)" ></app-ajel-entrega-altera-transporte>
-                    </p-dialog>                 
-                  
-                    <td> <button pButton pRipple type="button" class="p-button-info" label="Alterar"
-                        pTooltip="Informações sobre a entrega." tooltipPosition="top"
-                        (click)="showDialogAlteraTransporte(ajelEntrega.codentrega)"></button>
-                  
-                      <button pButton type="button" class="p-button-danger" label="Excluir" tooltipPosition="top"
-                        (click)="excluir(ajelEntrega.codentrega)"></button>
-                    </td>                  
-                  </tr>                
+                </tr>                  
                 </p-panel>
               </div>
                 </ng-template>
