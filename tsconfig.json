@@ -10,6 +10,9 @@
       ],
       "@environments/*": [
         "environments/*"
+      ],
+      "@/*":[
+        "app/*"
       ]
     },
     "sourceMap": true,

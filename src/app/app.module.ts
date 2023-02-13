@@ -2,8 +2,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { registerLocaleData } from '@angular/common';
+import localeDE from '@angular/common/locales/de';
+import localeES from '@angular/common/locales/es';
+import localeFR from '@angular/common/locales/fr';
+import localePT from '@angular/common/locales/pt';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { ToastrModule } from 'ngx-toastr';
+
+import { UppercaseDirective } from './uppercase.directive';
 
 import { ConfirmationService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -27,154 +36,61 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
-import { DividerModule} from 'primeng/divider'
+import { DividerModule } from 'primeng/divider';
 import { CardModule } from 'primeng/card';
-import { SplitterModule } from "primeng/splitter";
-import {CheckboxModule} from 'primeng/checkbox';
-import {DataViewModule} from 'primeng/dataview';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { SplitterModule } from 'primeng/splitter';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DataViewModule } from 'primeng/dataview';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { LoginGuard } from './login.guard';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PedidosCadastroComponent } from './components/pedidos-cadastro/pedidos-cadastro.component';
 import { PedidosPesquisaComponent } from './components/pedidos-pesquisa/pedidos-pesquisa.component';
-import { UppercaseDirective } from './uppercase.directive';
-
-import { registerLocaleData } from '@angular/common';
-import localeDE from '@angular/common/locales/de';
-import localeES from '@angular/common/locales/es';
-import localeFR from '@angular/common/locales/fr';
-import localePT from '@angular/common/locales/pt';
 import { AjelEntregaAlteraTransporteComponent } from './components/ajel-entrega-altera-transporte/ajel-entrega-altera-transporte.component';
 import { AjelEntregaCadastroComponent } from './components/ajel-entrega-cadastro/ajel-entrega-cadastro.component';
 import { AjelEntregaComponent } from './components/ajel-entrega/ajel-entrega.component';
-import { AjelEntregaService } from './services/ajel-entrega.service';
 import { BuscaBonusEntradaComponent } from './components/busca-bonus-entrada/busca-bonus-entrada.component';
-import { BuscaBonusEntradaService } from './services/busca-bonus-entrada.service';
 import { BuscaItemBonusComponent } from './components/busca-item-bonus/busca-item-bonus.component';
-import { BuscaItemBonusService } from './services/busca-item-bonus.service';
 import { CadastroCodigoDeBarrasComponent } from './components/cadastro-codigo-de-barras/cadastro-codigo-de-barras.component';
 import { CanhotoComponent } from './components/canhoto/canhoto.component';
-import { CanhotoService } from './services/canhoto.service';
 import { ConferenteSelectorComponent } from './components/conferente-selector/conferente-selector.component';
 import { EstoqueCaboCadastroComponent } from './components/estoque-cabo-cadastro/estoque-cabo-cadastro.component';
 import { EstoqueCaboComponent } from './components/estoque-cabo/estoque-cabo.component';
-import { EstoqueCaboService } from './services/estoque-cabo.service';
 import { EstoqueDetalheComponent } from './components/estoque-detalhe/estoque-detalhe.component';
-import { EstoqueDetalheService } from './services/estoque-detalhe.service';
 import { EstoqueExtratoComponent } from './components/estoque-extrato/estoque-extrato.component';
-import { EstoqueExtratoService } from './services/estoque-extrato.service';
 import { MarcaSelectorComponent } from './components/marca-selector/marca-selector.component';
-import { MarcaService } from './services/marca.service';
 import { MotoristaSelectorComponent } from './components/motorista-selector/motorista-selector.component';
 import { PainelAcompamentoPedidosComponent } from './components/painel-acompamento-pedidos/painel-acompamento-pedidos.component';
-import { PainelAcompamentoPedidosService } from './services/painel-acompamento-pedidos.service';
 import { PainelPedidosComponent } from './components/painel-pedidos/painel-pedidos.component';
-import { PainelPedidosService } from './services/painel-pedidos.service';
-import { PedidoService } from './services/pedido.service';
-import { PedidoPesquisaService } from './services/pedidos-pesquisa.service';
 import { ProdutoComponent } from './components/produto/produto.component';
+import { ClienteComponent } from './components/cliente/cliente.component';
+import { TransportadoraSelectorComponent } from './components/transportadora-selector/transportadora-selector.component';
+
+import { AjelEntregaService } from './services/ajel-entrega.service';
+import { BuscaBonusEntradaService } from './services/busca-bonus-entrada.service';
+import { BuscaItemBonusService } from './services/busca-item-bonus.service';
+import { CanhotoService } from './services/canhoto.service';
+import { EstoqueDetalheService } from './services/estoque-detalhe.service';
+import { PedidoService } from './services/pedido.service';
+import { EstoqueCaboService } from './services/estoque-cabo.service';
+import { EstoqueExtratoService } from './services/estoque-extrato.service';
+import { MarcaService } from './services/marca.service';
+import { PainelAcompamentoPedidosService } from './services/painel-acompamento-pedidos.service';
+import { PainelPedidosService } from './services/painel-pedidos.service';
+import { PedidoPesquisaService } from './services/pedidos-pesquisa.service';
 import { ProdutoService } from './services/produto.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { TransportadoraSelectorComponent } from './components/transportadora-selector/transportadora-selector.component';
 import { TransportadoraService } from './services/transportadora.service';
-import { ClienteComponent } from './components/cliente/cliente.component';
+
+import { routes } from '@/routes';
+
 registerLocaleData(localePT);
 registerLocaleData(localeES);
 registerLocaleData(localeDE);
 registerLocaleData(localeFR);
-
-const routes: Routes=[
-  {path: 'login', component: LoginComponent},
-  {path: '', component: PedidosPesquisaComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Consulta Pedido'
-    }
-  },
-  {path: 'pedidos', component: PedidosPesquisaComponent, canActivate : [LoginGuard], 
-    data: {
-      title: 'Consulta Pedido'
-    }
-  },
-  {path: 'pedidos/novo', component: PedidosCadastroComponent, canActivate : [LoginGuard], 
-    data: {
-      title: 'Incluindo Pedidos'
-    }
-  },
-  {path: 'pedidos/:numped', component: PedidosCadastroComponent, canActivate : [LoginGuard] }, 
-  {path: 'painel', component: PainelPedidosComponent, canActivate : [LoginGuard] }, 
-  {path: 'estoquecabo', component: EstoqueCaboComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Estoque Cabos'
-    }
-  },
-  {path: 'estoquecabo/novo', component: EstoqueCaboCadastroComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Cadastro de Estoque Cabos'
-    }
-  },
-  {path: 'estoquecabo/:codcabo', component: EstoqueCaboCadastroComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Alteração de Estoque Cabos'
-    }
-  },
-  {path: 'produto', component: ProdutoComponent,
-    data: {
-      title: 'Produtos'
-    }
-  },
-  {path: 'ajelentrega', component: AjelEntregaComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Lista de Pedido Entregues'
-    }
-  },
-  {path: 'ajelentrega/:numnota', component: AjelEntregaCadastroComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Adicionar nova Entrega'
-    }
-  },
-  {path: 'ajelentrega/alteraSeparacao/:codentrega', component: AjelEntregaCadastroComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Alterar Entrega'
-    }
-  },
-  {path: 'painelacompanhaPedidos', component: PainelAcompamentoPedidosComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Painel Acompanha Pedidos'
-    }
-  },
-  {path: 'canhoto', component: CanhotoComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Controle de Canhotos'
-    }
-  }, 
-  {path: 'codigodebarras', component: CadastroCodigoDeBarrasComponent, canActivate : [LoginGuard],
-    data: {
-      title: 'Cadastro de Codigo de Barras'
-    }
-  },
-  {path: 'buscar-item-entrada/:numbonus', component: BuscaItemBonusComponent, canActivate : [LoginGuard],
-  data: {
-    title: 'Busca itens Bônus'
-  }
-},
-  {path: 'buscar-bonus-entrada', component: BuscaBonusEntradaComponent, canActivate : [LoginGuard],
-  data: {
-    title: 'Busca Bônus'
-  }
-},
-{path: 'cliente/telefone', component: ClienteComponent, canActivate : [LoginGuard],
-  data: {
-    title: 'Informações do Cliente'
-  }
-}  
-];
 
 @NgModule({
   declarations: [
@@ -200,7 +116,7 @@ const routes: Routes=[
     AjelEntregaAlteraTransporteComponent,
     PainelAcompamentoPedidosComponent,
     CanhotoComponent,
-    CadastroCodigoDeBarrasComponent,    
+    CadastroCodigoDeBarrasComponent,
     BuscaBonusEntradaComponent,
     BuscaItemBonusComponent,
     ClienteComponent,
@@ -217,17 +133,17 @@ const routes: Routes=[
     ConfirmDialogModule,
     DynamicDialogModule,
     PanelModule,
-    DialogModule,   
+    DialogModule,
     SelectButtonModule,
     InputNumberModule,
     InputMaskModule,
     DropdownModule,
     FormsModule,
-    CalendarModule,    
+    CalendarModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes, {}),
     ReactiveFormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     InputSwitchModule,
     TriStateCheckboxModule,
     ToastModule,
@@ -244,14 +160,18 @@ const routes: Routes=[
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
     PedidoService,
     PainelPedidosService,
     PedidoPesquisaService,
-    ConfirmationService, 
+    ConfirmationService,
     EstoqueCaboService,
-    ProdutoService, 
-    EstoqueDetalheService, 
+    ProdutoService,
+    EstoqueDetalheService,
     EstoqueExtratoService,
     EstoqueCaboService,
     MarcaService,
@@ -260,8 +180,8 @@ const routes: Routes=[
     PainelAcompamentoPedidosService,
     CanhotoService,
     BuscaBonusEntradaService,
-    BuscaItemBonusService
+    BuscaItemBonusService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
