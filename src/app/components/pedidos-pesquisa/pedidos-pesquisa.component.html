@@ -48,9 +48,10 @@
             <th>Vendedor</th>
             <th>Data Pedido</th>
             <th>Obs.</th>
-            <th>Data Chegada</th>            
+            <th>Data Chegada</th>                       
             <th>Posição</th>
             <th>Cobrança</th>
+            <th>Pos. Pedido</th> 
             <th>Tipo Produto</th>
             <th class="col-1">Opções</th>
           </tr>
@@ -63,9 +64,10 @@
             <td>{{pedidos.nome }}</td>
             <td>{{pedidos.datadigitacao | date:'dd/MM/y HH:mm:ss'}}</td>
             <td>{{pedidos.obs}}</td>
-            <td>{{pedidos.datachegadacli | date:'dd/MM/y HH:mm:ss' }}</td>            
+            <td>{{pedidos.datachegadacli | date:'dd/MM/y HH:mm:ss' }}</td>                     
             <td style="text-align:center">{{pedidos.posicao}}</td>
-            <td style="text-align:center">{{pedidos.cobranca }}</td>
+            <td style="text-align:center">{{pedidos.cobranca }}</td> 
+            <td style="text-align:center">{{pedidos.posicaopedido}}</td>  
             <td style="text-align:center">{{pedidos.tipoproduto}}</td>
             <td>
               <button  pButton class="p-button-raised p-button-rounded p-button-sm" type="button"  icon="pi pi-check"

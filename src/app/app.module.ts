@@ -86,6 +86,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { TransportadoraService } from './services/transportadora.service';
 
 import { routes } from '@/routes';
+import { RolesDirective } from './navbar/roles.directive';
 
 registerLocaleData(localePT);
 registerLocaleData(localeES);
@@ -120,6 +121,7 @@ registerLocaleData(localeFR);
     BuscaBonusEntradaComponent,
     BuscaItemBonusComponent,
     ClienteComponent,
+    RolesDirective,
   ],
   imports: [
     BrowserModule,

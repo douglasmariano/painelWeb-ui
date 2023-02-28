@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 
@@ -21,11 +22,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: '',
-    component: PedidosPesquisaComponent,
+    component: HomeComponent,
     canActivate: [AuthGuard],
     data: {
-      title: 'Consulta Pedido',
-      role: ['ROLE_ADMIN']
+      title: 'Home',
+      //role: ['ROLE_COMPRAS','ROLE_VENDAS','ROLE_FINANCEIRO','ROLE_LOGISTICA','ROLE_EXPEDICAO','ROLE_RH',
+      //        'ROLE_FISCAL','ROLE_CONTABIL','ROLE_OUTROS','ROLE_DIRETOR','ROLE_GERENTE','ROLE_COORDENADOR','ROLE_OPERADOR','ROLE_TI', 'ROLE_OUTROTIPOCARGO', '']
     },
   },
   {
@@ -34,7 +36,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Consulta Pedido',
-      role: ['ROLE_FINANCEIRO']
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_VENDAS']
     },
   },
   {
@@ -54,6 +56,9 @@ const routes: Routes = [
     path: 'painel',
     component: PainelPedidosComponent,
     canActivate: [AuthGuard],
+    data:{
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_VENDAS']
+    }
   },
   {
     path: 'estoquecabo',
@@ -61,6 +66,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Estoque Cabos',
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_LOGISTICA']
     },
   },
   {
@@ -82,8 +88,10 @@ const routes: Routes = [
   {
     path: 'produto',
     component: ProdutoComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Produtos',
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_LOGISTICA']
     },
   },
   {
@@ -92,6 +100,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Lista de Pedido Entregues',
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_EXPEDICAO']
     },
   },
   {
@@ -100,6 +109,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Adicionar nova Entrega',
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_EXPEDICAO']
     },
   },
   {
@@ -108,6 +118,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Alterar Entrega',
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_EXPEDICAO']
     },
   },
   {
@@ -124,6 +135,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Controle de Canhotos',
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_EXPEDICAO','ROLE_FISCAL' ]
     },
   },
   {
@@ -156,6 +168,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Informações do Cliente',
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_VENDAS']
     },
   },
 ];

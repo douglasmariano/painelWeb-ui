@@ -55,7 +55,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     const rolesRota = route.data.role;
 
     if (!this.hasCommonElement(rolesUser, rolesRota)) {
-      return false;
+      console.log("RolesUser: "+rolesUser)
+      console.log("RolesRota: "+rolesRota)
+      return false;      
     }
 
     return true;
