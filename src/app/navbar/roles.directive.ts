@@ -16,12 +16,7 @@ export class RolesDirective {
     @Input() set appRoles(allowedRoles: Array<string>) {
       let shouldShow: boolean = false;
       let loginRoles:Array<string> = this.loginService.getRoles();     
-      for(let role of loginRoles){
-        console.log(loginRoles)
-        if(role.toUpperCase() == "ROLE_TI"){
-          shouldShow = true;          
-          break;
-        }
+      for(let role of loginRoles){        
         for(let allowedRole of allowedRoles){
           allowedRole = allowedRole.toUpperCase();
           if(allowedRole.toUpperCase() == role.toUpperCase()){

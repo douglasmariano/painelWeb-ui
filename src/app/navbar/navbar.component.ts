@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -12,13 +12,16 @@ export class NavbarComponent {
   loginUrl = '/login?nextUrl=%2F'
   loginUrl2 = '/login'
 
-  visibleSidebar1;
+  visibleSidebar1: boolean;
   gfg: MenuItem[];
+
   constructor(
     private router: Router) {
   }
+
   ngInit() {
   }
+  
   get isVisibleRoute() {
     return true
   }

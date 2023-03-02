@@ -43,5 +43,6 @@ export class LoginComponent implements OnInit {
     const nextUrl = this.route.snapshot.queryParams.nextUrl;
     this.error = await this.loginService.efetuarLogin(this.form.value, nextUrl)
   }
+  
 
 }

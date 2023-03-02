@@ -67,7 +67,7 @@
             <td>{{pedidos.datachegadacli | date:'dd/MM/y HH:mm:ss' }}</td>                     
             <td style="text-align:center">{{pedidos.posicao}}</td>
             <td style="text-align:center">{{pedidos.cobranca }}</td> 
-            <td style="text-align:center">{{pedidos.posicaopedido}}</td>  
+            <td style="text-align:center"  [ngClass]="pedidos.posicaopedido !== 'Bloqueado' ? '' : 'currentStyles'">{{pedidos.posicaopedido}}</td>  
             <td style="text-align:center">{{pedidos.tipoproduto}}</td>
             <td>
               <button  pButton class="p-button-raised p-button-rounded p-button-sm" type="button"  icon="pi pi-check"
