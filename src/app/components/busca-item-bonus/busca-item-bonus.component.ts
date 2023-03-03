@@ -82,7 +82,7 @@ export class BuscaItemBonusComponent implements OnInit {
 
   showDialog(codigoProduto) {
     this.codigoSelecionado = codigoProduto.id.codprod
-    //console.log(codigoProduto.id.codprod)
+    console.log(codigoProduto.id.codprod)
     this.dialogVisible = true;
     
   }

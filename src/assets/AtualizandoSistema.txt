@@ -1,0 +1,17 @@
+no backend
+eu gera o arquivo war e mudo o nome dele para 'rest'
+entro no manager do tomcat( e dou deploy no arquivo war.
+
+no frontend
+preciso altere o enviroment
+depois eu rodo o comando:
+ng build --base-href /
+
+incluo os arquivos de dentro do Dist da src,  para dentro do Dist da pasta Download do servidor
+entra com sudo su no servidor e vai ate a pasta /var/www
+e roda os comandos abaixo
+*rm -rf html/*
+cp -r /home/douglas/Download/dist/painelWeb-ui/* /var/www/html
+cp -r /home/douglas/Ajel/.htaccess /var/www/html
+systemctl restart apache2
+ 

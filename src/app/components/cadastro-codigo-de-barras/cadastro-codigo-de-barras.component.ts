@@ -19,7 +19,7 @@ import { CadastroCodigoDeBarrasService } from '../../services/cadastro-codigo-de
 export class CadastroCodigoDeBarrasComponent implements OnInit {
  
   @Input()
-  codprod:number;
+  codigoSelecionado:number;
   form: UntypedFormGroup;
 
   constructor(private fb: UntypedFormBuilder,
@@ -32,7 +32,7 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
       
   }
     
-  @ViewChild('codprod')  elementRef: ElementRef;
+  @ViewChild('codigoSelecionado')  elementRef: ElementRef;
  
 
   AfterViewInit() {
@@ -40,8 +40,9 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
   }
   ngOnInit(): void {
     this.form.patchValue({
-      codprod: this.codprod,      
+      codprod: this.codigoSelecionado,      
     }); 
+    console.log(this.codigoSelecionado)
   }
  
    
@@ -72,7 +73,7 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
  
   formDeCodigo(){
     this.form = this.fb.group({
-      codprod: [{value: this.codprod},[Validators.required, Validators.pattern('^[0-9]*$')]],
+      codprod: [{value: this.codigoSelecionado},[Validators.required, Validators.pattern('^[0-9]*$')]],
       codbarra: [null,[Validators.required]]
     });
    } 
