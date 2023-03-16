@@ -127,6 +127,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Painel Acompanha Pedidos',
+      role: ['ROLE_TI','ROLE_GERENTE']
     },
   },
   {
@@ -144,6 +145,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Cadastro de Codigo de Barras',
+      role: ['ROLE_TI','ROLE_GERENTE' ]
+    },
+  },
+  {
+    path: 'produto/codigodebarra/:codprod',
+    component: CadastroCodigoDeBarrasComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Cadastro de Codigo de Barras',
+      role: ['ROLE_TI','ROLE_GERENTE' ]
     },
   },
   {
@@ -152,6 +163,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Busca itens Bônus',
+      role: ['ROLE_TI','ROLE_GERENTE' ]
     },
   },
   {
@@ -160,6 +172,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Busca Bônus',
+      role: ['ROLE_TI','ROLE_GERENTE' ]
     },
   },
   {

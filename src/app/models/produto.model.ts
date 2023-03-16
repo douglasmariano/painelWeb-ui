@@ -6,5 +6,7 @@ export class Produto {
     apt: number;
     numero: number; 
     qt: number; 
-    dtexclusao : Date;   
+    dtexclusao : Date; 
+    codauxiliar: String;
+    codauxiliar2: String;  
   }

@@ -148,7 +148,6 @@ export class AjelEntregaCadastroComponent implements OnInit {
         this.carregarAjelEntrega(this.route.snapshot.params['codentrega']);
       })
     }
-
   }
 
   voltar() {

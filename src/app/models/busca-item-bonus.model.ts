@@ -6,8 +6,8 @@ export class BonusItemPk{
 export class BonusItem{
     id:BonusItemPk;
     descricao:String;
-    codaux:number;
-    codaux2:number;
+    codauxiliar: String;
+    codauxiliar2: String;  
     qtnf: number;
     codfab: String;
     qtentrada: number;

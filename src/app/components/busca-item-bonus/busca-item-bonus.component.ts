@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProdutoService } from '../../services/produto.service';
+import { ConfirmationService } from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { BonusItem } from '../../models/busca-item-bonus.model';
 import { BuscaItemBonusService } from '../../services/busca-item-bonus.service';
-import { BonusItem } from '../../models/busca-item-bonus.model'
+import { ProdutoService } from '../../services/produto.service';
 
 @Component({
   selector: 'app-busca-item-bonus',
@@ -12,57 +13,60 @@ import { BonusItem } from '../../models/busca-item-bonus.model'
 })
 export class BuscaItemBonusComponent implements OnInit {
 
-
   numbonus: number;
-  modeloBonusItem : BonusItem[];
-  buscaitembonus : UntypedFormGroup;  
+  modeloBonusItem: BonusItem[];
+  buscaitembonus: UntypedFormGroup;
   produtosPorCodigo: any[];
   codigoSelecionado;
 
   dialogVisible: boolean = false;
-  constructor(private buscaItemEntradaService: BuscaItemBonusService, private buscaProdutoService: ProdutoService, private route: ActivatedRoute,
-    private fb: UntypedFormBuilder,) { }
+  constructor(private buscaItemEntradaService: BuscaItemBonusService,
+    private buscaProdutoService: ProdutoService,
+    private route: ActivatedRoute,
+    private fb: UntypedFormBuilder,
+    private confirmation:ConfirmationService ) { }
 
   ngOnInit(): void {
     this.numbonus = this.route.snapshot.params['numbonus'];
     this.carregarBonus(this.numbonus);
     this.preencherFormGroup();
     //console.log(this.numbonus)
-    
   }
+
   clonedBonus: { [s: string]: BonusItem; } = {};
+
   preencherFormGroup() {
-    this.buscaitembonus = this.fb.group({      
-        id:'',
-        codprod: '',  
-        numbonus: '',         
-        qtnf: '',
-        codfab: '',
-        qtentrada: '',
-        qtavaria: '',
-        qtavariaun: '',
-        qtentun: '',
-        tipoembalagempedido: '',
-      });
+    this.buscaitembonus = this.fb.group({
+      id: '',
+      codprod: '',
+      numbonus: '',
+      qtnf: '',
+      codfab: '',
+      qtentrada: '',
+      qtavaria: '',
+      qtavariaun: '',
+      qtentun: '',
+      tipoembalagempedido: '',
+    });
   }
+
   get f() { return this.buscaitembonus.controls; }
 
-  
   async carregarBonus(numbonus: number) {
     this.produtosPorCodigo = [];
     const listaItensBonusPesquisado = await this.buscaItemEntradaService.pesquisar({
       numbonus: numbonus,
-       })
-       for (const bonusPesquisado of listaItensBonusPesquisado) {
-        const dadosProduto: any = await this.buscaProdutoService.pesquisar({
-          codprod: bonusPesquisado.id.codprod,
-        })
-        this.produtosPorCodigo.push({...bonusPesquisado, ...dadosProduto})
-       }
+    })
+    for (const bonusPesquisado of listaItensBonusPesquisado) {
+      const dadosProduto: any = await this.buscaProdutoService.pesquisar({
+        codprod: bonusPesquisado.id.codprod,
+      })
+      this.produtosPorCodigo.push({ ...bonusPesquisado, ...dadosProduto })
+    }
     //console.log(this.produtosPorCodigo) 
     this.modeloBonusItem = listaItensBonusPesquisado;
   }
-  
+
   onRowEditInit(bonusitem: BonusItem) {
     this.clonedBonus[bonusitem.id.codprod] = { ...bonusitem };
   }
@@ -72,20 +76,30 @@ export class BuscaItemBonusComponent implements OnInit {
   }
 
   onRowEditCancel(bonusitem: BonusItem, index: number) {
-    this.modeloBonusItem[index] = this.clonedBonus[bonusitem.id.codprod];
+    this.modeloBonusItem[index] = this.clonedBonus[bonusitem.id.codprod]; 
+    this.confirmation.confirm(
+      {
+        message: 'Deseja zerar as quantidades?',
+        defaultFocus: "Sim" ,   
+        header: "COnfirmação",         
+        accept: () => {                      
+          bonusitem.qtentun = 0;
+          bonusitem.qtavariaun = 0;         
+        }
+      }
+    );
+    this.buscaItemEntradaService.salvaralteracoes(bonusitem)      
     delete this.clonedBonus[bonusitem.id.codprod];
   }
 
-  limparEstoqueSelecionado(){
+  limparEstoqueSelecionado() {
     this.codigoSelecionado = null;
   }
 
   showDialog(codigoProduto) {
     this.codigoSelecionado = codigoProduto.id.codprod
-    console.log(codigoProduto.id.codprod)
     this.dialogVisible = true;
-    
-  }
 
+  }
 
 }
