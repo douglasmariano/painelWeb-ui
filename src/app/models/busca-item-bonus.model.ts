@@ -14,5 +14,7 @@ export class BonusItem{
     qtavaria: number;
     qtavariaun: number;
     qtentun: number;
+    qtavariacx: number;
+    qtentcx: number;
   
 }

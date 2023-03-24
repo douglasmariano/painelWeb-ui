@@ -18,13 +18,17 @@
                 <!--<input (keydown.enter)="onKeydown($event)" type="text"  formControlName="codprod"  disabled="true" pInputText> -->
                      
               </div>
-        <div class="p-field col-4">
+        <div class="p-field col-4" *ngIf="!barrasUnitario">
                 <label>Cod. Barras</label>
                 <input autofocus  (keydown.enter)="onKeydown($event)" type="text" formControlName="codauxiliar" pInputText>     
-        </div>      
+        </div>
+        <div class="p-field col-4" *ngIf="barrasUnitario">
+            <label>Cod. Barras Caixas</label>
+            <input  autofocus  (keydown.enter)="onKeydown($event)" type="text" formControlName="codauxiliar2" pInputText>     
+    </div>      
         <div class="p-field col-4">
             <label>.</label>
-            <button  (keydown.enter)="onKeydown($event)" pButton  type="submit" label="Salvar" (focus)='salvar()' ng-click="onKeydown($event)"></button>           
+            <button  (keydown.enter)="onKeydown($event)" pButton  type="submit" label="Salvar" (focus)='onKeydown($event)'></button>           
            </div>    
         </div>     
     </form>      

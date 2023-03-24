@@ -17,3 +17,30 @@
 :host ::ng-deep .row-accessories {
     background-color: rgba(0, 255, 98, 0.15) !important;
 }
+
+div.central
+{
+  width:300px;
+  height:100px;  
+  display: table; 
+  background:#ccddcc;  
+}
+
+
+p.central {
+  text-align:center; 
+  vertical-align: middle;
+  display: table-cell;   
+}
+
+th {
+  border: 1px solid rgb(190, 190, 190);
+  padding: 10px;
+}
+th[scope='row'] {
+  background-color: #d7d9f2;
+}
+td[scope='col'] {
+  background-color: #e0dedebd;
+  
+}

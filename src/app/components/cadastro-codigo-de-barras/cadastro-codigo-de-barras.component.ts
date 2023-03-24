@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CadastroCodigoDeBarrasService } from '../../services/cadastro-codigo-de-barras.service';
@@ -15,6 +15,8 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
 
   @Input()
   codigoSelecionado: number;
+  barrasUnitario: boolean;
+  
   form: UntypedFormGroup;
 
   constructor(private fb: FormBuilder,
@@ -25,16 +27,15 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
   }
 
   @ViewChild('codigoSelecionado') elementRef: ElementRef;
-
-  AfterViewInit() {
-    console.log("AfterViewInit")
-  }
-
+  
+  
   ngOnInit(): void {
     this.form.patchValue({
       codprod: this.codigoSelecionado,
-    });
-    console.log("init" + this.codigoSelecionado)
+    });     
+    
+    console.log( this.barrasUnitario)
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -48,15 +49,15 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
   get f() {return this.form.controls;}
 
   salvar() {
-    this.cadastroCodigoDeBarrasService.atualizar(this.form.controls.codprod.value, this.form.controls.codauxiliar.value ).then(() => {
+    this.cadastroCodigoDeBarrasService.atualizar(this.form.controls.codprod.value, this.form.controls.codauxiliar.value, this.form.controls.codauxiliar2.value ).then(() => {
       this.toasty.success('Cadastrado com sucesso');
     })
     this.formDeCodigo();
     //this.elementRef.nativeElement.focus()
-    this.buscaItemComponente.dialogVisible = false;
-    this.buscaItemComponente.ngOnInit();
-
+    this.buscaItemComponente.dialogVisible = false;  
+    //window.location.reload();
   }
+  
 
   onKeydown(event) {
     if (event.keyCode === 13 && event.target.nodeName === 'INPUT') {
@@ -70,7 +71,8 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
   formDeCodigo() {
     this.form = this.fb.group({
       codprod: [{ value: this.codigoSelecionado, disabled: true }, [Validators.required, Validators.pattern('^[0-9]*$')]],
-      codauxiliar: [null, [Validators.required]]
+      codauxiliar: [null, [Validators.required]],
+      codauxiliar2: [null, [Validators.required]]
     });
   }
 }

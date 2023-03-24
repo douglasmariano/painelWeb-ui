@@ -1,32 +1,39 @@
 <div class="container">
   <h1>Bônus: {{ numbonus }}</h1>
-  <p-table [value]="produtosPorCodigo" dataKey="id.codprod" editMode="row" responsiveLayout="scroll"
-    styleClass="p-datatable-sm">
-    <ng-template pTemplate="header">
-      <tr>
-        <th style="width: 2rem"></th>
-        <!--<th style="width: 6rem">Cod. Barras</th>-->
-        <th style="width: 6rem">Cod. Prod</th>
-        <th style="width: 14rem">Produto</th>
-        <th style="width: 8rem">Qt. Produto </th>
-        <th style="width: 8rem">Qt. Avaria</th>
-        <th style="width: 8rem"></th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-produtosPorCodigo let-editing="editing" let-ri="rowIndex">
-      <tr [pEditableRow]="produtosPorCodigo"
-        [ngClass]="{'row-accessories': produtosPorCodigo.qtentun === produtosPorCodigo.qtnf}">
-        <td>
-          <button pButton pRipple type="button" icon="pi pi-qrcode" (click)="showDialog(produtosPorCodigo)"
-            class="p-button-rounded p-button-warning"></button>          
-        </td>
-       <!--<td>
+  <div class="p-shadow-3">
+    <p-table [value]="produtosPorCodigo" dataKey="id.codprod" editMode="row" responsiveLayout="scroll"
+      styleClass="p-datatable-striped p-datatable-sm">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 2rem"></th>         
+          <th style="width: 4rem">Cod. Barras</th>
+          <th style="width: 2rem">Cod. Prod</th>
+          <th style="width: 14rem">Produto</th>
+          <th style="width: 2rem"></th>
+          <th style="width: 2rem">Qt. Caixa </th>
+          <th style="width: 2rem"></th>
+          <th style="width: 4rem">Cod. Barras Cx</th>
+          <th style="width: 6rem">Dt. Ult. Alteração</th>        
+        <!--  <th style="width: 8rem">Qt. Avaria</th>
+          <th style="width: 8rem">Qt. Caixas</th>
+          <th style="width: 8rem">Qt. Cx. Avaria</th>
+          <th style="width: 8rem"></th>-->
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-produtosPorCodigo let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="produtosPorCodigo"
+          [ngClass]="{'row-accessories': produtosPorCodigo.qtentun === produtosPorCodigo.qtnf}">
+          <td>
+            <button pButton pRipple type="button" id="barras1" icon="pi pi-qrcode" (click)="showDialog(produtosPorCodigo, true)"
+              class="p-button-rounded p-button-warning"></button>
+          </td>
+          <td>
           {{produtosPorCodigo.codauxiliar}} 
-        </td>--> 
-        <td
-          [ngClass]="{'outofstock': produtosPorCodigo.id.codprod === produtosPorCodigo.codauxiliar, 'instock': produtosPorCodigo.id.codprod !== produtosPorCodigo.codauxiliar}">
-          {{ produtosPorCodigo.id.codprod }}
-          <!-- <p-cellEditor>
+        </td>
+          <td
+            [ngClass]="{'outofstock': produtosPorCodigo.id.codprod === produtosPorCodigo.codauxiliar, 'instock': produtosPorCodigo.id.codprod !== produtosPorCodigo.codauxiliar}">
+            {{ produtosPorCodigo.id.codprod }}
+            <!-- <p-cellEditor>
             <ng-template pTemplate="input" >
               <input
                 pInputText
@@ -39,53 +46,126 @@
             </ng-template>
           </p-cellEditor>
         </td>-->
-        <td>
-          {{produtosPorCodigo.descricao}}
+          <td>
+            {{produtosPorCodigo.descricao}}
 
-        </td>
-        <td style="width: 8rem;text-align:center;">
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <p-inputNumber [(ngModel)]="produtosPorCodigo.qtentun" [showButtons]="true" min="0"
-                buttonLayout="horizontal" spinnerMode="horizontal" size="1" decrementButtonClass="p-button-danger"
-                incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
-                decrementButtonIcon="pi pi-minus"></p-inputNumber>
-              <!-- <input pInputText type="text" [(ngModel)]="produtosPorCodigo.qtentun" required> -->
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ produtosPorCodigo.qtentun }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td style="width: 8rem;text-align:center;">
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <p-inputNumber [(ngModel)]="produtosPorCodigo.qtavariaun" [showButtons]="true" min="0"
-                max={{produtosPorCodigo.qtentun}} buttonLayout="horizontal" spinnerMode="horizontal" size="1"
-                decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
-                incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
-              <!--<p-dropdown [options]="statuses" appendTo="body" [(ngModel)]="produtosPorCodigo.qtavariaun" [style]="{'width':'100%'}"></p-dropdown>--->
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{ produtosPorCodigo.qtavariaun }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td style="text-align: center">
-          <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
-            (click)="onRowEditInit(produtosPorCodigo)" class="p-button-rounded p-button-success mr-1"></button>
-          <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
-            (click)="onRowEditSave(produtosPorCodigo)" class="p-button-rounded p-button-success mr-1"></button>
-          <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
-            (click)="onRowEditCancel(produtosPorCodigo, ri)" class="p-button-rounded p-button-danger"></button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+          </td>
+          <td scope='col'>
+            <button pButton pRipple type="button" id="barras2" icon="pi pi-box" (click)="showDialog(produtosPorCodigo, false)"
+              class="p-button-rounded p-button-warning"></button>
+          </td>
+
+          <td scope='col' style="width: 8rem;text-align:center;">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-inputNumber [(ngModel)]="produtosPorCodigo.qtunitcx" [showButtons]="true" min="1"
+                  buttonLayout="horizontal" spinnerMode="horizontal" size="1" decrementButtonClass="p-button-danger"
+                  incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
+                  decrementButtonIcon="pi pi-minus"></p-inputNumber>
+
+                <!-- <input pInputText type="text" [(ngModel)]="produtosPorCodigo.qtentun" required> -->
+             
+                </ng-template>
+              <ng-template pTemplate="output">
+                {{ produtosPorCodigo.qtunitcx }}
+              </ng-template>
+            </p-cellEditor>
+          </td>  
+          <td scope='col' style="text-align: center">
+            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+              (click)="onRowEditInit(produtosPorCodigo)" class="p-button-rounded p-button-success mr-1"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+              (click)="onRowEditSave(produtosPorCodigo)" class="p-button-rounded p-button-success mr-1"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+              (click)="onRowEditCancel(produtosPorCodigo, ri)" class="p-button-rounded p-button-danger"></button>
+          </td>       
+          <td scope='col'>
+            {{produtosPorCodigo.codauxiliar2}} 
+          </td>
+          <td scope='col'>
+            {{produtosPorCodigo.dtultalter | date:'short'}}
+
+          </td>
+          <!--<td style="width: 8rem;text-align:center;">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-inputNumber [(ngModel)]="produtosPorCodigo.qtentun" [showButtons]="true" min="0"
+                  buttonLayout="horizontal" spinnerMode="horizontal" size="1" decrementButtonClass="p-button-danger"
+                  incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
+                  decrementButtonIcon="pi pi-minus"></p-inputNumber>
+
+                <!-- <input pInputText type="text" [(ngModel)]="produtosPorCodigo.qtentun" required> 
+             
+                </ng-template>
+              <ng-template pTemplate="output">
+                {{ produtosPorCodigo.qtentun }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td style="width: 8rem;text-align:center;">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-inputNumber [(ngModel)]="produtosPorCodigo.qtavariaun" [showButtons]="true" min="0"
+                  max={{produtosPorCodigo.qtentun}} buttonLayout="horizontal" spinnerMode="horizontal" size="1"
+                  decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                  incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+
+                <!--<p-dropdown [options]="statuses" appendTo="body" [(ngModel)]="produtosPorCodigo.qtavariaun" [style]="{'width':'100%'}"></p-dropdown>
+
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ produtosPorCodigo.qtavariaun }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+
+          <td style="width: 8rem;text-align:center;">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-inputNumber [(ngModel)]="produtosPorCodigo.qtentcx" [showButtons]="true" min="0"
+                  buttonLayout="horizontal" spinnerMode="horizontal" size="1" decrementButtonClass="p-button-danger"
+                  incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
+                  decrementButtonIcon="pi pi-minus"></p-inputNumber>
+
+                <!-- <input pInputText type="text" [(ngModel)]="produtosPorCodigo.qtentun" required> 
+
+
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ produtosPorCodigo.qtentcx }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td style="width: 8rem;text-align:center;">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <p-inputNumber [(ngModel)]="produtosPorCodigo.qtavariacx" [showButtons]="true" min="0"
+                  max={{produtosPorCodigo.qtentcx}} buttonLayout="horizontal" spinnerMode="horizontal" size="1"
+                  decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                  incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+
+
+                <!--<p-dropdown [options]="statuses" appendTo="body" [(ngModel)]="produtosPorCodigo.qtavariaun" [style]="{'width':'100%'}"></p-dropdown>
+
+                
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ produtosPorCodigo.qtavariacx }}
+              </ng-template>
+            </p-cellEditor>
+          </td> -->       
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
   <p-dialog *ngIf="codigoSelecionado" header="Cadastro Codigo de Barras" [(visible)]="dialogVisible"
     [style]="{width: '75vw'}" [baseZIndex]="10000" [maximizable]="true" [modal]="true" [resizable]="true"
     [contentStyle]="{height: '300px'}">
 
     <app-cadastro-codigo-de-barras [codigoSelecionado]="codigoSelecionado"></app-cadastro-codigo-de-barras>
   </p-dialog>
+
+  <div class="p-field col-2">
+    <button pButton type="button" label="Voltar" (click)="voltar()"></button>
+  </div>
 </div>

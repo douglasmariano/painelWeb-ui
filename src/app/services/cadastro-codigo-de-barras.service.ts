@@ -38,11 +38,12 @@ export class CadastroCodigoDeBarrasService {
       });
   }
 
-  atualizar(codigoSelecionado, CodigoAuxiliar: Produto): Promise<void> {    
+  atualizar(codigoSelecionado, CodigoAuxiliar, CodigoAuxiliar2 : Produto): Promise<void> {    
     console.log(codigoSelecionado)
     const produto = {
       codprod : codigoSelecionado,
-      codauxiliar: CodigoAuxiliar
+      codauxiliar: CodigoAuxiliar,
+      codauxiliar2: CodigoAuxiliar2
     }
     return this.http.put(`${this.cadastroCodigoDeBarrasnoProdutoUrl}/${codigoSelecionado}`, produto)
       .toPromise()

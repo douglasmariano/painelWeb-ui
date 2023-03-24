@@ -1,10 +1,11 @@
-import { ConfirmationService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { BonusItem } from '../../models/busca-item-bonus.model';
 import { BuscaItemBonusService } from '../../services/busca-item-bonus.service';
 import { ProdutoService } from '../../services/produto.service';
+import { CadastroCodigoDeBarrasComponent } from './../cadastro-codigo-de-barras/cadastro-codigo-de-barras.component';
 
 @Component({
   selector: 'app-busca-item-bonus',
@@ -18,13 +19,15 @@ export class BuscaItemBonusComponent implements OnInit {
   buscaitembonus: UntypedFormGroup;
   produtosPorCodigo: any[];
   codigoSelecionado;
+  barrasUnitario;
 
   dialogVisible: boolean = false;
   constructor(private buscaItemEntradaService: BuscaItemBonusService,
     private buscaProdutoService: ProdutoService,
     private route: ActivatedRoute,
     private fb: UntypedFormBuilder,
-    private confirmation:ConfirmationService ) { }
+    private confirmation:ConfirmationService,
+    private router: Router ) { }
 
   ngOnInit(): void {
     this.numbonus = this.route.snapshot.params['numbonus'];
@@ -46,6 +49,8 @@ export class BuscaItemBonusComponent implements OnInit {
       qtavaria: '',
       qtavariaun: '',
       qtentun: '',
+      qtavariacx: '',
+      qtentcx: '',
       tipoembalagempedido: '',
     });
   }
@@ -84,7 +89,9 @@ export class BuscaItemBonusComponent implements OnInit {
         header: "COnfirmação",         
         accept: () => {                      
           bonusitem.qtentun = 0;
-          bonusitem.qtavariaun = 0;         
+          bonusitem.qtentrada = 0;
+          bonusitem.qtavariaun = 0;
+          this.buscaItemEntradaService.salvaralteracoes(bonusitem)           
         }
       }
     );
@@ -96,10 +103,13 @@ export class BuscaItemBonusComponent implements OnInit {
     this.codigoSelecionado = null;
   }
 
-  showDialog(codigoProduto) {
+  showDialog(codigoProduto, valor: boolean) {
     this.codigoSelecionado = codigoProduto.id.codprod
-    this.dialogVisible = true;
-
+    this.dialogVisible = true; 
+    this.barrasUnitario = valor;    
   }
 
+  voltar() {
+    this.router.navigateByUrl('/buscar-bonus-entrada');
+  }
 }
