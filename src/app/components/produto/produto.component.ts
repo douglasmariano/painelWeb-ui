@@ -18,6 +18,7 @@ export class ProdutoComponent implements OnInit {
     descricao: new UntypedFormControl('', []),
     marcas: new UntypedFormControl([]),
     codfab: new UntypedFormControl('', []),
+    codauxiliar: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")]),
   });
 
   constructor(private produtoService: ProdutoService, ) {  }

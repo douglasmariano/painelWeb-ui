@@ -16,5 +16,6 @@ export class BonusItem{
     qtentun: number;
     qtavariacx: number;
     qtentcx: number;
+    qtunitcx: number;
   
 }

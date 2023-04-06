@@ -16,12 +16,12 @@ export class ProdutoService {
   pesquisar(filtro: any): Promise<any> {
     //const params = new URLSearchParams();
     // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
-    //console.log(filtro)
+    console.log(filtro)
     if (filtro.codprod) {
       // params.set('numped', filtro.numped);
       return this.http.get(this.produtoUrl+'/'+filtro.codprod)
         .toPromise();
-    } else if(filtro.descricao || filtro.marcas || filtro.codfab) {
+    } else if(filtro.descricao || filtro.marcas || filtro.codfab || filtro.codauxiliar) {
       const queryParams = Object.keys(filtro)
         .filter(key => filtro[key])
         .map(key => {

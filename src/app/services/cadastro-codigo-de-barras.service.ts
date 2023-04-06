@@ -44,10 +44,20 @@ export class CadastroCodigoDeBarrasService {
       codprod : codigoSelecionado,
       codauxiliar: CodigoAuxiliar,
       codauxiliar2: CodigoAuxiliar2
-    }
+    }    
     return this.http.put(`${this.cadastroCodigoDeBarrasnoProdutoUrl}/${codigoSelecionado}`, produto)
       .toPromise()
-      .then(() => { });
-      
+      .then(() => { });     
+  }
+
+  atualizarQtuntcx(codigoSelecionado,  Qtunitcx ): Promise<void> {    
+    console.log(codigoSelecionado)
+    const produto = {
+      codprod : codigoSelecionado,
+      qtunitcx: Qtunitcx,
+    }    
+    return this.http.put(`${this.cadastroCodigoDeBarrasnoProdutoUrl}/${codigoSelecionado}`, produto)
+      .toPromise()
+      .then(() => { });     
   }
 }

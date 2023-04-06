@@ -1,8 +1,8 @@
-import { Component, ElementRef, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CadastroCodigoDeBarrasService } from '../../services/cadastro-codigo-de-barras.service';
-import { BuscaItemBonusComponent } from '../busca-item-bonus/busca-item-bonus.component';
+import { BuscaItemBonusComponent } from '../bonus/busca-item-bonus/busca-item-bonus.component';
 
 
 @Component({
@@ -12,10 +12,13 @@ import { BuscaItemBonusComponent } from '../busca-item-bonus/busca-item-bonus.co
 })
 
 export class CadastroCodigoDeBarrasComponent implements OnInit {
-
+ 
   @Input()
-  codigoSelecionado: number;
   barrasUnitario: boolean;
+  @Input()
+  codigoSelecionado;
+  @Input()
+  numbonus;
   
   form: UntypedFormGroup;
 
@@ -26,24 +29,35 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
     this.formDeCodigo();
   }
 
-  @ViewChild('codigoSelecionado') elementRef: ElementRef;
-  
   
   ngOnInit(): void {
-    this.form.patchValue({
-      codprod: this.codigoSelecionado,
-    });     
-    
-    console.log( this.barrasUnitario)
-
+    if(this.barrasUnitario == false){
+      this.form.patchValue({
+        codprod: this.codigoSelecionado.id.codprod,
+        codauxiliar: this.codigoSelecionado.codauxiliar,
+      }); 
+    } else{
+      this.form.patchValue({
+        codprod: this.codigoSelecionado.id.codprod,
+        codauxiliar2: this.codigoSelecionado.codauxiliar2,
+      }); 
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.codigoSelecionado) {
-      this.form.patchValue({
-        codprod: this.codigoSelecionado     
-      });
-    }
+      if(this.barrasUnitario == false){
+        this.form.patchValue({
+          codprod: this.codigoSelecionado.id.codprod,
+          codauxiliar: this.codigoSelecionado.codauxiliar,
+        }); 
+      } else{
+        this.form.patchValue({
+          codprod: this.codigoSelecionado.id.codprod,
+          codauxiliar2: this.codigoSelecionado.codauxiliar2,
+        }); 
+      }
+    }    
   }
 
   get f() {return this.form.controls;}
@@ -55,7 +69,7 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
     this.formDeCodigo();
     //this.elementRef.nativeElement.focus()
     this.buscaItemComponente.dialogVisible = false;  
-    //window.location.reload();
+    this.buscaItemComponente.carregarBonus(this.numbonus);
   }
   
 
