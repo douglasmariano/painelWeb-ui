@@ -1,3 +1,4 @@
+import { NgFor } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,6 +16,7 @@ export class BuscaBonusEntradaComponent implements OnInit {
   @Input()
   bonus: string;
   bonusEntrada = [];
+  notasFiscaisDoBonus : any[];
 
   bonusEntradaForm = new UntypedFormGroup({
 
@@ -24,10 +26,10 @@ export class BuscaBonusEntradaComponent implements OnInit {
 
   });
 
-  constructor(private bonusEntradaMercadoria: BuscaBonusEntradaService,
-    private  toasty:ToastrService,
-    private  confirmation:ConfirmationService,
-    private router: Router,) { }
+  constructor(private bonusEntradaMercadoria: BuscaBonusEntradaService,              
+              private  toasty:ToastrService,
+              private  confirmation:ConfirmationService,
+              private router: Router,) { }
 
   ngOnInit(): void {
    //this.pesquisar()
@@ -35,9 +37,39 @@ export class BuscaBonusEntradaComponent implements OnInit {
 
   get f() { return this.bonusEntradaForm.controls; }
 
-  pesquisar() {
-    this.bonusEntradaMercadoria.pesquisar({ numbonus: this.bonusEntradaForm.value.numbonus, databonus : this.bonusEntradaForm.value.databonus, dtfechamento: this.bonusEntradaForm.value.dtfechamento }).then(bonusEntrada => this.bonusEntrada = bonusEntrada);    
-    //console.log(this.bonusEntradaForm.value.numbonus)
+  async pesquisar() {
+    this.notasFiscaisDoBonus = [];
+    const bonus = await this.bonusEntradaMercadoria.pesquisar({ numbonus: this.bonusEntradaForm.value.numbonus, 
+                                                                databonus: this.bonusEntradaForm.value.databonus, 
+                                                                dtfechamento: this.bonusEntradaForm.value.dtfechamento })                                                                
+    
+                                                                this.bonusEntrada = bonus;
+  for (const bonusPesquisado of  bonus) {
+      const listaNotasFiscais: any = await this.bonusEntradaMercadoria.pesquisarNotasFiscaisBonus({
+        numbonus: bonusPesquisado.numbonus,
+      })
+
+    const groups = listaNotasFiscais.reduce((accum, el) => {
+      //If your map already contains the group array, just add the user
+      if (accum[el.especie]) {
+        accum[el.especie].push(el.numnota);
+      }
+      //If not, create the array with the user name included
+      else {
+        accum[el.especie] = [el.numnota]
+      }    
+      return accum;
+    }, {});
+    
+    Object.entries(groups).forEach(group => {
+      const [key, value] = group;
+      console.log(`Especie: ${key} Numnota: ${value}`);
+    });
+    console.log(groups)
+  this.notasFiscaisDoBonus.push({...bonusPesquisado, Notas: groups, notasnumero : groups?.NF?.join(',')})     
+ 
+    }      
+    console.log(this.notasFiscaisDoBonus)
   }
   
   buscarItensBonus(numbonus){

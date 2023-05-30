@@ -16,4 +16,8 @@ export class FuncionarioService {
   listarTodosConferentes() {
     return this.http.get(environment.apiAddress+'/funcionario/'+15)
   }
+
+  listarTodosSeparadores() {
+    return this.http.get(environment.apiAddress+'/funcionarios')
+  }
 }

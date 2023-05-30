@@ -43,6 +43,7 @@ import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import { ToolbarModule } from 'primeng/toolbar';
+import { ChartModule } from 'primeng/chart';
 
 import { AppComponent } from './app.component';
 import { BuscaBonusEntradaComponent } from './components/bonus/busca-bonus-entrada/busca-bonus-entrada.component';
@@ -70,6 +71,7 @@ import { PedidosPesquisaComponent } from './components/pedido/pedidos-pesquisa/p
 import { ProdutoComponent } from './components/produto/produto.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 import { AjelEntregaService } from './services/ajel-entrega.service';
 import { BuscaBonusEntradaService } from './services/busca-bonus-entrada.service';
@@ -164,6 +166,8 @@ registerLocaleData(localeFR);
     DataViewModule,
     ProgressSpinnerModule,
     ToolbarModule,
+    ChartModule,
+    ScrollPanelModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },

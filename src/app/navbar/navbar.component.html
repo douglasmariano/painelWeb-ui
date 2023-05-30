@@ -8,7 +8,8 @@
     <li *appRoles="['ROLE_TI','ROLE_GERENTE','ROLE_EXPEDICAO','ROLE_FISCAL']"class="navbar-menuitem" routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/canhoto">Canhoto</a></li>
     <li *appRoles="['ROLE_TI','ROLE_GERENTE','ROLE_EXPEDICAO','ROLE_FISCAL']"class="navbar-menuitem" routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/buscar-bonus-entrada">Bônus</a></li>
     <li *appRoles="['ROLE_TI','ROLE_GERENTE','ROLE_VENDAS']"class="navbar-menuitem" routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/painel">Painel</a></li> 
-    <li class="navbar-menuitem"><a href="#" (click)="fazerLogout()">Sair</a></li>
+    <li *appRoles="['ROLE_TI','ROLE_GERENTE','ROLE_EXPEDICAO']"class="navbar-menuitem" routerLinkActive="ativo" (click)="visibleSidebar1 = false"><a routerLink="/paineldePedidos">Separação de Pedidos</a></li>
+   <li class="navbar-menuitem"><a href="#" (click)="fazerLogout()">Sair</a></li>
   </ul>
 </p-sidebar>
 <nav class="navbar">

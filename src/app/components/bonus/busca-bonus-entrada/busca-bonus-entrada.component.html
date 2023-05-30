@@ -29,10 +29,9 @@
 
   <div class="card">
     <div class="p-shadow-3">
-      <p-table responsiveLayout="scroll" [value]="bonusEntrada" [paginator]="true" [rows]="20"
-        [showCurrentPageReport]="true"
-        currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} Estoque de Cabos"
-        [rowsPerPageOptions]="[10,25,50]" [autoLayout]="true">
+      <p-table  [value]="notasFiscaisDoBonus" [paginator]="true" [rows]="100" [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} Bônus"
+      [rowsPerPageOptions]="[10,25,50]" [responsive]="true">
         <ng-template pTemplate="header">
           <tr>
             <th>Filial</th>
@@ -43,12 +42,12 @@
             <th> </th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-bonusEntrada>
+        <ng-template pTemplate="body" let-notasFiscaisDoBonus>
           <tr>
-            <td>{{bonusEntrada.codfilial }}</td>
-            <td>{{bonusEntrada.numbonus }}</td>
-            <td>{{bonusEntrada.numnota }}</td>
-            <td>{{bonusEntrada.databonus | date:'dd/MM/y' }}</td>
+            <td>{{notasFiscaisDoBonus.codfilial }}</td>
+            <td>{{notasFiscaisDoBonus.numbonus }}</td>
+            <td>{{notasFiscaisDoBonus.notasnumero}}</td>
+            <td>{{notasFiscaisDoBonus.databonus | date:'dd/MM/y' }}</td>
             <td>
               <p-button icon="pi pi-sign-in" styleClass="p-button-rounded p-button-info"
               pTooltip="Incluir itens ao bônus." tooltipPosition="top"
@@ -57,7 +56,7 @@
             <td>
               <p-button icon="pi pi-qrcode" styleClass="p-button-rounded p-button-warning"
                 pTooltip="Informações sobre o Pedido." tooltipPosition="top"
-                (click)="buscarItensBonus(bonusEntrada.numbonus)"></p-button>
+                (click)="buscarItensBonus(notasFiscaisDoBonus.numbonus)"></p-button>
             </td>
           </tr>
         </ng-template>

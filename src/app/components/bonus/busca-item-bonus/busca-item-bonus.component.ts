@@ -1,12 +1,13 @@
 import { ToastrService } from 'ngx-toastr';
 import { CadastroCodigoDeBarrasService } from '../../../services/cadastro-codigo-de-barras.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , HostListener } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { BonusItem } from '../../../models/busca-item-bonus.model';
 import { BuscaItemBonusService } from '../../../services/busca-item-bonus.service';
 import { ProdutoService } from '../../../services/produto.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-busca-item-bonus',
@@ -30,7 +31,8 @@ export class BuscaItemBonusComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private confirmation:ConfirmationService,
     private router: Router,
-    private toasty: ToastrService, ) { }
+    private toasty: ToastrService,
+    private location: Location ) { }
 
   ngOnInit(): void {
     this.numbonus = this.route.snapshot.params['numbonus'];
@@ -118,7 +120,9 @@ export class BuscaItemBonusComponent implements OnInit {
     this.numbonus;
   }
 
-  voltar() {
-    this.router.navigateByUrl('/buscar-bonus-entrada');
+
+  voltar(): void {
+    this.location.back();
+    //this.router.navigateByUrl('/buscar-bonus-entrada');
   }
 }

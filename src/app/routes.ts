@@ -123,12 +123,12 @@ const routes: Routes = [
     },
   },
   {
-    path: 'painelacompanhaPedidos',
+    path: 'paineldePedidos',
     component: PainelAcompamentoPedidosComponent,
     canActivate: [AuthGuard],
     data: {
-      title: 'Painel Acompanha Pedidos',
-      role: ['ROLE_TI','ROLE_GERENTE']
+      title: 'Separação de Pedidos',
+      role: ['ROLE_TI','ROLE_GERENTE', 'ROLE_EXPEDICAO']
     },
   },
   {

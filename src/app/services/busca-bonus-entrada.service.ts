@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BonusEntrada } from '../models/busca-bonus-entrada.model'
+import { NotaFiscalEntradaPk } from '@/models/nota-fiscal-entrada.model';
+import { NotaFiscalEntrada } from '@/models/nota-fiscal-entrada.model';
 import { BonusEntradaPk } from '../models/busca-bonus-entrada.model'
 import { environment } from '@environments/environment';
 
@@ -9,7 +11,8 @@ import { environment } from '@environments/environment';
 })
 export class BuscaBonusEntradaService {
 
-  bonusEntradaUrl = `${environment.apiAddress}/bonusentrada`;  
+  bonusEntradaUrl = `${environment.apiAddress}/bonusentrada`;
+  bonusNotaFiscalEntradaUrl = `${environment.apiAddress}/notafiscalentrada`;    
 
   bonusEntrada: BonusEntrada = new BonusEntrada();  
 
@@ -19,8 +22,7 @@ export class BuscaBonusEntradaService {
 
 pesquisar(filtro): Promise<any>{
     if (filtro) {
-      // return this.http.get(this.estoqueCaboUrl+'?codendcabo='+filtro.codendcabo) 
-      //
+      // return this.http.get(this.estoqueCaboUrl+'?codendcabo='+filtro.codendcabo)       
       return this.http.post(this.bonusEntradaUrl+'/filtro/', filtro) 
       .toPromise(); 
      }    
@@ -28,6 +30,11 @@ pesquisar(filtro): Promise<any>{
         return this.http.get(this.bonusEntradaUrl)
         .toPromise();
        }  
+  }
+
+pesquisarNotasFiscaisBonus(filtro): Promise<any>{ 
+      return this.http.get<NotaFiscalEntrada>(this.bonusNotaFiscalEntradaUrl+'?numbonus='+filtro.numbonus)
+      .toPromise();     
   }
 
 adicionar(bonusEntradaPk: BonusEntradaPk): Promise<BonusEntrada> {  
