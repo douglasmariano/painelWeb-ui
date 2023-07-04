@@ -1,0 +1,148 @@
+.container-fluid-w1000 {
+    border: 2px;
+    max-width: 2000px;
+}
+.container-fluid-20 {
+    display: inline-block; 
+    text-align: right; 
+    width: 20%
+} 
+.row-digitado {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(134, 134, 134) !important;
+    color: rgb(255, 255, 255) !important;
+    text-shadow: 0 0 3px #000000;
+}
+:host ::ng-deep .row-aguardandocliente {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(248, 250, 227) !important;
+    color: rgb(0, 0, 0) !important;
+    
+}
+:host ::ng-deep .row-emseparacao {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(57, 120, 214) !important;
+    color: white !important;
+}
+:host ::ng-deep .row-retira {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(5, 128, 21) !important;
+    color: white !important;
+    text-shadow: 0 0 3px #000000;
+}
+:host ::ng-deep .row-balcao {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(153, 129, 23) !important;
+    color: white !important;
+    text-shadow: 0 0 3px #000000;
+}
+:host ::ng-deep .row-chamarcliente {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(67, 230, 75) !important;
+    color: rgb(0, 0, 0) !important;
+    text-shadow: 0 0 3px #000000;
+}
+:host ::ng-deep .row-conferencia {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(182, 65, 182) !important;
+    color: white !important;
+    text-shadow: 0 0 3px #000000;
+}
+:host ::ng-deep .row-caixa {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(31, 173, 192) !important;
+    color: rgb(0, 0, 0) !important;
+    
+}
+:host ::ng-deep .row-pacote {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(46, 46, 45) !important;
+    color: white !important;
+    text-shadow: 0 0 3px #000000;
+}
+:host ::ng-deep .row-finalizar {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(236, 223, 31) !important;
+    color: rgb(0, 0, 0) !important;
+    text-shadow: 0 0 3px #000000;
+}
+:host ::ng-deep .row-entrega {
+    font-weight: 1000;
+    font-size: 12px;
+    background-color: rgb(190, 119, 25) !important;
+    color: white !important;
+    text-shadow: 0 0 3px #000000;
+}
+h1 {
+    text-align: center;
+    }
+h2{
+    padding:15px;
+    margin: 0 auto;
+}
+td {
+    max-width: 25ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }*/
+
+.child {
+    width: 120px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* aplique margens superior e esquerda negativas para centralizar de verdade o elemento */
+  }
+
+.custom-input{
+    width: 160px;
+  }
+
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 250px;
+}
+
+@media screen and (min-width: 360px) {
+    #divMobile {
+        color:#000000;
+        background-color:#C6E2FF;
+        padding:5px 12px;
+        border-radius:10px;
+        border:1px solid #ddd;
+        /* estilo de posicionamento e largura*/
+        min-width: 15%; 
+        max-width: 25%;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        left: auto;
+    }
+
+@media print {
+    #print-section {
+        display : none!important;
+        }
+    }
+}

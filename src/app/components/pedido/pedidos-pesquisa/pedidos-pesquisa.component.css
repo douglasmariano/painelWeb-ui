@@ -1,0 +1,27 @@
+button{
+    margin: 0 7px;
+}
+
+.uppercase{
+    text-transform: uppercase;
+  }
+  .my-center-text {
+    text-align: center;
+    width: 100%;
+}
+td {
+  font-size: 14px;
+}
+
+.currentStyles {
+  font-weight: bold;
+  font-style: italic;  
+  color: red
+}
+
+.specialStyles {
+  font-weight: italic;
+  font-style: italic;
+  font-size: 16px;
+  color: blue
+}

@@ -25,5 +25,6 @@ export class Pedido {
     codfuncpacote: number;
     retirante: string;
     cobranca: string;
-    tipoproduto: string;   
+    tipoproduto: string;  
+    posicaopedido: string;   
   }

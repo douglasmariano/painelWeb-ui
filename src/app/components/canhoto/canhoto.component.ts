@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Stomp } from '@stomp/stompjs';
 import { MessageService } from 'primeng/api';
-import { CanhotoService } from '../../services/canhoto.service';
 import { Filial, NotaFiscal } from '../../models/canhoto.model';
+import { CanhotoService } from '../../services/canhoto.service';
+
 import Validation from './Validation';
 @Component({
   selector: 'app-canhoto',
@@ -12,13 +14,14 @@ import Validation from './Validation';
 })
 export class CanhotoComponent implements OnInit {
 
-  
+  socket;
 
   @Input()
   notaFiscalSaida = [];
   notaFiscal01: NotaFiscal[];
   valorDaSegundaBusca;
   filiais: Filial[];
+  stompClient;
 
   selectedFilial: Filial;
   buscaNotaFiscalSaida: UntypedFormGroup;
@@ -28,12 +31,22 @@ export class CanhotoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.socket = new WebSocket("ws://localhost:8080");
+        // Connection opened
+    this.socket.addEventListener("open", (event) => {
+      this.socket.send("Hello Server!");
+    });
+
+    // Listen for messages
+    this.socket.addEventListener("message", (event) => {
+      console.log("Message from server ", event.data);
+    });
+
     this.filiais = [
-      {nome: '01 - Ajel Materiais', codigo: 1},
-      {nome: '02 - Ajel Montagem', codigo: 2},
+      {nome: '01 - Ajel Materiais',   codigo: 1},
+      {nome: '02 - Ajel Montagem',    codigo: 2},
       {nome: '03 - Ajel Construtora', codigo: 3},
-      {nome: '04 - Comercial Ajel', codigo: 4},    
+      {nome: '04 - Comercial Ajel',   codigo: 4},    
   ];
     this.buscaNotaFiscalSaida = this.formBuilder.group({
       codfilial: [''],
@@ -105,4 +118,7 @@ export class CanhotoComponent implements OnInit {
     this.notaFiscalSaida[index] = this.clonedNotaFiscal[notafiscal.numtransvenda];
     delete this.clonedNotaFiscal[notafiscal.numtransvenda];
   }
+
+  
+
 }

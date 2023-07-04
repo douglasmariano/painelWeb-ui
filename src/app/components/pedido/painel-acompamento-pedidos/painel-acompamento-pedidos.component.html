@@ -1,0 +1,257 @@
+<div class="container">
+    <h1>Acompanhamento de Pedidos</h1>
+    <br />
+    
+    <form [formGroup]="buscaPedido" autocomplete="off" (click)="visibleCharts = true" (ngSubmit)="pesquisar()">
+        <div class="grid">
+
+            <div class="col-6">
+                <label style="display: block">Nome Cliente</label>
+                <input pInputText appUppercase class="p-inputtext-sm" formControlName="nomeCliente">
+
+                <label style="display: block">Nome Vendedor</label>
+                <input pInputText appUppercase class="p-inputtext-sm" formControlName="nomeVendedor">
+
+                <label style="display: block">Num. Pedido</label>
+                <input pInputText class="p-inputtext-sm" formControlName="numped">
+                <div *ngIf="f.numped.errors" class="invalid-feedback">
+                    <sup>*</sup>Somente números.
+                </div>
+            </div>
+            <div class="col-3">
+                <label style="display: block">Emissão</label>
+                <label>De </label>
+                <div class="custom-input">
+                    <p-calendar formControlName="dataPedidoDe" [showIcon]="true" [(ngModel)]="defaultDateDe"
+                        inputId="dataPedidoDe" [showButtonBar]="true"></p-calendar> <br />
+                </div>
+                <label>Até</label>
+                <div class="custom-input">
+                    <p-calendar formControlName="dataPedidoAte" [showIcon]="true" [(ngModel)]="defaultDateAte"
+                        inputId="dataPedidoAte" [showButtonBar]="true"></p-calendar>
+                </div>
+            </div>
+            <div>
+                <br />
+                <button pButton class="child" type="submit" label="Pesquisar"></button>
+            </div>
+        </div>
+    </form>
+    <div class="container" id="charts">
+        <div class="card-container">
+            <p-card header="Pedidos Aguardando Separação" [style]="{ width: '360px', height: '400px' }">
+                <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+            </p-card>
+
+
+            <p-card header="Produtos em Separação" [style]="{ width: '360px', height: '400px' }">
+                <p-chart type="doughnut" [data]="dataStacked " [options]="optionsStacked "></p-chart>
+            </p-card>
+            <p-scrollPanel  [style]="{ width: '360px', height: '400px' }">               
+                <h2>Total de Pedidos</h2>
+                <ul>
+                    <li *ngFor="let item of itensSegundaLista">
+                        <span [pTooltip]="item.nomeCompleto" placement="top">{{item.quantidade}} - {{item.codigo}} -
+                            {{item.nome}}</span>
+                    </li>
+                </ul>
+            </p-scrollPanel>
+           <!-- <p-card header="Total de Separações" [style]="{ width: '360px'  , height: '400px'}">
+                
+            </p-card>-->
+        </div>
+        <div class="card-container">
+            <p-card header="Total de Pedidos" [style]="{ width: '360px', height: '400px', display: 'flex'}">
+                <ul>
+                    <li><span>Total Listado: </span>{{totaldepedidos}}</li>
+                    <li><span>Faturados: </span>{{qtpedidosFaturados}}</li>
+                    <li><span>Em Separação: </span>{{qtpedidosEmseparacao}}</li>
+                    <li><span>Aguard. Separação: </span>{{qtpedidosAguardandoseparacao}}</li>
+
+                </ul>
+            </p-card>
+            <p-card header="Separadores Ocupados" [style]="{ width: '360px' , height: '400px'}">
+                <ul>
+                    <li *ngFor="let item of itensPrimeiraLista">
+                        <span [pTooltip]="item.nomeCompleto" placement="top">{{item.quantidade}} - {{item.codigo}} -
+                            {{item.nome}}</span>
+                    </li>
+                </ul>
+            </p-card>
+
+
+        </div>
+    </div>
+
+    <div class="container">
+
+        <p-table #dt1 [value]="painelAcompanhaPedidos" dataKey="id" [rows]="15" [showCurrentPageReport]="true"
+            [rowsPerPageOptions]="[15, 50,100, 200]" [loading]="loading" [paginator]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [globalFilterFields]="['cliente', 'funcsep', 'vendedor', 'status']" [responsive]="true"
+            styleClass="p-datatable-sm" responsiveLayout="scroll">
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <button pButton label="Limpar" class="p-button-outlined" icon="pi pi-filter-slash"
+                        (click)="clear(dt1)"></button>
+                    <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Procurar" />
+                    </span>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 3rem">
+                        <div class="flex align-items-center">
+                            Fim Sep.
+                            <p-columnFilter type="boolean" field="descbutton" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:2rem">
+                        <div class="flex align-items-center">
+                            Numped
+                            <p-columnFilter type="text" field="numped" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:5rem">
+                        <div class="flex align-items-center">
+                            Status
+                            <p-columnFilter field="status" matchMode="equals" display="menu">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
+                                        placeholder="Any">
+                                        <ng-template let-option pTemplate="item">
+                                            {{option.label}}
+                                        </ng-template>
+                                    </p-dropdown>
+                                </ng-template>
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:15rem">
+                        <div class="flex align-items-center">
+                            Cliente
+                            <p-columnFilter type="text" field="cliente" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:10rem">
+                        <div class="flex align-items-center">
+                            Separador
+                            <p-columnFilter type="text" field="funcsep" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:5rem">
+                        <div class="flex align-items-center">
+                            Vendedor
+                            <p-columnFilter field="vendedor" matchMode="equals" display="menu">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <p-dropdown [ngModel]="value" [options]="listaDeVendedor" (onChange)="filter($event.value)"
+                                        placeholder="Any">
+                                        <ng-template let-option pTemplate="item">
+                                            {{option.nome}}
+                                        </ng-template>
+                                    </p-dropdown>
+                                </ng-template>
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:10rem">
+                        <div class="flex align-items-center">
+                            Data Pedido
+                            <p-columnFilter type="date" field="dtpedido" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:10rem">
+                        <div class="flex align-items-center">
+                            Inicio Separação
+                            <p-columnFilter type="date" field="datainiciosep" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:10rem">
+                        <div class="flex align-items-center">
+                            Final Separação
+                            <p-columnFilter type="date" field="datafimsep" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:10rem">
+                        <div class="flex align-items-center">
+                            Tempo Separação
+                            <p-columnFilter type="date" field="datafimsep" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width:10rem">
+                        <div class="flex align-items-center">
+                            Tempo Total Pedido
+                            <p-columnFilter type="date" field="datafimsep" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-painelAcompanhaPedidos>
+               <!--<tr [ngClass]="{'row-digitado': painelAcompanhaPedidos.status === 'N',
+                                'row-aguardandocliente': painelAcompanhaPedidos.status === 'A',
+                                'row-balcao': painelAcompanhaPedidos.status === 'B',
+                                'row-conferencia': painelAcompanhaPedidos.status === 'F',
+                                'row-emseparacao': painelAcompanhaPedidos.status === 'E',
+                                'row-caixa': painelAcompanhaPedidos.status === 'X',
+                                'row-pacote': painelAcompanhaPedidos.status === 'P',
+                                'row-entrega': painelAcompanhaPedidos.status === 'G'}">--> 
+                                <tr>
+                    <td class="text-center">
+                        <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': painelAcompanhaPedidos.descbutton == 'true', 
+                                'text-red-500 pi-times-circle': painelAcompanhaPedidos.descbutton == 'false' }"></i>
+                    </td>
+                    <td>
+                        {{ painelAcompanhaPedidos.numped }}
+                    </td>
+                    <td [ngClass]="{'row-digitado': painelAcompanhaPedidos.status === 'N',
+                    'row-aguardandocliente': painelAcompanhaPedidos.status === 'A',
+                    'row-balcao': painelAcompanhaPedidos.status === 'B',
+                    'row-conferencia': painelAcompanhaPedidos.status === 'F',
+                    'row-emseparacao': painelAcompanhaPedidos.status === 'E',
+                    'row-caixa': painelAcompanhaPedidos.status === 'X',
+                    'row-pacote': painelAcompanhaPedidos.status === 'P',
+                    'row-entrega': painelAcompanhaPedidos.status === 'G'}">
+                        {{painelAcompanhaPedidos.statusext}}
+                    </td>
+                    <td>
+                        {{ painelAcompanhaPedidos.cliente }}
+                    </td>
+                    <td>
+                        <span class="ml-1 vertical-align-middle">{{painelAcompanhaPedidos.codfuncsep}} - {{
+                            painelAcompanhaPedidos.funcsep }}</span>
+                    </td>
+                    <td>
+                        <span class="ml-1 vertical-align-middle">{{ painelAcompanhaPedidos.vendedor }}</span>
+                    </td>
+                    <td>
+                        {{ painelAcompanhaPedidos.dtpedido | date: 'dd/MM/yyyy HH:mm:ss' }}
+                    </td>
+                    <td>
+                        {{ painelAcompanhaPedidos.datainiciosep | date: 'dd/MM/yyyy HH:mm:ss' }}
+                    </td>
+                    <td>
+                        {{ painelAcompanhaPedidos.datafimsep | date: 'dd/MM/yyyy HH:mm:ss' }}
+                    </td>
+                    <td>
+                        {{transform(painelAcompanhaPedidos.temposep)}}
+                    </td>
+                    <td>
+                        {{transform(painelAcompanhaPedidos.tempototal)}}
+                    </td>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="7">Nenhum pedido encontrado.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

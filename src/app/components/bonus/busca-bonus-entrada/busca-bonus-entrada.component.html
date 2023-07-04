@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="col">
+
+    <h1>Bonus de Entrada</h1>
+    <form [formGroup]="bonusEntradaForm" autocomplete="off" (ngSubmit)="pesquisar()">
+      <div class="grid">
+        <div class="col-12 md:col-6 lg:col-3">
+          <label>Num Bonus</label>
+          <input pInputText formControlName="numbonus">
+          <!-- <div *ngIf="f.codprod.errors" class="invalid-feedback">
+            <sup>*</sup>Somente números. 
+          </div>-->
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <label>Data Bônus</label>
+          <p-calendar formControlName="databonus" showTime="true" hourFormat="24"></p-calendar>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <label>Data Fechamento</label>
+          <p-calendar formControlName="dtfechamento" showTime="true" hourFormat="24"></p-calendar>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <br />
+          <button pButton type="submit" label="Pesquisar"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="p-shadow-3">
+      <p-table  [value]="notasFiscaisDoBonus" [paginator]="true" [rows]="100" [showCurrentPageReport]="true"
+      currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} Bônus"
+      [rowsPerPageOptions]="[10,25,50]" [responsive]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Filial</th>
+            <th>Bônus</th>
+            <th>Notas Fiscais</th>
+            <th>Dt. Cadastro</th>
+            <th>Opções</th>
+            <th> </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-notasFiscaisDoBonus>
+          <tr>
+            <td>{{notasFiscaisDoBonus.codfilial }}</td>
+            <td>{{notasFiscaisDoBonus.numbonus }}</td>
+            <td>{{notasFiscaisDoBonus.notasnumero}}</td>
+            <td>{{notasFiscaisDoBonus.databonus | date:'dd/MM/y' }}</td>
+            <td>
+              <p-button icon="pi pi-sign-in" styleClass="p-button-rounded p-button-info"
+              pTooltip="Incluir itens ao bônus." tooltipPosition="top"
+                (click)="incluirItensBonus()"></p-button>
+            </td>
+            <td>
+              <p-button icon="pi pi-qrcode" styleClass="p-button-rounded p-button-warning"
+                pTooltip="Informações sobre o Pedido." tooltipPosition="top"
+                (click)="buscarItensBonus(notasFiscaisDoBonus.numbonus)"></p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+
+</div>

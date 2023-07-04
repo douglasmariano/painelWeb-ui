@@ -1,11 +1,8 @@
-import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgModel, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { BuscaItemBonusComponent } from '../busca-item-bonus/busca-item-bonus.component';
-
-
 import { CadastroCodigoDeBarrasService } from '../../services/cadastro-codigo-de-barras.service';
+import { BuscaItemBonusComponent } from '../bonus/busca-item-bonus/busca-item-bonus.component';
 
 
 @Component({
@@ -14,52 +11,67 @@ import { CadastroCodigoDeBarrasService } from '../../services/cadastro-codigo-de
   styleUrls: ['./cadastro-codigo-de-barras.component.css']
 })
 
-
-
 export class CadastroCodigoDeBarrasComponent implements OnInit {
  
   @Input()
-  codprod:number;
+  barrasUnitario: boolean;
+  @Input()
+  codigoSelecionado;
+  @Input()
+  numbonus;
+  
   form: UntypedFormGroup;
 
-  constructor(private fb: UntypedFormBuilder,
-    private cadastroCodigoDeBarrasService: CadastroCodigoDeBarrasService, 
-    private buscaItemComponente: BuscaItemBonusComponent,   
-    private toasty: ToastrService,
-    private route: ActivatedRoute    ) {
-
-      this.formDeCodigo();
-      
+  constructor(private fb: FormBuilder,
+    private cadastroCodigoDeBarrasService: CadastroCodigoDeBarrasService,
+    private buscaItemComponente: BuscaItemBonusComponent,
+    private toasty: ToastrService,) {
+    this.formDeCodigo();
   }
-    
-  @ViewChild('codprod')  elementRef: ElementRef;
- 
 
-  AfterViewInit() {
-    
-  }
+  
   ngOnInit(): void {
-    this.form.patchValue({
-      codprod: this.codprod,      
-    }); 
+    if(this.barrasUnitario == false){
+      this.form.patchValue({
+        codprod: this.codigoSelecionado.id.codprod,
+        codauxiliar: this.codigoSelecionado.codauxiliar,
+      }); 
+    } else{
+      this.form.patchValue({
+        codprod: this.codigoSelecionado.id.codprod,
+        codauxiliar2: this.codigoSelecionado.codauxiliar2,
+      }); 
+    }
   }
- 
-   
-  get f() {
-    return this.form.controls;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.codigoSelecionado) {
+      if(this.barrasUnitario == false){
+        this.form.patchValue({
+          codprod: this.codigoSelecionado.id.codprod,
+          codauxiliar: this.codigoSelecionado.codauxiliar,
+        }); 
+      } else{
+        this.form.patchValue({
+          codprod: this.codigoSelecionado.id.codprod,
+          codauxiliar2: this.codigoSelecionado.codauxiliar2,
+        }); 
+      }
+    }    
   }
+
+  get f() {return this.form.controls;}
 
   salvar() {
-    this.cadastroCodigoDeBarrasService.adicionar(this.form.value).then(() => {
+    this.cadastroCodigoDeBarrasService.atualizar(this.form.controls.codprod.value, this.form.controls.codauxiliar.value, this.form.controls.codauxiliar2.value ).then(() => {
       this.toasty.success('Cadastrado com sucesso');
     })
     this.formDeCodigo();
-    this.elementRef.nativeElement.focus()
-    this.buscaItemComponente.dialogVisible = false;
-    
+    //this.elementRef.nativeElement.focus()
+    this.buscaItemComponente.dialogVisible = false;  
+    this.buscaItemComponente.carregarBonus(this.numbonus);
   }
-
-
+  
 
   onKeydown(event) {
     if (event.keyCode === 13 && event.target.nodeName === 'INPUT') {
@@ -69,12 +81,12 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
       event.preventDefault();
     }
   }
- 
-  formDeCodigo(){
+
+  formDeCodigo() {
     this.form = this.fb.group({
-      codprod: [{value: this.codprod},[Validators.required, Validators.pattern('^[0-9]*$')]],
-      codbarra: [null,[Validators.required]]
+      codprod: [{ value: this.codigoSelecionado, disabled: true }, [Validators.required, Validators.pattern('^[0-9]*$')]],
+      codauxiliar: [null, [Validators.required]],
+      codauxiliar2: [null, [Validators.required]]
     });
-   } 
- 
+  }
 }

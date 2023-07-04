@@ -12,13 +12,16 @@ export class LoginService {
     private http: HttpClient,
     private router: Router,
     private aroute : ActivatedRoute
-  ) {
-
-  }
+  ) { }
       
   isUserLogado() {
     const token = localStorage.getItem('token')
     return token
+  }
+
+  getRoles(): [] {
+    const roles = JSON.parse(localStorage.getItem('roles'));
+    return roles;
   }
 
   async efetuarLogin(form,nextUrl) {
@@ -29,7 +32,8 @@ export class LoginService {
     try {
       const response: any = await this.http.post(`${environment.apiAddress}/auth/login`, form).toPromise()    
       if (response.token) {
-        localStorage.setItem('token', response.token)   
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('roles', JSON.stringify(response.roles));
         this.router.navigateByUrl(nextUrl ? nextUrl : '/');
       }
     } catch (error) {

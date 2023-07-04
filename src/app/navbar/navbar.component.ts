@@ -1,49 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import {MenuItem} from 'primeng/api';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent  {
+export class NavbarComponent {
   exibindoMenu = false;
-  loginUrl = '/login'
+  loginUrl = '/login?nextUrl=%2F'
+  loginUrl2 = '/login'
 
-  visibleSidebar1;
+  visibleSidebar1: boolean;
   gfg: MenuItem[];
+
   constructor(
-    private router: Router) { 
+    private router: Router) {
   }
-ngInit(){
-  this.gfg = [
-    {
-      label: 'HTML',
-      items: [
-        {
-          label: 'HTML 1'
-        },
-        {
-          label: 'HTML 2'
-        }
-      ]
-    },
-    {
-      label: 'Angular',
 
-      items: [
-        {
-          label: 'Angular 1'
-        },
-        {
-          label: 'Angular 2'
-        }
-      ]
-    }
-  ];
-} 
-
+  ngInit() {
+  }
+  
+  get isVisibleRoute() {
+    return true
+  }
 
   get isLoginPage() {
     return this.router.url === this.loginUrl
@@ -51,7 +32,7 @@ ngInit(){
 
   fazerLogout() {
     localStorage.removeItem('token')
-    this.router.navigate([this.loginUrl])
+    this.router.navigate([this.loginUrl2])
   }
 
 }
