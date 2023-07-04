@@ -61,48 +61,6 @@
           </td>
       </tr>
       </ng-template>
-  </p-table>
-  <!--  <p-table [value]="notaFiscalSaida"  dataKey="numnota" editMode="row" responsiveLayout="scroll" >
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="min-width:200px">Cod. Filial</th>                
-                <th style="min-width:200px">Numnota</th>
-                <th style="min-width:200px">Cod. Cliente</th>
-                <th style="min-width:200px">Cliente</th>                
-                <th style="min-width:200px">Numped</th>
-                <th style="min-width:200px">Dt. Canhoto</th>
-                <th style="min-width:200px">botao</th>
-                <th style="min-width:200px">Obs</th>
-                <th style="width: 3rem">                    
-                </th>
-            </tr>
-        </ng-template>        
-        <ng-template pTemplate="body" let-notaFiscalSaida let-editing="editing" let-ri="rowIndex">
-            <tr [pEditableRow]="notaFiscal01" [ngClass]="{'row-accessories': notaFiscal01.obsnfcarreg === 'FALTOU', 'row-cancelada': !notaFiscal01.dtcancel == ''}">
-                <td>{{notaFiscal01.codfilial}}</td>
-                <td>{{notaFiscal01.numnota}}</td>
-                <td>{{notaFiscal01.codcli.codigoCliente}}</td>
-                <td>{{notaFiscal01.codcli.nomeCliente}}</td>                
-                <td>{{notaFiscal01.numped}}</td>
-                <td>{{notaFiscal01.dtcanhoto | date: 'dd/MM/yyyy'}}</td>
-                <td>{{notaFiscal01.botao}}</td>
-                <td>
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                        
-                             
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{notaFiscal01.obsnfcarreg}}
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
-                 
-                <td style="text-align:center"> 
-                        <p-triStateCheckbox  (click)="onRowEditSave(notaFiscalSaida)"  [(ngModel)]="notaFiscalSaida.botao" ></p-triStateCheckbox> 
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>-->
+  </p-table>  
 </div>
 </div>

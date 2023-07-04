@@ -13,5 +13,5 @@ e roda os comandos abaixo
 *rm -rf html/*
 cp -r /home/douglas/Download/dist/painelWeb-ui/* /var/www/html
 cp -r /home/douglas/Ajel/.htaccess /var/www/html
-systemctl restart apache2
+ 
  

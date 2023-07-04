@@ -1,6 +1,7 @@
 <div class="container">
     <h1>Acompanhamento de Pedidos</h1>
     <br />
+    
     <form [formGroup]="buscaPedido" autocomplete="off" (click)="visibleCharts = true" (ngSubmit)="pesquisar()">
         <div class="grid">
 
@@ -105,7 +106,7 @@
                 <tr>
                     <th style="width: 3rem">
                         <div class="flex align-items-center">
-                            Separação Finalizada
+                            Fim Sep.
                             <p-columnFilter type="boolean" field="descbutton" display="menu"></p-columnFilter>
                         </div>
                     </th>
@@ -142,23 +143,15 @@
                             <p-columnFilter type="text" field="funcsep" display="menu"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width:10rem">
+                    <th style="min-width:5rem">
                         <div class="flex align-items-center">
                             Vendedor
-                            <p-columnFilter field="vendedor" matchMode="equals" display="menu" [showMatchModes]="false"
-                                [showOperator]="false" [showAddButton]="false">
-                                <ng-template pTemplate="header">
-                                    <div class="px-3 pt-3 pb-0">
-                                        <span class="font-bold">Vendedor Selecionado</span>
-                                    </div>
-                                </ng-template>
+                            <p-columnFilter field="vendedor" matchMode="equals" display="menu">
                                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <p-dropdown [ngModel]="value" [options]="listaDeVendedor" placeholder="Any"
-                                        (onChange)="filter($event.value)" optionLabel="nome">
+                                    <p-dropdown [ngModel]="value" [options]="listaDeVendedor" (onChange)="filter($event.value)"
+                                        placeholder="Any">
                                         <ng-template let-option pTemplate="item">
-                                            <div class="inline-block vertical-align-middle">
-                                                <span class="ml-1 mt-1">{{ option.nome }}</span>
-                                            </div>
+                                            {{option.nome}}
                                         </ng-template>
                                     </p-dropdown>
                                 </ng-template>

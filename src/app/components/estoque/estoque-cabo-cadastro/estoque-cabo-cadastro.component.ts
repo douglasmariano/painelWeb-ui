@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +14,8 @@ import { EstoqueCaboService } from '../../../services/estoque-cabo.service';
 })
 export class EstoqueCaboCadastroComponent implements OnInit {
 
-  selectedValues: string[] = [];
+  filialSelecionada = [];
+  filialSelecionada2 = [];
   estoqueCaboCadastro: UntypedFormGroup;
   dialogVisible: boolean = false;
   produtosPorFilial : any;
@@ -31,6 +33,7 @@ export class EstoqueCaboCadastroComponent implements OnInit {
 
     this.preencherFormGroup();    
     this.carregarEstoqueCabo(codcabo);
+    
     
   }
   estoqueCodprodCabo = [];
@@ -71,29 +74,39 @@ export class EstoqueCaboCadastroComponent implements OnInit {
         const estoqueCaboTemp = {
           ...estoqueCaboCadastro,
           datainclusao : new Date(estoqueCaboCadastro.datainclusao),
-          dataexclusao : new Date(estoqueCaboCadastro.dataexclusao),  
+          dataexclusao : new Date(estoqueCaboCadastro.dataexclusao)                  
         }
         //this.estoqueCaboCadastro.setValue ( { datainclusao: new Date(estoqueCaboCadastro.datainclusao) })      
         //console.log({
         //  estoqueCaboCadastro, 
         //  estoqueCaboTemp
         //});               
-        //this.estoqueCaboCadastro.patchValue(estoqueCaboTemp);        
+        
+        //const classe = [ ...estoqueCaboTemp, ...this.selectedValues ];
+           
+        this.estoqueCaboCadastro.patchValue(estoqueCaboTemp);
         })
       }
   }
   salvar() {
+    this.filialSelecionada2 = this.filialSelecionada[0] ?? 0;
+    this.estoqueCaboCadastro.patchValue({codprod_pcest : this.filialSelecionada2[0]?.codprod,
+      codfilial_pcest : this.filialSelecionada2[0]?.codfilial,
+      codfornec : this.filialSelecionada2[0]?.codfornec,
+      codmarca : this.filialSelecionada2[0]?.codmarca,
+      qtgerencial : this.filialSelecionada2[0]?.qtestger})
+
     if (this.route.snapshot.params['codcabo'] == null) {
       this.estoqueCaboService.adicionar(this.estoqueCaboCadastro.value).then(() => {
         this.toasty.success('Cadastrado com sucesso');
         this.preencherFormGroup()
       })
-    } else {
+    } else {      
       this.estoqueCaboService.atualizar(this.estoqueCaboCadastro.value).then(() => {
         this.toasty.success('Atualizado');
         this.preencherFormGroup()
-        this.carregarEstoqueCabo(this.route.snapshot.params['codcabo']);
-        //console.log(this.selectedValues)
+        this.carregarEstoqueCabo(this.route.snapshot.params['codcabo']);     
+        
       })
     }
 
@@ -103,14 +116,17 @@ export class EstoqueCaboCadastroComponent implements OnInit {
     this.router.navigateByUrl('/estoquecabo');
   }
 
-  async showDialog(estoqueCaboCadastro) {  
+  async showDialog(estoqueCaboCadastro) {
     this.produtoEstoqueSelecionado = estoqueCaboCadastro;
     this.dialogVisible = true;
-    this.produtosPorFilial = await this.estoqueCaboService.pesquisarProduto(this.produtoEstoqueSelecionado.value.codprod_pcprodut)     
+    this.produtosPorFilial = await this.estoqueCaboService.pesquisarProduto(this.produtoEstoqueSelecionado.value.codprod_pcprodut)
+    
     this.estoqueCodprodCabo = this.produtosPorFilial.map(notaPesquisada => {
-      const notaRetorno = {...notaPesquisada}
-    //console.log()
-    return notaRetorno;
-  })}
+      const notaRetorno = { ...notaPesquisada, }      
+      return notaRetorno;
+    })       
+      
+  }
+
 
 }

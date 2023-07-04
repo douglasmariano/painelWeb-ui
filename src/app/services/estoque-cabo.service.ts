@@ -11,17 +11,18 @@ export class EstoqueCaboService {
 
   estoqueCaboUrl = `${environment.apiAddress}/estoquecabo`;
   estoqueProdutoUrl = `${environment.apiAddress}/produtoestoque`;
-  
+  buscaAnterior;
 
   constructor(private http: HttpClient) { }
 
-  pesquisar(filtro: any): Promise<any> {   
+  pesquisar(filtro: any): Promise<any> {    
     if (filtro?.codcabo) {
      // return this.http.get(this.estoqueCaboUrl+'?codcabo='+filtro.codcabo)  
      return this.http.get(this.estoqueCaboUrl+'/'+filtro.codcabo) 
      .toPromise();
     }
-    else if(filtro?.codprod_pcprodut){      
+    else if(filtro?.codprod_pcprodut){ 
+      this.buscaAnterior = { ...filtro};     
       return this.http.post(this.estoqueCaboUrl+'/codprod',filtro) 
      .toPromise();
       } else{
@@ -29,6 +30,11 @@ export class EstoqueCaboService {
         .toPromise();
       }
   }
+
+  pesquisaPorCodcabo(){
+    
+  }
+
   pesquisarProduto(filtro: any): Promise<any> { 
     //console.log(filtro)   
   if(filtro){ 

@@ -222,7 +222,7 @@ export class PainelAcompamentoPedidosComponent implements OnInit {
       }
     }
     for (const vendedor in contagem) {
-      this.listaDeVendedor.push({'nome':vendedor});
+      this.listaDeVendedor.push({'nome':vendedor, 'value':vendedor});
       this.qtpedidosEmseparacao += 1;
     }
     this.listaDeVendedor.sort();
@@ -457,6 +457,11 @@ export class PainelAcompamentoPedidosComponent implements OnInit {
     }
     this.itensSegundaLista.sort(((a,b)=>  b.quantidade - a.quantidade));
   }
+
+  printPage(){
+    window.print();
+  }
+
 
   calculateCustomerTotal(numped) {
     let total = 0;

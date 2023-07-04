@@ -16,11 +16,6 @@
         </div>
 
         <div class="p-field col-6">
-          <label>Qt Gerencial</label>
-          <input pInputText formControlName="qtgerencial">
-        </div>
-
-        <div class="p-field col-6">
           <label>Tipo Endereço</label>
           <input pInputText formControlName="tipoendereco">
         </div>
@@ -32,33 +27,39 @@
           <label>Observações</label>
           <input pInputText formControlName="obs">
         </div>
-        <div class="p-field col-6">
+    <!--  <div class="p-field col-6" >
           <label>Cod. Produto Estoque</label>
           <input pInputText   formControlName="codprod_pcest" >
         </div>
         <div class="p-field col-6">
           <label>Cod. Filial</label>
-          <input pInputText  formControlName="codfilial_pcest" >
+          <input pInputText  formControlName="codfilial_pcest"  >
         </div>
         <div class="p-field col-6">
           <label>Cod. Func. Inclusão</label>
-          <input pInputText   formControlName="matricula">
+          <input pInputText   formControlName="matricula"  >
         </div>           
         <div class="p-field col-6">
           <label>Fabricante</label>
-          <input pInputText   formControlName="codfornec">
+          <input pInputText   formControlName="codfornec"  >
         </div>
             <div class="p-field col-6">
           <label>Cod Marca</label>
-          <input pInputText   formControlName="codmarca">
+          <input pInputText   formControlName="codmarca"  >
         </div>
+        
+        <div class="p-field col-6">
+          <label>Qt Gerencial</label>
+          <input pInputText formControlName="qtgerencial"  >
+        </div>
+-->  
       </p-card>
       <p-divider layout="vertical"></p-divider>
       <p-card>
         <div>
           <div class="p-field col-6">
             <label>Rua</label>
-            <p-inputNumber formControlName="rua" mode="decimal" [showButtons]="true" [min]="300" [max]="399" buttonLayout="horizontal"
+            <p-inputNumber formControlName="rua" mode="decimal" [showButtons]="true"  [min]="300" [max]="399" buttonLayout="horizontal"
               spinnerMode="horizontal" pTooltip="Rua" tooltipPosition="left" decrementButtonClass="p-button-secondary"
               incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus"
               decrementButtonIcon="pi pi-minus">
@@ -90,7 +91,7 @@
               incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
             </p-inputNumber>
           </div>
-        </div>
+        </div>     
       </p-card>
       <!--  <div class="p-field col-4">
                 <label>Data Entrada</label>
@@ -126,7 +127,8 @@
           <td>{{estoqueCodprodCabo.codprod }}</td>
           <td>{{estoqueCodprodCabo.qtestger}}</td>
           <td>
-            <p-checkbox [value]="[estoqueCodprodCabo]" [(ngModel)]="selectedValues"  ></p-checkbox>
+        
+            <p-checkbox [value]="[estoqueCodprodCabo]" [(ngModel)]="filialSelecionada"  ></p-checkbox> 
           </td>
         </tr>
       </ng-template>
