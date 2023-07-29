@@ -18,6 +18,7 @@ import { PainelAcompamentoPedidosComponent } from './components/pedido/painel-ac
 import { PainelPedidosComponent } from './components/pedido/painel-pedidos/painel-pedidos.component';
 import { ProdutoComponent } from './components/produto/produto.component';
 import { ClienteComponent } from './components/cliente/cliente.component';
+import { EstoqueExpedicaoComponent } from './components/estoque/estoque-expedicao/estoque-expedicao.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -84,6 +85,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Alteração de Estoque Cabos',
+    },
+  },
+  {
+    path: 'expedicao',
+    component: EstoqueExpedicaoComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Expedição de Mercadoria',
     },
   },
   {

@@ -63,7 +63,9 @@ export class CadastroCodigoDeBarrasComponent implements OnInit {
   get f() {return this.form.controls;}
 
   salvar() {
-    this.cadastroCodigoDeBarrasService.atualizar(this.form.controls.codprod.value, this.form.controls.codauxiliar.value, this.form.controls.codauxiliar2.value ).then(() => {
+    this.cadastroCodigoDeBarrasService.atualizar(this.form.controls.codprod.value, 
+                                                 this.form.controls.codauxiliar.value, 
+                                                 this.form.controls.codauxiliar2.value ).then(() => {
       this.toasty.success('Cadastrado com sucesso');
     })
     this.formDeCodigo();

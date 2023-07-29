@@ -2,7 +2,7 @@
 <p-toast  position="bottom-left"></p-toast>
 <div class="container">
 <h1>Controle de Canhotos</h1>
-      <form [formGroup]="buscaNotaFiscalSaida" autocomplete="off" (ngSubmit)="pesquisar()">
+      <form [formGroup]="buscaNotaFiscalSaida" autocomplete="off" (ngSubmit)="pesquisar()" >
         <div class="grid">
           <div class="col-6 md:col-2 lg:col-3">
             <label style="display: block">Filial</label>
@@ -21,16 +21,43 @@
           </div>
           </div>                      
           <div class="col-6 md:col-2 lg:col-3">
-            <label style="display: block"> </label>            
+            <label style="display: block"> </label>
+            <br/>            
             <button pButton type="submit" label="Pesquisar"></button>
+            
           </div>
           <div>
                       
           </div>          
         </div>
-      </form>
-    
-  
+      </form> 
+   <div id="main-content" class="container">
+        <div class="row">
+          <div class="col-md-6">            
+          </div>
+          <div class="col-md-6">
+            <form class="form-inline" name="test-form">
+              <button pButton label="Sincronizar" (click)="sendName()"></button>
+        <div class="row">
+          <div class="col-md-12" *ngIf="showConversation">
+            <p-table [value]="retornosDoServidor">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 3rem">Greetings</th>              
+              </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-canhoto >
+                <tr>
+                  <td><a target="_blank"
+                    href={{canhoto}}>
+                     {{canhoto}}
+                 </a></td>                 
+              </tr>
+              </ng-template>
+            </p-table>       
+          
+      </div> 
+   
 <div class="card">
     <h6>Selecione canhotos encontrados</h6>
     <p-table [value]="notaFiscalSaida" responsiveLayout="scroll">

@@ -25,6 +25,12 @@ export class PedidoPesquisaService {
     }
   }
 
+  pesquisarPedido(filtro: any): Promise<any>{
+    // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
+    return this.http.get(`${environment.apiAddress}/tabpedidos/${filtro.numped}`)
+     .toPromise()
+   }
+
   excluir(numped: number): Promise<void> {
     return this.http.delete(`${this.pedidosUrlAll}/${numped}`)
       .toPromise()

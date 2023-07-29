@@ -1,9 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Stomp } from '@stomp/stompjs';
+import { WebSocketService } from '@services/web-socket.service';
+import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 import { Filial, NotaFiscal } from '../../models/canhoto.model';
 import { CanhotoService } from '../../services/canhoto.service';
+//import * as SockJS from 'sockjs-client';
+
 
 import Validation from './Validation';
 @Component({
@@ -12,7 +15,7 @@ import Validation from './Validation';
   providers: [MessageService],
   styleUrls: ['./canhoto.component.css']
 })
-export class CanhotoComponent implements OnInit {
+export class CanhotoComponent implements OnInit, OnDestroy {
 
   socket;
 
@@ -22,24 +25,25 @@ export class CanhotoComponent implements OnInit {
   valorDaSegundaBusca;
   filiais: Filial[];
   stompClient;
-
   selectedFilial: Filial;
   buscaNotaFiscalSaida: UntypedFormGroup;
   clonedNotaFiscal: { [s: string]: NotaFiscal; } = {};
-  constructor(private formBuilder: UntypedFormBuilder, private canhotoService: CanhotoService, private messageService: MessageService) {
 
+  retornosDoServidor: string[] = [];
+  showConversation: boolean = false;
+  name: string;
+  disabled: boolean;
+  
+
+  constructor(private formBuilder: UntypedFormBuilder, private canhotoService: CanhotoService, private messageService: MessageService, private  toasty:ToastrService,
+    private webSocketService: WebSocketService) {
+     
   }
 
-  ngOnInit(): void {
-    this.socket = new WebSocket("ws://localhost:8080");
-        // Connection opened
-    this.socket.addEventListener("open", (event) => {
-      this.socket.send("Hello Server!");
-    });
-
-    // Listen for messages
-    this.socket.addEventListener("message", (event) => {
-      console.log("Message from server ", event.data);
+  ngOnInit(): void {      
+    this.webSocketService.conectar();
+    this.webSocketService.retornoMetodo$.subscribe((retorno: string) => {
+      this.showGreeting(retorno);
     });
 
     this.filiais = [
@@ -59,6 +63,9 @@ export class CanhotoComponent implements OnInit {
     )
 
 
+  }
+  ngOnDestroy(): void {
+    this.webSocketService.desconectar();
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -117,8 +124,41 @@ export class CanhotoComponent implements OnInit {
   onRowEditCancel(notafiscal: NotaFiscal, index: number) {
     this.notaFiscalSaida[index] = this.clonedNotaFiscal[notafiscal.numtransvenda];
     delete this.clonedNotaFiscal[notafiscal.numtransvenda];
+  } 
+
+  sendName() {
+    //let data = JSON.stringify({
+    //  'name' : this.name
+   // })
+   // this.webSocketService.executarMetodo(data);
+    this.webSocketService.executarMetodo();
   }
 
-  
+  showGreeting(message) {
+    this.showConversation = true;
+   
+    try {
+      const objetoRetorno = JSON.parse(message);
+      if(!objetoRetorno.length){
+        this.toasty.warning("Nenhum canhoto a sincronizar");
+      }else{
+        for (let i = 0; i < objetoRetorno.length; i++) {    
+          this.toasty.success(objetoRetorno[i].pasta);
+          this.retornosDoServidor.push(objetoRetorno[i].pasta);
+        }
+        console.log(objetoRetorno); 
+      }
+      
+    } catch (error) {
+      
+      this.toasty.warning("A mensagem recebida não é um JSON válido.");
+    }  
+  }
+
+  setConnected(connected) {
+    this.disabled = connected;
+    this.showConversation = connected;
+    this.retornosDoServidor = [];
+  }
 
 }

@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
+
 import { ToastrModule } from 'ngx-toastr';
 
 import { UppercaseDirective } from './uppercase.directive';
@@ -19,6 +20,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { ChartModule } from 'primeng/chart';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DataViewModule } from 'primeng/dataview';
@@ -38,13 +40,14 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { SplitterModule } from 'primeng/splitter';
+import { StepsModule } from 'primeng/steps';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
-import { ToolbarModule } from 'primeng/toolbar';
-import { ChartModule } from 'primeng/chart';
 
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { AppComponent } from './app.component';
 import { BuscaBonusEntradaComponent } from './components/bonus/busca-bonus-entrada/busca-bonus-entrada.component';
 import { BuscaItemBonusComponent } from './components/bonus/busca-item-bonus/busca-item-bonus.component';
@@ -56,14 +59,15 @@ import { AjelEntregaAlteraTransporteComponent } from './components/entrega/ajel-
 import { AjelEntregaCadastroComponent } from './components/entrega/ajel-entrega-cadastro/ajel-entrega-cadastro.component';
 import { AjelEntregaComponent } from './components/entrega/ajel-entrega/ajel-entrega.component';
 import { ConferenteSelectorComponent } from './components/entrega/conferente-selector/conferente-selector.component';
+import { MarcaSelectorComponent } from './components/entrega/marca-selector/marca-selector.component';
 import { MotoristaSelectorComponent } from './components/entrega/motorista-selector/motorista-selector.component';
 import { TransportadoraSelectorComponent } from './components/entrega/transportadora-selector/transportadora-selector.component';
 import { EstoqueCaboCadastroComponent } from './components/estoque/estoque-cabo-cadastro/estoque-cabo-cadastro.component';
 import { EstoqueCaboComponent } from './components/estoque/estoque-cabo/estoque-cabo.component';
 import { EstoqueDetalheComponent } from './components/estoque/estoque-detalhe/estoque-detalhe.component';
+import { EstoqueExpedicaoComponent } from './components/estoque/estoque-expedicao/estoque-expedicao.component';
 import { EstoqueExtratoComponent } from './components/estoque/estoque-extrato/estoque-extrato.component';
 import { LoginComponent } from './components/login/login.component';
-import { MarcaSelectorComponent } from './components/entrega/marca-selector/marca-selector.component';
 import { PainelAcompamentoPedidosComponent } from './components/pedido/painel-acompamento-pedidos/painel-acompamento-pedidos.component';
 import { PainelPedidosComponent } from './components/pedido/painel-pedidos/painel-pedidos.component';
 import { PedidosCadastroComponent } from './components/pedido/pedidos-cadastro/pedidos-cadastro.component';
@@ -71,7 +75,6 @@ import { PedidosPesquisaComponent } from './components/pedido/pedidos-pesquisa/p
 import { ProdutoComponent } from './components/produto/produto.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 import { AjelEntregaService } from './services/ajel-entrega.service';
 import { BuscaBonusEntradaService } from './services/busca-bonus-entrada.service';
@@ -88,9 +91,12 @@ import { PedidoPesquisaService } from './services/pedidos-pesquisa.service';
 import { ProdutoService } from './services/produto.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { TransportadoraService } from './services/transportadora.service';
+import {WebSocketService } from './services/web-socket.service';
 
 import { routes } from '@/routes';
+
 import { RolesDirective } from './navbar/roles.directive';
+
 
 
 registerLocaleData(localePT);
@@ -128,6 +134,7 @@ registerLocaleData(localeFR);
     ClienteComponent,
     RolesDirective,
     IncluirItemBonusComponent,
+    EstoqueExpedicaoComponent    
   ],
   imports: [
     BrowserModule,
@@ -168,6 +175,7 @@ registerLocaleData(localeFR);
     ToolbarModule,
     ChartModule,
     ScrollPanelModule,
+    StepsModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },
@@ -192,6 +200,8 @@ registerLocaleData(localeFR);
     CanhotoService,
     BuscaBonusEntradaService,
     BuscaItemBonusService,
+    WebSocketService,
+
   ],
   bootstrap: [AppComponent],
 })
