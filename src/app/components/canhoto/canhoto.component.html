@@ -1,8 +1,10 @@
 
 <p-toast  position="bottom-left"></p-toast>
 <div class="container">
+<p-progressBar [hidden]="carregandoSincronizacao" mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>  
+<p-blockUI [blocked]="!carregandoSincronizacao"></p-blockUI>
 <h1>Controle de Canhotos</h1>
-      <form [formGroup]="buscaNotaFiscalSaida" autocomplete="off" (ngSubmit)="pesquisar()" >
+      <form [formGroup]="buscaNotaFiscalSaida" autocomplete="off" (ngSubmit)="pesquisar()" #customerRegisteration="ngForm" >
         <div class="grid">
           <div class="col-6 md:col-2 lg:col-3">
             <label style="display: block">Filial</label>
@@ -19,47 +21,45 @@
              <div *ngIf="f.numnotaFinal.errors" class="invalid-feedback">
             <sup>* Numero precisa ser maior que o anterior. </sup>
           </div>
-          </div>                      
+          </div>                     
           <div class="col-6 md:col-2 lg:col-3">
             <label style="display: block"> </label>
             <br/>            
-            <button pButton type="submit" label="Pesquisar"></button>
-            
+            <button pButton type="submit" [disabled]="!buscaNotaFiscalSaida.value.numnotaInicial" label="Pesquisar"></button>            
           </div>
           <div>
                       
           </div>          
         </div>
       </form> 
-   <div id="main-content" class="container">
+      
+   <div  id="main-content" class="container">
         <div class="row">
           <div class="col-md-6">            
           </div>
           <div class="col-md-6">
             <form class="form-inline" name="test-form">
-              <button pButton label="Sincronizar" (click)="sendName()"></button>
+              <button *appRoles="['ROLE_TI','ROLE_GERENTE','ROLE_FISCAL']"   pButton label="Sincronizar" (click)="sendName()" [disabled]="!isConnected"  ></button>
+             <!--<button *appRoles="['ROLE_TI, ROLE_FISCAL']" pButton label="Sincronizar" (click)="sendName()" [disabled]="!isConnected"  ></button>--> 
         <div class="row">
           <div class="col-md-12" *ngIf="showConversation">
-            <p-table [value]="retornosDoServidor">
+            <p-table [value]="retornosDoServidor" [scrollable]="true" scrollHeight="400px" [resizableColumns]="true">
               <ng-template pTemplate="header">
                 <tr>
-                  <th style="width: 3rem">Greetings</th>              
+                  <th pSortableColumn="numNota" style="width:20%">Num Nota <p-sortIcon field="numNota"></p-sortIcon></th>
+                  <th style="width: 3rem">Canhotos encontrados</th>              
               </tr>
               </ng-template>
               <ng-template pTemplate="body" let-canhoto >
                 <tr>
-                  <td><a target="_blank"
-                    href={{canhoto}}>
-                     {{canhoto}}
-                 </a></td>                 
+                  <td>{{canhoto.numNota}}</td>
+                  <td>{{canhoto.dadosEncontrados}} - Copias encontrados: {{canhoto.qtArquivos}} </td>
               </tr>
               </ng-template>
             </p-table>       
-          
       </div> 
    
-<div class="card">
-    <h6>Selecione canhotos encontrados</h6>
+<div class="card">   
     <p-table [value]="notaFiscalSaida" responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>
@@ -67,9 +67,10 @@
           <th style="width: 4rem">Cod. Cliente</th>
           <th style="width: 34rem">Cliente</th>                
           <th >Pedido</th>
-          <th >Dt. Canhoto</th>         
+          <th >Dt. Canhoto</th>
+          <!--<th style="width: 5rem">Nota Fiscal</th>-->         
           <th >Observação</th>
-          <th style="width: 5rem">Nota Fiscal</th>
+          <!---<th style="width: 5rem">Nota Fiscal</th> -->
           <th style="width: 3rem">                    
           </th>
       </tr>
@@ -81,11 +82,21 @@
           <td>{{notaFiscalSaida.codcli.nomeCliente}}</td>                
           <td>{{notaFiscalSaida.numped}}</td>
           <td>{{notaFiscalSaida.dtcanhoto | date: 'dd/MM/yyyy'}}</td>
-          <td>{{notaFiscalSaida.obsnfcarreg}}</td>
-          <td >{{notaFiscalSaida.numnota}}</td>
-          <td style="width: 3rem" style="text-align:center"> 
-                  <p-triStateCheckbox  (click)="onRowEditSave(notaFiscalSaida)"  [(ngModel)]="notaFiscalSaida.botao" ></p-triStateCheckbox> 
-          </td>
+          <td>{{notaFiscalSaida.obsnfcarreg }}</td> 
+          <ng-container *ngIf="!notaFiscalSaida.dtcancel">
+            <td *ngIf="notaFiscalSaida.obsnfcarreg?.length > 6 " >        
+              <a href="{{notaFiscalSaida.linkDownload}}" download target="_blank" class="btn btn-primary p-button" style="text-decoration:none" ><i class="pi pi-arrow-down">&nbsp;</i>{{notaFiscalSaida.numnota}}</a>                          
+            </td>
+            <td *ngIf="notaFiscalSaida.obsnfcarreg?.length <= 6" >
+              <!--</p-fileUpload> <p-fileUpload *appRoles="['ROLE_TI, ROLE_FISCAL']" -->  
+              <p-fileUpload *appRoles="['ROLE_TI','ROLE_GERENTE','ROLE_FISCAL']"                   
+                            mode="basic" 
+                            (click)="criaNomeDoArquivo(notaFiscalSaida.codcli.codigoCliente, notaFiscalSaida.numnota, notaFiscalSaida.serie)" 
+                            (onSelect)="onFileSelected($event)"                           
+                            chooseLabel={{notaFiscalSaida.numnota}} 
+                            styleClass="p-button-secondary"></p-fileUpload> 
+            </td> 
+          </ng-container>
       </tr>
       </ng-template>
   </p-table>  

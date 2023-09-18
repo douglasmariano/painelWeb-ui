@@ -28,3 +28,5 @@ export class Pedido {
     tipoproduto: string;  
     posicaopedido: string;   
   }
+
+  

@@ -46,6 +46,12 @@ import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { ClipboardModule } from 'ngx-clipboard';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { FileUploadModule } from 'primeng/fileupload';
+import { BlockUIModule } from 'primeng/blockui';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { AppComponent } from './app.component';
@@ -76,6 +82,7 @@ import { ProdutoComponent } from './components/produto/produto.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+
 import { AjelEntregaService } from './services/ajel-entrega.service';
 import { BuscaBonusEntradaService } from './services/busca-bonus-entrada.service';
 import { BuscaItemBonusService } from './services/busca-item-bonus.service';
@@ -91,11 +98,15 @@ import { PedidoPesquisaService } from './services/pedidos-pesquisa.service';
 import { ProdutoService } from './services/produto.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { TransportadoraService } from './services/transportadora.service';
-import {WebSocketService } from './services/web-socket.service';
+import { WebSocketService } from './services/web-socket.service';
 
 import { routes } from '@/routes';
 
 import { RolesDirective } from './navbar/roles.directive';
+import { EstoqueSeparacaoComponent } from './components/estoque/estoque-expedicao/estoque-separacao/estoque-separacao.component';
+import { EstoqueConferenciaComponent } from './components/estoque/estoque-expedicao/estoque-conferencia/estoque-conferencia.component';
+import { EstoqueTransporteComponent } from './components/estoque/estoque-expedicao/estoque-transporte/estoque-transporte.component';
+import { SeparadorSelectorComponent } from './components/entrega/separador-selector/separador-selector.component';
 
 
 
@@ -134,7 +145,11 @@ registerLocaleData(localeFR);
     ClienteComponent,
     RolesDirective,
     IncluirItemBonusComponent,
-    EstoqueExpedicaoComponent    
+    EstoqueExpedicaoComponent,
+    EstoqueSeparacaoComponent,
+    EstoqueConferenciaComponent,
+    EstoqueTransporteComponent,
+    SeparadorSelectorComponent    
   ],
   imports: [
     BrowserModule,
@@ -176,6 +191,12 @@ registerLocaleData(localeFR);
     ChartModule,
     ScrollPanelModule,
     StepsModule,
+    ClipboardModule,
+    SplitButtonModule,
+    FileUploadModule,
+    BlockUIModule,
+    MessageModule,
+    MessagesModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },

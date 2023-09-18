@@ -13,5 +13,12 @@ e roda os comandos abaixo
 *rm -rf html/*
 cp -r /home/douglas/Download/dist/painelWeb-ui/* /var/www/html
 cp -r /home/douglas/Ajel/.htaccess /var/www/html
+
+
+
+Caminho para montar o acesso a pasta windows
+
+mount -t cifs  //ajel-dc01/winthor/ETC/ANEXOS/AJEL/CLIENTES /mnt/winthor -o domain=ajelmat.local,username=informatica,password=[SENHA]
+
  
  

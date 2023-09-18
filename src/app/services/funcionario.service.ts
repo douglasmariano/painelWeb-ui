@@ -18,6 +18,10 @@ export class FuncionarioService {
   }
 
   listarTodosSeparadores() {
+    return this.http.get(environment.apiAddress+'/funcionario/expedicao/S')
+  }
+
+  listarTodos() {
     return this.http.get(environment.apiAddress+'/funcionarios')
   }
 }

@@ -146,7 +146,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Controle de Canhotos',
-      role: ['ROLE_TI','ROLE_GERENTE','ROLE_EXPEDICAO','ROLE_FISCAL' ]
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_EXPEDICAO','ROLE_FISCAL','ROLE_VENDAS' ]
     },
   },
   {

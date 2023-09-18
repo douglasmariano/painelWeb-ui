@@ -1,9 +1,19 @@
-div {
+.flex-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container-box {
+    background-color: white;
+    height: 600px;
+  }
+  
+  .content-box {     
+    color: white;
     text-align: center;
-    display: block;
-    margin: auto;
- }
-
- p-button{
+    width: 600px;
+  }
+  p-button{
     margin: 0 15px;
 }
