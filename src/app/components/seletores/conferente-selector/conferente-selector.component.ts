@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FuncionarioService } from '../../../services/funcionario.service';
-import { AjelEntregaCadastroComponent } from '../ajel-entrega-cadastro/ajel-entrega-cadastro.component';
+import { AjelEntregaCadastroComponent } from '../../entrega/ajel-entrega-cadastro/ajel-entrega-cadastro.component';
 @Component({
   selector: 'app-conferente-selector',
   templateUrl: './conferente-selector.component.html',

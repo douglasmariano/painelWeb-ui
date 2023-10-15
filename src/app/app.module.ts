@@ -15,8 +15,12 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { UppercaseDirective } from './uppercase.directive';
 
-import { ConfirmationService } from 'primeng/api';
+import { ClipboardModule } from 'ngx-clipboard';
+import { AnimateModule } from 'primeng/animate';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { AutoFocusModule } from 'primeng/autofocus';
+import { BlockUIModule } from 'primeng/blockui';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
@@ -28,17 +32,21 @@ import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { FileUploadModule } from 'primeng/fileupload';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { MegaMenuModule } from 'primeng/megamenu';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 import { PanelModule } from 'primeng/panel';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SidebarModule } from 'primeng/sidebar';
 import { SlideMenuModule } from 'primeng/slidemenu';
+import { SplitButtonModule } from 'primeng/splitbutton';
 import { SplitterModule } from 'primeng/splitter';
 import { StepsModule } from 'primeng/steps';
 import { TableModule } from 'primeng/table';
@@ -46,12 +54,6 @@ import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
-import { ClipboardModule } from 'ngx-clipboard';
-import { SplitButtonModule } from 'primeng/splitbutton';
-import { FileUploadModule } from 'primeng/fileupload';
-import { BlockUIModule } from 'primeng/blockui';
-import { MessageModule } from 'primeng/message';
-import { MessagesModule } from 'primeng/messages';
 
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { AppComponent } from './app.component';
@@ -64,10 +66,8 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 import { AjelEntregaAlteraTransporteComponent } from './components/entrega/ajel-entrega-altera-transporte/ajel-entrega-altera-transporte.component';
 import { AjelEntregaCadastroComponent } from './components/entrega/ajel-entrega-cadastro/ajel-entrega-cadastro.component';
 import { AjelEntregaComponent } from './components/entrega/ajel-entrega/ajel-entrega.component';
-import { ConferenteSelectorComponent } from './components/entrega/conferente-selector/conferente-selector.component';
-import { MarcaSelectorComponent } from './components/entrega/marca-selector/marca-selector.component';
-import { MotoristaSelectorComponent } from './components/entrega/motorista-selector/motorista-selector.component';
-import { TransportadoraSelectorComponent } from './components/entrega/transportadora-selector/transportadora-selector.component';
+
+
 import { EstoqueCaboCadastroComponent } from './components/estoque/estoque-cabo-cadastro/estoque-cabo-cadastro.component';
 import { EstoqueCaboComponent } from './components/estoque/estoque-cabo/estoque-cabo.component';
 import { EstoqueDetalheComponent } from './components/estoque/estoque-detalhe/estoque-detalhe.component';
@@ -79,8 +79,10 @@ import { PainelPedidosComponent } from './components/pedido/painel-pedidos/paine
 import { PedidosCadastroComponent } from './components/pedido/pedidos-cadastro/pedidos-cadastro.component';
 import { PedidosPesquisaComponent } from './components/pedido/pedidos-pesquisa/pedidos-pesquisa.component';
 import { ProdutoComponent } from './components/produto/produto.component';
+import { TransportadoraSelectorComponent } from './components/seletores/transportadora-selector/transportadora-selector.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NgxPrintModule } from 'ngx-print';
 
 
 import { AjelEntregaService } from './services/ajel-entrega.service';
@@ -102,11 +104,15 @@ import { WebSocketService } from './services/web-socket.service';
 
 import { routes } from '@/routes';
 
-import { RolesDirective } from './navbar/roles.directive';
-import { EstoqueSeparacaoComponent } from './components/estoque/estoque-expedicao/estoque-separacao/estoque-separacao.component';
 import { EstoqueConferenciaComponent } from './components/estoque/estoque-expedicao/estoque-conferencia/estoque-conferencia.component';
+import { EstoqueSeparacaoComponent } from './components/estoque/estoque-expedicao/estoque-separacao/estoque-separacao.component';
 import { EstoqueTransporteComponent } from './components/estoque/estoque-expedicao/estoque-transporte/estoque-transporte.component';
-import { SeparadorSelectorComponent } from './components/entrega/separador-selector/separador-selector.component';
+import { ConferenteSelectorComponent } from './components/seletores/conferente-selector/conferente-selector.component';
+import { MarcaSelectorComponent } from './components/seletores/marca-selector/marca-selector.component';
+import { MotoristaSelectorComponent } from './components/seletores/motorista-selector/motorista-selector.component';
+import { SeparadorSelectorComponent } from './components/seletores/separador-selector/separador-selector.component';
+import { RolesDirective } from './navbar/roles.directive';
+import { VeiculoSelectorComponent } from './components/seletores/veiculo-selector/veiculo-selector.component';
 
 
 
@@ -149,7 +155,8 @@ registerLocaleData(localeFR);
     EstoqueSeparacaoComponent,
     EstoqueConferenciaComponent,
     EstoqueTransporteComponent,
-    SeparadorSelectorComponent    
+    SeparadorSelectorComponent,
+    VeiculoSelectorComponent ,
   ],
   imports: [
     BrowserModule,
@@ -197,6 +204,10 @@ registerLocaleData(localeFR);
     BlockUIModule,
     MessageModule,
     MessagesModule,
+    AutoFocusModule,
+    AnimateModule,
+    CardModule,
+    NgxPrintModule, 
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },
@@ -222,6 +233,8 @@ registerLocaleData(localeFR);
     BuscaBonusEntradaService,
     BuscaItemBonusService,
     WebSocketService,
+    MessageService,
+
 
   ],
   bootstrap: [AppComponent],

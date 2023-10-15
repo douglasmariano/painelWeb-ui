@@ -16,16 +16,16 @@
             </div>
           
             
-            <p-dialog header="" [(visible)]="visibleSeparacao" [style]="{ width: '50vw' }">
-                <app-estoque-separacao></app-estoque-separacao>            
+            <p-dialog header="Separação" [(visible)]="visibleSeparacao" [style]="{ width: '50vw'}"  styleClass="separacaoCSS">
+                <app-estoque-separacao pAutoFocus [autofocus]="true" ></app-estoque-separacao>            
             </p-dialog>
 
-            <p-dialog header="" [(visible)]="visibleConferencia" [style]="{ width: '50vw' }">
+            <p-dialog header="Conferência" [(visible)]="visibleConferencia" [style]="{ width: '50vw' }" styleClass="conferenciaCSS">
                 <app-estoque-conferencia></app-estoque-conferencia>       
             </p-dialog>
 
-            <p-dialog header="" [(visible)]="visibleTransporte" [style]="{ width: '50vw' }">
-                <app-estoque-transporte> </app-estoque-transporte>       
+            <p-dialog header="Transporte" [(visible)]="visibleTransporte" [style]="{ width: '70vw' }">
+                <app-estoque-transporte (callModalTransporte)="onCallParent()"> </app-estoque-transporte>       
             </p-dialog>
         
     

@@ -1,8 +1,4 @@
-import { PedidoExpedicao } from '@/models/pedido-expedicao.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { EstoqueExpedicaoService } from '../../../services/estoque-expedicao.service';
 
 
 
@@ -14,27 +10,36 @@ import { EstoqueExpedicaoService } from '../../../services/estoque-expedicao.ser
 
 export class EstoqueExpedicaoComponent implements OnInit {
 
+
+  
   @Input()
   notaOuPedido: boolean;
   visibleSeparacao: boolean = false;
   visibleConferencia: boolean = false;
   visibleTransporte: boolean = false;
   checked: boolean ;
+  constructor() {}  
   
-  constructor() {}
+
 
   ngOnInit(): void {
     
   }  
 
   showDialogSeparacao() {
-    this.visibleSeparacao = true;
+    this.visibleSeparacao = ! this.visibleSeparacao;
   } 
   showDialogConferencia() {
-    this.visibleConferencia = true;
+    this.visibleConferencia = ! this.visibleConferencia;
   } 
   showDialogTransporte() {
-    this.visibleTransporte = true;
+    this.visibleTransporte = ! this.visibleTransporte;
   } 
+
+
+  onCallParent(){    
+    this.showDialogTransporte();
+  }
+  
 
 }

@@ -1,0 +1,44 @@
+.p-inputnumber-input,.inputNumberVolume { 
+  flex: 1 1 auto;
+  max-width: 50px !important;
+}
+.flex-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container-box {
+    background-color: white;
+    height: 600px;
+  }
+  
+  .content-box {     
+    color: white;
+    text-align: center;
+    width: 600px;
+  }
+  p-button{
+    margin: 0 15px;
+}
+
+fieldset{
+  border: none
+}
+.table td {
+  font-size: 12px;
+}
+.table th {
+  font-size: 16px;
+}
+
+.container-direita {
+  width: 100px;
+  height: 100px;
+  /* Center vertically and horizontally */
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+}
+

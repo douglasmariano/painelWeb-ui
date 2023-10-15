@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { EstoqueExpedicaoService } from '@services/estoque-expedicao.service';
 import { ToastrService } from 'ngx-toastr';
-import { MessageService,ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-estoque-separacao',
@@ -12,6 +12,7 @@ import { MessageService,ConfirmationService } from 'primeng/api';
   providers:[MessageService] 
 })
 export class EstoqueSeparacaoComponent implements OnInit{
+
 
   
   @Input()
@@ -30,10 +31,10 @@ export class EstoqueSeparacaoComponent implements OnInit{
 
   preencherFormGroup() {
     this.formSeparacao = this.fb.group({
-      numped:         '',
-      codfuncsep:            '',
-      datainiciosep:            '',
-      datafimsep:            '',      
+      numped:                 '',
+      codfuncsep:             '',
+      datainiciosep:          '',
+      datafimsep:             '',      
       
       //dtultmovent:[{value: '', }],      
     });
@@ -41,10 +42,11 @@ export class EstoqueSeparacaoComponent implements OnInit{
   constructor(private estoqueExpedicaoService: EstoqueExpedicaoService,
               private fb : UntypedFormBuilder,
               private confirmationService: ConfirmationService,   
-              private  toasty:ToastrService,            
+              private toasty:ToastrService,            
               ) {}
 
   ngOnInit(): void {
+    
     this.preencherFormGroup()
     this.checked = true;
   }
@@ -105,7 +107,7 @@ export class EstoqueSeparacaoComponent implements OnInit{
                                           console.log("Evento Separador")
   }
 
-  salvar(event) {
+  async salvar(event) {
     if (event.submitter.name == "separar") {
       console.log('separar');
       for (let i = 0; i < this.pedidos.length; i++) {
@@ -116,47 +118,63 @@ export class EstoqueSeparacaoComponent implements OnInit{
         if (this.pedidos[i].codfuncsep == null) {
         
           this.estoqueExpedicaoService.separacao(this.formSeparacao.value);
+          if (index !== -1) {
+            this.pedidos.splice(index, 1);
+          }
+          this.toasty.success( 'Pedido '+ this.formSeparacao.value.numped + ' iniciou a separação.');
           console.log(this.formSeparacao.value)
         }
-        if (index !== -1) {
-          this.pedidos.splice(index, 1);
-        }
-        this.toasty.success( 'Pedido '+ this.formSeparacao.value.numped + ' iniciou a separação.');
+        
       }
     }
     else if (event.submitter.name == "finalizar") {
       console.log('finalizar');
       for (let i = 0; i < this.pedidos.length; i++) {
         this.formSeparacao.value.numped = this.pedidos[i].numped;
+        this.formSeparacao.value.datainiciosep = null;
         this.formSeparacao.value.datafimsep = new Date;
         let index = this.pedidos.findIndex(item => item.numped === this.pedidos[i].numped);
 
         if (this.pedidos[i].codfuncsep != null) {
           if(this.pedidos[i].codfuncsep != this.formSeparacao.value.codfuncsep){
-            this.confirmationService.confirm(
-              {message: 'Pedido '+this.formSeparacao.value.numped+' foi iniciado por outro separador - '+ this.pedidos[i].codfuncsep + '. Deseja alterar o separador?',
-                accept: async () => {
-                  //await this.bonusEntradaMercadoria.excluir(bonusEntrada.numbonus )
-                  this.toasty.warning(this.formSeparacao.value.numped + ' - Separador alterado.');
-                  if (index !== -1) {
-                    this.pedidos.splice(index, 1);
-                  }                 
-                },
-                reject: async () =>{
-                  this.toasty.info(this.formSeparacao.value.numped + ' - Não alterado alterado.');
-                }                
-                }                
-            );
-          } 
-          this.estoqueExpedicaoService.separacao(this.formSeparacao.value);
-          this.toasty.success( 'Pedido '+ this.formSeparacao.value.numped + ' finalizou a separação.');
-          if (index !== -1) {
-            this.pedidos.splice(index, 1);
-          } 
-          console.log(this.formSeparacao.value)
+            const confirmacao = await this.confirmarItem(this.pedidos[i].codfuncsep);
+            if (confirmacao) {
+              this.estoqueExpedicaoService.separacao(this.formSeparacao.value);
+              this.toasty.warning(this.formSeparacao.value.numped + ' - Separador alterado.');
+              this.toasty.success( 'Pedido '+ this.formSeparacao.value.numped + ' finalizou a separação.');    
+              if (index !== -1) {
+                this.pedidos.splice(index, 1);
+              } 
+            } else {
+              this.toasty.info(this.formSeparacao.value.numped + ' - Não alterado.');
+            }
+          } else{
+            this.estoqueExpedicaoService.separacao(this.formSeparacao.value);
+            this.toasty.success( 'Pedido '+ this.formSeparacao.value.numped + ' finalizou a separação.');
+              if (index !== -1) {
+                this.pedidos.splice(index, 1);
+              } 
+            console.log(this.formSeparacao.value)
+          }        
+          this.salvar("finalizar");
         }
       }
     }
+  }
+
+  async confirmarItem(item): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+      this.confirmationService.confirm(
+        {message: 'Pedido '+this.formSeparacao.value.numped+' foi iniciado por outro separador - '+ item + '. Deseja alterar o separador?',
+          accept:  () => {
+            resolve(true);              
+          },
+          reject:  () =>{
+            resolve(false);
+          }                
+          }                
+      );
+    });
   }
 
 }

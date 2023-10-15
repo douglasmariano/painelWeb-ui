@@ -1,0 +1,13 @@
+<p-autoComplete 
+class="p-inputtext-sm"
+(completeMethod)="search($event)"   
+[(ngModel)]="motoristaSelecionadas" 
+[suggestions]="motorista" 
+(onSelect)="emitirMotoristaSelecionadas()" 
+(onClear)="onClear($event)"
+field="matricula">
+<ng-template let-motorista pTemplate="motorista">
+    <!-- Aqui, estamos concatenando as propriedades 'codigo' e 'nome' para exibição -->
+    <div>{{ motorista.matricula }} - {{ motorista.nome }}</div>
+  </ng-template>  
+</p-autoComplete>

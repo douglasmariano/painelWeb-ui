@@ -28,4 +28,29 @@ export class PedidoExpedicao {
   vltotal : number;
   }
 
+export class EntregaTransporte{
+  id            :        EntregaTransportePk;
+  coddevol      :        number;
+  dtsaida       :        Date;
+  dtchegada     :        Date; 
+}
 
+export class EntregaTransportePk{
+  codentrega    :        number;
+  codtransporte :        number;    
+}
+
+export class Transporte{
+      codmotorista:        number;
+      codveiculo:          number;
+      destino:             String;
+      dtexclusao:          Date; 
+      tipocarga:           String;   
+      codfuncajud:         number;
+      dtinclusao:          Date;
+      obdestino:           String;
+      qtvolumes:           number;
+      dtultalter:          Date;
+      codfuncalter:        number;
+      obsdoentregador:     String;
+}

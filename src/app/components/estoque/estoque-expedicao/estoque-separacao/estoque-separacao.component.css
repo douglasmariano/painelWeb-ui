@@ -7,3 +7,6 @@ div {
  p-button{
     margin: 0 15px;
 }
+.separacaoCSS {
+    background-color: #000;
+}

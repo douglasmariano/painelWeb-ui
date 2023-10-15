@@ -1,23 +1,24 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FuncionarioService } from '@services/funcionario.service';
+
 
 @Component({
   selector: 'app-separador-selector',
   templateUrl: './separador-selector.component.html',
   styleUrls: ['./separador-selector.component.css']
 })
-export class SeparadorSelectorComponent {
-
+export class SeparadorSelectorComponent implements OnInit{
+ 
   
   separadorSelecionadas ;
   separador ;
   allSeparador: [];
-
-
+ 
   @Output()
   separadorSelecionado = new EventEmitter();
 
-  constructor(private funcionarioService: FuncionarioService) { }
+  constructor(private funcionarioService: FuncionarioService,
+              ) { }
 
   emitirSeparadorSelecionadas() {
     //console.log(this.separadorSelecionadas)
@@ -26,13 +27,15 @@ export class SeparadorSelectorComponent {
     }
   }
 
-  ngOnInit(): void {    
-    
+  ngOnInit(): void {  
     this.funcionarioService.listarTodosSeparadores().subscribe((resultado: any) => {
       this.allSeparador = resultado;     
 
     })   
   }
+
+ 
+  
   
   search(event) {
     if (this.allSeparador && event?.query ) {
@@ -45,5 +48,6 @@ export class SeparadorSelectorComponent {
     }
   }
 
+  
   
 }
