@@ -1,11 +1,10 @@
 
 <p-autoComplete 
-class="p-inputtext-sm"
 (completeMethod)="search($event)"   
 [(ngModel)]="separadorSelecionadas" 
 [suggestions]="separador" 
 (onSelect)="emitirSeparadorSelecionadas()" 
-field="matricula">
+field="nome">
 <ng-template let-separador pTemplate="separador">
     <!-- Aqui, estamos concatenando as propriedades 'codigo' e 'nome' para exibição -->
     <div>{{ separador.matricula }} - {{ separador.nome }}</div>

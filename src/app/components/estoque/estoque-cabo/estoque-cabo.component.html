@@ -13,6 +13,24 @@
         <button pButton type="submit" label="Pesquisar"></button>
         <button type="button" pButton label="Novo" pTooltip="Incluir novo cabo na lista." tooltipPosition="left"
           routerLink="/estoquecabo/novo"></button>
+        <button type="button" pButton label="Buscar Pedido" pTooltip="Busca os cabos do pedido." tooltipPosition="left" (click)="showDialogNumped()"></button>
+              <p-dialog
+                  [(visible)]="dialogVisibleNumped"
+                  [modal]="true" 
+                  [resizable]="true"  > 
+                  <div class="p-field col-6">
+                    <label>Rua</label>
+                    <p-inputNumber formControlName="qt" mode="decimal" [showButtons]="true"  buttonLayout="horizontal"
+                      spinnerMode="horizontal" pTooltip="Rua" tooltipPosition="left" decrementButtonClass="p-button-secondary"
+                      incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus"
+                      decrementButtonIcon="pi pi-minus">
+                    </p-inputNumber>
+                  </div>          
+          <ng-template pTemplate="footer">
+              <button pButton type="button" icon="pi pi-times" (click)="dialogVisibleNumped=false" label="Cancelar" class="p-button-danger"></button>        
+              <button pButton type="button" icon="pi pi-check" (click)="dialogVisibleNumped=false" (click)="baixaQt()" label="Baixar" ></button>
+          </ng-template>
+        </p-dialog>
       </div>
     </form>    
   </div> 
@@ -58,9 +76,28 @@
               class="p-button-rounded"
               pTooltip="Excluir" 
               tooltipPosition="top"
-              (click)="excluir(estoqueCabo)"></button>
-          </td>
+              (click)="excluir(estoqueCabo)"></button>           
+          
+            <button pButton 
+              type="button" 
+              icon="pi pi-download" 
+              iconPos="left" 
+              class="p-button-rounded"
+              pTooltip="Baixar" 
+              tooltipPosition="top"
+              (click)="showDialogbaixarQt(estoqueCabo)"></button>             
+           </td>
         </tr>
       </ng-template>
     </p-table>  
+    <p-dialog  
+            [(visible)]="dialogVisibleBaixaItem"
+            [modal]="true" 
+            [resizable]="true"  >
+            <p>{{caboSelecionado}}</p>   
+    <ng-template pTemplate="footer">
+        <button pButton type="button" icon="pi pi-times" (click)="dialogVisibleBaixaItem=false" label="Cancelar" class="p-button-danger"></button>        
+        <button pButton type="button" icon="pi pi-check" (click)="dialogVisibleBaixaItem=false" (click)="salvar()" label="OK" ></button>
+    </ng-template>
+  </p-dialog>
 </div>

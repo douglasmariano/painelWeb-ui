@@ -1,5 +1,6 @@
 export class AjelEntrega {
   codentrega:number;
+  codfilial:String;
   numnota:number;
   posicao:String;
   codusur:number;
@@ -30,3 +31,18 @@ export class AjelEntrega {
   endercob:String;
   nomecidade:String;
   }
+
+export class AjelEntregaReducao {
+  id: {
+    codentrega: number,
+    numnota: number,
+    codfilial: String
+  };
+  codentrega: number;
+  codfilial: String;
+  numnota: number;
+  dtinclusao: Date;
+  dtexclusao: Date;
+  codusur: number;
+  numvolume: number;
+}

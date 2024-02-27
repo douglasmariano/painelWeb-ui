@@ -13,6 +13,9 @@ export class SeparadorSelectorComponent implements OnInit{
   separadorSelecionadas ;
   separador ;
   allSeparador: [];
+
+  @Output() 
+  eventoCampoSeparador = new EventEmitter<void>();
  
   @Output()
   separadorSelecionado = new EventEmitter();
@@ -35,6 +38,13 @@ export class SeparadorSelectorComponent implements OnInit{
   }
 
  
+  onClear(event){
+    this.eventoCampoSeparador.emit(event.isTrusted)    
+  }
+  limparSelecao(){
+    this.separadorSelecionadas = null
+  }
+
   
   
   search(event) {

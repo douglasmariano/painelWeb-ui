@@ -63,29 +63,34 @@
 
             <div class="p-field col-2">
               <label>Cod. Transp.</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="codfornecfrete" disabled>
+              <input readonly="readonly" pInputText class="p-inputtext-sm"  formControlName="codfornecfrete" >
             </div>
 
-            <div class="p-field col-4">
-              <label>Transportadora</label><br>
-              <!--<input pInputText class="p-inputtext-sm"  formControlName="fornecedor"> -->
-              <fieldset [disabled]="childEnabled2">
-                <app-transportadora-selector (transportadoraSelecionada)="onTransportadoraSelecionada($event)" pTooltip="Selecione a Transportadora" tooltipPosition="left"></app-transportadora-selector>                    
-              </fieldset>                         
-            </div>
+            <div class="p-field col-4" [disabled]="visualizaMotorista">
+              <fieldset>
+                  <label>Transportadora</label><br>
 
-            <div class="p-field col-2">
-              <label>Cod. Motorista</label><br>
-              <input pInputText class="p-inputtext-sm"  formControlName="codmotorista" disabled>
-            </div>
+                  <app-transportadora-selector
+                      (eventoCampoTranportadora)="showVisualizaTranportadora()"
+                      (transportadoraSelecionada)="onTransportadoraSelecionada($event)"
+                      pTooltip="Selecione a Transportadora" tooltipPosition="left">
+                  </app-transportadora-selector>
+              </fieldset>
+          </div>
 
-            <div class="p-field col-4">
-              <label>Motorista</label><br>
-              <fieldset [disabled]="childEnabled">
-               <app-motorista-selector (motoristaSelecionado)="onMotoristaSelecionado($event)" pTooltip="Selecione o Motorista" tooltipPosition="left"></app-motorista-selector>
-              </fieldset> 
-            </div>
-                  
+          <div class="p-field col-2">
+            <label>Cod. Motorista</label><br>
+            <input readonly="readonly" pInputText class="p-inputtext-sm"  formControlName="codmotorista" >
+          </div>
+          <div class="p-field col-4" [disabled]="visualizaTransportadora">
+              <fieldset>
+                  <label>Motorista</label><br>
+                  <app-motorista-selector (eventoCampoMotorista)="showVisualizaMotorista()"
+                      (motoristaSelecionado)="onMotoristaSelecionado($event)"
+                      pTooltip="Selecione o Motorista" tooltipPosition="left">
+                  </app-motorista-selector>
+              </fieldset>
+          </div>         
 
             <div class="p-field col-6">
               <label>Observação do Entregador</label><br>
@@ -97,16 +102,71 @@
               <p-calendar formControlName="dtentrega" showTime="true" hourFormat="24"></p-calendar>               
             </div>            
                 
+        <p-divider align="left" type="solid">
+          <b>Notas Reduzidas</b>
+          </p-divider>
+
+        <div class="p-field col-4">
+        <form [formGroup]="form" autocomplete="off" (ngSubmit)="pesquisar()">
+          <ng-template pTemplate="header">
+              <span class="text-xl font-bold"></span>
+          </ng-template>
+          <div>
+              <label>Notas Fiscais</label>
+              <br />
+              <input #buscaNotaFiscal (keydown.enter)="pesquisar()" type="text"
+                  formControlName="numnota" pInputText>
+          </div>
+          <br />
+          <div>
+              <button pButton  (keydown.enter)="pesquisar()"
+                  type="submit" label="Buscar"></button>
+              &nbsp;
+              <button pButton  (click)="limparListaPedidos()"
+                  label="Limpar" class="p-button-warning"></button>
+          </div>
+      </form> 
         </div>
+      <div class="p-field col-8">
+        <p-table [value]="entregas" [scrollable]="true" scrollHeight="600px" class="table">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Nota</th>
+                  <th style="width: 20rem">Cliente</th>
+                  <th>Vendedor</th>
+                  <th>Volumes</th>
+                  <th style="width: 5rem"></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-entregas>
+              <tr>
+                  <td>{{entregas.numnota}}</td>
+                  <td>{{entregas.nomecliente}}</td>
+                  <td>{{entregas.nomevendedor}}</td>
+                  <td>    
+                   {{entregas.numvolume}}  
+              </td>        
+                  <td>
+                      <button type="button" pButton pRipple icon="pi pi-times"
+                          (click)="removerItem(entregas.numnota)"
+                          class="p-button-warning"></button>
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+      </div> 
+    </div> 
+       
         <div class="p-fluid p-formgrid grid">
            <div class="p-field col-2">
-             <button pButton type="submit" label="Salvar" ></button>
+             <button pButton type="submit" label="Salvar"></button>
             </div>           
             <div class="p-field col-2">
               <button pButton type="button" label="Voltar" (click)="voltar()"></button> 
             </div>
         </div>     
-    </form>      
+    </form>   
+     
 </div>
 
 

@@ -5,7 +5,7 @@ class="p-inputtext-sm"
 [suggestions]="veiculo" 
 (onSelect)="emitirVeiculoSelecionadas()" 
 (onClear)="onClear($event)"
-field="codveiculo">
+field="placa">
 <ng-template let-veiculo pTemplate="veiculo">
     <!-- Aqui, estamos concatenando as propriedades 'codigo' e 'nome' para exibição -->
     <div>{{ veiculo.codveiculo }} - {{ veiculo.placa }}</div>

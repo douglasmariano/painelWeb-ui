@@ -12,6 +12,8 @@ export class ConferenteSelectorComponent implements OnInit {
   conferente ;
   allConferente: [];
 
+  @Output() 
+  eventoCampoConferente = new EventEmitter<void>();
 
   @Output()
   conferenteSelecionado = new EventEmitter();
@@ -32,10 +34,23 @@ export class ConferenteSelectorComponent implements OnInit {
 
     })   
   }
+
+  onClear(event){
+    this.eventoCampoConferente.emit(event.isTrusted)    
+  }
+  limparSelecao(){
+    this.conferenteSelecionadas = null
+  }
+
   
   search(event) {
     if (this.allConferente && event?.query ) {
-      this.conferente = this.allConferente.filter((nome: any) => nome?.nome?.toLowerCase().includes(event.query.toLowerCase()))
+      //this.conferente = this.allConferente.filter((nome: any) => nome?.nome?.toLowerCase().includes(event.query.toLowerCase()))
+      const query = event.query.toLowerCase();  
+      this.conferente = this.allConferente.filter((obj:any) => {
+                                  const matriculaStr = obj.matricula.toString(); 
+                                  return obj?.nome?.toLowerCase().startsWith(query) || (matriculaStr.startsWith(query))});
+      this.conferente.sort((a, b) => a.matricula - b.matricula);
     }
   }
 

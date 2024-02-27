@@ -27,13 +27,14 @@ export class EstoqueTransporteComponent implements OnChanges {
   flipSeparacao: boolean = false;
   visualizaTranportadora : boolean = false ;
   visualizaMotorista :boolean = false;
+  showMenu : boolean = true;
   items: MenuItem[];
   subscription: Subscription;
 
-  @ViewChild(TransportadoraSelectorComponent) transportadoraSelectorComponent: TransportadoraSelectorComponent;
-  @ViewChild(MotoristaSelectorComponent) motoristaSelectorComponent: MotoristaSelectorComponent;
-  @ViewChild(VeiculoSelectorComponent) veiculoSelectorComponent: VeiculoSelectorComponent;
-  @ViewChild('buscaNotaFiscal') buscaNotaFiscal: ElementRef;
+  @ViewChild(TransportadoraSelectorComponent)  transportadoraSelectorComponent: TransportadoraSelectorComponent;
+  @ViewChild(MotoristaSelectorComponent)            motoristaSelectorComponent: MotoristaSelectorComponent;
+  @ViewChild(VeiculoSelectorComponent)                veiculoSelectorComponent: VeiculoSelectorComponent;
+  @ViewChild('buscaNotaFiscal')                                buscaNotaFiscal: ElementRef;
   
   @Input()
   notaOuPedido: boolean;
@@ -42,6 +43,7 @@ export class EstoqueTransporteComponent implements OnChanges {
   visible: boolean = false;
   entregas : AjelEntrega[] = [];
   entregaTransporte : EntregaTransporte[] = [];
+  entregaTransporteSelecionado! : EntregaTransporte;
   transporte : Transporte ;
   ajelEntrega : AjelEntrega[] = [];
   checked: boolean ;
@@ -52,12 +54,20 @@ export class EstoqueTransporteComponent implements OnChanges {
   zeraCampoAoSubmeter;  
   isPaginaSubmissao = true;
   isPaginaResumo = false;
+  isPaginaFinaliza = false;
+  isShowBuscaEntrega = false;
 
   
 
   form = new UntypedFormGroup({
 
     numnota: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")]),
+
+  });
+
+  formFinalizaTransporte = new UntypedFormGroup({
+
+    codtransporte: new UntypedFormControl('', [Validators.pattern("^[0-9]*$")]),
 
   });
 
@@ -149,6 +159,7 @@ export class EstoqueTransporteComponent implements OnChanges {
 
   get f() { return this.form.controls; }
   get t() { return this.formTransporte.controls;}
+  get te() { return this.formTransporte.controls;}
     
   pesquisar() { 
     const novaEntrega = this.form.value.numnota;  
@@ -171,9 +182,32 @@ export class EstoqueTransporteComponent implements OnChanges {
           this.formEntrega.patchValue({ajelEntregaTemp});
         }
       } );    
-      this.f.numnota.reset();
+      this.t.numnota.reset();
     }
     
+  } 
+
+  pesquisarTransporte() { 
+    const finalizaTransporte = this.formFinalizaTransporte.value.codtransporte;  
+      
+    this.entregaTransporte = []; 
+        
+    if (finalizaTransporte) {
+      this.estoqueExpedicaoService.pesquisarCodTransporte({codtransporte: finalizaTransporte})
+        .then((data) => {
+          for (let i = 0; i < data.length; i++) {
+            this.entregas = [];
+            this.ajelEntregaService.pesquisarAjelEntrega({codentrega: data[i].codentrega}).then((data) => {this.entregas = data});
+            const temp = {
+              ...data[i],  
+              ...this.entregas,
+            };
+            this.entregaTransporte.push(temp);
+          }
+          console.log(this.entregaTransporte);   
+          this.te.codtransporte.reset();
+        });
+    }
   } 
 
   //Preencha com os dados na nota fiscal do sistema a entrega que vai para tabela AjelEntrega
@@ -249,7 +283,6 @@ export class EstoqueTransporteComponent implements OnChanges {
   showVisualizaMotorista(){
     this.visualizaMotorista = ! this.visualizaMotorista; 
   }
-
  
   showFlipSeparacao(){    
       this.flipSeparacao = ! this.flipSeparacao; 
@@ -258,10 +291,15 @@ export class EstoqueTransporteComponent implements OnChanges {
   showIniciaEntrega(){
     this.showFlipSeparacao();
     this.alternarParaPaginaSubmissao()
+    this.isPaginaFinaliza = false;
+    this.showMenu = ! this.showMenu;
+    this.isShowBuscaEntrega = false;
   }
   showFinalizaEntrega(){
     this.showFlipSeparacao();
     this.alternarParaPaginaResumo()
+    this.isPaginaFinaliza = true;
+    this.showMenu = ! this.showMenu;    
   }
   
 
@@ -351,7 +389,7 @@ export class EstoqueTransporteComponent implements OnChanges {
       } 
       
       this.toasty.success('Romaneio gerado com sucesso.');
-      this.formTransporte.reset();
+      this.formTransporte.reset(); 
       this.zerarDosSeletores();
       if(!this.transporte.codmotorista){
         this.callModalTransporte.emit();
@@ -386,12 +424,14 @@ export class EstoqueTransporteComponent implements OnChanges {
 
   alternarParaPaginaResumo() {
     this.isPaginaSubmissao = false;
-    this.isPaginaResumo = true;
+    //this.isPaginaResumo = ! this.isPaginaResumo;
+    this.isShowBuscaEntrega = ! this.isShowBuscaEntrega;
   }
 
   alternarParaPaginaSubmissao() {
     this.isPaginaSubmissao = true;
     this.isPaginaResumo = false;
+    this.isPaginaFinaliza = ! this.isPaginaFinaliza;
   }
   
   printContent(): void {
@@ -399,11 +439,14 @@ export class EstoqueTransporteComponent implements OnChanges {
     printJS({
       printable: divToPrint,
       type: 'html',
-      style: '@media print{.no-print{display:none;}}',
+      //style: '@media print{.no-print{display:none;}}',
     });
     this.callModalTransporte.emit();
-    this.alternarParaPaginaSubmissao();
+    this.alternarParaPaginaResumo();
     this.entregas = [];
+    this.entregaTransporte = [];
+    this.showMenu = ! this.showMenu;
+    this.flipSeparacao = ! this.flipSeparacao;
   }
   
 }

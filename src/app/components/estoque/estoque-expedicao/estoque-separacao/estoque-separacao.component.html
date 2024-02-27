@@ -8,6 +8,26 @@
             <app-separador-selector  (separadorSelecionado)="onSeparadorSelecionado($event)" pTooltip="Selecione o Separador"
             tooltipPosition="right"></app-separador-selector>
         </div>
+        <br/>
+        <form [formGroup]="form" autocomplete="off" (ngSubmit)="pesquisar()">
+            <ng-template pTemplate="header">
+                <span class="text-xl font-bold"></span>
+            </ng-template>
+            <br/>            
+            <div  *ngIf="!notaOuPedido">
+                <label>Numero Pedido</label>
+                <br />
+                <input (keydown.enter)="pesquisar()" type="text" formControlName="numped" pInputText>
+            </div>
+            <br/>
+            <div>
+                <button pButton [disabled]="!checkedDisable" (keydown.enter)="pesquisar()" type="submit"
+                    label="Buscar"></button>
+                &nbsp;
+                <button pButton [disabled]="!checkedDisable" (click)="limparListaPedidos()" label="Limpar"
+                    class="p-button-warning"></button>
+            </div>
+        </form>
         
         <br />
 
@@ -43,25 +63,5 @@
         <button pButton [disabled]="!pedidos[0]" type="submit" label="Finalizar" name="finalizar"
             class="p-button-danger"></button>
     </form>
-    <form [formGroup]="form" autocomplete="off" (ngSubmit)="pesquisar()">
-        <ng-template pTemplate="header">
-            <span class="text-xl font-bold"></span>
-        </ng-template>
-        <br/>
-        <br/>
-        <br/>
-        <div  *ngIf="!notaOuPedido">
-            <label>Numero Pedido</label>
-            <br />
-            <input (keydown.enter)="pesquisar()" type="text" formControlName="numped" pInputText>
-        </div>
-        <br/>
-        <div>
-            <button pButton [disabled]="!checkedDisable" (keydown.enter)="pesquisar()" type="submit"
-                label="Buscar"></button>
-            &nbsp;
-            <button pButton [disabled]="!checkedDisable" (click)="limparListaPedidos()" label="Limpar"
-                class="p-button-warning"></button>
-        </div>
-    </form>
+
 </div>

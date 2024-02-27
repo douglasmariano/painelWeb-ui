@@ -48,14 +48,25 @@ export class EstoqueCaboService {
   
 
   
-   excluir(codcabo: number): Promise<any> {
-    return  this.http.delete(`${this.estoqueCaboUrl}/${codcabo}`)
-    .toPromise(); 
+   excluir(estoqueCabo: EstoqueCabo): Promise<void> {
+    //return this.http.put(`${this.estoqueCaboUrl}/estoquecabo/dataExclusao/${estoqueCabo.codcabo}`, estoqueCabo)
+    console.log(`${estoqueCabo}`)
+    return this.http.put(`${this.estoqueCaboUrl}/dataExclusao/${estoqueCabo}`, estoqueCabo).toPromise()    
+    .then(() => { this.pesquisar(estoqueCabo.codcabo);});
+    
   }
 
   atualizar(estoqueCabo: EstoqueCabo): Promise<void> {
     //console.log(estoqueCabo.codcabo)
     return this.http.put(`${this.estoqueCaboUrl}/${estoqueCabo.codcabo}`, estoqueCabo)
+      .toPromise()
+      .then(() => { this.pesquisar(estoqueCabo.codcabo);});// return this.http.put(this.pedidosUrlAll/numped).toPromise();
+      
+  }
+
+  baixarQuantidade(estoqueCabo: EstoqueCabo): Promise<void> {
+    //console.log(estoqueCabo.codcabo)
+    return this.http.put(`${this.estoqueCaboUrl}/baixaQuantidade/${estoqueCabo.codcabo}`, estoqueCabo)
       .toPromise()
       .then(() => { this.pesquisar(estoqueCabo.codcabo);});// return this.http.put(this.pedidosUrlAll/numped).toPromise();
       

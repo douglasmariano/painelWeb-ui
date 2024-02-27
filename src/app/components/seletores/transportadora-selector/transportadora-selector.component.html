@@ -5,7 +5,7 @@ class="p-inputtext-sm"
 [suggestions]="transportadora" 
 (onSelect)="emitirTransportadoraSelecionadas()" 
 (onClear)="onClear($event)"
-field="codfornec">
+field="fornecedor">
 <ng-template let-transportadora pTemplate="transportadora">
     <!-- Aqui, estamos concatenando as propriedades 'codigo' e 'nome' para exibição -->
     <div>{{ transportadora.codfornec }} - {{ transportadora.fornecedor }}</div>

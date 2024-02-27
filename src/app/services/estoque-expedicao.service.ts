@@ -30,6 +30,17 @@ export class EstoqueExpedicaoService {
     }
   }
 
+  pesquisarCodTransporte(filtro: any): Promise<any> {
+    //const params = new URLSearchParams();
+    // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
+    if (filtro) {
+      // params.set('numped', filtro.numped);
+      console.log(filtro.codtransporte)
+      return this.http.post(this.entregaTransporteUrl+'/filtro', filtro)
+        .toPromise();
+    }
+  }
+
   separacao(pedido :PedidoExpedicao ) {
     return this.http.put(`${this.pedidosUrl}/separacao/${pedido.numped}`, pedido).toPromise()        
   }

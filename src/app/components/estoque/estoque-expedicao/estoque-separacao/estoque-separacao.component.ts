@@ -1,5 +1,6 @@
+import { SeparadorSelectorComponent } from '@/components/seletores/separador-selector/separador-selector.component';
 import { PedidoExpedicao } from '@/models/pedido-expedicao.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { EstoqueExpedicaoService } from '@services/estoque-expedicao.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +14,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class EstoqueSeparacaoComponent implements OnInit{
 
-
+  @ViewChild(SeparadorSelectorComponent) separadorSelectorComponent: SeparadorSelectorComponent;
   
   @Input()
   notaOuPedido: boolean;
@@ -91,6 +92,7 @@ export class EstoqueSeparacaoComponent implements OnInit{
   }
   limparListaPedidos(){
     this.pedidos = []; 
+    this.separadorSelectorComponent.limparSelecao();
   }
 
   removerItem(pedido){
@@ -160,6 +162,7 @@ export class EstoqueSeparacaoComponent implements OnInit{
         }
       }
     }
+    this.separadorSelectorComponent.limparSelecao();
   }
 
   async confirmarItem(item): Promise<boolean> {

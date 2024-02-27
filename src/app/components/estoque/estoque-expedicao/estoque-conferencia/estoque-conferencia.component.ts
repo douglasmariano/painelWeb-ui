@@ -1,5 +1,6 @@
+import { ConferenteSelectorComponent } from '@/components/seletores/conferente-selector/conferente-selector.component';
 import { PedidoExpedicao } from '@/models/pedido-expedicao.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { EstoqueExpedicaoService } from '@services/estoque-expedicao.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +13,7 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class EstoqueConferenciaComponent implements OnInit {
 
+ @ViewChild(ConferenteSelectorComponent) conferenteSelectorComponent: ConferenteSelectorComponent;
 
   @Input()
   notaOuPedido: boolean;
@@ -88,6 +90,7 @@ export class EstoqueConferenciaComponent implements OnInit {
   }
   limparListaPedidos() {
     this.pedidos = [];
+    this.conferenteSelectorComponent.limparSelecao();
   }
 
   removerItem(pedido) {
@@ -98,7 +101,7 @@ export class EstoqueConferenciaComponent implements OnInit {
     }
 
   }
-  onSeparadorSelecionado(event) {
+  onConferenteSelecionado(event) {
     this.checkedDisable = true;
     this.formConferencia.patchValue({ codfuncbalcao: event.matricula })
     console.log("Evento Conferência")
@@ -161,6 +164,7 @@ export class EstoqueConferenciaComponent implements OnInit {
         }
       }
     }
+    this.conferenteSelectorComponent.limparSelecao();
   }
 
   async confirmarItem(item): Promise<boolean> {

@@ -1,3 +1,4 @@
+import { AjelEntregaReducao } from './../models/ajel-entrega.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
@@ -10,11 +11,11 @@ import { AjelEntrega } from '../models/ajel-entrega.model';
 export class AjelEntregaService {
  
   ajelEntregaUrl = `${environment.apiAddress}/ajelentrega`;
+  ajelEntregaReducaoUrl = `${environment.apiAddress}/ajelentregareducao/novo`;
 
   constructor(private http: HttpClient) { }
 
   pesquisarAjelEntrega(filtro: any): Promise<any> {
-   
     if (filtro?.numnota) {
      // return this.http.get(this.estoqueCaboUrl+'?codendcabo='+filtro.codendcabo)  
      //console.log("filtro.codentrega")
@@ -33,7 +34,6 @@ export class AjelEntregaService {
         .toPromise();
       }
   }
-
  
   pesquisarNotaWinthor(filtro: any): Promise<any> {
     //const params = new URLSearchParams();
@@ -51,16 +51,28 @@ export class AjelEntregaService {
   }
 
   atualizar(ajelEntrega: AjelEntrega): Promise<void> {
-    
     return this.http.put(`${this.ajelEntregaUrl}/alterarSeparacao/${ajelEntrega.codentrega}`, ajelEntrega)
       .toPromise()
       .then(() => { this.pesquisarAjelEntrega(ajelEntrega.codentrega);});// return this.http.put(this.pedidosUrlAll/numped).toPromise();
-      
   }
 
-  adicionar(ajelEntrega: AjelEntrega): Promise<AjelEntrega> {
-    return this.http.post<AjelEntrega>(this.ajelEntregaUrl, ajelEntrega, {  })
+  async adicionar(ajelEntrega: AjelEntrega): Promise<number> {
+    try {
+      const resposta = await this.http.post<AjelEntrega>(this.ajelEntregaUrl, ajelEntrega)
+      .toPromise(); 
+      return resposta.codentrega; 
+    } catch (error) {
+      throw error; 
+    }
+  }
+
+  adicionarReducao(ajelEntregaReducao: AjelEntregaReducao): Promise<AjelEntregaReducao> {
+    return this.http.post<AjelEntregaReducao>(this.ajelEntregaReducaoUrl, ajelEntregaReducao, {  })
     .toPromise();    
+  }
+
+  excluirReducao(codentrega) {    
+    return this.http.put(`${this.ajelEntregaReducaoUrl}/dataExlusao/${codentrega}`, {}).toPromise()
   }
 
 }

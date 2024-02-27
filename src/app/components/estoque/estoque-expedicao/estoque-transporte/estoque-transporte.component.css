@@ -3,23 +3,18 @@
   max-width: 50px !important;
 }
 .flex-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.content-box {
   
-  .container-box {
-    background-color: white;
-    height: 600px;
-  }
-  
-  .content-box {     
-    color: white;
-    text-align: center;
-    width: 600px;
-  }
-  p-button{
-    margin: 0 15px;
+  color: white;
+  text-align: center;
+   
+}
+p-button{
+  margin: 0 15px;
 }
 
 fieldset{
@@ -40,5 +35,9 @@ fieldset{
   top: 50%;
   left: 50%;
   margin: -25px 0 0 -25px;
+}
+p-dialog .ui-dialog {
+  overflow: scroll;
+  max-height: 70%;
 }
 
