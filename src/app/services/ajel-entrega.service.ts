@@ -11,7 +11,7 @@ import { AjelEntrega } from '../models/ajel-entrega.model';
 export class AjelEntregaService {
  
   ajelEntregaUrl = `${environment.apiAddress}/ajelentrega`;
-  ajelEntregaReducaoUrl = `${environment.apiAddress}/ajelentregareducao/novo`;
+  ajelEntregaReducaoUrl = `${environment.apiAddress}/ajelentregareducao`;
 
   constructor(private http: HttpClient) { }
 
@@ -66,13 +66,27 @@ export class AjelEntregaService {
     }
   }
 
+  pesquisarReducao(filtro: any): Promise<any> {
+    if (filtro) {
+      return this.http.post(this.ajelEntregaReducaoUrl+'/pesquisar/', filtro)
+        .toPromise();
+    }
+  }
+
   adicionarReducao(ajelEntregaReducao: AjelEntregaReducao): Promise<AjelEntregaReducao> {
-    return this.http.post<AjelEntregaReducao>(this.ajelEntregaReducaoUrl, ajelEntregaReducao, {  })
+    return this.http.post<AjelEntregaReducao>(this.ajelEntregaReducaoUrl+`/novo`, ajelEntregaReducao, {  })
     .toPromise();    
   }
 
-  excluirReducao(codentrega) {    
-    return this.http.put(`${this.ajelEntregaReducaoUrl}/dataExlusao/${codentrega}`, {}).toPromise()
+  atualizarReducao(ajelEntregaReducao: AjelEntregaReducao): Promise<void> {
+    return this.http.put(`${this.ajelEntregaReducaoUrl}/alterarSeparacao/${ajelEntregaReducao.codentrega}`, ajelEntregaReducao)
+      .toPromise()
+      .then(() => { });
+  }
+
+  excluirReducao(codentrega,numnota) {    
+    //return this.http.put(`${this.ajelEntregaReducaoUrl}/dataExlusao/${codentrega}`, {}).toPromise()
+    return this.http.delete(`${this.ajelEntregaReducaoUrl}/delete/${codentrega}/${numnota}`, {}).toPromise()
   }
 
 }

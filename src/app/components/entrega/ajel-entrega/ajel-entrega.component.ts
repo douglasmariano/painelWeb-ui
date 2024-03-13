@@ -78,14 +78,11 @@ export class AjelEntregaComponent implements OnInit {
       }
     }
   }
-
  
-
   showDialogAlteraTransporte(codentrega) {
       this.displayAlteraTransporte = true;
       this.codigoEntregaAlteracao = codentrega;
     }
-  
 
   excluir(codentrega) {
     this.confirmation.confirm(

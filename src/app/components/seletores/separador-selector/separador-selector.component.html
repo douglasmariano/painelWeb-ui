@@ -6,7 +6,6 @@
 (onSelect)="emitirSeparadorSelecionadas()" 
 field="nome">
 <ng-template let-separador pTemplate="separador">
-    <!-- Aqui, estamos concatenando as propriedades 'codigo' e 'nome' para exibição -->
     <div>{{ separador.matricula }} - {{ separador.nome }}</div>
   </ng-template>  
 </p-autoComplete>

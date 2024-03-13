@@ -12,6 +12,7 @@ import { AjelEntregaService } from '../../../services/ajel-entrega.service';
   styleUrls: ['./ajel-entrega-cadastro.component.css']
 })
 export class AjelEntregaCadastroComponent implements OnInit {
+  
   ajelEntregaCadastro: UntypedFormGroup;
   formEntregaReducao: UntypedFormGroup;
   entregas : AjelEntrega[] = [];
@@ -19,7 +20,6 @@ export class AjelEntregaCadastroComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private ajelEntregaService: AjelEntregaService,
     private toasty: ToastrService,
-    private confirmation: ConfirmationService,
     private fb: UntypedFormBuilder,   
     private router: Router) { }
     visualizaMotorista : boolean ;
@@ -91,7 +91,6 @@ export class AjelEntregaCadastroComponent implements OnInit {
       endercob:           '',
       nomecidade:         '',
       
-      //dtultmovent:[{value: '', }],      
     });
   }
 
@@ -105,11 +104,9 @@ export class AjelEntregaCadastroComponent implements OnInit {
   
   pesquisar() { 
     const novaEntrega = this.form.value.numnota;  
-    //this.entregas = [];
     if( novaEntrega ){
        this.ajelEntregaService.pesquisarNotaWinthor({numnota: novaEntrega})
       .then(entrega => {
-        // Verificar se o pedido já existe no array
         if (!this.entregas.some(p => p.numnota === entrega[0].numnota)) {          
           const ajelEntregaTemp = {
             ...entrega[0],          
@@ -143,19 +140,11 @@ export class AjelEntregaCadastroComponent implements OnInit {
       .then(ajelEntregaCadastro => {
         const ajelEntregaTemp = {
           ...ajelEntregaCadastro[0],
-         // dtentrega : new Date(ajelEntregaCadastro[0].dtentrega),
           dtentrega : new Date(),
           dtinclusao : new Date(ajelEntregaCadastro[0].dtinclusao),         
           dtfat : new Date(ajelEntregaCadastro[0].dtfat),
-          //dataexclusao : new Date(estoqueCaboCadastro.dataexclusao),  
         }
-        //this.estoqueCaboCadastro.setValue ( { datainclusao: new Date(estoqueCaboCadastro.datainclusao) })      
-        //console.log({
-        //  ajelEntregaCadastro: ajelEntregaCadastro, 
-        //  ajelEntregaTemp: ajelEntregaTemp
-        //});               
         this.ajelEntregaCadastro.patchValue(ajelEntregaTemp); 
-        //console.log(ajelEntregaTemp)       
         })
       }
   }
@@ -179,7 +168,6 @@ export class AjelEntregaCadastroComponent implements OnInit {
              
     this.visualizaTranportadora = ! this.visualizaTranportadora;
     this.ajelEntregaCadastro.get('codfornecfrete').enable(); 
-    //console.log("Evento trasnportadora")
   }
   
   onMotoristaSelecionado(event) {
@@ -223,6 +211,18 @@ export class AjelEntregaCadastroComponent implements OnInit {
         this.preencherFormGroup()
         this.carregarAjelEntrega(this.route.snapshot.params['codentrega']);
       })
+    }
+  }
+
+  async carregarAjelReducao(codentrega: number) {
+    if (codentrega) {
+      const numNotasReduzidas = await this.ajelEntregaService.pesquisarReducao({ codentrega });
+      console.log(numNotasReduzidas.length);
+      for (let i = 0; i < numNotasReduzidas.length; i++) {
+        this.entregas.push(...await this.ajelEntregaService.pesquisarNotaWinthor({ numnota: numNotasReduzidas[i].id.numnota }))
+      }
+
+      console.log(this.entregas)
     }
   }
 

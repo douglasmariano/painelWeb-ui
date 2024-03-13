@@ -14,11 +14,12 @@ import { EstoqueCaboCadastroComponent } from './components/estoque/estoque-cabo-
 import { EstoqueCaboComponent } from './components/estoque/estoque-cabo/estoque-cabo.component';
 import { EstoqueExpedicaoComponent } from './components/estoque/estoque-expedicao/estoque-expedicao.component';
 import { LoginComponent } from './components/login/login.component';
-import { PainelAcompamentoPedidosComponent } from './components/pedido/painel-acompamento-pedidos/painel-acompamento-pedidos.component';
-import { PainelPedidosComponent } from './components/pedido/painel-pedidos/painel-pedidos.component';
+import { PainelAcompamentoPedidosComponent } from './components/paineis/painel-acompamento-pedidos/painel-acompamento-pedidos.component';
+import { PainelPedidosComponent } from './components/paineis/painel-pedidos/painel-pedidos.component';
 import { PedidosCadastroComponent } from './components/pedido/pedidos-cadastro/pedidos-cadastro.component';
 import { PedidosPesquisaComponent } from './components/pedido/pedidos-pesquisa/pedidos-pesquisa.component';
 import { ProdutoComponent } from './components/produto/produto.component';
+import { PainelSeparacaoComponent } from './components/paineis/painel-separacao/painel-separacao.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -59,6 +60,15 @@ const routes: Routes = [
     component: PainelPedidosComponent,
     canActivate: [AuthGuard],
     data:{
+      role: ['ROLE_TI','ROLE_GERENTE','ROLE_VENDAS']
+    }
+  },
+  {
+    path: 'painelseparacao',
+    component: PainelSeparacaoComponent,
+    canActivate: [AuthGuard],
+    data:{
+      title: 'Painel Separação',
       role: ['ROLE_TI','ROLE_GERENTE','ROLE_VENDAS']
     }
   },

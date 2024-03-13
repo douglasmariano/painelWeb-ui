@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container">    
     <h1>Acompanhamento de Pedidos</h1>
     <br />
-    
+</div>
+    <div class="container">
     <form [formGroup]="buscaPedido" autocomplete="off" (click)="visibleCharts = true" (ngSubmit)="pesquisar()">
         <div class="grid">
 
@@ -83,9 +84,9 @@
         </div>
     </div>
 
-    <div class="container">
 
-        <p-table #dt1 [value]="painelAcompanhaPedidos" dataKey="id" [rows]="15" [showCurrentPageReport]="true"
+        <!--
+        <p-table #dt1 [value]="painelAcompanhaSeparacao" dataKey="id" [rows]="15" [showCurrentPageReport]="true"
             [rowsPerPageOptions]="[15, 50,100, 200]" [loading]="loading" [paginator]="true"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [globalFilterFields]="['cliente', 'funcsep', 'vendedor', 'status']" [responsive]="true"
@@ -200,7 +201,7 @@
                                 'row-emseparacao': painelAcompanhaPedidos.status === 'E',
                                 'row-caixa': painelAcompanhaPedidos.status === 'X',
                                 'row-pacote': painelAcompanhaPedidos.status === 'P',
-                                'row-entrega': painelAcompanhaPedidos.status === 'G'}">--> 
+                                'row-entrega': painelAcompanhaPedidos.status === 'G'}">--> <!--
                                 <tr>
                     <td class="text-center">
                         <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': painelAcompanhaPedidos.descbutton == 'true', 
@@ -252,6 +253,6 @@
                     <td colspan="7">Nenhum pedido encontrado.</td>
                 </tr>
             </ng-template>
-        </p-table>
+        </p-table>-->
     </div>
-</div>
+    

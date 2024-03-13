@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { Sidebar } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +9,13 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+
+  @ViewChild('sidebarRef') sidebarRef!: Sidebar;
+
+  closeCallback(e): void {
+    this.sidebarRef.close(e);
+}
+
   exibindoMenu = false;
   loginUrl = '/login?nextUrl=%2F'
   loginUrl2 = '/login'

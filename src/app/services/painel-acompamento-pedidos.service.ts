@@ -9,10 +9,12 @@ export class PainelAcompamentoPedidosService {
 
   painelPedidosUrl = null;
   painelPedidosProdutosUrl = null;
+  painelSeparacaoUrl = null;
  
   constructor( private http:HttpClient) { 
     this.painelPedidosUrl = `${environment.apiAddress}/painelAcompanhaPedido`
     this.painelPedidosProdutosUrl = `${environment.apiAddress}/painelAcompanhaPedido/produto`
+    this.painelSeparacaoUrl = `${environment.apiAddress}/painelacompanhaseparacao/todos`
   }
 
   pesquisar(filtro: any): Promise<any> {
@@ -27,6 +29,12 @@ export class PainelAcompamentoPedidosService {
       return this.http.post( this.painelPedidosProdutosUrl, filtro)
         .toPromise();
     }
+   }
+
+   pesquisarPainelSeparacao(): Promise<any>{
+    // return this.http.get(`${this.pedidosUrl}?dataPedidoDe=2020-10-02&dataPedidoAte=2020-10-03`)
+    return this.http.get(this.painelSeparacaoUrl)
+     .toPromise()
    }
   
 }

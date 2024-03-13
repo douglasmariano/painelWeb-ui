@@ -1,4 +1,3 @@
-import { Vendedor } from '@/models/painel-acompanhamento-pedidos.model';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { FuncionarioService } from '@services/funcionario.service';
@@ -16,6 +15,7 @@ export class PainelAcompamentoPedidosComponent implements OnInit {
 
   painelAcompanhaPedidos = [];
   painelAcompanhaPedidoporProdutos = [];
+  
   totalizadores = [];
   allSeparadores = [];
   totaldepedidos;
@@ -37,6 +37,7 @@ export class PainelAcompamentoPedidosComponent implements OnInit {
 
   basicData: any;
   basicOptions: any;
+  
   dataStacked;
   optionsStacked;
 
@@ -67,10 +68,12 @@ export class PainelAcompamentoPedidosComponent implements OnInit {
 
     this.funcionarioService.listarTodosSeparadores().subscribe((resultado: any) => {
       this.allSeparadores = resultado;
-    })
-      ;
+    });
+  
 
   }
+
+
   get f() { return this.buscaPedido.controls; }
 
 
@@ -84,7 +87,7 @@ export class PainelAcompamentoPedidosComponent implements OnInit {
   });
 
   constructor(private painelAcompanhaPedidoService: PainelAcompamentoPedidosService,
-    private funcionarioService: FuncionarioService,) {
+              private funcionarioService: FuncionarioService,) {
 
   }
   async pesquisar() {
@@ -131,6 +134,7 @@ export class PainelAcompamentoPedidosComponent implements OnInit {
     this.pedidosAguardandoSeparacao(this.listandoNumped);
     this.separadoresOcupados(this.listandoNumped);
     this.totaldePedidosSeparados(this.listandoNumped);
+    
   }
 
 
@@ -148,6 +152,8 @@ export class PainelAcompamentoPedidosComponent implements OnInit {
 
 
   }
+
+  
 
   totalizadorDePedidos(totalizadores) {
     this.totaldepedidos = 0;

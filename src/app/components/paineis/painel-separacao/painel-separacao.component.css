@@ -9,76 +9,76 @@
 } 
 .row-digitado {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(134, 134, 134) !important;
     color: rgb(255, 255, 255) !important;
     text-shadow: 0 0 3px #000000;
 }
 :host ::ng-deep .row-aguardandocliente {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(248, 250, 227) !important;
     color: rgb(0, 0, 0) !important;
     
 }
 :host ::ng-deep .row-emseparacao {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(57, 120, 214) !important;
     color: white !important;
 }
 :host ::ng-deep .row-retira {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(5, 128, 21) !important;
     color: white !important;
     text-shadow: 0 0 3px #000000;
 }
 :host ::ng-deep .row-balcao {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(153, 129, 23) !important;
     color: white !important;
     text-shadow: 0 0 3px #000000;
 }
 :host ::ng-deep .row-chamarcliente {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(67, 230, 75) !important;
     color: rgb(0, 0, 0) !important;
     text-shadow: 0 0 3px #000000;
 }
 :host ::ng-deep .row-conferencia {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(182, 65, 182) !important;
     color: white !important;
     text-shadow: 0 0 3px #000000;
 }
 :host ::ng-deep .row-caixa {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(31, 173, 192) !important;
     color: rgb(0, 0, 0) !important;
     
 }
 :host ::ng-deep .row-pacote {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(46, 46, 45) !important;
     color: white !important;
     text-shadow: 0 0 3px #000000;
 }
 :host ::ng-deep .row-finalizar {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(236, 223, 31) !important;
     color: rgb(0, 0, 0) !important;
     text-shadow: 0 0 3px #000000;
 }
 :host ::ng-deep .row-entrega {
     font-weight: 1000;
-    font-size: 12px;
+    font-size: 19px;
     background-color: rgb(190, 119, 25) !important;
     color: white !important;
     text-shadow: 0 0 3px #000000;
@@ -103,7 +103,7 @@ td {
   }*/
 
 .child {
-    width: 120px;
+    width: 119px;
     height: 50px;
     top: 50%;
     left: 50%;
@@ -122,6 +122,9 @@ td {
     display: flex;
     flex-wrap: wrap;
     min-width: 250px;
+}
+.container01{
+    height: 100%;
 }
 
 @media screen and (min-width: 360px) {

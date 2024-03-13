@@ -1,0 +1,54 @@
+<div class="container">    
+    <h1>PEDIDOS NÃO INICIADOS</h1>   
+</div>
+<div class="container01">
+    <p-table [value]="painelAcompanhaSeparacao" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Tempo <br/>
+                    Decorrido</th>
+                <th>Local <br/>
+                    Separação</th>
+                <th>Tipo <br/>
+                    Separação</th>
+                <th>Numped</th>                
+                <th>Vendedor</th>
+                <th style="width:700px">Cliente</th>
+                <!--<th>Vl. Total </th>-->
+                <th>Posição</th>
+                <th>Hora <br/>
+                    Pedido</th>
+                <th>Hora <br/>
+                    Chegada</th>
+                <th>Cod. Filial</th>
+                <th>Qt Itens</th>
+                <th>Vias <br/>
+                    Impressas</th>
+                <th>Vias <br/>
+                    Galpão</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-painelAcompanhaSeparacao>
+            <tr [ngClass]="{'row-digitado': painelAcompanhaSeparacao.tiposeparacao === 'NADA',
+                            'row-aguardandocliente': painelAcompanhaSeparacao.tiposeparacao === 'RETIRA',
+                            'row-balcao': painelAcompanhaSeparacao.tiposeparacao === 'BALCAO',
+                            'row-entrega': painelAcompanhaSeparacao.tiposeparacao === 'ENTREGA'}">
+                <td>{{ painelAcompanhaSeparacao.tempodecorrido }}</td>
+                <td>{{ painelAcompanhaSeparacao.localseparacao }}</td>
+                <td>{{ painelAcompanhaSeparacao.tiposeparacao }}</td>
+                <td>{{ painelAcompanhaSeparacao.numped }}</td>
+                <td>{{ painelAcompanhaSeparacao.codigovendedor }} - {{ painelAcompanhaSeparacao.nome }}</td>
+                <td style="width:700px">{{ painelAcompanhaSeparacao.codigocliente }} - {{ painelAcompanhaSeparacao.cliente }}</td>
+                <!--<td>{{ painelAcompanhaSeparacao.vltotal |  currency: 'BRL'}}</td>-->
+                <td>{{ painelAcompanhaSeparacao.posicao }}</td>
+                <td>{{ painelAcompanhaSeparacao.datapedido | date:'shortTime'}}</td>
+                <td>{{ painelAcompanhaSeparacao.datachegadacli | date:'shortTime'}}</td>
+                <td>{{ painelAcompanhaSeparacao.codfilial }}</td>
+                <td>{{ painelAcompanhaSeparacao.qtitem }}</td>
+                <td>{{ painelAcompanhaSeparacao.viasimpressas }}</td>
+                <td>{{ painelAcompanhaSeparacao.viasimpressasgalpao }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <br/>
+</div>

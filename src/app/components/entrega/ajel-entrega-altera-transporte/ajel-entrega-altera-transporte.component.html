@@ -1,36 +1,97 @@
-<div class="container" *ngIf="ajelEntregaCadastro">
-    <form [formGroup]="ajelEntregaCadastro"  (ngSubmit)="salvar(codentrega)">        
-        
-        <div class="p-field p-col-9">
-            <label>Conferente</label><br> 
-            <fieldset >                 
-            <app-conferente-selector (conferenteSelecionado)="onConferenteSelecionado($event)" pTooltip="Selecione o Conferente" tooltipPosition="right"></app-conferente-selector> 
-            </fieldset>   
-          
-            <label>Transportadora</label><br>
-            <!--<input pInputText class="p-inputtext-sm"  formControlName="fornecedor"> -->
-            <fieldset [disabled]="childEnabled2">
-            <app-transportadora-selector (transportadoraSelecionada)="onTransportadoraSelecionada($event)" pTooltip="Selecione a Transportadora" tooltipPosition="left"></app-transportadora-selector>                    
-            </fieldset>                         
-          
-            <label>Motorista</label><br>
-            <fieldset [disabled]="childEnabled">
-             <app-motorista-selector (motoristaSelecionado)="onMotoristaSelecionado($event)" pTooltip="Selecione o Motorista" tooltipPosition="left"></app-motorista-selector>
-            </fieldset> 
-          </div>
+<p-splitter [panelSizes]="[25, 75]" [style]="{ height: '500px' }" styleClass="mb-5">
+  <ng-template pTemplate>
+      <div class="col flex align-items-center justify-content-center">
+        <div  *ngIf="ajelEntregaCadastro">
+          <form [formGroup]="ajelEntregaCadastro"  (ngSubmit)="salvar(codentrega)">        
+                <div class="p-field p-col-9">
+                  <label>Conferente</label><br> 
+                  <fieldset >                 
+                  <app-conferente-selector (conferenteSelecionado)="onConferenteSelecionado($event)" pTooltip="Selecione o Conferente" tooltipPosition="right"></app-conferente-selector> 
+                  </fieldset>   
                 
+                  <label>Transportadora</label><br>
+                  <fieldset [disabled]="childEnabled2">
+                  <app-transportadora-selector (transportadoraSelecionada)="onTransportadoraSelecionada($event)" pTooltip="Selecione a Transportadora" tooltipPosition="left"></app-transportadora-selector>                    
+                  </fieldset>                         
+                
+                  <label>Motorista</label><br>
+                  <fieldset [disabled]="childEnabled">
+                   <app-motorista-selector (motoristaSelecionado)="onMotoristaSelecionado($event)" pTooltip="Selecione o Motorista" tooltipPosition="left"></app-motorista-selector>
+                  </fieldset> 
+                </div>
 
-          <div class="p-field p-col-6">
-            <label>Observação do Entregador</label><br>
-            <input pInputText  class="p-inputtext-sm" formControlName="obsdoentregador">
-          </div>         
-        
-          <div class="p-field p-col-4">
-            <label>Data Entrega</label><br>
-            <p-calendar formControlName="dtentrega" showTime="true" hourFormat="24"></p-calendar>               
-          </div>  
-          <div class="p-field p-col-2">
-            <button pButton type="submit" label="Salvar" ></button>
-          </div> 
-    </form>
-</div>
+                <div class="p-field p-col-6">
+                  <label>Observação do Entregador</label><br>
+                  <input pInputText  class="p-inputtext-sm" formControlName="obsdoentregador">
+                </div> 
+
+                <div class="p-field p-col-4">
+                  <label>Data Entrega</label><br>
+                  <p-calendar formControlName="dtentrega" showTime="true" hourFormat="24"></p-calendar>               
+                </div>
+                 
+                <div class="p-field p-col-2">
+                  <button pButton type="submit" label="Salvar" ></button>
+                </div> 
+
+            </form>      
+        </div>
+      </div>
+  </ng-template>
+  <ng-template pTemplate>
+      <div class="col flex align-items-center justify-content-center">
+        <p-table [value]="entregas" [scrollable]="true" scrollHeight="600px" class="table">
+          <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                Notas Reduzidas
+            </div>
+        </ng-template>    
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Nota</th>
+                  <th style="width: 20rem">Cliente</th>
+                  <th>Vendedor</th>
+                  <th>Volumes</th>
+                  <th style="width: 5rem"></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-entregas>
+              <tr>
+                  <td>{{entregas.numnota}}</td>
+                  <td>{{entregas.nomecliente}}</td>
+                  <td>{{entregas.nomevendedor}}</td>
+                  <td>    
+                   {{entregas.numvolume}}  
+              </td>        
+                  <td>
+                    <button type="button" pButton pRipple icon="pi pi-times"
+                          (click)="removerItem(entregas.numnota)" 
+                          class="p-button-warning"></button>
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+      <p-card>
+        <form [formGroup]="form" autocomplete="off" (ngSubmit)="pesquisar()">
+          <ng-template pTemplate="header">
+            <span class="text-xl font-bold"></span>
+          </ng-template>
+          <div>
+              <p><label>Busca Notas</label></p>
+            <br />
+            <br />
+            <input #buscaNotaFiscal (keydown.enter)="pesquisar()" type="text" formControlName="numnota" pInputText>
+          </div>
+          <br />
+          <div>
+            <button pButton (keydown.enter)="pesquisar()" type="submit" label="Buscar"></button>
+            &nbsp;
+            <button pButton (click)="limparListaPedidos()" label="Limpar" class="p-button-warning"></button>
+          </div>
+        </form>
+      </p-card>
+      </div>
+  </ng-template>
+</p-splitter>
+
+

@@ -27,6 +27,7 @@ import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
@@ -74,8 +75,8 @@ import { EstoqueDetalheComponent } from './components/estoque/estoque-detalhe/es
 import { EstoqueExpedicaoComponent } from './components/estoque/estoque-expedicao/estoque-expedicao.component';
 import { EstoqueExtratoComponent } from './components/estoque/estoque-extrato/estoque-extrato.component';
 import { LoginComponent } from './components/login/login.component';
-import { PainelAcompamentoPedidosComponent } from './components/pedido/painel-acompamento-pedidos/painel-acompamento-pedidos.component';
-import { PainelPedidosComponent } from './components/pedido/painel-pedidos/painel-pedidos.component';
+import { PainelAcompamentoPedidosComponent } from './components/paineis/painel-acompamento-pedidos/painel-acompamento-pedidos.component';
+import { PainelPedidosComponent } from './components/paineis/painel-pedidos/painel-pedidos.component';
 import { PedidosCadastroComponent } from './components/pedido/pedidos-cadastro/pedidos-cadastro.component';
 import { PedidosPesquisaComponent } from './components/pedido/pedidos-pesquisa/pedidos-pesquisa.component';
 import { ProdutoComponent } from './components/produto/produto.component';
@@ -113,6 +114,7 @@ import { MotoristaSelectorComponent } from './components/seletores/motorista-sel
 import { SeparadorSelectorComponent } from './components/seletores/separador-selector/separador-selector.component';
 import { RolesDirective } from './navbar/roles.directive';
 import { VeiculoSelectorComponent } from './components/seletores/veiculo-selector/veiculo-selector.component';
+import { PainelSeparacaoComponent } from './components/paineis/painel-separacao/painel-separacao.component';
 
 
 
@@ -156,7 +158,8 @@ registerLocaleData(localeFR);
     EstoqueConferenciaComponent,
     EstoqueTransporteComponent,
     SeparadorSelectorComponent,
-    VeiculoSelectorComponent ,
+    VeiculoSelectorComponent,
+    PainelSeparacaoComponent ,
   ],
   imports: [
     BrowserModule,
@@ -207,7 +210,8 @@ registerLocaleData(localeFR);
     AutoFocusModule,
     AnimateModule,
     CardModule,
-    NgxPrintModule, 
+    NgxPrintModule,
+    ConfirmPopupModule, 
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-br' },

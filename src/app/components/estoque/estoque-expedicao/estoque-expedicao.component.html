@@ -7,12 +7,14 @@
         
           
             <div class="content-box">
-                <p-button label="Separação" (click)="showDialogSeparacao()" (click)="notaOuPedido = false"
-                    styleClass="p-button-lg p-button-info"></p-button>
-                <p-button label="Conferência" (click)="showDialogConferencia()" (click)="notaOuPedido = false"
-                    styleClass="p-button-lg p-button-warning"></p-button>
-                <p-button label="Transporte" (click)="showDialogTransporte()" (click)="notaOuPedido = true"
-                    styleClass="p-button-lg p-button-success"></p-button>
+                <p-button (click)="showDialogSeparacao()" (click)="notaOuPedido = false"
+                    styleClass="p-button-lg p-button-info">
+                    <h2>Separação</h2></p-button>
+                <p-button (click)="showDialogConferencia()" (click)="notaOuPedido = false"
+                    styleClass="p-button-lg p-button-warning">
+                    <h2>Conferência</h2></p-button>
+              <!--  <p-button label="Transporte" (click)="showDialogTransporte()" (click)="notaOuPedido = true"
+                    styleClass="p-button-lg p-button-success"></p-button>-->
             </div>
           
             

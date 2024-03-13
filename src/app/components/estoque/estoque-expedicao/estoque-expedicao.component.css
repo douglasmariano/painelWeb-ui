@@ -13,9 +13,11 @@
     color: white;
     text-align: center;
     width: 690px;
+    font: 50px !important;
   }
   p-button{
-    margin: 0 15px;
+    
+    margin: 0 65px;
 }
 
 p-dialog .ui-dialog {
